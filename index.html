@@ -97,18 +97,18 @@
   .conv-item{background:#F5F7F8;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:.82rem;}
   .conv-item .ck{color:var(--ink-soft);font-size:.72rem;display:block;margin-bottom:2px;}
   .conv-item .cv{font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;}
-  #print-area{display:none;}
-  /* ============ NEW: Formula Display ============ */
+  /* ============ NEW (تغییر ۲ و ۱): Formula Display + Settings Bar ============ */
   .formula{background:#F5F7F8;border-right:3px solid var(--steel);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:.78rem;direction:ltr;text-align:left;font-family:'Consolas','Monaco',monospace;color:#0a4f7f;overflow-x:auto;line-height:1.75;}
   .formula .ft{color:var(--brass);font-weight:700;font-size:.74rem;margin-bottom:6px;direction:rtl;text-align:right;font-family:"Vazirmatn",Tahoma,sans-serif;}
   .formula .fl{margin:1px 0;}
   .formula .ref{color:var(--ink-soft);font-size:.68rem;margin-top:6px;direction:rtl;text-align:right;font-family:"Vazirmatn",Tahoma,sans-serif;font-style:italic;border-top:1px dashed var(--line);padding-top:5px;}
-  /* ============ NEW: Shared Settings Bar ============ */
   .settings-bar{background:linear-gradient(135deg,#FFF9EE 0%,#FCEFD8 100%);border:1.5px solid var(--brass);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .settings-bar .sg{display:flex;flex-direction:column;gap:4px;}
   .settings-bar label{font-size:.78rem;color:var(--navy);font-weight:700;margin:0;}
   .settings-bar select{padding:7px 10px;font-size:.85rem;background:#fff;border-color:var(--brass);}
   @media(max-width:520px){.settings-bar{grid-template-columns:1fr;}}
+  /* ============ END NEW ============ */
+  #print-area{display:none;}
   @media print{
     body.printing > .app{display:none;}
     body.printing > #print-area{display:block;}
@@ -144,7 +144,7 @@
 
   <main>
 
-    <!-- ==================== SHARED SETTINGS BAR (NEW) ==================== -->
+    <!-- ============ NEW (تغییر ۱): نوار تنظیمات مشترک ============ -->
     <div class="settings-bar">
       <div class="sg">
         <label>⚖️ ضریب اطمینان (Safety Factor)</label>
@@ -162,6 +162,7 @@
         </select>
       </div>
     </div>
+    <!-- ============ END NEW ============ -->
 
     <!-- ==================== BOILERS ==================== -->
     <section id="panel-boilers" class="panel active">
@@ -178,32 +179,38 @@
           <span class="badge">Steam Boiler — Horizontal Wet-back</span>
           <h2>دیگ بخار افقی سه‌پاس وت‌بک</h2>
           <p class="hint">ظرفیت ۱۰۰ تا ۱۵٬۰۰۰ kg/hr — فشار ۳ تا ۲۰ bar. EN12953 / BS2790 / ISIRI 4231. محاسبه کامل شامل مشعل، پمپ تغذیه، شیر اطمینان، قطر لوله و بازیافت انرژی کندانس.</p>
+
           <div class="row">
             <div class="field"><label>ظرفیت</label><input type="number" id="hwb_cap" value="3000"><span class="unit">kg/hr</span></div>
             <div class="field"><label>فشار کاری</label><input type="number" id="hwb_p" value="10"><span class="unit">bar</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>دمای آب تغذیه</label><input type="number" id="hwb_tfeed" value="105"><span class="unit">°C</span></div>
             <div class="field"><label>بازگشت کندانس</label><input type="number" id="hwb_cond" value="60"><span class="unit">٪</span></div>
             <div class="field"><label>دمای کندانس برگشتی</label><input type="number" id="hwb_tcond" value="85"><span class="unit">°C</span></div>
             <div class="field"><label>دمای آب جبرانی</label><input type="number" id="hwb_tmakeup" value="20"><span class="unit">°C</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>TDS آب تغذیه</label><input type="number" id="hwb_tdsf" value="250"><span class="unit">ppm</span></div>
             <div class="field"><label>TDS حداکثر دیگ</label><input type="number" id="hwb_tdsb" value="3500"><span class="unit">ppm</span></div>
             <div class="field"><label>راندمان</label><input type="number" id="hwb_eff" value="88"><span class="unit">٪</span></div>
             <div class="field"><label>کیفیت بخار</label><input type="number" id="hwb_x" value="97"><span class="unit">٪</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>سوخت</label><select id="hwb_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div>
             <div class="field"><label>ارتفاع از سطح دریا</label><input type="number" id="hwb_alt" value="0"><span class="unit">m</span></div>
             <div class="field"><label>دمای محیط مشعل</label><input type="number" id="hwb_tamb" value="20"><span class="unit">°C</span></div>
             <div class="field"><label>سختی آب</label><input type="number" id="hwb_hard" value="300"><span class="unit">ppm</span></div>
           </div>
+
           <div class="row">
             <div class="field"><label>فشار دی‌اریتور (برای Head پمپ)</label><input type="number" id="hwb_pdea" value="0.3"><span class="unit">bar</span></div>
             <div class="field"><label>طول مسیر لوله بخار اصلی</label><input type="number" id="hwb_pipelen" value="50"><span class="unit">m</span></div>
           </div>
+
           <button class="btn" onclick="calcHorizontalSteam()">محاسبه کامل</button>
           <div class="results" id="hwb_results"></div>
         </div>
@@ -213,33 +220,39 @@
         <div class="card">
           <span class="badge">Steam Boiler — Firebox</span>
           <h2>دیگ بخار فایرباکس</h2>
-          <p class="hint">ظرفیت ۳۰۰ تا ۸٬۰۰۰ kg/hr — فشار ۶ تا ۱۶ bar.</p>
+          <p class="hint">ظرفیت ۳۰۰ تا ۸٬۰۰۰ kg/hr — فشار ۶ تا ۱۶ bar. طراحی فشرده با کوره فایرباکس.</p>
+
           <div class="row">
             <div class="field"><label>ظرفیت</label><input type="number" id="fb_cap" value="1500"><span class="unit">kg/hr</span></div>
             <div class="field"><label>فشار کاری</label><input type="number" id="fb_p" value="10"><span class="unit">bar</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>دمای آب تغذیه</label><input type="number" id="fb_tfeed" value="105"><span class="unit">°C</span></div>
             <div class="field"><label>بازگشت کندانس</label><input type="number" id="fb_cond" value="60"><span class="unit">٪</span></div>
             <div class="field"><label>دمای کندانس</label><input type="number" id="fb_tcond" value="85"><span class="unit">°C</span></div>
             <div class="field"><label>دمای جبرانی</label><input type="number" id="fb_tmakeup" value="20"><span class="unit">°C</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>TDS آب تغذیه</label><input type="number" id="fb_tdsf" value="250"><span class="unit">ppm</span></div>
             <div class="field"><label>TDS حداکثر</label><input type="number" id="fb_tdsb" value="3000"><span class="unit">ppm</span></div>
             <div class="field"><label>راندمان</label><input type="number" id="fb_eff" value="86"><span class="unit">٪</span></div>
             <div class="field"><label>کیفیت بخار</label><input type="number" id="fb_x" value="97"><span class="unit">٪</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>سوخت</label><select id="fb_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div>
             <div class="field"><label>ارتفاع</label><input type="number" id="fb_alt" value="0"><span class="unit">m</span></div>
             <div class="field"><label>دمای محیط</label><input type="number" id="fb_tamb" value="20"><span class="unit">°C</span></div>
             <div class="field"><label>سختی آب</label><input type="number" id="fb_hard" value="300"><span class="unit">ppm</span></div>
           </div>
+
           <div class="row">
             <div class="field"><label>فشار دی‌اریتور</label><input type="number" id="fb_pdea" value="0.3"><span class="unit">bar</span></div>
             <div class="field"><label>طول لوله بخار</label><input type="number" id="fb_pipelen" value="30"><span class="unit">m</span></div>
           </div>
+
           <button class="btn" onclick="calcFireboxSteam()">محاسبه کامل</button>
           <div class="results" id="fb_results"></div>
         </div>
@@ -249,27 +262,32 @@
         <div class="card">
           <span class="badge">Steam Boiler — Vertical</span>
           <h2>دیگ بخار عمودی</h2>
-          <p class="hint">ظرفیت ۶۰ تا ۵۰۰ kg/hr — فشار ۳ تا ۱۰ bar.</p>
+          <p class="hint">ظرفیت ۶۰ تا ۵۰۰ kg/hr — فشار ۳ تا ۱۰ bar. مناسب اتوکلاو، خشکشویی، سونا. زمان تولید بخار ۲۰ دقیقه.</p>
+
           <div class="row">
             <div class="field"><label>ظرفیت</label><input type="number" id="vrt_cap" value="200"><span class="unit">kg/hr</span></div>
             <div class="field"><label>فشار کاری</label><input type="number" id="vrt_p" value="8"><span class="unit">bar</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>دمای آب تغذیه</label><input type="number" id="vrt_tfeed" value="20"><span class="unit">°C</span></div>
             <div class="field"><label>بازگشت کندانس</label><input type="number" id="vrt_cond" value="0"><span class="unit">٪</span></div>
             <div class="field"><label>TDS آب تغذیه</label><input type="number" id="vrt_tdsf" value="300"><span class="unit">ppm</span></div>
             <div class="field"><label>TDS حداکثر</label><input type="number" id="vrt_tdsb" value="3500"><span class="unit">ppm</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>راندمان</label><input type="number" id="vrt_eff" value="85"><span class="unit">٪</span></div>
             <div class="field"><label>کیفیت بخار</label><input type="number" id="vrt_x" value="96"><span class="unit">٪</span></div>
             <div class="field"><label>سوخت</label><select id="vrt_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option></select></div>
             <div class="field"><label>سختی آب</label><input type="number" id="vrt_hard" value="300"><span class="unit">ppm</span></div>
           </div>
+
           <div class="row">
             <div class="field"><label>ارتفاع از سطح دریا</label><input type="number" id="vrt_alt" value="0"><span class="unit">m</span></div>
             <div class="field"><label>دمای محیط</label><input type="number" id="vrt_tamb" value="20"><span class="unit">°C</span></div>
           </div>
+
           <button class="btn" onclick="calcVerticalSteam()">محاسبه کامل</button>
           <div class="results" id="vrt_results"></div>
         </div>
@@ -280,6 +298,7 @@
           <span class="badge">Clean Steam Generator</span>
           <h2>مولد بخار تمیز</h2>
           <p class="hint">EN285 / HTM2031. تمام سطوح در تماس با بخار: استنلس استیل ۳۱۶L.</p>
+
           <div class="field"><label>نوع کاربرد</label>
             <select id="cs_app" onchange="onCleanSteamAppChange()">
               <option value="hospital">بیمارستان — استریلیزاسیون</option>
@@ -288,7 +307,9 @@
               <option value="lab">آزمایشگاه — اتوکلاو</option>
             </select>
           </div>
+
           <div id="cs_dynamic_inputs"></div>
+
           <div class="row3">
             <div class="field"><label>فشار کاری بخار</label><input type="number" id="cs_p" value="4"><span class="unit">bar</span></div>
             <div class="field"><label>منبع انرژی اولیه</label>
@@ -296,6 +317,7 @@
             </div>
             <div class="field"><label>حاشیه اطمینان</label><input type="number" id="cs_margin" value="15"><span class="unit">٪</span></div>
           </div>
+
           <button class="btn" onclick="calcCleanSteam()">محاسبه</button>
           <div class="results" id="cs_results"></div>
         </div>
@@ -306,17 +328,20 @@
           <span class="badge">Hot Oil Boiler</span>
           <h2>دیگ روغن داغ</h2>
           <p class="hint">DIN 4754. ظرفیت ۱۰۰٬۰۰۰ تا ۳٬۰۰۰٬۰۰۰ kcal/hr. تا ۳۵۰°C.</p>
+
           <div class="row3">
             <div class="field"><label>بار حرارتی</label><input type="number" id="ho_q" value="500000"><span class="unit">kcal/hr</span></div>
             <div class="field"><label>دمای رفت روغن</label><input type="number" id="ho_tin" value="280"><span class="unit">°C</span></div>
             <div class="field"><label>دمای برگشت روغن</label><input type="number" id="ho_tout" value="250"><span class="unit">°C</span></div>
           </div>
+
           <div class="row4">
             <div class="field"><label>حاشیه اطمینان</label><input type="number" id="ho_margin" value="15"><span class="unit">٪</span></div>
             <div class="field"><label>راندمان</label><input type="number" id="ho_eff" value="90"><span class="unit">٪</span></div>
             <div class="field"><label>سوخت</label><select id="ho_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option></select></div>
             <div class="field"><label>ارتفاع از سطح دریا</label><input type="number" id="ho_alt" value="0"><span class="unit">m</span></div>
           </div>
+
           <button class="btn" onclick="calcHotOil()">محاسبه</button>
           <div class="results" id="ho_results"></div>
         </div>
@@ -337,7 +362,7 @@
         <div class="card">
           <span class="badge">Hot Water — Three-pass</span>
           <h2>دیگ آبگرم سه‌پاس</h2>
-          <p class="hint">۸۰٬۰۰۰ تا ۶٬۰۰۰٬۰۰۰ kcal/hr — ۳ تا ۲۰ bar.</p>
+          <p class="hint">۸۰٬۰۰۰ تا ۶٬۰۰۰٬۰۰۰ kcal/hr — ۳ تا ۲۰ bar. حداکثر دمای آب ۹۰°C.</p>
           <div class="row">
             <div class="field"><label>بار حرارتی</label><input type="number" id="tp_q" value="500000"><span class="unit">kcal/hr</span></div>
             <div class="field"><label>فشار کاری</label><input type="number" id="tp_p" value="6"><span class="unit">bar</span></div>
@@ -387,7 +412,7 @@
         <div class="card">
           <span class="badge">Hot Water — Firebox</span>
           <h2>دیگ آبگرم فایرباکس</h2>
-          <p class="hint">۸۵٬۰۰۰ تا ۱٬۲۵۰٬۰۰۰ kcal/hr — ۳ تا ۱۰ bar.</p>
+          <p class="hint">۸۵٬۰۰۰ تا ۱٬۲۵۰٬۰۰۰ kcal/hr — ۳ تا ۱۰ bar. عایق‌کاری ۵۰ mm.</p>
           <div class="row">
             <div class="field"><label>بار حرارتی</label><input type="number" id="hfb_q" value="300000"><span class="unit">kcal/hr</span></div>
             <div class="field"><label>فشار</label><input type="number" id="hfb_p" value="6"><span class="unit">bar</span></div>
@@ -438,6 +463,7 @@
           <span class="badge">Central Heating Package</span>
           <h2>پکیج موتورخانه‌ای</h2>
           <p class="hint">سری H و M. Cb.pH-45/85/100. ۱۷٬۰۰۰ تا ۱۰۰٬۰۰۰ kcal/hr. راندمان ۹۵٪.</p>
+
           <div class="field"><label>سری</label>
             <select id="pk_series"><option value="H">سری H — راندمان بالاتر</option><option value="M">سری M — استاندارد</option></select>
           </div>
@@ -476,12 +502,12 @@
         <button class="subtab-btn" data-subpanel="app-industrial">بخار صنعتی</button>
       </nav>
 
-      <!-- ===== GREENHOUSE (MODIFIED) ===== -->
+      <!-- ============ NEW (تغییر ۳): گلخانه با ابعاد و نوع پوشش ============ -->
       <div id="subpanel-app-greenhouse" class="subpanel active">
         <div class="card">
           <span class="badge">Greenhouse</span>
           <h2>بار حرارتی گلخانه</h2>
-          <p class="hint">P.V. Nelson + ASHRAE. ابعاد دقیق + نوع پوشش (نایلون تک/دولایه).</p>
+          <p class="hint">P.V. Nelson + ASHRAE. ابعاد دقیق + نوع پوشش نایلون تک/دولایه.</p>
           <div class="row3">
             <div class="field"><label>طول</label><input type="number" id="gh_l" value="30" step="0.5"><span class="unit">m</span></div>
             <div class="field"><label>عرض</label><input type="number" id="gh_w" value="15" step="0.5"><span class="unit">m</span></div>
@@ -516,13 +542,14 @@
           <div class="results" id="gh_results"></div>
         </div>
       </div>
+      <!-- ============ END NEW ============ -->
 
-      <!-- ===== POOL (MODIFIED) ===== -->
+      <!-- ============ NEW (تغییر ۴): استخر با گردش ۱۲/۲۴/۴۸ ============ -->
       <div id="subpanel-app-pool" class="subpanel">
         <div class="card">
           <span class="badge">Pool</span>
           <h2>بار حرارتی استخر</h2>
-          <p class="hint">ASHRAE — تبخیر + جابجایی + تشعشع. گردش ۱۲/۲۴/۴۸ ساعت.</p>
+          <p class="hint">ASHRAE — تبخیر + جابجایی + تشعشع. گردش ۱۲/۲۴/۴۸ ساعته.</p>
           <div class="row3">
             <div class="field"><label>طول</label><input type="number" id="pl_l" value="25"><span class="unit">m</span></div>
             <div class="field"><label>عرض</label><input type="number" id="pl_w" value="12"><span class="unit">m</span></div>
@@ -544,9 +571,9 @@
             <div class="field"><label>پوشش</label><select id="pl_cover"><option value="1">ندارد</option><option value="0.3" selected>دارد</option></select></div>
             <div class="field"><label>دوره گردش</label>
               <select id="pl_turnover">
-                <option value="12">۱۲ ساعته (استخر خانگی)</option>
-                <option value="24" selected>۲۴ ساعته (استخر تفریحی)</option>
-                <option value="48">۴۸ ساعته (استخر ذخیره)</option>
+                <option value="12">۱۲ ساعته (خانگی)</option>
+                <option value="24" selected>۲۴ ساعته (تفریحی)</option>
+                <option value="48">۴۸ ساعته (ذخیره)</option>
               </select>
             </div>
           </div>
@@ -555,8 +582,9 @@
           <div class="results" id="pl_results"></div>
         </div>
       </div>
+      <!-- ============ END NEW ============ -->
 
-      <!-- ===== DHW (MODIFIED: new locations + formula + safety + pattern) ===== -->
+      <!-- ============ NEW (تغییر ۶): DHW با مکان‌های جدید ============ -->
       <div id="subpanel-app-dhw" class="subpanel">
         <div class="card">
           <span class="badge">Domestic Hot Water</span>
@@ -601,7 +629,7 @@
             <div class="row3">
               <div class="field"><label>حداکثر ساعتی</label><input type="number" id="dhw_ch" value="1000"><span class="unit">L/hr</span></div>
               <div class="field"><label>حداکثر روزانه</label><input type="number" id="dhw_cd" value="5000"><span class="unit">L/day</span></div>
-              <div class="field"><label>دمای هدف / ورودی</label>
+              <div class="field"><label>دمای هدف/ورودی</label>
                 <div class="row"><input type="number" id="dhw_th" value="60"><input type="number" id="dhw_tc" value="15"></div>
               </div>
             </div>
@@ -610,8 +638,9 @@
           <div class="results" id="dhw_results"></div>
         </div>
       </div>
+      <!-- ============ END NEW ============ -->
 
-      <!-- ===== HEATING (NEW) ===== -->
+      <!-- ============ NEW (تغییر ۸): گرمایش (شوفاژ) ============ -->
       <div id="subpanel-app-heating" class="subpanel">
         <div class="card">
           <span class="badge">Space Heating</span>
@@ -641,8 +670,9 @@
           <div class="results" id="ht_results"></div>
         </div>
       </div>
+      <!-- ============ END NEW ============ -->
 
-      <!-- ===== SAUNA (NEW) ===== -->
+      <!-- ============ NEW (تغییر ۷): سونا ============ -->
       <div id="subpanel-app-sauna" class="subpanel">
         <div class="card">
           <span class="badge">Sauna</span>
@@ -673,8 +703,8 @@
           <div class="results" id="sa_results"></div>
         </div>
       </div>
+      <!-- ============ END NEW ============ -->
 
-      <!-- ===== INDUSTRIAL (unchanged) ===== -->
       <div id="subpanel-app-industrial" class="subpanel">
         <div class="card">
           <span class="badge">Industrial Steam</span>
@@ -700,7 +730,7 @@
       </div>
     </section>
 
-    <!-- ==================== TANKS (unchanged) ==================== -->
+    <!-- ==================== TANKS ==================== -->
     <section id="panel-tanks" class="panel">
       <nav class="subtabs" data-parent="tanks">
         <button class="subtab-btn active" data-subpanel="tank-open">انبساط باز</button>
@@ -730,6 +760,7 @@
         <div class="card">
           <span class="badge">Closed Expansion Tank</span>
           <h2>منبع انبساط بسته</h2>
+          <p class="hint">فرمول ASHRAE با نسبت فشار.</p>
           <div class="row3">
             <div class="field"><label>حجم آب</label><input type="number" id="ce_vs" value="2000"><span class="unit">L</span></div>
             <div class="field"><label>حداکثر دما</label><input type="number" id="ce_t" value="90"><span class="unit">°C</span></div>
@@ -748,6 +779,7 @@
         <div class="card">
           <span class="badge">Condensate Tank</span>
           <h2>مخزن کندانس</h2>
+          <p class="hint">محاسبه فلش + ابعاد + توصیه کاتالوگ.</p>
           <div class="row3">
             <div class="field"><label>دبی کندانس</label><input type="number" id="ct_flow" value="1500"><span class="unit">kg/hr</span></div>
             <div class="field"><label>هولدآپ</label><input type="number" id="ct_hold" value="10"><span class="unit">min</span></div>
@@ -809,7 +841,7 @@
       </div>
     </section>
 
-    <!-- ==================== TREATMENT (with expanded loading rate) ==================== -->
+    <!-- ==================== TREATMENT ==================== -->
     <section id="panel-treatment" class="panel">
       <nav class="subtabs" data-parent="treatment">
         <button class="subtab-btn active" data-subpanel="tr-softener">سختی‌گیر</button>
@@ -833,11 +865,12 @@
         </div>
       </div>
 
+      <!-- ============ NEW (تغییر ۵): افزودن گزینه ۱۲ GPM/ft² ============ -->
       <div id="subpanel-tr-sand" class="subpanel">
         <div class="card">
           <span class="badge">Sand / Carbon</span>
           <h2>فیلتر شنی و کربن</h2>
-          <p class="hint">ASHRAE — نرخ بارگذاری ۱۲-۲۰ GPM/ft² (۱۵ توصیه می‌شود).</p>
+          <p class="hint">ASHRAE — نرخ بارگذاری ۱۲-۲۰ GPM/ft² (۱۵ توصیه‌شده).</p>
           <div class="row3">
             <div class="field"><label>دبی</label><input type="number" id="sf2_flow" value="10"><span class="unit">m³/h</span></div>
             <div class="field"><label>بارگذاری</label>
@@ -848,14 +881,13 @@
                 <option value="20">۲۰ GPM/ft² — حداکثر</option>
               </select>
             </div>
-            <div class="field"><label>نوع</label>
-              <select id="sf2_type"><option value="sand">شنی</option><option value="carbon">کربن</option><option value="both">هر دو</option></select>
-            </div>
+            <div class="field"><label>نوع</label><select id="sf2_type"><option value="sand">شنی</option><option value="carbon">کربن</option><option value="both">هر دو</option></select></div>
           </div>
           <button class="btn" onclick="calcSandFilter()">محاسبه</button>
           <div class="results" id="sf2_results"></div>
         </div>
       </div>
+      <!-- ============ END NEW ============ -->
 
       <div id="subpanel-tr-deaerator" class="subpanel">
         <div class="card">
@@ -876,7 +908,7 @@
       </div>
     </section>
 
-    <!-- ==================== ACCESSORIES (unchanged) ==================== -->
+    <!-- ==================== ACCESSORIES ==================== -->
     <section id="panel-accessories" class="panel">
       <nav class="subtabs" data-parent="accessories">
         <button class="subtab-btn active" data-subpanel="ac-hydraulic">هیدرولیک</button>
@@ -956,12 +988,13 @@
       </div>
     </section>
 
-    <!-- ==================== CALCULATOR (unchanged) ==================== -->
+    <!-- ==================== CALCULATOR ==================== -->
     <section id="panel-calculator" class="panel">
       <div class="card">
         <span class="badge">Unit Converter</span>
         <h2>ماشین‌حساب تبدیل واحدهای صنعتی</h2>
-        <p class="hint">تبدیل بین واحدهای متداول در صنعت تاسیسات، حرارت، برودت و بخار.</p>
+        <p class="hint">تبدیل بین واحدهای متداول در صنعت تاسیسات، حرارت، برودت و بخار. تمام تبدیلات به‌صورت زنده انجام می‌شود.</p>
+
         <div class="field"><label>دسته تبدیل</label>
           <select id="calc_category" onchange="onCalcCategoryChange()">
             <option value="heat">ظرفیت حرارتی / توان</option>
@@ -982,17 +1015,21 @@
             <option value="area_heat">شار حرارتی</option>
           </select>
         </div>
+
         <div class="calc-grid">
           <div class="field"><label>مقدار ورودی</label><input type="number" id="calc_value" value="1" step="any" oninput="runCalc()"></div>
           <div class="field"><label>واحد مبدأ</label><select id="calc_from" onchange="runCalc()"></select></div>
           <div class="field" style="display:flex;align-items:end;"><button class="btn secondary" onclick="swapUnits()">⇄ جابجایی</button></div>
         </div>
+
         <div class="calc-result">
           <div class="num" id="calc_result">1</div>
           <div class="lbl" id="calc_result_label">واحد</div>
         </div>
+
         <div class="conversion-row" id="calc_conversions"></div>
       </div>
+
       <div class="card">
         <span class="badge">Quick Reference</span>
         <h2>جدول مرجع سریع</h2>
@@ -1004,7 +1041,7 @@
           <tr><td>1 bar</td><td>14.504 psi = 100 kPa = 1.020 kg/cm²</td></tr>
           <tr><td>1 m³</td><td>1000 L = 35.315 ft³ = 264.17 US gal</td></tr>
           <tr><td>1 GPM (US)</td><td>0.2271 m³/hr = 3.785 L/min</td></tr>
-          <tr><td>1 grain/gal (US)</td><td>17.1 ppm CaCO₃</td></tr>
+          <tr><td>1 grain/gal (US)</td><td>17.1 ppm CaCO₃ = 1 mg/L × 17.1</td></tr>
           <tr><td>HHV گاز طبیعی</td><td>≈ 8500–8600 kcal/Nm³</td></tr>
           <tr><td>LHV گازوئیل</td><td>≈ 10200 kcal/kg</td></tr>
           <tr><td>LHV مازوت</td><td>≈ 9700 kcal/kg</td></tr>
@@ -1031,13 +1068,14 @@ function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.
 function copyText(id){ const el=document.getElementById(id); navigator.clipboard.writeText(el.value||el.textContent).then(()=>toast('کپی شد')); }
 function heatUnits(k){ return `${fmt(k*1.163/1000)} kW · ${fmt(k*3.968)} BTU/hr · ${fmt(k/8434.5,2)} BHP`; }
 function massFlow(kg){ return `${fmt(kg)} kg/hr · ${fmt(kg/1000,2)} ton/hr · ${fmt(kg*2.2046)} lb/hr`; }
-/* ===== NEW: Shared settings helper ===== */
+/* ============ NEW (تغییر ۱ و ۲): Safety Factor + Formula Helper ============ */
 function getSafety(){ return n(document.getElementById('global_safety').value) || 1.2; }
 function getPattern(){ return document.getElementById('global_pattern').value; }
 function patternFactor(p){ return p === 'peak' ? 1.5 : 1.0; }
 function formulaBlock(title, lines, ref){
   return `<div class="formula"><div class="ft">📐 ${title}</div>${lines.map(l=>`<div class="fl">${l}</div>`).join('')}<div class="ref">📚 مرجع: ${ref}</div></div>`;
 }
+/* ============ END NEW ============ */
 function printReport(title,bodyHtml){
   let area=document.getElementById('print-area');
   if(!area){ area=document.createElement('div'); area.id='print-area'; document.body.appendChild(area); }
@@ -1046,7 +1084,7 @@ function printReport(title,bodyHtml){
   setTimeout(()=>{ window.print(); setTimeout(()=>document.body.classList.remove('printing'),300); },50);
 }
 
-/* ==================== CATALOG TABLES (unchanged) ==================== */
+/* ==================== CATALOG TABLES ==================== */
 const STEAM_HORIZONTAL = {min:100,max:15000,minP:3,maxP:20};
 const STEAM_FIREBOX = {min:300,max:8000,minP:6,maxP:16};
 const STEAM_VERTICAL = {min:60,max:500,minP:3,maxP:10};
@@ -1149,6 +1187,7 @@ function interp(t,x,xk,yk){
 }
 function satP(p){ return {t:interp(STEAM_SAT,p,'p','t'),hf:interp(STEAM_SAT,p,'p','hf'),hfg:interp(STEAM_SAT,p,'p','hfg'),vg:interp(STEAM_SAT,p,'p','vg')}; }
 function pick(arr,key,val){ for(const x of arr){ if(x[key]>=val) return x; } return arr[arr.length-1]; }
+function pickMax(arr,key,val){ let last=null; for(const x of arr){ if(x[key]<=val) last=x; else break; } return last||arr[0]; }
 
 /* ==================== TABS ==================== */
 document.querySelectorAll('.tab-btn').forEach(btn=>{
@@ -1171,21 +1210,23 @@ document.querySelectorAll('.subtabs').forEach(nav=>{
   });
 });
 
-/* ==================== ENGINEERING UTILITIES (unchanged) ==================== */
+/* ==================== ENGINEERING UTILITIES ==================== */
 function burnerDerate(altitude, ambientTemp){
   const pAtm = 101.325 * Math.pow(1 - 2.25577e-5 * altitude, 5.25588);
   const tempFactor = 293 / (273 + ambientTemp);
-  return 1 / ((pAtm / 101.325) * tempFactor);
+  const cf = (pAtm / 101.325) / tempFactor;
+  return 1 / ((pAtm / 101.325) * (293 / (273 + ambientTemp)));
 }
 const FUELS = {
-  gas: { name:'گاز طبیعی', HHV: 8500, isVolume: true },
-  diesel: { name:'گازوئیل', LHV: 10200, isVolume: false },
-  mazut: { name:'مازوت', LHV: 9700, isVolume: false },
+  gas: { name:'گاز طبیعی', HHV: 8500, unit:'Nm³', unitLabel:'m³/hr', isVolume: true },
+  diesel: { name:'گازوئیل', LHV: 10200, unit:'kg', unitLabel:'kg/hr', isVolume: false },
+  mazut: { name:'مازوت', LHV: 9700, unit:'kg', unitLabel:'kg/hr', isVolume: false },
 };
 function calcBlowdown(tdsFeed, tdsBoiler){
   if(tdsBoiler <= tdsFeed) return { coc: 1, blowPct: 100 };
   const coc = tdsBoiler / tdsFeed;
-  return { coc, blowPct: 100 / coc };
+  const blowPct = 100 / coc;
+  return { coc, blowPct };
 }
 function calcBurner(qBoilerKcal, effPct, fuel, altitude, ambientTemp){
   const eff = effPct / 100;
@@ -1201,7 +1242,8 @@ function calcBurner(qBoilerKcal, effPct, fuel, altitude, ambientTemp){
 function steamPipeSize(flowKgHr, pressureBarg, velocityMs){
   const pAbs = pressureBarg + 1.013;
   const sp = satP(pAbs);
-  const volFlowM3s = (flowKgHr / 3600) * sp.vg;
+  const vg = sp.vg;
+  const volFlowM3s = (flowKgHr / 3600) * vg;
   const areaM2 = volFlowM3s / velocityMs;
   const diaM = Math.sqrt(4 * areaM2 / Math.PI);
   const diaMm = diaM * 1000;
@@ -1222,52 +1264,63 @@ function feedPump(steamKgHr, blowPct, boilerP, deaeratorP, staticH, frictionFact
 function safetyValve(steamKgHr, setP){
   const requiredCap = steamKgHr * 0.75;
   const pAbs = setP + 1.013;
-  const A_mm2 = requiredCap / (51.45 * 0.975 * pAbs * 1.0);
+  const K = 0.975;
+  const Ksh = 1.0;
+  const A_mm2 = requiredCap / (51.45 * K * pAbs * Ksh);
   const A_cm2 = A_mm2 / 100;
-  const orifices = [{letter:'D',area:0.71},{letter:'E',area:1.27},{letter:'F',area:1.98},{letter:'G',area:3.24},{letter:'H',area:5.06},{letter:'J',area:8.3},{letter:'K',area:11.9},{letter:'L',area:16.4},{letter:'M',area:23.2},{letter:'N',area:28.5},{letter:'P',area:41.2},{letter:'Q',area:71.2}];
+  const orifices = [
+    {letter:'D',area:0.71},{letter:'E',area:1.27},{letter:'F',area:1.98},{letter:'G',area:3.24},
+    {letter:'H',area:5.06},{letter:'J',area:8.3},{letter:'K',area:11.9},{letter:'L',area:16.4},
+    {letter:'M',area:23.2},{letter:'N',area:28.5},{letter:'P',area:41.2},{letter:'Q',area:71.2},
+  ];
   let orifice = orifices[orifices.length-1];
   for(const o of orifices){ if(o.area >= A_cm2) { orifice = o; break; } }
   return { requiredCap, A_mm2, A_cm2, orificeLetter: orifice.letter, orificeArea: orifice.area };
 }
 function condensateRecovery(condFlow, tCond, tMakeup){
+  const Cp = 4.187;
   const dT = Math.max(0, tCond - tMakeup);
-  const Q_kcalh = condFlow * 4.187 * dT / 4.1868;
+  const Q_kJh = condFlow * Cp * dT;
+  const Q_kcalh = Q_kJh / 4.1868;
   return { Q_kcalh, dT };
 }
 
-/* ==================== BURNER BLOCK (unchanged) ==================== */
+/* ==================== BURNER & CHIMNEY BLOCK ==================== */
 function burnerBlock(qBoilerKcal, effPct, fuel, altitude, ambientTemp, label){
   const b = calcBurner(qBoilerKcal, effPct, fuel, altitude, ambientTemp);
   const excessAir = (fuel === 'gas') ? 12.4 : 14;
   const flueTempC = (fuel === 'gas') ? 200 : 220;
-  const flueNm3h = b.fuelRate * excessAir;
+  const flueNm3h = (b.fuelRate) * excessAir;
   const flueActual = flueNm3h * (273 + flueTempC) / 273;
   const chimneyV = 12;
   const area = (flueActual / 3600) / chimneyV;
-  const diaMm = Math.sqrt(4 * area / Math.PI) * 1000;
+  const diaM = Math.sqrt(4 * area / Math.PI);
+  const diaMm = diaM * 1000;
   const stdSizes = [150,200,250,300,350,400,450,500,600,700,800,900,1000,1200];
   let chimney = stdSizes[stdSizes.length-1];
   for(const d of stdSizes){ if(d >= diaMm*1.05) { chimney = d; break; } }
   return `<div class="card" style="margin-top:10px;padding:12px 14px;border-right:4px solid var(--brass);">
     <h2 style="font-size:.92rem;margin-bottom:8px;">🔥 ظرفیت مشعل و دودکش ${label||''}</h2>
     <div class="row">
-      <div class="gauge" style="margin-bottom:6px;"><div class="k">ظرفیت ورودی مشعل (پایه)</div><div class="v">${fmt(b.qInputBase)}<small>kcal/hr</small></div><div class="note">${heatUnits(b.qInputBase)}</div></div>
+      <div class="gauge" style="margin-bottom:6px;"><div class="k">ظرفیت حرارتی ورودی مشعل (پایه)</div><div class="v">${fmt(b.qInputBase)}<small>kcal/hr</small></div><div class="note">${heatUnits(b.qInputBase)}</div></div>
       <div class="gauge" style="margin-bottom:6px;background:#FBEFE7;border-color:#EAD2B8;border-right-color:var(--brass);"><div class="k">ضریب اصلاح ارتفاع/دما</div><div class="v">${b.derate.toFixed(3)}<small>×</small></div><div class="note">ارتفاع ${altitude} m، دمای ${ambientTemp}°C</div></div>
     </div>
-    ${g('ظرفیت نهایی مشعل',fmt(b.qInputAdj),'kcal/hr',heatUnits(b.qInputAdj))}
+    ${g('ظرفیت نهایی مشعل (اصلاح‌شده)',fmt(b.qInputAdj),'kcal/hr',heatUnits(b.qInputAdj))}
     <div class="gauge" style="background:#FFF7E8;border-right-color:var(--brass);">
       <div class="k">مصرف سوخت — ${b.fuelName}</div>
       <div class="v">${fmt(b.fuelRate,2)}<small>${b.fuelUnit}</small></div>
+      <div class="note">در شرایط کاری (پس از اصلاح ارتفاع و دما)</div>
     </div>
-    ${g('قطر دودکش',diaMm.toFixed(0)+' → '+chimney,'mm','سرعت '+chimneyV+' m/s، دمای دود '+flueTempC+'°C')}
+    ${g('قطر دودکش محاسبه‌شده',diaMm.toFixed(0)+' → '+chimney,'mm','سرعت طراحی '+chimneyV+' m/s، دمای دود '+flueTempC+'°C')}
     <div class="note" style="font-size:.76rem;color:var(--ink-soft);margin-top:6px;line-height:1.7;">
-      • Turndown Ratio مشعل: ۵:۱ تا ۱۰:۱<br>
+      • Turndown Ratio پیشنهادی مشعل: <b>۵:۱ تا ۱۰:۱</b><br>
+      • فشار محفظه احتراق بویلر (Chamber Resistance) باید طبق منحنی سازنده مشعل بررسی شود<br>
       • راندمان دیگ فرضی: ${effPct}٪
     </div>
   </div>`;
 }
 
-/* ==================== STEAM BOILER (with formula) ==================== */
+/* ==================== STEAM BOILER COMPREHENSIVE ==================== */
 function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
   const cap = n(document.getElementById(prefix+'_cap').value);
   const p = n(document.getElementById(prefix+'_p').value);
@@ -1284,7 +1337,7 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
   const tamb = n(document.getElementById(prefix+'_tamb').value);
   const hard = n(document.getElementById(prefix+'_hard').value);
   const pdea = n(document.getElementById(prefix+'_pdea')?.value || 0.3);
-  const SF = getSafety();
+  const SF = getSafety(); /* NEW: تغییر ۱ */
 
   if(cap < catalog.min || cap > catalog.max){
     document.getElementById(resultsId).innerHTML = warn(`ظرفیت باید بین ${catalog.min} و ${catalog.max} kg/hr باشد.`);
@@ -1315,15 +1368,18 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
   const condFlow = cap * cond;
   const recov = condensateRecovery(condFlow, tcond, tmakeup);
 
-  const pipeMain = steamPipeSize(cap, p, 25);
-  const pipeBranch = steamPipeSize(cap, p, 15);
+  const mainSteamVel = 25;
+  const branchSteamVel = 15;
+  const pipeMain = steamPipeSize(cap, p, mainSteamVel);
+  const pipeBranch = steamPipeSize(cap, p, branchSteamVel);
+
   const pump = feedPump(cap, blowPct, p, pdea, 2, 15);
   const sv = safetyValve(cap, p);
   const burnerHtml = burnerBlock(qBoiler, eff, fuel, alt, tamb, `(${modelLabel})`);
 
   const html = `
     ${g('ظرفیت تاییدشده', fmt(cap), 'kg/hr', massFlow(cap))}
-    ${g('دمای اشباع', fmt(sp.t,1), '°C', 'فشار مطلق '+fmt(p+1.013,2)+' bar')}
+    ${g('دمای اشباع در فشار کاری', fmt(sp.t,1), '°C', 'فشار مطلق '+fmt(p+1.013,2)+' bar')}
     ${g('بار حرارتی مفید دیگ', fmt(qBoiler), 'kcal/hr', heatUnits(qBoiler))}
     ${g('بار طراحی (با ضریب اطمینان '+SF+')', fmt(qBoilerDesign), 'kcal/hr', heatUnits(qBoilerDesign))}
     
@@ -1331,46 +1387,59 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
       <h2 style="font-size:.92rem;margin-bottom:8px;">💧 بلودان و کیفیت آب</h2>
       ${g('Cycles of Concentration (CoC)', fmt(coc,2), '×', 'TDS دیگ / TDS آب تغذیه = '+tdsb+' / '+tdsf)}
       ${g('نرخ بلودان', fmt(blowPct,2), '٪', 'معادل '+fmt(cap*blowFrac,1)+' kg/hr')}
+      ${g('کیفیت بخار', fmt(xQual*100,1), '٪', 'مبنای محاسبه: '+(xQual*100).toFixed(0)+'٪ خشکی')}
     </div>
 
     <div class="card" style="margin-top:10px;padding:12px 14px;border-right:4px solid var(--steel);">
       <h2 style="font-size:.92rem;margin-bottom:8px;">♻️ بازیافت انرژی کندانس</h2>
       ${g('دبی کندانس برگشتی', fmt(condFlow), 'kg/hr', (cond*100).toFixed(0)+'٪ بازگشت')}
-      ${g('انرژی قابل بازیافت', fmt(recov.Q_kcalh), 'kcal/hr', 'ΔT = '+fmt(recov.dT,0)+'°C')}
+      ${g('انرژی قابل بازیافت', fmt(recov.Q_kcalh), 'kcal/hr', 'ΔT = '+fmt(recov.dT,0)+'°C (کندانس '+tcond+'°C، جبرانی '+tmakeup+'°C)')}
+      <div class="note" style="font-size:.76rem;color:var(--ink-soft);margin-top:6px;">این انرژی معادل ${fmt(recov.Q_kcalh/8250,2)} m³/hr صرفه‌جویی گاز طبیعی است.</div>
     </div>
 
     <div class="card" style="margin-top:10px;padding:12px 14px;border-right:4px solid var(--steel);">
       <h2 style="font-size:.92rem;margin-bottom:8px;">🔧 آب جبرانی و سختی‌گیر</h2>
       ${g('دبی آب جبرانی', fmt(makeupM3,3), 'm³/h', massFlow(makeupKg))}
       ${g('ظرفیت رزین لازم', fmt(reqGrains), 'گرین', '')}
-      ${g('مدل سختی‌گیر', softModel.model, '', `رزین ${softModel.resin} L — قطر ${softModel.d} mm`)}
-      ${g('نمک هر احیا', fmt(saltKg,1), 'kg', '')}
+      ${g('مدل سختی‌گیر', softModel.model, '', `رزین ${softModel.resin} L — قطر ${softModel.d} mm — مخزن نمک ${softModel.salt} L`)}
+      ${g('مصرف نمک هر احیا', fmt(saltKg,1), 'kg', 'دوز ۱۵ lbs/ft³')}
     </div>
 
     <div class="card" style="margin-top:10px;padding:12px 14px;border-right:4px solid var(--steel);">
       <h2 style="font-size:.92rem;margin-bottom:8px;">🔩 پمپ تغذیه دیگ</h2>
-      ${g('دبی طراحی پمپ', fmt(pump.flowKgHr), 'kg/hr', fmt(pump.flowKgHr/1000,2)+' m³/hr — ۱۵٪ حاشیه')}
+      ${g('دبی طراحی پمپ', fmt(pump.flowKgHr), 'kg/hr', fmt(pump.flowKgHr/1000,2)+' m³/hr — با ۱۵٪ حاشیه')}
       ${g('ارتفاع پرتاب کل (Head)', fmt(pump.headM,1), 'm', `معادل ${fmt(pump.headBar,1)} bar`)}
+      <div class="note" style="font-size:.76rem;color:var(--ink-soft);margin-top:6px;line-height:1.7;">
+        • اختلاف فشار دیگ و دی‌اریتور: ${fmt(pump.dP,2)} bar (≈ ${fmt(pump.dP*10.2,1)} m)<br>
+        • ارتفاع استاتیک: ${pump.static} m — افت اصطکاک: ${fmt(pump.friction,1)} m<br>
+        • پمپ باید NPSH کافی در دمای ${tfeed}°C داشته باشد (به‌ویژه در پمپاژ آب داغ)
+      </div>
     </div>
 
     <div class="card" style="margin-top:10px;padding:12px 14px;border-right:4px solid var(--steel);">
       <h2 style="font-size:.92rem;margin-bottom:8px;">🛡️ شیر اطمینان</h2>
       ${g('ظرفیت تخلیه موردنیاز', fmt(sv.requiredCap), 'kg/hr', '۷۵٪ ظرفیت دیگ')}
-      ${g('سطح مقطع دهانه', fmt(sv.A_cm2,2), 'cm²', '')}
-      ${g('Orifice استاندارد', 'Orifice '+sv.orificeLetter, '', `سطح ${sv.orificeArea} cm² — API 520`)}
+      ${g('سطح مقطع دهانه', fmt(sv.A_cm2,2), 'cm²', 'معادل '+fmt(sv.A_mm2,1)+' mm²')}
+      ${g('دهانه استاندارد', 'Orifice '+sv.orificeLetter, '', `سطح ${sv.orificeArea} cm² — بر مبنای API 520`)}
+      <div class="note" style="font-size:.76rem;color:var(--ink-soft);margin-top:6px;">فشار تنظیم ≤ MAWP — دقت تنظیم: ±۳٪ طبق ASME.</div>
     </div>
 
     <div class="card" style="margin-top:10px;padding:12px 14px;border-right:4px solid var(--steel);">
-      <h2 style="font-size:.92rem;margin-bottom:8px;">📏 قطر لوله‌کشی بخار</h2>
-      ${g('لوله اصلی (۲۵ m/s)', 'DN '+pipeMain.pipeDN, 'mm', 'قطر محاسبه: '+pipeMain.diaMm.toFixed(0)+' mm')}
-      ${g('لوله فرعی (۱۵ m/s)', 'DN '+pipeBranch.pipeDN, 'mm', 'قطر محاسبه: '+pipeBranch.diaMm.toFixed(0)+' mm')}
+      <h2 style="font-size:.92rem;margin-bottom:8px;">📏 قطر لوله‌کشی بخار (بر مبنای سرعت مجاز)</h2>
+      ${g('لوله اصلی (سرعت '+mainSteamVel+' m/s)', 'DN '+pipeMain.pipeDN, 'mm', 'قطر محاسبه‌شده: '+pipeMain.diaMm.toFixed(0)+' mm')}
+      ${g('لوله فرعی (سرعت '+branchSteamVel+' m/s)', 'DN '+pipeBranch.pipeDN, 'mm', 'قطر محاسبه‌شده: '+pipeBranch.diaMm.toFixed(0)+' mm')}
+      <div class="note" style="font-size:.76rem;color:var(--ink-soft);margin-top:6px;line-height:1.7;">
+        • دبی حجمی بخار: ${fmt(pipeMain.volFlowM3h,1)} m³/hr<br>
+        • شیب لوله افقی: حداقل ۱:۱۰۰ در جهت جریان<br>
+        • نصب تله بخار در فواصل ۳۰ تا ۵۰ متر و تمام نقاط پست
+      </div>
     </div>
 
     ${burnerHtml}
 
     ${formulaBlock('محاسبه بار حرارتی دیگ بخار (Fulton)', [
       `h_steam = h_f + x·h_fg = ${fmt(sp.hf,1)} + ${xQual}·${fmt(sp.hfg,1)} = ${fmt(hSteam,1)} kJ/kg`,
-      `h_feed = C_p·T = 4.187 × ${tfeed} = ${fmt(hFeed,1)} kJ/kg`,
+      `h_feed = Cp × T = 4.187 × ${tfeed} = ${fmt(hFeed,1)} kJ/kg`,
       `Q_boiler = m·(h_steam - h_feed) = ${cap} × (${fmt(hSteam,1)} - ${fmt(hFeed,1)}) = ${fmt(qBoiler)} kcal/hr`,
       `Q_design = Q_boiler × SF = ${fmt(qBoiler)} × ${SF} = ${fmt(qBoilerDesign)} kcal/hr`,
       `CoC = TDS_boiler / TDS_feed = ${tdsb} / ${tdsf} = ${fmt(coc,2)}`,
@@ -1386,7 +1455,10 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
 بلودان: ${fmt(blowPct,1)}٪ — کندانس برگشتی: ${fmt(condFlow)} kg/hr
 آب جبرانی: ${fmt(makeupM3,3)} m³/h
 سختی‌گیر: ${softModel.model}
-مشعل: ${fmt(calcBurner(qBoiler, eff, fuel, alt, tamb).qInputAdj)} kcal/hr`}</textarea>
+مشعل: ${fmt(calcBurner(qBoiler, eff, fuel, alt, tamb).qInputAdj)} kcal/hr — مصرف سوخت ${fmt(calcBurner(qBoiler, eff, fuel, alt, tamb).fuelRate,2)} ${calcBurner(qBoiler, eff, fuel, alt, tamb).fuelUnit}
+پمپ تغذیه: ${fmt(pump.flowKgHr)} kg/hr @ ${fmt(pump.headM,1)} m head
+شیر اطمینان: Orifice ${sv.orificeLetter} — ظرفیت ${fmt(sv.requiredCap)} kg/hr
+لوله اصلی بخار: DN ${pipeMain.pipeDN}`}</textarea>
       <div class="copybar">
         <button class="btn secondary" onclick="copyText('${prefix}_summary')">کپی خلاصه</button>
         <button class="btn ghost" onclick="printReport('${modelLabel}', document.getElementById('${resultsId}').innerHTML)">چاپ / PDF</button>
@@ -1395,16 +1467,17 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
   `;
   document.getElementById(resultsId).innerHTML = html;
 }
+
 function calcHorizontalSteam(){ steamBoilerFull('hwb', STEAM_HORIZONTAL, 'hwb_results', 'دیگ بخار افقی سه‌پاس وت‌بک'); }
 function calcFireboxSteam(){ steamBoilerFull('fb', STEAM_FIREBOX, 'fb_results', 'دیگ بخار فایرباکس'); }
 function calcVerticalSteam(){ steamBoilerFull('vrt', STEAM_VERTICAL, 'vrt_results', 'دیگ بخار عمودی'); }
 
 /* ==================== CLEAN STEAM ==================== */
 const CLEAN_STEAM_APPS = {
-  hospital:{label:'تعداد تخت',est:(b)=>({autoclave:Math.ceil(b/100),sterilization:Math.ceil(b/200)})},
-  pharma:{label:'حجم تولید روزانه (L)',est:(v)=>({cipsip:Math.ceil(v/2000),autoclave:Math.ceil(v/5000)})},
-  food:{label:'ظرفیت روزانه (kg)',est:(k)=>({pasteurizer:Math.ceil(k/3000),sterilization:Math.ceil(k/8000)})},
-  lab:{label:'تعداد اتوکلاو',est:(n)=>({autoclave:n,sterilization:Math.ceil(n/2)})},
+  hospital:{label:'تعداد تخت',unit:'تخت',est:(b)=>({autoclave:Math.ceil(b/100),sterilization:Math.ceil(b/200)})},
+  pharma:{label:'حجم تولید روزانه',unit:'L/day',est:(v)=>({cipsip:Math.ceil(v/2000),autoclave:Math.ceil(v/5000)})},
+  food:{label:'ظرفیت روزانه',unit:'kg/day',est:(k)=>({pasteurizer:Math.ceil(k/3000),sterilization:Math.ceil(k/8000)})},
+  lab:{label:'تعداد اتوکلاو',unit:'عدد',est:(n)=>({autoclave:n,sterilization:Math.ceil(n/2)})},
 };
 function onCleanSteamAppChange(){
   const a = CLEAN_STEAM_APPS[document.getElementById('cs_app').value];
@@ -1436,14 +1509,14 @@ function calcCleanSteam(){
     ${g('تعداد تجهیزات', totalUnits, 'واحد', lines.join(' · '))}
     ${g('بار متصل', fmt(connected), 'kg/hr', '')}
     ${g('بار تنوع‌یافته', fmt(diversified), 'kg/hr', 'ضریب '+(div*100).toFixed(0)+'٪')}
-    ${g('ظرفیت مولد (با SF='+SF+')', fmt(design), 'kg/hr', `${fmt(design)} kg/hr @ ${p} bar`)}
+    ${g('ظرفیت مولد بخار تمیز', fmt(design), 'kg/hr', `${fmt(design)} kg/hr @ ${p} bar`)}
     ${g('بار حرارتی', fmt(q), 'kcal/hr', heatUnits(q))}
     ${burnerBlock(q, 90, 'gas', 0, 20, '(بخار تمیز)')}
-    ${formulaBlock('محاسبه ظرفیت مولد بخار تمیز (EN285)', [
-      `Units = Σ estimates = ${totalUnits}`,
-      `Connected = Units × per_unit = ${totalUnits} × ${per} = ${connected} kg/hr`,
-      `Diversified = Connected × DF = ${connected} × ${div} = ${fmt(diversified)} kg/hr`,
-      `Design = Diversified × (1+Margin) × SF = ${fmt(diversified)} × ${1+margin} × ${SF} = ${fmt(design)} kg/hr`
+    ${formulaBlock('ظرفیت مولد بخار تمیز (EN285)', [
+      `Units = Σ = ${totalUnits}`,
+      `Connected = ${totalUnits} × ${per} = ${connected} kg/hr`,
+      `Diversified = ${connected} × ${div} = ${fmt(diversified)} kg/hr`,
+      `Design = ${fmt(diversified)} × (1+${margin}) × ${SF} = ${fmt(design)} kg/hr`
     ], 'EN285 / HTM2031')}`;
 }
 
@@ -1462,12 +1535,12 @@ function calcHotOil(){
   const qD = q * (1 + margin) * SF;
   const model = pick(HOT_OIL, 'kcal', qD);
   document.getElementById('ho_results').innerHTML = `
-    ${g('بار طراحی', fmt(qD), 'kcal/hr', `با حاشیه ${(margin*100).toFixed(0)}٪ و SF=${SF}`)}
+    ${g('بار حرارتی طراحی', fmt(qD), 'kcal/hr', 'حاشیه '+(margin*100).toFixed(0)+'٪ + SF='+SF)}
     ${g('مدل استاندارد', model.model, '', `ظرفیت ${fmt(model.kcal)} kcal/hr`)}
     ${g('دمای رفت/برگشت', tin+' / '+tout, '°C', 'ΔT='+(tin-tout)+'°C')}
     ${burnerBlock(qD, eff, fuel, alt, 20, '(روغن داغ)')}
-    ${formulaBlock('محاسبه دیگ روغن داغ (DIN 4754)', [
-      `Q_design = Q × (1+Margin) × SF = ${q} × ${1+margin} × ${SF} = ${fmt(qD)} kcal/hr`,
+    ${formulaBlock('دیگ روغن داغ (DIN 4754)', [
+      `Q_design = Q × (1+${margin}) × ${SF} = ${q} × ${(1+margin).toFixed(2)} × ${SF} = ${fmt(qD)} kcal/hr`,
       `→ Model = ${model.model} (${fmt(model.kcal)} kcal/hr)`
     ], 'DIN 4754')}`;
 }
@@ -1486,16 +1559,16 @@ function hwCalc(prefix, minQ, maxQ, minP, maxP, resultsId, modelLabel){
   const SF = getSafety();
   if(q < minQ || q > maxQ){ document.getElementById(resultsId).innerHTML = warn(`بار حرارتی باید بین ${fmt(minQ)} و ${fmt(maxQ)} kcal/hr باشد.`); return; }
   if(p < minP || p > maxP){ document.getElementById(resultsId).innerHTML = warn(`فشار باید بین ${minP} و ${maxP} bar باشد.`); return; }
-  if(tin > 90){ document.getElementById(resultsId).innerHTML = warn('حداکثر دمای آبگرم ۹۰°C است.'); return; }
+  if(tin > 90){ document.getElementById(resultsId).innerHTML = warn('حداکثر دمای آبگرم ۹۰°C است. برای دمای بالاتر دیگ روغن داغ استفاده کنید.'); return; }
   const qD = q * (1 + margin) * SF;
   const flow = qD / ((tin - tout) * 1000);
   document.getElementById(resultsId).innerHTML = `
-    ${g('بار طراحی', fmt(qD), 'kcal/hr', heatUnits(qD))}
+    ${g('بار حرارتی طراحی', fmt(qD), 'kcal/hr', heatUnits(qD))}
     ${g('دبی آب گرم', fmt(flow,2), 'm³/h', 'ΔT='+(tin-tout)+'°C')}
     ${burnerBlock(qD, eff, fuel, alt, tamb, `(${modelLabel})`)}
-    ${formulaBlock('محاسبه بار حرارتی دیگ آبگرم (ASHRAE)', [
-      `Q_required = ${fmt(q)} kcal/hr (از بخش کاربردی)`,
-      `Q_design = Q × (1+Margin) × SF = ${fmt(q)} × ${1+margin} × ${SF} = ${fmt(qD)} kcal/hr`,
+    ${formulaBlock('بار حرارتی دیگ آبگرم (ASHRAE)', [
+      `Q_required = ${fmt(q)} kcal/hr`,
+      `Q_design = Q × (1+${margin}) × SF = ${fmt(q)} × ${(1+margin).toFixed(2)} × ${SF} = ${fmt(qD)} kcal/hr`,
       `Flow = Q_design / (ΔT × 1000) = ${fmt(qD)} / (${tin-tout} × 1000) = ${fmt(flow,2)} m³/h`
     ], 'ASHRAE HVAC Systems & Equipment')}`;
 }
@@ -1507,6 +1580,7 @@ function calcHWAzaran(){ hwCalc('az', HW_AZARAN.min, HW_AZARAN.max, HW_AZARAN.mi
 function calcHWPackage(){
   const units = n(document.getElementById('pk_units').value);
   const area = n(document.getElementById('pk_area').value);
+  const h = n(document.getElementById('pk_h').value);
   const tout = n(document.getElementById('pk_tout').value);
   const tin = n(document.getElementById('pk_tin').value);
   const dhw = document.getElementById('pk_dhw').value === '1';
@@ -1515,16 +1589,16 @@ function calcHWPackage(){
   const totalSurface = units * area * 2.5;
   const qHeat = U * totalSurface * (tin - tout);
   const dhwQ = dhw ? units * 4 * 50 * (60-5)/24 : 0;
-  const qMax = Math.max(qHeat, dhwQ);
+  const qMax = Math.max(qHeat, dhwQ); /* NEW: تغییر ۹ — max نه sum */
   const qTotal = qMax * SF;
   const model = HW_PACKAGE.find(m => qTotal >= m.min && qTotal <= m.max);
   document.getElementById('pk_results').innerHTML = `
     ${g('بار گرمایش', fmt(qHeat), 'kcal/hr', '')}
     ${dhw ? g('بار آبگرم مصرفی', fmt(dhwQ), 'kcal/hr', '') : ''}
-    ${g('بار حداکثر (max)', fmt(qMax), 'kcal/hr', 'طبق ASHRAE — نه جمع')}
-    ${g('بار طراحی با SF', fmt(qTotal), 'kcal/hr', `SF=${SF}`)}
-    ${g('مدل پیشنهادی', model ? model.model : 'خارج از محدوده', '', model ? `گاز ${model.gas} m³/hr — راندمان ۹۵٪` : '')}
-    ${formulaBlock('انتخاب پکیج موتورخانه (ضریب همزمانی)', [
+    ${g('بار حداکثر (max نه sum)', fmt(qMax), 'kcal/hr', 'طبق ASHRAE')}
+    ${g('بار طراحی با SF='+SF, fmt(qTotal), 'kcal/hr', '')}
+    ${g('مدل پیشنهادی', model ? model.model : 'خارج از محدوده', '', model ? `مصرف گاز ${model.gas} m³/hr — راندمان ۹۵٪` : 'ظرفیت خارج از پکیج استاندارد')}
+    ${formulaBlock('پکیج موتورخانه — ضریب همزمانی', [
       `Q_heating = U × Area_shell × ΔT = ${U} × ${fmt(totalSurface)} × ${tin-tout} = ${fmt(qHeat)} kcal/hr`,
       `Q_DHW = ${fmt(dhwQ)} kcal/hr`,
       `Q_max = max(Q_heating, Q_DHW) = ${fmt(qMax)} kcal/hr (نه جمع!)`,
@@ -1532,7 +1606,7 @@ function calcHWPackage(){
     ], 'ASHRAE — Diversity Factor')}`;
 }
 
-/* ==================== GREENHOUSE (with L/W/H + nylon) ==================== */
+/* ==================== GREENHOUSE (تغییر ۳) ==================== */
 function calcGreenhouse(){
   const L = n(document.getElementById('gh_l').value);
   const W = n(document.getElementById('gh_w').value);
@@ -1573,7 +1647,7 @@ function calcGreenhouse(){
     ], 'P.V. Nelson - Greenhouse Engineering')}`;
 }
 
-/* ==================== POOL (with 12/24/48 turnover + vertical + no filter loading) ==================== */
+/* ==================== POOL (تغییر ۴) ==================== */
 function calcPool(){
   const L = n(document.getElementById('pl_l').value), W = n(document.getElementById('pl_w').value), D = n(document.getElementById('pl_d').value);
   const tt = n(document.getElementById('pl_tt').value), ta = n(document.getElementById('pl_ta').value);
@@ -1599,11 +1673,11 @@ function calcPool(){
   const gpm = circ*4.403;
   document.getElementById('pl_results').innerHTML = `
     ${g('حجم استخر', fmt(V*1000), 'L', fmt(V,1)+' m³ — جهت: '+(orient==='horizontal'?'افقی':'عمودی'))}
-    ${g('بار پایه', fmt(qBase), 'kW', heatUnits(qBase*860))}
+    ${g('بار پایه', fmt(qBase,2), 'kW', heatUnits(qBase*860))}
     ${g('بار طراحی (با SF='+SF+')', fmt(qKW,2), 'kW', heatUnits(qKcal))}
     ${g('دبی گردش', fmt(circ,1), 'm³/h', fmt(gpm)+' GPM — دوره '+turnH+' ساعت')}
     <div class="note" style="font-size:.76rem;color:var(--ink-soft);padding:8px;background:#F5F7F8;border-radius:6px;">
-      ⚠️ محاسبه فیلتر شنی و نرخ بارگذاری در تب «تصفیه آب → فیلتر شنی» انجام دهید.
+      ⚠️ محاسبه فیلتر شنی در تب «تصفیه آب → فیلتر شنی» انجام دهید.
     </div>
     ${burnerBlock(qKcal, 88, 'gas', 0, 20, '(استخر)')}
     ${formulaBlock('بار حرارتی استخر (ASHRAE)', [
@@ -1617,7 +1691,7 @@ function calcPool(){
     ], 'ASHRAE HVAC Applications, Ch. 6')}`;
 }
 
-/* ==================== DHW (with new locations + formula + SF + pattern) ==================== */
+/* ==================== DHW (تغییر ۶) ==================== */
 const ASHRAE_FIX = {
   apartment:{lav:2,bath:20,shower:30,kitchen:10,dw:15,laundry:35,df:0.30,label:'آپارتمان'},
   dormitory:{lav:2,bath:0,shower:30,kitchen:5,dw:10,laundry:35,df:0.25,label:'خوابگاه'},
@@ -1625,13 +1699,13 @@ const ASHRAE_FIX = {
   hotel:{lav:6,bath:20,shower:30,kitchen:20,dw:50,laundry:35,df:0.25,label:'هتل'},
   hospital:{lav:6,bath:10,shower:30,kitchen:30,dw:50,laundry:35,df:0.25,label:'بیمارستان'},
   office:{lav:2,bath:0,shower:30,kitchen:10,dw:15,laundry:35,df:0.30,label:'اداری'},
-  school:{lav:2,bath:0,shower:30,kitchen:20,dw:20,laundry:28,df:0.40,label:'مدرسه/دانشگاه'},
+  school:{lav:2,bath:0,shower:30,kitchen:20,dw:20,laundry:28,df:0.40,label:'مدرسه / دانشگاه'},
   prison:{lav:2,bath:0,shower:30,kitchen:10,dw:15,laundry:35,df:0.30,label:'زندان'},
   restaurant:{lav:2,bath:0,shower:30,kitchen:20,dw:50,laundry:35,df:0.30,label:'رستوران'},
   laundry:{lav:2,bath:0,shower:30,kitchen:5,dw:10,laundry:60,df:0.30,label:'رخت‌شویخانه'},
   dairy:{lav:2,bath:0,shower:30,kitchen:30,dw:20,laundry:50,df:0.35,label:'لبنیات'},
   slaughter:{lav:2,bath:0,shower:30,kitchen:10,dw:10,laundry:50,df:0.35,label:'کشتارگاه'},
-  industrial:{lav:2,bath:0,shower:30,kitchen:15,dw:15,laundry:35,df:0.35,label:'کارخانه/صنایع'},
+  industrial:{lav:2,bath:0,shower:30,kitchen:15,dw:15,laundry:35,df:0.35,label:'کارخانه / صنایع'},
 };
 function onDhwMethodChange(){
   const m = document.getElementById('dhw_method').value;
@@ -1657,15 +1731,15 @@ function calcDHW(){
   const SF = getSafety();
   const pat = getPattern();
   const pf = patternFactor(pat);
-  let hourly = 0, daily = 0, fixLines = [], gphBase = 0, bLabel = '';
+  let hourly = 0, daily = 0, fixLines = [], gphBase = 0;
   if(m==='fixture'){
     const bKey = document.getElementById('dhw_building').value;
     const d = ASHRAE_FIX[bKey];
-    bLabel = d.label;
     const div = n(document.getElementById('dhw_div').value);
     let gph = 0;
     ['lav','bath','shower','kitchen','dw','laundry'].forEach(k => {
-      const el = document.getElementById('dhw_fx_'+k); if(el) { const cnt = n(el.value); gph += cnt*d[k]; if(cnt>0) fixLines.push(`${k}: ${cnt} × ${d[k]} = ${cnt*d[k]} GPH`); }
+      const el = document.getElementById('dhw_fx_'+k);
+      if(el) { const cnt = n(el.value); gph += cnt*d[k]; if(cnt>0) fixLines.push(`${k}: ${cnt} × ${d[k]} = ${cnt*d[k]} GPH`); }
     });
     gphBase = gph;
     hourly = gph*div*pf*SF*3.785;
@@ -1688,18 +1762,17 @@ function calcDHW(){
     ${g('بار حرارتی دیگ', fmt(q), 'kcal/hr', heatUnits(q))}
     ${g('منبع کویلی', 'SG-HE-C-'+coilModel.cap, 'L', 'سطح کویل '+coilModel.surf+' ft²')}
     ${burnerBlock(q, 88, 'gas', 0, 20, '(آبگرم مصرفی)')}
-    ${formulaBlock('محاسبه آبگرم مصرفی (ASHRAE Fixture-based)', [
+    ${formulaBlock('آبگرم مصرفی (ASHRAE Fixture-based)', [
       ...fixLines,
-      `GPH_base = Σ(fixtures × GPH) = ${gphBase} GPH`,
-      `Peak = GPH_base × DF × PF × SF = ${gphBase} × ${n(document.getElementById('dhw_div')?.value)||0.3} × ${pf} × ${SF}`,
-      `Hourly = ${fmt(hourly/3.785,1)} GPH = ${fmt(hourly)} L/hr`,
+      `GPH_base = Σ = ${gphBase} GPH`,
+      `Hourly = GPH_base × DF × PF × SF × 3.785 = ${fmt(hourly)} L/hr`,
       `Storage = Hourly = ${fmt(storage)} L`,
       `Coil = (Daily - 0.75×Storage)/3 = (${fmt(daily)} - ${fmt(0.75*storage)})/3 = ${fmt(coil)} L/hr`,
-      `Q_coil = Coil × ΔT × 1.163 = ${fmt(coil)} × 45 × 1.163 = ${fmt(q)} kcal/hr`
+      `Q_coil = Coil × 45 = ${fmt(q)} kcal/hr`
     ], 'ASHRAE Handbook - HVAC Applications, Ch. 51')}`;
 }
 
-/* ==================== HEATING (NEW) ==================== */
+/* ==================== HEATING (تغییر ۸) ==================== */
 function calcHeating(){
   const area = n(document.getElementById('ht_area').value);
   const H = n(document.getElementById('ht_h').value);
@@ -1721,7 +1794,7 @@ function calcHeating(){
     ${g('بار نفوذ', fmt(qInfil), 'kcal/hr', ach+' ACH')}
     ${g('بار پایه', fmt(qBase), 'kcal/hr', '')}
     ${g('بار طراحی با SF='+SF, fmt(qDesign), 'kcal/hr', heatUnits(qDesign))}
-    ${formulaBlock('بار گرمایش (ASHRAE Fundamentals Ch. 18)', [
+    ${formulaBlock('بار گرمایش (ASHRAE Ch. 18)', [
       `Q_cond = A × U × ΔT = ${area} × ${U} × ${dT} = ${fmt(qCond)} W`,
       `V = A × H = ${area} × ${H} = ${fmt(volume)} m³`,
       `Q_inf = 0.33 × V × ACH × ΔT = 0.33 × ${fmt(volume)} × ${ach} × ${dT} = ${fmt(qInfil)} W`,
@@ -1730,7 +1803,7 @@ function calcHeating(){
     ], 'ASHRAE Fundamentals, Ch. 18 + Manual J')}`;
 }
 
-/* ==================== SAUNA (NEW) ==================== */
+/* ==================== SAUNA (تغییر ۷) ==================== */
 function calcSauna(){
   const L = n(document.getElementById('sa_l').value);
   const W = n(document.getElementById('sa_w').value);
@@ -1754,7 +1827,7 @@ function calcSauna(){
     ], 'EOS SteamRock II / Harvia')}`;
 }
 
-/* ==================== INDUSTRIAL STEAM (with formula) ==================== */
+/* ==================== INDUSTRIAL STEAM ==================== */
 const FACILITY_DATA = {
   hospital:{label:'بیمارستان',p:6,equipment:[
     {id:'autoclave',label:'اتوکلاو',per:60},{id:'laundry',label:'رختشویی (per 100kg)',per:8},{id:'kitchen',label:'آشپزخانه',per:30}],
@@ -1809,20 +1882,21 @@ function calcIndustrial(){
   if(connected<=0){ document.getElementById('is_results').innerHTML = warn('حداقل یک تجهیز وارد کنید.'); return; }
   const div = n(document.getElementById('is_div').value)/100;
   const margin = n(document.getElementById('is_margin').value)/100;
+  const p = n(document.getElementById('is_p').value);
   const SF = getSafety();
   const cap = connected*div*(1+margin)*SF;
   const q = cap*539;
   document.getElementById('is_results').innerHTML = `
     ${g('بار متصل', fmt(connected), 'kg/hr', '')}
     ${g('بار تنوع‌یافته', fmt(connected*div), 'kg/hr', 'ضریب '+(div*100).toFixed(0)+'٪')}
-    ${g('ظرفیت طراحی (SF='+SF+')', fmt(cap), 'kg/hr', massFlow(cap))}
+    ${g('ظرفیت پیشنهادی (SF='+SF+')', fmt(cap), 'kg/hr', massFlow(cap))}
     ${g('بار حرارتی', fmt(q), 'kcal/hr', heatUnits(q))}
     ${burnerBlock(q, 88, 'gas', 0, 20, '(صنعتی)')}
     ${formulaBlock('بخار صنعتی (Spirax Sarco)', [
       ...lines,
       `Connected = ${fmt(connected)} kg/hr`,
-      `Diversified = Connected × DF = ${fmt(connected)} × ${div} = ${fmt(connected*div)} kg/hr`,
-      `Design = Diversified × (1+Margin) × SF = ${fmt(connected*div)} × ${1+margin} × ${SF} = ${fmt(cap)} kg/hr`,
+      `Diversified = ${fmt(connected)} × ${div} = ${fmt(connected*div)} kg/hr`,
+      `Design = ${fmt(connected*div)} × (1+${margin}) × ${SF} = ${fmt(cap)} kg/hr`,
       `Q = Design × 539 = ${fmt(q)} kcal/hr`
     ], 'Spirax Sarco Steam Engineering')}`;
 }
@@ -1847,6 +1921,7 @@ function calcOpenExp(){
   document.getElementById('oe_results').innerHTML = `
     ${g('حجم موردنیاز', fmt(Vt), 'L', 'فرمول ASHRAE × ۲ × SF='+SF)}
     ${g('مدل استاندارد', model.model, '', `ظرفیت ${model.cap} L`)}
+    ${g('ضریب انبساط', (exp*100).toFixed(2), '٪', 'ΔT='+dT+'°C')}
     ${formulaBlock('منبع انبساط باز (ASHRAE)', [
       `v1 = ${v1.toFixed(4)} (در ${tc}°C)`,
       `v2 = ${v2.toFixed(4)} (در ${th}°C)`,
@@ -1869,6 +1944,7 @@ function calcClosedExp(){
   document.getElementById('ce_results').innerHTML = `
     ${g('حجم موردنیاز', fmt(Vt), 'L', 'فرمول ASHRAE دیافراگمی × SF='+SF)}
     ${g('مدل استاندارد', model.model, '', `قطر ${model.d} mm — ارتفاع ${model.h} mm`)}
+    ${g('ضریب انبساط', (exp*100).toFixed(2), '٪', 'ΔT='+(th-tc)+'°C')}
     ${formulaBlock('منبع انبساط بسته (ASHRAE)', [
       `e = ${exp.toFixed(5)}`,
       `Vt = Vs·e / (1 - P1/P2) · SF = ${vs} × ${exp.toFixed(5)} / (1 - ${(p1/p2).toFixed(4)}) × ${SF} = ${fmt(Vt)} L`
@@ -1885,16 +1961,20 @@ function calcCondTank(){
   const flash = flow*flashPct/100;
   const liquid = flow - flash;
   const Vtank = (liquid/60)*hold*1.4;
+  const Vcatalog = liquid;
+  const flashVol = (flash/3600)*tkP.vg;
+  const flashD = Math.sqrt(4*(flashVol/3)/Math.PI);
   document.getElementById('ct_results').innerHTML = `
     ${g('درصد فلش', fmt(flashPct,1), '٪', 'T_in='+fmt(inP.t,0)+'، T_tank='+fmt(tkP.t,0)+'°C')}
     ${g('بخار فلش', fmt(flash), 'kg/hr', '')}
     ${g('حجم مخزن (هولدآپ)', fmt(Vtank), 'L', hold+' دقیقه + ۴۰٪ فضای آزاد')}
-    ${g('حجم مخزن (کاتالوگ)', fmt(liquid), 'L', 'ظرفیت ۱ ساعت')}
+    ${g('حجم مخزن (کاتالوگ)', fmt(Vcatalog), 'L', 'ظرفیت ۱ ساعت تولید')}
+    ${g('قطر ظرف فلش', fmt(flashD,2), 'm', 'سرعت ۳ m/s')}
     ${formulaBlock('مخزن کندانس (Spirax Sarco)', [
       `Flash % = (h_f,in - h_f,tank) / h_fg,tank = ${fmt(flashPct,1)}%`,
       `Flash flow = ${fmt(flow)} × ${(flashPct/100).toFixed(3)} = ${fmt(flash)} kg/hr`,
       `Liquid = ${fmt(flow)} - ${fmt(flash)} = ${fmt(liquid)} kg/hr`,
-      `V_tank = (Liquid/60) × hold × 1.4 = ${fmt(Vtank)} L`
+      `V_tank = (Liquid/60) × ${hold} × 1.4 = ${fmt(Vtank)} L`
     ], 'Spirax Sarco Condensate Management')}`;
 }
 function calcCoilU(){
@@ -1904,12 +1984,12 @@ function calcCoilU(){
   const q = n(document.getElementById('cu_q').value);
   const model = pick(COIL_U, 'cap', vol);
   document.getElementById('cu_results').innerHTML = `
-    ${g('مدل استاندارد', 'SG-HE-C-'+model.cap, 'L', `سطح ${model.surf} ft² — قطر ${model.d} mm`)}
+    ${g('مدل استاندارد', 'SG-HE-C-'+model.cap, 'L', `سطح کویل ${model.surf} ft² — قطر ${model.d} mm`)}
     ${g('ظرفیت کویل', fmt(q/(th-tc)), 'L/hr', 'ΔT='+(th-tc)+'°C')}
     ${g('بار حرارتی', fmt(q), 'kcal/hr', heatUnits(q))}
     ${formulaBlock('منبع کویلی U-Type', [
       `Coil Capacity = Q / ΔT = ${q} / ${th-tc} = ${fmt(q/(th-tc))} L/hr`,
-      `Model = SG-HE-C-${model.cap} (سطح ${model.surf} ft²)`
+      `Model = SG-HE-C-${model.cap}`
     ], 'ASHRAE / ASME')}`;
 }
 function calcCoilSpiral(){
@@ -1919,7 +1999,7 @@ function calcCoilSpiral(){
   const q = n(document.getElementById('cs_q').value);
   const model = pick(COIL_SPIRAL, 'cap', vol);
   document.getElementById('cs_result').innerHTML = `
-    ${g('مدل استاندارد', 'SG-HE-SC-'+model.cap, 'L', `سطح ${model.surf} ft² — قطر ${model.d} mm`)}
+    ${g('مدل استاندارد', 'SG-HE-SC-'+model.cap, 'L', `سطح کویل ${model.surf} ft² — قطر ${model.d} mm`)}
     ${g('ظرفیت کویل', fmt(q/(th-tc)), 'L/hr', 'ΔT='+(th-tc)+'°C')}
     ${g('بار حرارتی', fmt(q), 'kcal/hr', heatUnits(q))}
     ${formulaBlock('منبع اسپیرال (Caspian)', [
@@ -1940,7 +2020,7 @@ function calcFluidTank(){
     ${g('حجم', fmt(vol,2), 'm³', '')}
     ${g('جرم سیال', fmt(mass), 'kg', 'چگالی '+dens+' kg/m³')}
     ${g('ابعاد تقریبی', `Ø${fmt(D*1000)} × ${fmt(D*2000)}`, 'mm', 'L/D=2')}
-    ${formulaBlock('مخزن ذخیره مایعات', [
+    ${formulaBlock('مخزن ذخیره مایعات (ASME VIII)', [
       `V = ${vol} m³`,
       `Mass = V × ρ = ${vol} × ${dens} = ${fmt(mass)} kg`,
       `D = (4V / 2π)^(1/3) = ${fmt(D*1000)} mm، L = 2D`
@@ -1963,8 +2043,9 @@ function calcSoftener(){
   document.getElementById('sf_results').innerHTML = `
     ${g('ظرفیت رزین لازم', fmt(reqGrains), 'گرین', 'SF='+SF)}
     ${g('حجم رزین', fmt(resinFt3,2), 'ft³', '('+fmt(resinFt3*28.317,0)+' L)')}
-    ${g('مدل استاندارد', model.model, '', `قطر ${model.d} mm — رزین ${model.resin} L`)}
+    ${g('مدل استاندارد', model.model, '', `قطر ${model.d} mm — رزین ${model.resin} L — نمک ${model.salt} L`)}
     ${g('مصرف نمک هر احیا', fmt(saltKg,1), 'kg', 'دوز ۱۵ lbs/ft³')}
+    ${duplex?'<div class="note" style="padding:8px;background:#F5F7F8;border-radius:8px;">حالت Duplex فعال</div>':''}
     ${formulaBlock('سختی‌گیر (WQA)', [
       `سختی (GPG) = ${hard} / 17.1 = ${(hard/17.1).toFixed(2)} GPG`,
       `گرین روزانه = ${fmt(dailyGal)} gal/day × ${(hard/17.1).toFixed(2)} = ${fmt(dailyGrains)} grains/day`,
@@ -1986,6 +2067,7 @@ function calcSandFilter(){
     ${g('مساحت فیلتر', fmt(areaFt2,2), 'ft²', 'قطر '+fmt(D*1000,0)+' mm')}
     ${g('مدل استاندارد', model.model, '', 'قطر '+model.d+' mm')}
     ${g('دبی شستشوی معکوس', fmt(flow*1.5,1), 'm³/h', '۱.۵ برابر سرویس')}
+    ${type!=='sand'?g('فیلتر کربن','','','زمان تماس ≥ ۱۰ دقیقه'):''}
     ${formulaBlock('فیلتر شنی (ASHRAE)', [
       `Q = ${flow} m³/h = ${fmt(gpm,0)} GPM`,
       `Loading Rate = ${rate} GPM/ft²`,
@@ -2004,14 +2086,16 @@ function calcDeaerator(){
   const deCap = feedwater*(1+margin)*SF;
   const model = pick(DEAERATOR_PRESS, 'kgHr', deCap);
   const storage = (model.kgHr/60)*20;
+  const ventRate = model.kgHr*(type==='pressurized'?0.001:0.002);
   document.getElementById('de_results').innerHTML = `
     ${g('ظرفیت دی‌اریتور', fmt(deCap), 'kg/hr', 'آب تغذیه: '+fmt(feedwater)+' kg/hr — SF='+SF)}
-    ${g('مدل استاندارد', model.model, '', `ظرفیت ${fmt(model.kgHr)} kg/hr — بویلر ${model.boiler} تن`)}
+    ${g('مدل استاندارد', model.model, '', `ظرفیت ${fmt(model.kgHr)} kg/hr — برای بویلر ${model.boiler} تن`)}
     ${g('حجم مخزن ذخیره', fmt(storage), 'L', '۲۰ دقیقه هولدآپ')}
+    ${g('نرخ ونت', fmt(ventRate,1), 'kg/hr', '')}
     ${g('اکسیژن باقیمانده', '< 7', 'ppb', 'دی‌اریتور تحت فشار')}
-    ${formulaBlock('دی‌اریتور (Caspian)', [
-      `Feedwater = cap × (1+blow) = ${cap} × ${1+blow} = ${fmt(feedwater)} kg/hr`,
-      `Deaerator = Feedwater × (1+Margin) × SF = ${fmt(feedwater)} × ${1+margin} × ${SF} = ${fmt(deCap)} kg/hr`,
+    ${formulaBlock('دی‌اریتور (HEI)', [
+      `Feedwater = cap × (1+blow) = ${cap} × ${(1+blow).toFixed(2)} = ${fmt(feedwater)} kg/hr`,
+      `Deaerator = Feedwater × (1+${margin}) × ${SF} = ${fmt(deCap)} kg/hr`,
       `Model = ${model.model}`,
       `Storage = (Capacity/60) × 20 = ${fmt(storage)} L`
     ], 'ASME / HEI Deaerator Standards')}`;
@@ -2075,25 +2159,198 @@ function calcHX(){
     ], 'TEMA / ASME Section VIII')}`;
 }
 
-/* ==================== UNIT CONVERTER (unchanged) ==================== */
+/* ==================== UNIT CONVERTER ==================== */
 const CONVERSIONS = {
-  heat: {units:{'kcal_hr':{label:'kcal/hr',factor:1},'kW':{label:'kW',factor:860.42},'BTU_hr':{label:'BTU/hr',factor:0.252},'BHP':{label:'BHP (Boiler HP)',factor:8434.5},'ton_ref':{label:'تن تبرید',factor:3024.84},'HP':{label:'HP',factor:641.19},'MJ_hr':{label:'MJ/hr',factor:238.85},'W':{label:'W',factor:0.86042},'TR':{label:'TR',factor:3024.84}},base:'kcal_hr'},
-  steam: {units:{'kg_hr':{label:'kg/hr',factor:1},'lb_hr':{label:'lb/hr',factor:0.4536},'ton_hr':{label:'ton/hr',factor:1000},'BHP_steam':{label:'BHP (Boiler HP)',factor:15.65},'kg_s':{label:'kg/s',factor:3600},'g_s':{label:'g/s',factor:3.6}},base:'kg_hr'},
-  pressure: {units:{'bar':{label:'bar',factor:1},'psi':{label:'psi',factor:0.0689476},'kPa':{label:'kPa',factor:0.01},'MPa':{label:'MPa',factor:10},'kg_cm2':{label:'kg/cm²',factor:0.980665},'atm':{label:'atm',factor:1.01325},'mmHg':{label:'mmHg',factor:0.00133322},'mbar':{label:'mbar',factor:0.001},'inHg':{label:'inHg',factor:0.0338639}},base:'bar'},
-  volume: {units:{'L':{label:'لیتر (L)',factor:1},'m3':{label:'m³',factor:1000},'cm3':{label:'cm³',factor:0.001},'ft3':{label:'ft³',factor:28.3168},'in3':{label:'in³',factor:0.0163871},'US_gal':{label:'گالن آمریکایی',factor:3.78541},'UK_gal':{label:'گالن انگلیسی',factor:4.54609},'barrel_oil':{label:'بشکه نفت',factor:158.987},'US_qt':{label:'کوارت',factor:0.946353},'US_pt':{label:'پاینت',factor:0.473176}},base:'L'},
-  vflow: {units:{'m3_hr':{label:'m³/hr',factor:1},'L_min':{label:'L/min',factor:0.06},'L_s':{label:'L/s',factor:3.6},'GPM_US':{label:'GPM (US)',factor:0.227125},'GPM_UK':{label:'GPM (UK)',factor:0.272765},'CFM':{label:'CFM',factor:1.699},'m3_s':{label:'m³/s',factor:3600},'ft3_hr':{label:'ft³/hr',factor:0.0283168}},base:'m3_hr'},
-  mflow: {units:{'kg_hr':{label:'kg/hr',factor:1},'kg_s':{label:'kg/s',factor:3600},'g_s':{label:'g/s',factor:3.6},'lb_hr':{label:'lb/hr',factor:0.4536},'ton_hr':{label:'ton/hr',factor:1000},'lb_min':{label:'lb/min',factor:27.2155},'ton_day':{label:'ton/day',factor:41.6667}},base:'kg_hr'},
-  temp: {units:{'C':{label:'°C',special:'temp_C'},'F':{label:'°F',special:'temp_F'},'K':{label:'K',special:'temp_K'}},base:'C'},
-  length: {units:{'m':{label:'متر',factor:1},'mm':{label:'میلی‌متر',factor:0.001},'cm':{label:'سانتی‌متر',factor:0.01},'km':{label:'کیلومتر',factor:1000},'in':{label:'اینچ',factor:0.0254},'ft':{label:'فوت',factor:0.3048},'yard':{label:'یارد',factor:0.9144},'mile':{label:'مایل',factor:1609.34}},base:'m'},
-  area: {units:{'m2':{label:'m²',factor:1},'cm2':{label:'cm²',factor:0.0001},'mm2':{label:'mm²',factor:1e-6},'ft2':{label:'ft²',factor:0.092903},'in2':{label:'in²',factor:0.00064516},'hectare':{label:'هکتار',factor:10000}},base:'m2'},
-  mass: {units:{'kg':{label:'کیلوگرم',factor:1},'g':{label:'گرم',factor:0.001},'mg':{label:'میلی‌گرم',factor:1e-6},'lb':{label:'پوند',factor:0.453592},'oz':{label:'اونس',factor:0.0283495},'ton_metric':{label:'تن متریک',factor:1000},'ton_US':{label:'تن آمریکایی',factor:907.185},'ton_UK':{label:'تن انگلیسی',factor:1016.05}},base:'kg'},
-  velocity: {units:{'m_s':{label:'m/s',factor:1},'km_hr':{label:'km/h',factor:0.277778},'ft_s':{label:'ft/s',factor:0.3048},'mph':{label:'mile/h',factor:0.44704},'knot':{label:'knot',factor:0.514444}},base:'m_s'},
-  softness: {units:{'ppm_CaCO3':{label:'ppm CaCO₃',factor:1},'mg_L':{label:'mg/L',factor:1},'grain_gal_US':{label:'grain/gal (US)',factor:17.1},'grain_gal_UK':{label:'grain/gal (UK)',factor:14.3},'french_deg':{label:'French deg',factor:10},'german_deg':{label:'German deg',factor:17.85},'mmol_L':{label:'mmol/L',factor:100.09},'mEq_L':{label:'mEq/L',factor:50.045}},base:'ppm_CaCO3'},
-  energy: {units:{'kcal':{label:'kcal',factor:1},'kJ':{label:'kJ',factor:0.239006},'kWh':{label:'kWh',factor:860.421},'BTU':{label:'BTU',factor:0.252},'MJ':{label:'MJ',factor:239.006},'therm':{label:'therm',factor:25210.4},'J':{label:'J',factor:0.000239006}},base:'kcal'},
-  specific: {units:{'kcal_kg':{label:'kcal/kg',factor:1},'kJ_kg':{label:'kJ/kg',factor:0.239006},'BTU_lb':{label:'BTU/lb',factor:0.5556},'kWh_kg':{label:'kWh/kg',factor:860.421}},base:'kcal_kg'},
-  density: {units:{'kg_m3':{label:'kg/m³',factor:1},'g_cm3':{label:'g/cm³',factor:1000},'kg_L':{label:'kg/L',factor:1000},'lb_ft3':{label:'lb/ft³',factor:16.0185},'lb_gal':{label:'lb/gal (US)',factor:119.826}},base:'kg_m3'},
-  area_heat: {units:{'W_m2K':{label:'W/m²K',factor:1},'W_m2C':{label:'W/m²°C',factor:1},'kcal_hr_m2C':{label:'kcal/(hr·m²·°C)',factor:1.163},'BTU_hr_ft2F':{label:'BTU/(hr·ft²·°F)',factor:5.67826},'kW_m2K':{label:'kW/m²K',factor:1000}},base:'W_m2K'}
+  heat: {
+    units: {
+      'kcal_hr': {label:'kcal/hr', factor: 1},
+      'kW': {label:'kW', factor: 860.42},
+      'BTU_hr': {label:'BTU/hr', factor: 0.252},
+      'BHP': {label:'BHP (Boiler HP)', factor: 8434.5},
+      'ton_ref': {label:'تن تبرید', factor: 3024.84},
+      'HP': {label:'HP (اسب بخار)', factor: 641.19},
+      'MJ_hr': {label:'MJ/hr', factor: 238.85},
+      'W': {label:'W', factor: 0.86042},
+      'TR': {label:'TR (Refrig. Ton)', factor: 3024.84},
+    },
+    base: 'kcal_hr'
+  },
+  steam: {
+    units: {
+      'kg_hr': {label:'kg/hr', factor: 1},
+      'lb_hr': {label:'lb/hr', factor: 0.4536},
+      'ton_hr': {label:'ton/hr (metric)', factor: 1000},
+      'BHP_steam': {label:'BHP (Boiler HP)', factor: 15.65},
+      'kg_s': {label:'kg/s', factor: 3600},
+      'g_s': {label:'g/s', factor: 3.6},
+    },
+    base: 'kg_hr'
+  },
+  pressure: {
+    units: {
+      'bar': {label:'bar', factor: 1},
+      'psi': {label:'psi', factor: 0.0689476},
+      'kPa': {label:'kPa', factor: 0.01},
+      'MPa': {label:'MPa', factor: 10},
+      'kg_cm2': {label:'kg/cm²', factor: 0.980665},
+      'atm': {label:'atm', factor: 1.01325},
+      'mmHg': {label:'mmHg', factor: 0.00133322},
+      'mbar': {label:'mbar', factor: 0.001},
+      'inHg': {label:'inHg', factor: 0.0338639},
+    },
+    base: 'bar'
+  },
+  volume: {
+    units: {
+      'L': {label:'لیتر (L)', factor: 1},
+      'm3': {label:'m³', factor: 1000},
+      'cm3': {label:'cm³', factor: 0.001},
+      'ft3': {label:'ft³', factor: 28.3168},
+      'in3': {label:'in³', factor: 0.0163871},
+      'US_gal': {label:'گالن آمریکایی', factor: 3.78541},
+      'UK_gal': {label:'گالن انگلیسی', factor: 4.54609},
+      'barrel_oil': {label:'بشکه نفت', factor: 158.987},
+      'US_qt': {label:'کوارت آمریکایی', factor: 0.946353},
+      'US_pt': {label:'پاینت آمریکایی', factor: 0.473176},
+    },
+    base: 'L'
+  },
+  vflow: {
+    units: {
+      'm3_hr': {label:'m³/hr', factor: 1},
+      'L_min': {label:'L/min', factor: 0.06},
+      'L_s': {label:'L/s', factor: 3.6},
+      'GPM_US': {label:'GPM (US)', factor: 0.227125},
+      'GPM_UK': {label:'GPM (UK)', factor: 0.272765},
+      'CFM': {label:'CFM (ft³/min)', factor: 1.699},
+      'm3_s': {label:'m³/s', factor: 3600},
+      'ft3_hr': {label:'ft³/hr', factor: 0.0283168},
+    },
+    base: 'm3_hr'
+  },
+  mflow: {
+    units: {
+      'kg_hr': {label:'kg/hr', factor: 1},
+      'kg_s': {label:'kg/s', factor: 3600},
+      'g_s': {label:'g/s', factor: 3.6},
+      'lb_hr': {label:'lb/hr', factor: 0.4536},
+      'ton_hr': {label:'ton/hr (metric)', factor: 1000},
+      'lb_min': {label:'lb/min', factor: 27.2155},
+      'ton_day': {label:'ton/day', factor: 41.6667},
+    },
+    base: 'kg_hr'
+  },
+  temp: {
+    units: {
+      'C': {label:'°C', special: 'temp_C'},
+      'F': {label:'°F', special: 'temp_F'},
+      'K': {label:'K', special: 'temp_K'},
+    },
+    base: 'C'
+  },
+  length: {
+    units: {
+      'm': {label:'متر', factor: 1},
+      'mm': {label:'میلی‌متر', factor: 0.001},
+      'cm': {label:'سانتی‌متر', factor: 0.01},
+      'km': {label:'کیلومتر', factor: 1000},
+      'in': {label:'اینچ', factor: 0.0254},
+      'ft': {label:'فوت', factor: 0.3048},
+      'yard': {label:'یارد', factor: 0.9144},
+      'mile': {label:'مایل', factor: 1609.34},
+    },
+    base: 'm'
+  },
+  area: {
+    units: {
+      'm2': {label:'m²', factor: 1},
+      'cm2': {label:'cm²', factor: 0.0001},
+      'mm2': {label:'mm²', factor: 1e-6},
+      'ft2': {label:'ft²', factor: 0.092903},
+      'in2': {label:'in²', factor: 0.00064516},
+      'hectare': {label:'هکتار', factor: 10000},
+    },
+    base: 'm2'
+  },
+  mass: {
+    units: {
+      'kg': {label:'کیلوگرم', factor: 1},
+      'g': {label:'گرم', factor: 0.001},
+      'mg': {label:'میلی‌گرم', factor: 1e-6},
+      'lb': {label:'پوند', factor: 0.453592},
+      'oz': {label:'اونس', factor: 0.0283495},
+      'ton_metric': {label:'تن متریک', factor: 1000},
+      'ton_US': {label:'تن آمریکایی', factor: 907.185},
+      'ton_UK': {label:'تن انگلیسی', factor: 1016.05},
+    },
+    base: 'kg'
+  },
+  velocity: {
+    units: {
+      'm_s': {label:'m/s', factor: 1},
+      'km_hr': {label:'km/h', factor: 0.277778},
+      'ft_s': {label:'ft/s', factor: 0.3048},
+      'mph': {label:'mile/h', factor: 0.44704},
+      'knot': {label:'knot', factor: 0.514444},
+    },
+    base: 'm_s'
+  },
+  softness: {
+    units: {
+      'ppm_CaCO3': {label:'ppm CaCO₃', factor: 1},
+      'mg_L': {label:'mg/L', factor: 1},
+      'grain_gal_US': {label:'grain/gal (US)', factor: 17.1},
+      'grain_gal_UK': {label:'grain/gal (UK)', factor: 14.3},
+      'french_deg': {label:'French degree (°f)', factor: 10},
+      'german_deg': {label:'German degree (°dH)', factor: 17.85},
+      'mmol_L': {label:'mmol/L', factor: 100.09},
+      'mEq_L': {label:'mEq/L', factor: 50.045},
+    },
+    base: 'ppm_CaCO3'
+  },
+  energy: {
+    units: {
+      'kcal': {label:'kcal', factor: 1},
+      'kJ': {label:'kJ', factor: 0.239006},
+      'kWh': {label:'kWh', factor: 860.421},
+      'BTU': {label:'BTU', factor: 0.252},
+      'MJ': {label:'MJ', factor: 239.006},
+      'therm': {label:'therm', factor: 25210.4},
+      'J': {label:'J', factor: 0.000239006},
+    },
+    base: 'kcal'
+  },
+  specific: {
+    units: {
+      'kcal_kg': {label:'kcal/kg', factor: 1},
+      'kJ_kg': {label:'kJ/kg', factor: 0.239006},
+      'BTU_lb': {label:'BTU/lb', factor: 0.5556},
+      'kWh_kg': {label:'kWh/kg', factor: 860.421},
+    },
+    base: 'kcal_kg'
+  },
+  density: {
+    units: {
+      'kg_m3': {label:'kg/m³', factor: 1},
+      'g_cm3': {label:'g/cm³', factor: 1000},
+      'kg_L': {label:'kg/L', factor: 1000},
+      'lb_ft3': {label:'lb/ft³', factor: 16.0185},
+      'lb_gal': {label:'lb/gal (US)', factor: 119.826},
+    },
+    base: 'kg_m3'
+  },
+  area_heat: {
+    units: {
+      'W_m2K': {label:'W/m²K', factor: 1},
+      'W_m2C': {label:'W/m²°C', factor: 1},
+      'kcal_hr_m2C': {label:'kcal/(hr·m²·°C)', factor: 1.163},
+      'BTU_hr_ft2F': {label:'BTU/(hr·ft²·°F)', factor: 5.67826},
+      'kW_m2K': {label:'kW/m²K', factor: 1000},
+    },
+    base: 'W_m2K'
+  }
 };
+
 function onCalcCategoryChange(){
   const cat = document.getElementById('calc_category').value;
   const cfg = CONVERSIONS[cat];
@@ -2122,9 +2379,11 @@ function runCalc(){
   const value = n(document.getElementById('calc_value').value);
   const from = document.getElementById('calc_from').value;
   if(!from) return;
+
   let resultEl = document.getElementById('calc_result');
   let labelEl = document.getElementById('calc_result_label');
   let convEl = document.getElementById('calc_conversions');
+
   if(cat === 'temp'){
     const c = convertTemp(value, from, 'C');
     const f = convertTemp(value, from, 'F');
@@ -2134,14 +2393,17 @@ function runCalc(){
     convEl.innerHTML = `
       <div class="conv-item"><span class="ck">سلسیوس</span><span class="cv">${c.toFixed(2)} °C</span></div>
       <div class="conv-item"><span class="ck">فارنهایت</span><span class="cv">${f.toFixed(2)} °F</span></div>
-      <div class="conv-item"><span class="ck">کلوین</span><span class="cv">${k.toFixed(2)} K</span></div>`;
+      <div class="conv-item"><span class="ck">کلوین</span><span class="cv">${k.toFixed(2)} K</span></div>
+    `;
     return;
   }
+
   const fromUnit = cfg.units[from];
   const baseValue = value * fromUnit.factor;
   const baseUnit = cfg.units[cfg.base];
   resultEl.textContent = (baseValue / baseUnit.factor).toLocaleString('en-US',{maximumFractionDigits:4});
   labelEl.textContent = baseUnit.label;
+
   let html = '';
   Object.keys(cfg.units).forEach(k => {
     if(k === cfg.base) return;
@@ -2151,13 +2413,17 @@ function runCalc(){
   });
   convEl.innerHTML = html;
 }
-function swapUnits(){ toast('همه واحدها هم‌زمان نمایش داده می‌شوند'); }
+function swapUnits(){
+  toast('تبدیل به همه واحدها به‌صورت هم‌زمان نمایش داده می‌شود');
+}
 onCalcCategoryChange();
 
 /* ==================== SERVICE WORKER ==================== */
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js').catch(err => console.warn('SW:', err));
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => console.log('✓ Service Worker registered:', reg.scope))
+      .catch(err => console.warn('✗ Service Worker failed:', err));
   });
 }
 </script>
