@@ -1,1738 +1,862 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#0a1929" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Capacity Assistant" />
-    <meta name="description" content="دستیار تعیین ظرفیت تجهیزات تاسیساتی - کاسپین مبدل آمارد" />
-    
-    <!-- Favicon و آیکون‌ها -->
-    <link rel="icon" type="image/png" sizes="32x32" href="logo-192.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="logo-192.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="logo-192.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="logo-192.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="logo-192.png" />
-    <link rel="manifest" href="manifest.json" />
-    
-    <title>Capacity Assistant | کاسپین مبدل آمارد</title>
-    
-    <style>
-        /* ==================== استایل تیره حرفه‌ای ==================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --bg-primary: #0a1929;
-            --bg-secondary: #132f4c;
-            --bg-tertiary: #1e4976;
-            --bg-card: #0d2137;
-            --border-color: #1e4976;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --accent-orange: #ff8c42;
-            --accent-blue: #4dabf7;
-            --accent-green: #2ea043;
-            --accent-red: #f85149;
-            --accent-yellow: #d29922;
-        }
-        
-        body {
-            font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            padding: 12px;
-            direction: rtl;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-        
-        #app {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: var(--bg-secondary);
-            border-radius: 24px;
-            padding: 20px 24px 30px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* ==================== هدر ==================== */
-        header {
-            text-align: center;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 20px;
-            margin-bottom: 24px;
-        }
-        
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 12px;
-        }
-        
-        .logo-container img {
-            width: 80px;
-            height: 80px;
-            border-radius: 16px;
-            background: white;
-            padding: 8px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-        
-        header h1 {
-            font-size: 26px;
-            color: #f0f6fc;
-            letter-spacing: 0.5px;
-        }
-        
-        header .sub {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-top: 4px;
-        }
-        
-        header .brand {
-            color: var(--accent-orange);
-            font-weight: 700;
-        }
-        
-        /* ==================== بخش‌ها ==================== */
-        .section {
-            background: var(--bg-primary);
-            border-radius: 16px;
-            padding: 18px 20px;
-            margin-bottom: 16px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .section h2 {
-            font-size: 17px;
-            color: #f0f6fc;
-            margin-bottom: 14px;
-            border-right: 4px solid var(--accent-orange);
-            padding-right: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        
-        .section h2 small {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 8px;
-        }
-        
-        .form-row-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-        
-        .form-group {
-            margin-bottom: 10px;
-        }
-        
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            font-size: 13px;
-            color: #c9d1d9;
-            margin-bottom: 5px;
-        }
-        
-        .form-group label .unit {
-            color: var(--text-secondary);
-            font-weight: 400;
-            font-size: 11px;
-        }
-        
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1.5px solid var(--border-color);
-            border-radius: 10px;
-            font-size: 14px;
-            background: var(--bg-card);
-            color: var(--text-primary);
-            transition: 0.2s;
-            font-family: inherit;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: var(--accent-blue);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.15);
-        }
-        
-        .form-group input[type="number"]::-webkit-outer-spin-button,
-        .form-group input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-        }
-        
-        /* ==================== دکمه‌های رادیویی ==================== */
-        .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 6px;
-        }
-        
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--bg-card);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 13px;
-            cursor: pointer;
-            border: 1.5px solid var(--border-color);
-            transition: 0.2s;
-            font-weight: 500;
-            color: #c9d1d9;
-        }
-        
-        .radio-group label:hover {
-            border-color: var(--accent-blue);
-        }
-        
-        .radio-group input[type="radio"] {
-            accent-color: var(--accent-orange);
-            width: 15px;
-            height: 15px;
-            cursor: pointer;
-        }
-        
-        .radio-group label.selected {
-            background: var(--accent-green);
-            border-color: var(--accent-green);
-            color: #fff;
-        }
-        
-        /* ==================== دکمه محاسبه ==================== */
-        .btn-calc {
-            width: 100%;
-            padding: 16px;
-            background: var(--accent-green);
-            color: #fff;
-            border: none;
-            border-radius: 14px;
-            font-size: 19px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            margin: 16px 0;
-            letter-spacing: 0.5px;
-            font-family: inherit;
-        }
-        
-        .btn-calc:hover {
-            background: #3fb950;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(46, 160, 67, 0.3);
-        }
-        
-        /* ==================== خروجی ==================== */
-        #output {
-            display: none;
-            background: var(--bg-primary);
-            border-radius: 18px;
-            padding: 20px;
-            margin-top: 20px;
-            border: 1px solid var(--border-color);
-        }
-        
-        #output > h2 {
-            color: #f0f6fc;
-            margin-bottom: 18px;
-            border-right: 4px solid var(--accent-orange);
-            padding-right: 12px;
-            font-size: 19px;
-        }
-        
-        .result-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 16px 18px;
-            margin-bottom: 14px;
-            border: 1px solid var(--border-color);
-            border-right-width: 5px;
-            border-right-color: var(--accent-orange);
-        }
-        
-        .result-card h3 {
-            color: #f0f6fc;
-            font-size: 16px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .result-card h3 .badge {
-            background: var(--accent-green);
-            font-size: 10px;
-            padding: 3px 12px;
-            border-radius: 30px;
-            color: #fff;
-            font-weight: 500;
-        }
-        
-        .result-card h3 .badge-formula {
-            background: var(--accent-blue);
-            font-size: 10px;
-            padding: 3px 12px;
-            border-radius: 30px;
-            color: #fff;
-            font-weight: 500;
-        }
-        
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 14px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .result-item:last-child {
-            border-bottom: none;
-        }
-        
-        .result-item .val {
-            font-weight: 700;
-            color: var(--accent-orange);
-            font-size: 15px;
-        }
-        
-        .result-item .unit-text {
-            color: var(--text-secondary);
-            font-size: 12px;
-            margin-right: 4px;
-        }
-        
-        .result-item .converted {
-            color: var(--accent-blue);
-            font-size: 12px;
-            margin-right: 8px;
-        }
-        
-        /* ==================== فرمول‌ها ==================== */
-        .formula-box {
-            background: var(--bg-primary);
-            border-radius: 10px;
-            padding: 12px 14px;
-            margin-top: 10px;
-            border-right: 3px solid var(--accent-blue);
-            font-size: 13px;
-            direction: ltr;
-            text-align: left;
-            font-family: 'Consolas', 'Monaco', monospace;
-            color: #79c0ff;
-            overflow-x: auto;
-        }
-        
-        .formula-box .formula-title {
-            color: var(--accent-yellow);
-            font-weight: 700;
-            font-size: 12px;
-            margin-bottom: 6px;
-            direction: rtl;
-            text-align: right;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-        }
-        
-        .formula-box .formula-line {
-            margin: 3px 0;
-            font-size: 13px;
-        }
-        
-        .formula-box .formula-result {
-            color: var(--accent-green);
-            font-weight: 700;
-        }
-        
-        .formula-box .formula-ref {
-            color: var(--text-secondary);
-            font-size: 11px;
-            margin-top: 6px;
-            direction: rtl;
-            text-align: right;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-        }
-        
-        /* ==================== دکمه‌های پایین ==================== */
-        .btn-print {
-            padding: 12px 24px;
-            background: var(--accent-green);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 14px;
-            font-family: inherit;
-        }
-        
-        .btn-print:hover {
-            background: #3fb950;
-        }
-        
-        .btn-reset {
-            padding: 12px 24px;
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 14px;
-            font-family: inherit;
-        }
-        
-        .btn-reset:hover {
-            background: #2a5f94;
-        }
-        
-        /* ==================== فوتر ==================== */
-        footer {
-            margin-top: 24px;
-            text-align: center;
-            font-size: 12px;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
-        }
-        
-        /* ==================== ریسپانسیو ==================== */
-        @media (max-width: 700px) {
-            .form-row,
-            .form-row-3 {
-                grid-template-columns: 1fr;
-            }
-            #app {
-                padding: 14px;
-                border-radius: 16px;
-            }
-            header h1 {
-                font-size: 20px;
-            }
-            .logo-container img {
-                width: 60px;
-                height: 60px;
-            }
-            .radio-group label {
-                font-size: 12px;
-                padding: 5px 10px;
-            }
-        }
-        
-        /* ==================== پرینت ==================== */
-        @media print {
-            .btn-calc,
-            .btn-print,
-            .btn-reset,
-            .section {
-                display: none !important;
-            }
-            #output {
-                display: block !important;
-                background: #fff !important;
-                color: #000 !important;
-            }
-            .result-card {
-                background: #f9f9f9 !important;
-                border: 1px solid #ccc !important;
-                color: #000 !important;
-                page-break-inside: avoid;
-            }
-            .result-card .val {
-                color: #c45500 !important;
-            }
-            .formula-box {
-                background: #f0f0f0 !important;
-                color: #0066cc !important;
-            }
-            body {
-                background: #fff;
-                padding: 0;
-            }
-            #app {
-                background: #fff;
-                box-shadow: none;
-                border: none;
-            }
-            header h1 {
-                color: #000;
-            }
-        }
-        
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-blue);
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0a1929" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="manifest" href="./manifest.json" />
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+<link rel="apple-touch-icon" href="./icon-192.png" />
+<title>Capacity Assistant | کاسپین مبدل آمارد</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0a1929; --bg2:#132f4c; --card:#0d2137; --border:#1e4976;
+  --txt:#e6edf3; --txt2:#8b949e; --orange:#ff8c42; --blue:#4dabf7;
+  --green:#2ea043; --yellow:#d29922; --red:#f85149;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Vazirmatn",Tahoma,sans-serif;
+  background:var(--bg); color:var(--txt); padding:12px;
+  direction:rtl; min-height:100vh; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+#app{
+  max-width:1000px; margin:0 auto; background:var(--bg2);
+  border-radius:20px; padding:20px; border:1px solid var(--border);
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+header{text-align:center; border-bottom:2px solid var(--border);
+  padding-bottom:16px; margin-bottom:20px;}
+.logo{width:70px; height:70px; border-radius:14px; background:#fff;
+  padding:6px; margin-bottom:8px;}
+header h1{font-size:22px; color:#f0f6fc;}
+header .sub{color:var(--txt2); font-size:13px; margin-top:4px;}
+header .brand{color:var(--orange); font-weight:700;}
+
+.tabs{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px;}
+.tabs button{
+  padding:14px 10px; border:1.5px solid var(--border);
+  background:var(--bg); color:var(--txt2); border-radius:12px;
+  font-size:15px; font-weight:600; cursor:pointer; transition:.2s;
+  font-family:inherit;
+}
+.tabs button.active{background:var(--green); color:#fff; border-color:var(--green);}
+.tabs button:hover:not(.active){border-color:var(--blue); color:var(--txt);}
+
+.section{background:var(--bg); border-radius:14px; padding:16px;
+  margin-bottom:14px; border:1px solid var(--border);}
+.section h2{font-size:15px; color:#f0f6fc; margin-bottom:12px;
+  border-right:4px solid var(--orange); padding-right:10px;}
+.section h2 small{font-size:11px; color:var(--txt2); font-weight:400;}
+
+.row{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
+.fg{margin-bottom:10px;}
+.fg label{display:block; font-size:12px; color:#c9d1d9; font-weight:600; margin-bottom:5px;}
+.fg label .u{color:var(--txt2); font-weight:400; font-size:10px;}
+.fg input,.fg select{
+  width:100%; padding:10px 12px; border:1.5px solid var(--border);
+  border-radius:9px; font-size:14px; background:var(--card);
+  color:var(--txt); font-family:inherit; transition:.2s;
+}
+.fg input:focus,.fg select:focus{
+  border-color:var(--blue); outline:none;
+  box-shadow:0 0 0 3px rgba(77,171,247,.15);
+}
+.fg input[type=number]::-webkit-outer-spin-button,
+.fg input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;}
+
+.radio-grp{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px;}
+.radio-grp label{
+  display:flex; align-items:center; gap:5px; background:var(--card);
+  padding:6px 12px; border-radius:20px; font-size:12px; cursor:pointer;
+  border:1.5px solid var(--border); transition:.2s; color:#c9d1d9;
+}
+.radio-grp label.sel{background:var(--green); border-color:var(--green); color:#fff;}
+.radio-grp label:hover:not(.sel){border-color:var(--blue);}
+.radio-grp input{accent-color:var(--orange);}
+
+.btn-calc{
+  width:100%; padding:16px; background:var(--green); color:#fff;
+  border:none; border-radius:12px; font-size:17px; font-weight:700;
+  cursor:pointer; margin:14px 0; font-family:inherit; transition:.2s;
+}
+.btn-calc:hover{background:#3fb950; transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(46,160,67,.3);}
+
+#output{display:none; background:var(--bg); border-radius:16px;
+  padding:18px; margin-top:16px; border:1px solid var(--border);}
+#output>h2{font-size:17px; color:#f0f6fc; margin-bottom:16px;
+  border-right:4px solid var(--orange); padding-right:10px;}
+
+.card{background:var(--card); border-radius:12px; padding:14px 16px;
+  margin-bottom:12px; border:1px solid var(--border);
+  border-right-width:5px; border-right-color:var(--orange);}
+.card h3{font-size:15px; color:#f0f6fc; margin-bottom:8px;
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+.card h3 .badge{background:var(--green); font-size:10px;
+  padding:2px 10px; border-radius:20px; color:#fff; font-weight:500;}
+.item{display:flex; justify-content:space-between; padding:5px 0;
+  border-bottom:1px solid var(--border); font-size:13px;
+  flex-wrap:wrap; gap:6px;}
+.item:last-child{border-bottom:none;}
+.item .v{font-weight:700; color:var(--orange); font-size:14px;}
+.item .u{color:var(--txt2); font-size:11px; margin-right:3px;}
+.item .c{color:var(--blue); font-size:11px; margin-right:6px;}
+
+.formula{background:var(--bg2); border-radius:10px;
+  padding:12px 14px; margin-top:8px; border-right:3px solid var(--blue);
+  font-size:12px; direction:ltr; text-align:left;
+  font-family:Consolas,Monaco,monospace; color:#79c0ff; overflow-x:auto;}
+.formula .ft{color:var(--yellow); font-weight:700; font-size:11px;
+  margin-bottom:6px; direction:rtl; text-align:right;
+  font-family:'Vazirmatn',Tahoma,sans-serif;}
+.formula .fl{margin:2px 0;}
+.formula .ref{color:var(--txt2); font-size:10px; margin-top:6px;
+  direction:rtl; text-align:right;
+  font-family:'Vazirmatn',Tahoma,sans-serif;}
+
+.btn-print{padding:10px 20px; background:var(--green); color:#fff;
+  border:none; border-radius:10px; font-weight:600; cursor:pointer;
+  font-size:13px; font-family:inherit;}
+.btn-reset{padding:10px 20px; background:var(--card); color:var(--txt);
+  border:1px solid var(--border); border-radius:10px; cursor:pointer;
+  font-size:13px; font-family:inherit;}
+.btn-print:hover{background:#3fb950;}
+.btn-reset:hover{background:var(--bg);}
+
+footer{margin-top:20px; text-align:center; font-size:11px;
+  color:var(--txt2); border-top:1px solid var(--border); padding-top:14px;}
+
+@media(max-width:640px){
+  .row,.row3{grid-template-columns:1fr;}
+  #app{padding:12px; border-radius:14px;}
+  header h1{font-size:17px;}
+  .logo{width:56px; height:56px;}
+}
+@media print{
+  .tabs,.btn-calc,.btn-print,.btn-reset,.section{display:none!important;}
+  #output{display:block!important; background:#fff!important; color:#000!important;}
+  .card{background:#f9f9f9!important; border:1px solid #ccc!important;
+    color:#000!important; page-break-inside:avoid;}
+  .card .v{color:#c45500!important;}
+  .formula{background:#f0f0f0!important; color:#0066cc!important;}
+  body,#app{background:#fff!important; box-shadow:none; border:none;}
+  header h1,header .sub,.card h3{color:#000!important;}
+}
+</style>
 </head>
 <body>
+<div id="app">
+  <header>
+    <img src="./icon-192.png" alt="Logo" class="logo" />
+    <h1>Capacity Assistant</h1>
+    <p class="sub"><span class="brand">کاسپین مبدل آمارد</span> | دستیار تعیین ظرفیت تجهیزات</p>
+  </header>
 
-    <div id="app">
-        <!-- ==================== هدر ==================== -->
-        <header>
-            <div class="logo-container">
-                <img src="logo-192.png" alt="Capacity Assistant" />
-            </div>
-            <h1>Capacity Assistant</h1>
-            <p class="sub"><span class="brand">کاسپین مبدل آمارد</span> | دستیار تعیین ظرفیت تجهیزات تاسیساتی</p>
-        </header>
+  <!-- تب‌های اصلی: تفکیک کامل حوزه بخار و آبگرم -->
+  <div class="tabs">
+    <button id="tabHW" class="active">💧 دیگ آبگرم / آب‌داغ</button>
+    <button id="tabST">🔥 دیگ بخار</button>
+  </div>
 
-        <!-- ==================== بخش 1: انتخاب حوزه ==================== -->
-        <div class="section">
-            <h2>🔀 حوزه کاری <small>(نوع دیگ اصلی)</small></h2>
-            <div class="form-group">
-                <label>نوع دیگ</label>
-                <select id="boilerType">
-                    <option value="steam">🔥 دیگ بخار (Steam Boiler)</option>
-                    <option value="hotwater" selected>💧 دیگ آبگرم / آب‌داغ (Hot Water Boiler)</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- ==================== بخش 2: مدل دیگ ==================== -->
-        <div class="section">
-            <h2>🔄 انتخاب مدل دیگ <small>(دستی از کاتالوگ)</small></h2>
-            <div class="form-group">
-                <label>مدل دیگ مورد نظر</label>
-                <select id="boilerModel"></select>
-            </div>
-        </div>
-
-        <!-- ==================== بخش 3: مکان و تعداد ==================== -->
-        <div class="section">
-            <h2>📍 مکان پروژه و تعداد <small>(حداقل اطلاعات)</small></h2>
-            <div class="form-group">
-                <label>نوع مکان</label>
-                <select id="locationType"></select>
-            </div>
-            <div class="form-group">
-                <label>تعداد <span class="unit" id="unitLabel">(نفر، تخت، مترمربع و ...)</span></label>
-                <input type="number" id="unitCount" value="100" min="1" step="1" />
-            </div>
-        </div>
-
-        <!-- ==================== بخش 4: ورودی‌های پویا ==================== -->
-        <div id="dynamicInputs"></div>
-
-        <!-- ==================== بخش 5: الگوی مصرف و ضریب اطمینان ==================== -->
-        <div class="section">
-            <h2>⚙️ تنظیمات پیشرفته</h2>
-            
-            <div class="form-group">
-                <label>الگوی مصرف</label>
-                <div class="radio-group" id="patternGroup">
-                    <label class="selected">
-                        <input type="radio" name="pattern" value="continuous" checked />
-                        پیوسته (Continuous)
-                    </label>
-                    <label>
-                        <input type="radio" name="pattern" value="peak" />
-                        پیک‌دار (Peak)
-                    </label>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label>ضریب اطمینان (Safety Factor)</label>
-                <div class="radio-group" id="safetyGroup">
-                    <label class="selected">
-                        <input type="radio" name="safety" value="1.2" checked />
-                        1.2 (بهینه)
-                    </label>
-                    <label>
-                        <input type="radio" name="safety" value="1.3" />
-                        1.3 (استاندارد Fulton)
-                    </label>
-                    <label>
-                        <input type="radio" name="safety" value="1.35" />
-                        1.35 (محافظه‌کارانه)
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <!-- ==================== دکمه محاسبه ==================== -->
-        <button class="btn-calc" id="calcBtn">⚡ محاسبه و مشاوره</button>
-
-        <!-- ==================== خروجی ==================== -->
-        <div id="output">
-            <h2>📊 نتایج مشاوره فنی</h2>
-            <div id="results"></div>
-            <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
-                <button class="btn-print" onclick="window.print()">🖨️ چاپ / PDF</button>
-                <button class="btn-reset" id="resetBtn">🔄 پروژه جدید</button>
-            </div>
-        </div>
-
-        <footer>
-            <p>طراحی شده برای <strong>کاسپین مبدل آمارد</strong> | تمام محاسبات طبق استانداردهای ASHRAE، Fulton، WQA</p>
-            <p style="margin-top:4px;">GitHub: @caspianmobadelamard</p>
-        </footer>
+  <!-- مدل دیگ -->
+  <div class="section">
+    <h2>🔄 انتخاب مدل دیگ <small>(دستی از کاتالوگ کاسپین)</small></h2>
+    <div class="fg">
+      <label>مدل مورد نظر</label>
+      <select id="model"></select>
     </div>
+  </div>
 
-    <script>
-        // ================================================================
-        // 1. پایگاه داده کامل
-        // ================================================================
+  <!-- مکان پروژه -->
+  <div class="section">
+    <h2>📍 مکان پروژه <small>(حداقل اطلاعات از خریدار)</small></h2>
+    <div class="fg">
+      <label>نوع کاربری</label>
+      <select id="location"></select>
+    </div>
+    <div class="fg">
+      <label>تعداد <span class="u" id="unitLbl">(واحد)</span></label>
+      <input type="number" id="count" value="100" min="1" />
+    </div>
+  </div>
 
-        // لیست مکان‌ها با مصرف سرانه ASHRAE
-        const LOCATIONS = {
-            residential: { 
-                label: 'مسکونی (آپارتمان/ویلا)', unit: 'واحد', 
-                perCapita: 50, // گالن/نفر/روز
-                fixtures: { lavatory: 2, bathtub: 1, shower: 1, kitchenSink: 1, washingMachine: 1, dishwasher: 1 },
-                demandFactor: 0.30, storageFactor: 1.25,
-                heatingU: 1.2, // W/m²·K
-                areaPerUnit: 100 // مترمربع
-            },
-            dormitory: { 
-                label: 'خوابگاه', unit: 'نفر',
-                perCapita: 13, 
-                fixtures: { lavatory: 1, shower: 1 },
-                demandFactor: 0.25, storageFactor: 1.00,
-                heatingU: 1.2, areaPerUnit: 20
-            },
-            nursingHome: { 
-                label: 'خانه سالمندان', unit: 'تخت',
-                perCapita: 18.4, 
-                fixtures: { lavatory: 1, shower: 1, bathtub: 1 },
-                demandFactor: 0.25, storageFactor: 1.00,
-                heatingU: 1.0, areaPerUnit: 25
-            },
-            hospital: { 
-                label: 'بیمارستان', unit: 'تخت',
-                perCapita: 25, 
-                fixtures: { lavatory: 1, shower: 1, bathtub: 0, kitchenSink: 1, washingMachine: 1 },
-                demandFactor: 0.25, storageFactor: 1.00,
-                heatingU: 1.0, areaPerUnit: 50
-            },
-            hotel: { 
-                label: 'هتل', unit: 'اتاق',
-                perCapita: 20, 
-                fixtures: { lavatory: 1, bathtub: 1, shower: 1, kitchenSink: 1 },
-                demandFactor: 0.25, storageFactor: 0.80,
-                heatingU: 1.0, areaPerUnit: 40
-            },
-            office: { 
-                label: 'اداری', unit: 'کارمند',
-                perCapita: 5, 
-                fixtures: { lavatory: 1 },
-                demandFactor: 0.30, storageFactor: 2.00,
-                heatingU: 1.2, areaPerUnit: 15
-            },
-            school: { 
-                label: 'مدرسه / دانشگاه', unit: 'دانش‌آموز',
-                perCapita: 1.8, 
-                fixtures: { lavatory: 1 },
-                demandFactor: 0.30, storageFactor: 2.00,
-                heatingU: 1.5, areaPerUnit: 10
-            },
-            prison: { 
-                label: 'زندان', unit: 'دوش',
-                perCapita: 45, // لیتر/دوش
-                fixtures: { shower: 1, lavatory: 1 },
-                demandFactor: 0.30, storageFactor: 1.00,
-                heatingU: 1.2, areaPerUnit: 5
-            },
-            restaurant: { 
-                label: 'رستوران', unit: 'وعده غذا',
-                perCapita: 3, 
-                fixtures: { kitchenSink: 1, lavatory: 1 },
-                demandFactor: 0.30, storageFactor: 1.50,
-                heatingU: 1.5, areaPerUnit: 2
-            },
-            pool: { 
-                label: 'استخر / ورزشگاه', unit: 'مترمربع',
-                perCapita: 2, 
-                fixtures: { shower: 1, lavatory: 1 },
-                demandFactor: 0.30, storageFactor: 1.00,
-                heatingU: 1.5, areaPerUnit: 1
-            },
-            greenhouse: { 
-                label: 'گلخانه', unit: 'مترمربع',
-                perCapita: 1.5, 
-                fixtures: {},
-                demandFactor: 0.30, storageFactor: 1.00,
-                heatingU: 6.53, areaPerUnit: 1
-            },
-            laundry: { 
-                label: 'رخت‌شویخانه', unit: 'کیلو لباس',
-                perCapita: 5, 
-                fixtures: { washingMachine: 1, lavatory: 1 },
-                demandFactor: 0.30, storageFactor: 1.50,
-                heatingU: 1.5, areaPerUnit: 3
-            },
-            dairy: { 
-                label: 'لبنیات', unit: 'تن شیر',
-                perCapita: 100, 
-                fixtures: { kitchenSink: 1, lavatory: 1 },
-                demandFactor: 0.35, storageFactor: 1.00,
-                heatingU: 1.5, areaPerUnit: 5
-            },
-            slaughterhouse: { 
-                label: 'کشتارگاه', unit: 'تن لاشه',
-                perCapita: 80, 
-                fixtures: { shower: 1, lavatory: 1 },
-                demandFactor: 0.35, storageFactor: 1.00,
-                heatingU: 1.5, areaPerUnit: 8
-            },
-            industrial: { 
-                label: 'کارخانه / صنایع', unit: 'نفر',
-                perCapita: 10, 
-                fixtures: { shower: 1, lavatory: 1 },
-                demandFactor: 0.35, storageFactor: 1.50,
-                heatingU: 1.5, areaPerUnit: 20
-            },
-            sauna: { 
-                label: 'سونا بخار', unit: 'مترمربع',
-                perCapita: 0, 
-                fixtures: {},
-                demandFactor: 0.30, storageFactor: 1.00,
-                heatingU: 0, areaPerUnit: 1
-            }
-        };
+  <!-- ورودی‌های پویا -->
+  <div id="dynamic"></div>
 
-        // مصارف هر وسیله بهداشتی (گالن بر ساعت) - ASHRAE Table 10
-        const FIXTURE_CONSUMPTION = {
-            lavatory: { apartment: 2, hotel: 6, hospital: 6, office: 2 },
-            bathtub: { apartment: 20, hotel: 20, hospital: 10 },
-            shower: { all: 30 },
-            kitchenSink: { all: 10 },
-            dishwasher: { all: 15 },
-            washingMachine: { all: 35 }
-        };
+  <!-- تنظیمات پیشرفته -->
+  <div class="section">
+    <h2>⚙️ تنظیمات پیشرفته</h2>
+    <div class="fg">
+      <label>الگوی مصرف</label>
+      <div class="radio-grp" id="patternGrp">
+        <label class="sel"><input type="radio" name="pat" value="continuous" checked /> پیوسته (Continuous)</label>
+        <label><input type="radio" name="pat" value="peak" /> پیک‌دار (Peak)</label>
+      </div>
+    </div>
+    <div class="fg">
+      <label>ضریب اطمینان (Safety Factor)</label>
+      <div class="radio-grp" id="safetyGrp">
+        <label class="sel"><input type="radio" name="sf" value="1.2" checked /> ۱.۲ بهینه</label>
+        <label><input type="radio" name="sf" value="1.3" /> ۱.۳ Fulton</label>
+        <label><input type="radio" name="sf" value="1.35" /> ۱.۳۵ محافظه‌کارانه</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="fg"><label>سختی آب ورودی <span class="u">ppm CaCO₃</span></label>
+        <input type="number" id="hardIn" value="250" min="0" /></div>
+      <div class="fg"><label>سختی خروجی مطلوب <span class="u">ppm</span></label>
+        <input type="number" id="hardOut" value="50" min="0" /></div>
+    </div>
+    <div class="row">
+      <div class="fg"><label>دمای آب تغذیه <span class="u">°C</span></label>
+        <input type="number" id="feedT" value="85" min="20" max="100" /></div>
+      <div class="fg"><label>ساعت بین دو احیا (سختی‌گیر)</label>
+        <input type="number" id="svcH" value="8" min="2" max="24" /></div>
+    </div>
+  </div>
 
-        // ظرفیت‌های استاندارد کاسپین (طبق کاتالوگ)
-        const STANDARD_CAP = {
-            steam_kg_hr: [100, 150, 200, 300, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 7500, 10000, 15000],
-            hotwater_kcal_hr: [80000, 100000, 150000, 200000, 300000, 400000, 500000, 600000, 800000, 1000000, 
-                              1250000, 1500000, 2000000, 2500000, 3000000, 4000000, 5000000, 6000000]
-        };
+  <button class="btn-calc" id="calcBtn">⚡ محاسبه و مشاوره</button>
 
-        // ظرفیت‌های رقبا
-        const COMPETITORS = {
-            pakman: {
-                steam_kg_hr: [100, 200, 300, 500, 1000, 1500, 2000, 3000, 5000, 10000],
-                hotwater_kcal_hr: [100000, 150000, 200000, 300000, 500000, 800000, 1000000, 1500000, 2000000, 3000000]
-            },
-            dabosanat: {
-                steam_kg_hr: [60, 100, 200, 300, 500, 1000, 2000],
-                hotwater_kcal_hr: [60000, 100000, 200000, 400000, 600000, 800000, 1000000, 1500000, 2000000]
-            }
-        };
+  <div id="output">
+    <h2>📊 نتایج مشاوره فنی</h2>
+    <div id="results"></div>
+    <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="btn-print" onclick="window.print()">🖨️ چاپ / PDF</button>
+      <button class="btn-reset" id="resetBtn">🔄 پروژه جدید</button>
+    </div>
+  </div>
 
-        // مدل‌های دیگ
-        const BOILER_MODELS = {
-            steam: [
-                'افقی وت‌بک (Horizontal Wet-Back)',
-                'فایرباکس (Firebox)',
-                'عمودی (Vertical)'
-            ],
-            hotwater: [
-                'سه‌پاس (Three-Pass)',
-                'شعله برگشتی (Reverse Flame)',
-                'فایرباکس (Firebox)',
-                'آذران (Azaran)',
-                'پکیج سری M',
-                'پکیج سری H'
-            ]
-        };
+  <footer>
+    <p>طراحی برای <strong>کاسپین مبدل آمارد</strong> | منابع: ASHRAE، Fulton، WQA، EOS</p>
+    <p style="margin-top:4px;">GitHub: @caspianmobadelamard</p>
+  </footer>
+</div>
 
-        // ضریب U گلخانه (W/m²·K) - P.V. Nelson
-        const GREENHOUSE_U = {
-            'nylon_single': 6.53,
-            'nylon_double': 4.54,
-            'glass_single': 6.42,
-            'glass_double': 3.69,
-            'polycarbonate_double': 3.29
-        };
+<script>
+// ================================================================
+// 1. پایگاه داده
+// ================================================================
 
-        // ضرایب سونا
-        const SAUNA_K1 = { 'ventilated': 0.75, 'non_ventilated': 0.52 };
-        const SAUNA_K2 = { 'acrylic': 1, 'ceramic_foam': 1.25, 'tiled_concrete': 1.5, 'stone': 2 };
+// مکان‌ها با مصرف سرانه ASHRAE و فیکسچر
+const LOC = {
+  residential:{n:'مسکونی (آپارتمان/ویلا)',u:'واحد',perCap:50,
+    fix:{lav:2,bat:1,shw:1,ks:1,wm:1,dw:1},df:.30,sf:1.25,U:1.2,area:100},
+  dorm:{n:'خوابگاه',u:'نفر',perCap:13,
+    fix:{lav:1,shw:1},df:.25,sf:1.0,U:1.2,area:20},
+  nursing:{n:'خانه سالمندان',u:'تخت',perCap:18.4,
+    fix:{lav:1,shw:1,bat:1},df:.25,sf:1.0,U:1.0,area:25},
+  hospital:{n:'بیمارستان',u:'تخت',perCap:25,
+    fix:{lav:1,shw:1,ks:1,wm:1},df:.25,sf:1.0,U:1.0,area:50},
+  hotel:{n:'هتل',u:'اتاق',perCap:20,
+    fix:{lav:1,bat:1,shw:1,ks:1},df:.25,sf:.80,U:1.0,area:40},
+  office:{n:'اداری',u:'کارمند',perCap:5,
+    fix:{lav:1},df:.30,sf:2.0,U:1.2,area:15},
+  school:{n:'مدرسه/دانشگاه',u:'دانش‌آموز',perCap:1.8,
+    fix:{lav:1},df:.30,sf:2.0,U:1.5,area:10},
+  prison:{n:'زندان',u:'دوش',perCap:12,
+    fix:{shw:1,lav:1},df:.30,sf:1.0,U:1.2,area:5},
+  restaurant:{n:'رستوران',u:'وعده',perCap:3,
+    fix:{ks:1,lav:1},df:.30,sf:1.5,U:1.5,area:2},
+  pool:{n:'استخر',u:'مترمربع',perCap:2,
+    fix:{shw:1,lav:1},df:.30,sf:1.0,U:1.5,area:1},
+  greenhouse:{n:'گلخانه',u:'مترمربع',perCap:1.5,
+    fix:{},df:.30,sf:1.0,U:6.53,area:1},
+  laundry:{n:'رخت‌شویخانه',u:'کیلو لباس',perCap:5,
+    fix:{wm:1,lav:1},df:.30,sf:1.5,U:1.5,area:3},
+  dairy:{n:'لبنیات',u:'تن شیر',perCap:100,
+    fix:{ks:1,lav:1},df:.35,sf:1.0,U:1.5,area:5},
+  slaughter:{n:'کشتارگاه',u:'تن لاشه',perCap:80,
+    fix:{shw:1,lav:1},df:.35,sf:1.0,U:1.5,area:8},
+  industrial:{n:'کارخانه/صنایع',u:'نفر',perCap:10,
+    fix:{shw:1,lav:1},df:.35,sf:1.5,U:1.5,area:20},
+  sauna:{n:'سونا بخار',u:'مترمربع',perCap:0,
+    fix:{},df:.30,sf:1.0,U:0,area:1}
+};
 
-        // ================================================================
-        // 2. توابع تبدیل واحد
-        // ================================================================
-        const Units = {
-            volume: { 
-                literToGal: l => l / 3.78541, 
-                galToLiter: g => g * 3.78541,
-                literToM3: l => l / 1000 
-            },
-            flow: { 
-                lpmToGpm: l => l / 3.78541, 
-                gpmToLpm: g => g * 3.78541,
-                lpmToM3h: l => l * 0.06, 
-                kgHToLbH: kg => kg * 2.20462,
-                kgHToTonH: kg => kg / 1000 
-            },
-            power: { 
-                kwToKcalh: k => k * 860, 
-                kcalhToKw: k => k / 860,
-                kwToBtu: k => k * 3412.14, 
-                kwToHp: k => k * 1.34102 
-            }
-        };
+// مصرف وسایل بهداشتی (GPH) - ASHRAE Table 10
+const FIX = {
+  lav:{apt:2,hotel:6,hosp:6,off:2},
+  bat:{apt:20,hotel:20,hosp:10},
+  shw:30, ks:10, dw:15, wm:35
+};
 
-        // ================================================================
-        // 3. توابع کمکی محاسباتی
-        // ================================================================
+// مدل‌های دیگ (کاتالوگ کاسپین)
+const MODELS = {
+  hw:['سه‌پاس (Three-Pass)','شعله برگشتی (Reverse Flame)',
+      'فایرباکس (Firebox)','آذران (Azaran)','پکیج سری M','پکیج سری H'],
+  st:['افقی وت‌بک (Horizontal)','فایرباکس (Firebox)','عمودی (Vertical)']
+};
 
-        function findNearest(value, list) {
-            let nearest = list[0];
-            for (let cap of list) {
-                if (cap >= value) { nearest = cap; break; }
-                nearest = cap;
-            }
-            return nearest;
-        }
+// ظرفیت‌های استاندارد کاسپین (کاتالوگ)
+const STD_HW=[80000,100000,150000,200000,300000,400000,500000,600000,800000,
+  1000000,1250000,1500000,2000000,2500000,3000000,4000000,5000000,6000000];
+const STD_ST=[100,150,200,300,500,750,1000,1500,2000,3000,4000,5000,7500,10000,15000];
 
-        function formatNumber(num, decimals = 1) {
-            if (typeof num !== 'number' || isNaN(num)) return '0';
-            return num.toLocaleString('fa-IR', { maximumFractionDigits: decimals });
-        }
+// رقبا
+const PAK_HW=[100000,150000,200000,300000,500000,800000,1000000,1500000,2000000,3000000];
+const DAB_HW=[60000,100000,200000,400000,600000,800000,1000000,1500000,2000000];
+const PAK_ST=[100,200,300,500,1000,1500,2000,3000,5000,10000];
+const DAB_ST=[60,100,200,300,500,1000,2000];
 
-        // ================================================================
-        // 4. محاسبات اصلی
-        // ================================================================
+// U گلخانه (P.V. Nelson)
+const GH_U={
+  nylon_single:6.53, nylon_double:4.54,
+  glass_single:6.42, glass_double:3.69,
+  poly_double:3.29
+};
 
-        // ---- 4.1 محاسبه آبگرم مصرفی (روش Fixture-based - ASHRAE) ----
-        function calcHotWaterDemand(params) {
-            const locData = LOCATIONS[params.location];
-            const count = params.count;
-            const demandFactor = locData.demandFactor;
-            const storageFactor = locData.storageFactor;
-            const safety = params.safety;
-            
-            // روش Fixture-based
-            let totalGPH = 0;
-            const fixtureDetails = [];
-            for (const [fixture, qty] of Object.entries(locData.fixtures)) {
-                const fixtureData = FIXTURE_CONSUMPTION[fixture];
-                let consumption = 0;
-                if (fixtureData) {
-                    if (fixtureData.all) consumption = fixtureData.all;
-                    else if (fixtureData.apartment) consumption = fixtureData.apartment;
-                    else if (fixtureData.hotel) consumption = fixtureData.hotel;
-                    else if (fixtureData.hospital) consumption = fixtureData.hospital;
-                }
-                const total = qty * count * consumption;
-                totalGPH += total;
-                fixtureDetails.push({ fixture, qty, perFixture: consumption, total });
-            }
-            
-            // روش Per-capita (برای مقایسه)
-            const perCapitaGPD = locData.perCapita * count;
-            const perCapitaGPH = perCapitaGPD / 24;
-            
-            // حداکثر مصرف ساعتی
-            const peakGPH = totalGPH * demandFactor * safety;
-            
-            // حجم منبع ذخیره
-            const storageGal = peakGPH * storageFactor;
-            
-            // بار حرارتی (ΔT = 60°C - 10°C = 50°C = 90°F)
-            const deltaT = 90; // °F
-            const btuPerHour = peakGPH * 8.33 * deltaT;
-            const kw = btuPerHour / 3412;
-            const kcalh = kw * 860;
-            
-            return {
-                totalGPH,
-                perCapitaGPH,
-                peakGPH,
-                storageGal,
-                storageLiter: Units.volume.galToLiter(storageGal),
-                btuPerHour,
-                kw,
-                kcalh,
-                demandFactor,
-                storageFactor,
-                safety,
-                fixtureDetails,
-                deltaT
-            };
-        }
+// سونا (EOS / Harvia)
+const SA_K1={vent:.75,no_vent:.52};
+const SA_K2={acrylic:1,foam:1.25,concrete:1.5,stone:2};
 
-        // ---- 4.2 محاسبه بار گرمایش (شوفاژ) - ASHRAE ----
-        function calcHeatingLoad(params) {
-            const locData = LOCATIONS[params.location];
-            const count = params.count;
-            const area = count * locData.areaPerUnit;
-            const U = locData.heatingU;
-            const deltaT = 20; // °C (اختلاف دمای داخل و خارج)
-            const safety = params.safety;
-            
-            // بار هدایتی
-            const conductiveLoad = area * U * deltaT; // W
-            
-            // بار نفوذ هوا (تقریبی: 0.5 ACH)
-            const volume = area * 3; // ارتفاع 3 متر
-            const ach = 0.5;
-            const cfm = (volume * ach) / 1.699; // تبدیل m³/h به CFM
-            const infiltrationLoad = 1.08 * cfm * (deltaT * 1.8); // BTU/h
-            const infiltrationW = infiltrationLoad / 3.412;
-            
-            const totalLoad = (conductiveLoad + infiltrationW) * safety;
-            
-            return {
-                area,
-                U,
-                deltaT,
-                conductiveLoad,
-                infiltrationLoad,
-                infiltrationW,
-                totalLoad,
-                totalLoadKW: totalLoad / 1000,
-                totalLoadBTU: totalLoad * 3.412,
-                safety
-            };
-        }
+// ================================================================
+// 2. ابزار
+// ================================================================
+const U={
+  lToGal:l=>l/3.78541, galToL:g=>g*3.78541,
+  lpmToGpm:l=>l/3.78541, kgToLb:k=>k*2.20462,
+  kwToKcal:k=>k*860, kcalToKw:k=>k/860,
+  kwToBtu:k=>k*3412.14, kwToHp:k=>k*1.34102
+};
 
-        // ---- 4.3 محاسبه دیگ آبگرم (ترکیب آبگرم + شوفاژ) ----
-        function calcHotWaterBoiler(params) {
-            const dhw = calcHotWaterDemand(params);
-            const heating = calcHeatingLoad(params);
-            
-            // ضریب همزمانی: max نه sum
-            const maxLoadKW = Math.max(dhw.kw, heating.totalLoadKW);
-            const maxLoadKcalh = maxLoadKW * 860;
-            
-            // ظرفیت استاندارد کاسپین
-            const stdCap = findNearest(maxLoadKcalh, STANDARD_CAP.hotwater_kcal_hr);
-            
-            // ظرفیت رقبا
-            const pakmanCap = findNearest(stdCap, COMPETITORS.pakman.hotwater_kcal_hr);
-            const dabosanatCap = findNearest(stdCap, COMPETITORS.dabosanat.hotwater_kcal_hr);
-            
-            return {
-                dhw,
-                heating,
-                maxLoadKW,
-                maxLoadKcalh,
-                stdCap,
-                competitors: [
-                    { brand: 'پاکمن', value: pakmanCap, unit: 'kcal/hr' },
-                    { brand: 'دابوصنعت', value: dabosanatCap, unit: 'kcal/hr' }
-                ]
-            };
-        }
+function nearest(v,arr){let n=arr[0]; for(let x of arr){if(x>=v){n=x;break;} n=x;} return n;}
+function fmt(n,d=1){if(typeof n!=='number'||isNaN(n))return '0';
+  return n.toLocaleString('fa-IR',{maximumFractionDigits:d});}
 
-        // ---- 4.4 محاسبه دیگ بخار (Fulton) ----
-        function calcSteamBoiler(params) {
-            const locData = LOCATIONS[params.location];
-            const count = params.count;
-            const safety = params.safety;
-            
-            // محاسبه بار حرارتی
-            const area = count * locData.areaPerUnit;
-            const U = locData.heatingU;
-            const deltaT = 20;
-            const heatLoadW = area * U * deltaT;
-            
-            // تبدیل به بخار (Fulton)
-            // Q = (W × Sp × ΔT) / (L × h)
-            // برای آب: W = heatLoadW × 3600 / (4.186 × 1000)
-            const waterMass = (heatLoadW * 3600) / (4.186 * 1000); // kg/h
-            const Sp = 4.186; // kJ/kg°C
-            const tempRise = 60; // °C
-            const L = 2048; // kJ/kg (latent heat at 7 bar)
-            const h = 1; // ساعت
-            
-            const steamKgH = (waterMass * Sp * tempRise) / (L * h);
-            const finalSteamKgH = steamKgH * safety;
-            
-            // ظرفیت استاندارد کاسپین
-            const stdCap = findNearest(finalSteamKgH, STANDARD_CAP.steam_kg_hr);
-            
-            // ظرفیت رقبا
-            const pakmanCap = findNearest(stdCap, COMPETITORS.pakman.steam_kg_hr);
-            const dabosanatCap = findNearest(stdCap, COMPETITORS.dabosanat.steam_kg_hr);
-            
-            // محاسبات جانبی
-            const softener = calcSoftener(finalSteamKgH, params.inletHardness, params.outletHardness, params.serviceHours);
-            const deaerator = calcDeaerator(finalSteamKgH, params.feedTemp);
-            const condensate = calcCondensate(finalSteamKgH);
-            const expansion = calcExpansionTank(finalSteamKgH * 2.5);
-            
-            return {
-                heatLoadW,
-                steamKgH: finalSteamKgH,
-                stdCap,
-                competitors: [
-                    { brand: 'پاکمن', value: pakmanCap, unit: 'kg/hr' },
-                    { brand: 'دابوصنعت', value: dabosanatCap, unit: 'kg/hr' }
-                ],
-                softener,
-                deaerator,
-                condensate,
-                expansionTank: expansion,
-                safety
-            };
-        }
+// ================================================================
+// 3. محاسبات
+// ================================================================
 
-        // ---- 4.5 محاسبه سختی‌گیر (WQA) ----
-        function calcSoftener(steamKgH, inletHardness, outletHardness, serviceHours) {
-            const removed = inletHardness - outletHardness;
-            const flowGpm = steamKgH / 60 * 0.26;
-            const grainsPerGal = removed / 17.1;
-            const totalGrains = Math.ceil(flowGpm * grainsPerGal * 60 * serviceHours);
-            const resinCuft = Math.ceil(totalGrains / 30000 * 10) / 10;
-            const diameterCm = Math.ceil(Math.sqrt(resinCuft * 2.5) * 10);
-            const saltKg = Math.round(resinCuft * 15 * 10) / 10;
-            
-            return {
-                totalGrains,
-                resinCuft,
-                diameterCm,
-                saltKg,
-                saltLb: Math.round(saltKg * 2.20462 * 10) / 10,
-                flowGpm,
-                grainsPerGal,
-                removed,
-                serviceHours
-            };
-        }
+// الگوی مصرف
+function patFactor(pat){return pat==='peak'?1.5:1.0;}
 
-        // ---- 4.6 محاسبه دی‌اریتور ----
-        function calcDeaerator(steamKgH, feedTemp) {
-            const deltaT = 100 - feedTemp;
-            const steamConsumption = Math.round(steamKgH * (deltaT / 100) * 0.25 * 10) / 10;
-            const tankVol = Math.round(steamKgH * 0.2);
-            return {
-                steamConsumption,
-                tankVol,
-                tankGal: Math.round(Units.volume.literToGal(tankVol) * 10) / 10,
-                feedTemp,
-                deltaT
-            };
-        }
+// --- آبگرم مصرفی (ASHRAE Fixture-based) ---
+function calcDHW(loc,count,pat,sf){
+  const L=LOC[loc];
+  const items=[];
+  let totalGPH=0;
+  for(const [f,q] of Object.entries(L.fix)){
+    const F=FIX[f];
+    let c=0;
+    if(typeof F==='number') c=F;
+    else if(loc==='hotel') c=F.hotel||F.apt||0;
+    else if(loc==='hospital') c=F.hosp||F.apt||0;
+    else if(loc==='office') c=F.off||F.apt||0;
+    else c=F.apt||F.hotel||F.hosp||0;
+    const tot=q*count*c;
+    totalGPH+=tot;
+    items.push({f,q,c,tot});
+  }
+  const pf=patFactor(pat);
+  const peakGPH=totalGPH*L.df*pf*sf;
+  const storageGal=peakGPH*L.sf;
+  const storageL=U.galToL(storageGal);
+  const dT=90; // 60-10 = 50°C = 90°F
+  const btu=peakGPH*8.33*dT;
+  const kw=btu/3412;
+  const kcal=U.kwToKcal(kw);
+  return {items,totalGPH,peakGPH,storageGal,storageL,btu,kw,kcal,df:L.df,sf:L.sf,dT,pf};
+}
 
-        // ---- 4.7 محاسبه منبع کندانس ----
-        function calcCondensate(steamKgH) {
-            const vol = Math.round(steamKgH * 0.3);
-            return {
-                volume: vol,
-                volumeGal: Math.round(Units.volume.literToGal(vol) * 10) / 10
-            };
-        }
+// --- بار گرمایش (ASHRAE) ---
+function calcHeat(loc,count,sf){
+  const L=LOC[loc];
+  const area=count*L.area;
+  const dT=20;
+  const cond=area*L.U*dT;
+  const vol=area*3;
+  const ach=0.5;
+  const cfm=(vol*ach)/1.699;
+  const infBtu=1.08*cfm*(dT*1.8);
+  const infW=infBtu/3.412;
+  const total=(cond+infW)*sf;
+  return {area,U:L.U,dT,cond,infW,infBtu,total,kw:total/1000,btu:total*3.412};
+}
 
-        // ---- 4.8 محاسبه منبع انبساط (ASHRAE) ----
-        function calcExpansionTank(systemVol) {
-            const closed = Math.ceil(systemVol * 0.06 * 1.2);
-            const open = Math.ceil(closed * 2);
-            const diam = Math.ceil(Math.cbrt(closed * 1.2) * 10);
-            return {
-                closed,
-                closedGal: Math.round(Units.volume.literToGal(closed) * 10) / 10,
-                open,
-                openGal: Math.round(Units.volume.literToGal(open) * 10) / 10,
-                diameter: diam
-            };
-        }
+// --- دیگ آبگرم (ترکیب DHW + Heating) ---
+function calcHW(loc,count,pat,sf){
+  const dhw=calcDHW(loc,count,pat,sf);
+  const ht=calcHeat(loc,count,sf);
+  const maxKW=Math.max(dhw.kw,ht.kw);  // ضریب همزمانی max نه sum
+  const maxKcal=maxKW*860;
+  const std=nearest(maxKcal,STD_HW);
+  const pak=nearest(std,PAK_HW);
+  const dab=nearest(std,DAB_HW);
+  return {dhw,ht,maxKW,maxKcal,std,pak,dab};
+}
 
-        // ---- 4.9 محاسبه منبع کویلی/اسپیرال ----
-        function calcCoilTank(tankVol, kcalh) {
-            const coilArea = Math.ceil(kcalh / 15000 * 10) / 10;
-            const coilFlow = Math.ceil(tankVol / 3 * 10) / 10;
-            return {
-                tankVol,
-                tankGal: Math.round(Units.volume.literToGal(tankVol) * 10) / 10,
-                coilArea,
-                coilFlowLph: coilFlow,
-                coilFlowGpm: Math.round(Units.flow.lpmToGpm(coilFlow / 60) * 10) / 10
-            };
-        }
+// --- دیگ بخار (Fulton) ---
+function calcST(loc,count,pat,sf,hardIn,hardOut,feedT,svcH){
+  const L=LOC[loc];
+  const area=count*L.area;
+  const dT=20;
+  const heatW=area*L.U*dT;
+  // Fulton: Q = (W × Sp × ΔT) / (L × h)
+  const waterKgH=(heatW*3600)/(4.186*1000);
+  const Sp=4.186, rise=60, Lv=2048, h=1;
+  let steamKgH=(waterKgH*Sp*rise)/(Lv*h);
+  const pf=patFactor(pat);
+  steamKgH=steamKgH*pf*sf;
+  const std=nearest(steamKgH,STD_ST);
+  const pak=nearest(std,PAK_ST);
+  const dab=nearest(std,DAB_ST);
 
-        // ---- 4.10 محاسبه فیلتر شنی (بخش تصفیه آب) ----
-        function calcSandFilter(poolVolume, turnoverHours) {
-            const flowM3h = poolVolume / turnoverHours;
-            const flowGpm = flowM3h * 4.403; // تبدیل m³/h به GPM
-            const loadingRate = 15; // GPM/ft²
-            const filterArea = flowGpm / loadingRate; // ft²
-            const filterAreaM2 = filterArea * 0.0929;
-            const diameterFt = Math.sqrt((filterArea * 4) / Math.PI);
-            const diameterCm = diameterFt * 30.48;
-            const pumpHP = Math.ceil(flowM3h * 0.05 * 10) / 10;
-            
-            return {
-                flowM3h,
-                flowGpm,
-                loadingRate,
-                filterArea,
-                filterAreaM2,
-                diameterCm,
-                diameterInch: diameterFt * 12,
-                pumpHP,
-                pumpKW: Math.round(Units.power.hpToKw ? pumpHP / 1.34102 : pumpHP * 0.746 * 10) / 10,
-                turnoverHours
-            };
-        }
+  // سختی‌گیر (WQA)
+  const gpm=steamKgH/60*0.26;
+  const removed=hardIn-hardOut;
+  const gpg=removed/17.1;
+  const grains=Math.ceil(gpm*gpg*60*svcH);
+  const resin=Math.ceil(grains/30000*10)/10;
+  const diam=Math.ceil(Math.sqrt(resin*2.5)*10);
+  const salt=Math.round(resin*15*10)/10;
 
-        // ---- 4.11 محاسبه گلخانه ----
-        function calcGreenhouse(params) {
-            const { length, width, height, coverType, safety } = params;
-            const U = GREENHOUSE_U[coverType] || 6.53;
-            const A = 2 * (length + width) * height + (length * width);
-            const deltaT = 15; // اختلاف دمای داخل و خارج
-            const heatLoad = A * U * deltaT * safety;
-            
-            return {
-                area: A,
-                U,
-                deltaT,
-                heatLoad,
-                heatLoadKW: heatLoad / 1000,
-                heatLoadKcalh: (heatLoad / 1000) * 860,
-                length, width, height, coverType, safety
-            };
-        }
+  // دی‌اریتور
+  const dT2=100-feedT;
+  const dSteam=Math.round(steamKgH*(dT2/100)*0.25*10)/10;
+  const dTank=Math.round(steamKgH*0.2);
 
-        // ---- 4.12 محاسبه سونا ----
-        function calcSauna(params) {
-            const { length, width, height, ventilation, construction, safety } = params;
-            const volume = length * width * height;
-            const K1 = SAUNA_K1[ventilation] || 0.75;
-            const K2 = SAUNA_K2[construction] || 1.5;
-            const kw = volume * K1 * K2 * safety;
-            const steamKgH = kw * 1.5;
-            
-            return {
-                volume, K1, K2, kw, steamKgH,
-                length, width, height, ventilation, construction, safety
-            };
-        }
+  // کندانس
+  const conV=Math.round(steamKgH*0.3);
 
-        // ---- 4.13 محاسبه استخر ----
-        function calcPool(params) {
-            const { length, width, depth, targetTemp, ambientTemp, windSpeed, turnover, poolType, safety } = params;
-            const volume = length * width * depth; // m³
-            const surfaceArea = length * width;
-            const deltaT = Math.max(targetTemp - ambientTemp, 5);
-            
-            // بار نگهداری (تبخیر + جابجایی + تشعشع)
-            const evapFactor = surfaceArea * (0.5 + 0.3 * windSpeed) * deltaT * 1.16;
-            const maintenanceLoad = evapFactor; // W
-            
-            // بار گرمایش اولیه
-            const heatUpLoad = (volume * 1000 * 4.18 * deltaT) / (turnover * 3600); // W
-            
-            const totalLoad = (maintenanceLoad + heatUpLoad) * safety;
-            
-            // حجم آب استخر به گالن
-            const poolVolumeGal = volume * 264.172;
-            
-            return {
-                volume,
-                surfaceArea,
-                deltaT,
-                maintenanceLoad,
-                heatUpLoad,
-                totalLoad,
-                totalLoadKW: totalLoad / 1000,
-                poolVolumeGal,
-                turnover,
-                poolType, safety
-            };
-        }
+  // منبع انبساط
+  const sysV=steamKgH*2.5;
+  const expC=Math.ceil(sysV*0.06*1.2);
+  const expO=Math.ceil(expC*2);
+  const expD=Math.ceil(Math.cbrt(expC*1.2)*10);
 
-        // ================================================================
-        // 5. رابط کاربری
-        // ================================================================
+  return {heatW,steamKgH,std,pak,dab,gpm,removed,gpg,grains,resin,diam,salt,
+    dSteam,dTank,dT2,conV,sysV,expC,expO,expD};
+}
 
-        const typeSelect = document.getElementById('boilerType');
-        const modelSelect = document.getElementById('boilerModel');
-        const locationSelect = document.getElementById('locationType');
-        const unitLabel = document.getElementById('unitLabel');
-        const dynamicInputs = document.getElementById('dynamicInputs');
-        const resultsDiv = document.getElementById('results');
+// --- گلخانه (P.V. Nelson) ---
+function calcGH(L,W,H,cover,sf){
+  const u=GH_U[cover]||6.53;
+  const A=2*(L+W)*H+(L*W);
+  const dT=15;
+  const q=A*u*dT*sf;
+  return {A,u,dT,q,kw:q/1000,kcal:(q/1000)*860};
+}
 
-        // پر کردن لیست مکان‌ها
-        function populateLocations() {
-            locationSelect.innerHTML = Object.entries(LOCATIONS).map(([key, val]) => 
-                `<option value="${key}">${val.label} (${val.unit})</option>`
-            ).join('');
-        }
+// --- سونا (EOS) ---
+function calcSauna(L,W,H,vent,const_,sf){
+  const V=L*W*H;
+  const k1=SA_K1[vent]||.75;
+  const k2=SA_K2[const_]||1.5;
+  const kw=V*k1*k2*sf;
+  return {V,k1,k2,kw,steam:kw*1.5};
+}
 
-        // به‌روزرسانی مدل‌ها
-        function updateModels() {
-            const type = typeSelect.value;
-            const models = BOILER_MODELS[type] || BOILER_MODELS.hotwater;
-            modelSelect.innerHTML = models.map(m => `<option value="${m}">${m}</option>`).join('');
-        }
+// --- استخر (ASHRAE) ---
+function calcPool(L,W,D,target,amb,wind,turn,sf){
+  const V=L*W*D;
+  const A=L*W;
+  const dT=Math.max(target-amb,5);
+  const maint=A*(.5+.3*wind)*dT*1.16;
+  const heatUp=(V*1000*4.18*dT)/(turn*3600);
+  const total=(maint+heatUp)*sf;
+  const gal=V*264.172;
+  return {V,A,dT,maint,heatUp,total,kw:total/1000,gal,turn};
+}
 
-        // به‌روزرسانی ورودی‌های پویا
-        function updateDynamicInputs() {
-            const loc = locationSelect.value;
-            const locData = LOCATIONS[loc];
-            unitLabel.textContent = `(${locData.unit})`;
-            
-            let html = '';
-            
-            if (loc === 'greenhouse') {
-                html = `
-                    <div class="section">
-                        <h2>🏡 ابعاد گلخانه</h2>
-                        <div class="form-row-3">
-                            <div class="form-group"><label>طول <span class="unit">(متر)</span></label><input type="number" id="gh_length" value="30" min="1" step="0.5" /></div>
-                            <div class="form-group"><label>عرض <span class="unit">(متر)</span></label><input type="number" id="gh_width" value="10" min="1" step="0.5" /></div>
-                            <div class="form-group"><label>ارتفاع <span class="unit">(متر)</span></label><input type="number" id="gh_height" value="4" min="1" step="0.5" /></div>
-                        </div>
-                        <div class="form-group">
-                            <label>نوع پوشش</label>
-                            <select id="gh_cover">
-                                <option value="nylon_single">نایلون تک‌لایه (U=6.53)</option>
-                                <option value="nylon_double" selected>نایلون دولایه (U=4.54)</option>
-                                <option value="glass_single">شیشه تک‌لایه (U=6.42)</option>
-                                <option value="glass_double">شیشه دولایه (U=3.69)</option>
-                                <option value="polycarbonate_double">پلی‌کربنات دولایه (U=3.29)</option>
-                            </select>
-                        </div>
-                    </div>
-                `;
-            } else if (loc === 'sauna') {
-                html = `
-                    <div class="section">
-                        <h2>🧖 ابعاد سونا</h2>
-                        <div class="form-row-3">
-                            <div class="form-group"><label>طول <span class="unit">(متر)</span></label><input type="number" id="sa_length" value="3" min="1" step="0.1" /></div>
-                            <div class="form-group"><label>عرض <span class="unit">(متر)</span></label><input type="number" id="sa_width" value="2.5" min="1" step="0.1" /></div>
-                            <div class="form-group"><label>ارتفاع <span class="unit">(متر)</span></label><input type="number" id="sa_height" value="2.2" min="1" step="0.1" /></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>تهویه</label>
-                                <select id="sa_vent">
-                                    <option value="ventilated">تهویه‌دار (K1=0.75)</option>
-                                    <option value="non_ventilated">بدون تهویه (K1=0.52)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>نوع ساخت</label>
-                                <select id="sa_const">
-                                    <option value="acrylic">آکریلیک (K2=1)</option>
-                                    <option value="ceramic_foam">فوم سرامیکی (K2=1.25)</option>
-                                    <option value="tiled_concrete" selected>بتن کاشی‌کاری (K2=1.5)</option>
-                                    <option value="stone">سنگ/بتن (K2=2)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (loc === 'pool') {
-                html = `
-                    <div class="section">
-                        <h2>🏊 ابعاد استخر</h2>
-                        <div class="form-row-3">
-                            <div class="form-group"><label>طول <span class="unit">(متر)</span></label><input type="number" id="pl_length" value="25" min="1" step="0.5" /></div>
-                            <div class="form-group"><label>عرض <span class="unit">(متر)</span></label><input type="number" id="pl_width" value="10" min="1" step="0.5" /></div>
-                            <div class="form-group"><label>عمق <span class="unit">(متر)</span></label><input type="number" id="pl_depth" value="1.5" min="0.5" step="0.1" /></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label>دمای مطلوب <span class="unit">(°C)</span></label><input type="number" id="pl_target" value="28" min="20" max="40" step="1" /></div>
-                            <div class="form-group"><label>دمای محیط <span class="unit">(°C)</span></label><input type="number" id="pl_ambient" value="25" min="0" max="45" step="1" /></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label>سرعت باد <span class="unit">(m/s)</span></label><input type="number" id="pl_wind" value="2" min="0" max="15" step="0.5" /></div>
-                            <div class="form-group">
-                                <label>نوع استخر</label>
-                                <select id="pl_type">
-                                    <option value="horizontal">افقی</option>
-                                    <option value="vertical">عمودی</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>دوره گردش آب</label>
-                            <select id="pl_turnover">
-                                <option value="12">12 ساعته</option>
-                                <option value="24" selected>24 ساعته</option>
-                                <option value="48">48 ساعته</option>
-                            </select>
-                        </div>
-                    </div>
-                `;
-            } else if (loc === 'industrial' || loc === 'dairy' || loc === 'slaughterhouse' || loc === 'laundry') {
-                html = `
-                    <div class="section">
-                        <h2>⚙️ پارامترهای صنعتی</h2>
-                        <div class="form-row">
-                            <div class="form-group"><label>سختی آب ورودی <span class="unit">(ppm)</span></label><input type="number" id="in_hardness" value="250" min="0" max="2000" step="10" /></div>
-                            <div class="form-group"><label>سختی خروجی <span class="unit">(ppm)</span></label><input type="number" id="out_hardness" value="50" min="0" max="100" step="5" /></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label>دمای آب تغذیه <span class="unit">(°C)</span></label><input type="number" id="in_feedtemp" value="85" min="20" max="100" step="1" /></div>
-                            <div class="form-group"><label>ساعات بین دو احیا</label><input type="number" id="in_servicehours" value="8" min="2" max="24" step="1" /></div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                html = `
-                    <div class="section">
-                        <h2>⚙️ پارامترهای تکمیلی</h2>
-                        <div class="form-row">
-                            <div class="form-group"><label>دمای آبگرم مصرفی <span class="unit">(°C)</span></label><input type="number" id="in_watertemp" value="60" min="40" max="85" step="1" /></div>
-                            <div class="form-group"><label>دمای آب ورودی <span class="unit">(°C)</span></label><input type="number" id="in_inlettemp" value="10" min="0" max="30" step="1" /></div>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            dynamicInputs.innerHTML = html;
-        }
+// --- فیلتر شنی (تصفیه آب - جداگانه) ---
+function calcFilter(V,turn){
+  const m3h=V/turn;
+  const gpm=m3h*4.403;
+  const lr=15;
+  const area=gpm/lr;
+  const areaM2=area*0.0929;
+  const diamFt=Math.sqrt(area*4/Math.PI);
+  const diamCm=diamFt*30.48;
+  const hp=Math.ceil(m3h*0.05*10)/10;
+  return {m3h,gpm,lr,area,areaM2,diamCm,diamIn:diamFt*12,hp,kw:hp*.746};
+}
 
-        // گرفتن تمام ورودی‌ها
-        function getInputs() {
-            const type = typeSelect.value;
-            const model = modelSelect.value;
-            const location = locationSelect.value;
-            const count = parseInt(document.getElementById('unitCount').value) || 1;
-            const safety = parseFloat(document.querySelector('input[name="safety"]:checked').value) || 1.2;
-            const pattern = document.querySelector('input[name="pattern"]:checked').value;
-            
-            const inputs = { type, model, location, count, safety, pattern };
-            
-            // ورودی‌های خاص
-            const getVal = (id, def = 0) => {
-                const el = document.getElementById(id);
-                return el ? parseFloat(el.value) || def : def;
-            };
-            
-            if (location === 'greenhouse') {
-                inputs.length = getVal('gh_length', 30);
-                inputs.width = getVal('gh_width', 10);
-                inputs.height = getVal('gh_height', 4);
-                inputs.coverType = document.getElementById('gh_cover')?.value || 'nylon_double';
-            } else if (location === 'sauna') {
-                inputs.length = getVal('sa_length', 3);
-                inputs.width = getVal('sa_width', 2.5);
-                inputs.height = getVal('sa_height', 2.2);
-                inputs.ventilation = document.getElementById('sa_vent')?.value || 'ventilated';
-                inputs.construction = document.getElementById('sa_const')?.value || 'tiled_concrete';
-            } else if (location === 'pool') {
-                inputs.length = getVal('pl_length', 25);
-                inputs.width = getVal('pl_width', 10);
-                inputs.depth = getVal('pl_depth', 1.5);
-                inputs.targetTemp = getVal('pl_target', 28);
-                inputs.ambientTemp = getVal('pl_ambient', 25);
-                inputs.windSpeed = getVal('pl_wind', 2);
-                inputs.poolType = document.getElementById('pl_type')?.value || 'horizontal';
-                inputs.turnover = getVal('pl_turnover', 24);
-            } else {
-                inputs.waterTemp = getVal('in_watertemp', 60);
-                inputs.inletTemp = getVal('in_inlettemp', 10);
-                inputs.inletHardness = getVal('in_hardness', 250);
-                inputs.outletHardness = getVal('out_hardness', 50);
-                inputs.feedTemp = getVal('in_feedtemp', 85);
-                inputs.serviceHours = getVal('in_servicehours', 8);
-            }
-            
-            return inputs;
-        }
+// ================================================================
+// 4. UI
+// ================================================================
+const tabHW=document.getElementById('tabHW');
+const tabST=document.getElementById('tabST');
+const model=document.getElementById('model');
+const location=document.getElementById('location');
+const unitLbl=document.getElementById('unitLbl');
+const dynamic=document.getElementById('dynamic');
+const results=document.getElementById('results');
+let curType='hw';
 
-        // ================================================================
-        // 6. نمایش نتایج
-        // ================================================================
+function fillLoc(){
+  location.innerHTML=Object.entries(LOC).map(([k,v])=>
+    `<option value="${k}">${v.n} (${v.u})</option>`).join('');
+}
+fillLoc();
 
-        function createResultCard(title, items, badge = '') {
-            const div = document.createElement('div');
-            div.className = 'result-card';
-            let itemsHtml = items.map(item => `
-                <div class="result-item">
-                    <span>${item.label}</span>
-                    <span>
-                        <span class="val">${item.value}</span>
-                        <span class="unit-text">${item.unit}</span>
-                        ${item.converted ? `<span class="converted">(${item.converted})</span>` : ''}
-                    </span>
-                </div>
-            `).join('');
-            div.innerHTML = `
-                <h3>${title} ${badge ? `<span class="badge">${badge}</span>` : ''}</h3>
-                ${itemsHtml}
-            `;
-            return div;
-        }
+function setTab(t){
+  curType=t;
+  tabHW.classList.toggle('active',t==='hw');
+  tabST.classList.toggle('active',t==='st');
+  model.innerHTML=(t==='hw'?MODELS.hw:MODELS.st)
+    .map(m=>`<option>${m}</option>`).join('');
+  updateDynamic();
+}
+tabHW.onclick=()=>setTab('hw');
+tabST.onclick=()=>setTab('st');
 
-        function createFormulaBox(title, lines, reference) {
-            const div = document.createElement('div');
-            div.className = 'formula-box';
-            let linesHtml = lines.map(line => `<div class="formula-line">${line}</div>`).join('');
-            div.innerHTML = `
-                <div class="formula-title">📐 ${title}</div>
-                ${linesHtml}
-                <div class="formula-ref">📚 مرجع: ${reference}</div>
-            `;
-            return div;
-        }
+function updateDynamic(){
+  const loc=location.value;
+  const L=LOC[loc];
+  unitLbl.textContent=`(${L.u})`;
+  let html='';
+  if(loc==='greenhouse'){
+    html=`<div class="section"><h2>🏡 ابعاد و پوشش گلخانه</h2>
+      <div class="row3">
+        <div class="fg"><label>طول <span class="u">m</span></label><input type="number" id="ghL" value="30" min="1"/></div>
+        <div class="fg"><label>عرض <span class="u">m</span></label><input type="number" id="ghW" value="10" min="1"/></div>
+        <div class="fg"><label>ارتفاع <span class="u">m</span></label><input type="number" id="ghH" value="4" min="1"/></div>
+      </div>
+      <div class="fg"><label>نوع پوشش</label>
+        <select id="ghC">
+          <option value="nylon_single">نایلون تک‌لایه (U=6.53)</option>
+          <option value="nylon_double" selected>نایلون دولایه (U=4.54)</option>
+          <option value="glass_single">شیشه تک‌لایه (U=6.42)</option>
+          <option value="glass_double">شیشه دولایه (U=3.69)</option>
+          <option value="poly_double">پلی‌کربنات دولایه (U=3.29)</option>
+        </select>
+      </div></div>`;
+  } else if(loc==='sauna'){
+    html=`<div class="section"><h2>🧖 ابعاد سونا</h2>
+      <div class="row3">
+        <div class="fg"><label>طول <span class="u">m</span></label><input type="number" id="saL" value="3" min="1" step="0.1"/></div>
+        <div class="fg"><label>عرض <span class="u">m</span></label><input type="number" id="saW" value="2.5" min="1" step="0.1"/></div>
+        <div class="fg"><label>ارتفاع <span class="u">m</span></label><input type="number" id="saH" value="2.2" min="1" step="0.1"/></div>
+      </div>
+      <div class="row">
+        <div class="fg"><label>تهویه</label>
+          <select id="saV"><option value="vent">تهویه‌دار (K1=0.75)</option>
+          <option value="no_vent">بدون تهویه (K1=0.52)</option></select></div>
+        <div class="fg"><label>نوع ساخت</label>
+          <select id="saC">
+            <option value="acrylic">آکریلیک (K2=1)</option>
+            <option value="foam">فوم (K2=1.25)</option>
+            <option value="concrete" selected>بتن (K2=1.5)</option>
+            <option value="stone">سنگ (K2=2)</option>
+          </select></div>
+      </div></div>`;
+  } else if(loc==='pool'){
+    html=`<div class="section"><h2>🏊 ابعاد استخر</h2>
+      <div class="row3">
+        <div class="fg"><label>طول <span class="u">m</span></label><input type="number" id="plL" value="25" min="1" step="0.5"/></div>
+        <div class="fg"><label>عرض <span class="u">m</span></label><input type="number" id="plW" value="10" min="1" step="0.5"/></div>
+        <div class="fg"><label>عمق <span class="u">m</span></label><input type="number" id="plD" value="1.5" min="0.5" step="0.1"/></div>
+      </div>
+      <div class="row">
+        <div class="fg"><label>دمای مطلوب <span class="u">°C</span></label><input type="number" id="plT" value="28" min="20" max="40"/></div>
+        <div class="fg"><label>دمای محیط <span class="u">°C</span></label><input type="number" id="plA" value="25" min="0" max="45"/></div>
+      </div>
+      <div class="row">
+        <div class="fg"><label>سرعت باد <span class="u">m/s</span></label><input type="number" id="plWind" value="2" min="0" step="0.5"/></div>
+        <div class="fg"><label>نوع استخر</label>
+          <select id="plType"><option value="horizontal">افقی</option>
+          <option value="vertical">عمودی</option></select></div>
+      </div>
+      <div class="fg"><label>دوره گردش آب</label>
+        <select id="plTurn"><option value="12">۱۲ ساعته</option>
+        <option value="24" selected>۲۴ ساعته</option>
+        <option value="48">۴۸ ساعته</option></select>
+      </div></div>`;
+  }
+  dynamic.innerHTML=html;
+}
+location.onchange=updateDynamic;
 
-        function displayResults(result, type) {
-            resultsDiv.innerHTML = '';
-            
-            if (type === 'steam') {
-                displaySteamResults(result);
-            } else if (type === 'hotwater') {
-                if (result.dhw && result.heating) {
-                    displayHotWaterBoilerResults(result);
-                } else if (result.area && result.U && result.coverType) {
-                    displayGreenhouseResults(result);
-                } else if (result.volume && result.K1) {
-                    displaySaunaResults(result);
-                } else if (result.volume && result.turnover) {
-                    displayPoolResults(result);
-                }
-            }
-            
-            document.getElementById('output').style.display = 'block';
-            document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
-        }
+document.querySelectorAll('.radio-grp input').forEach(r=>{
+  r.onchange=function(){
+    const g=this.closest('.radio-grp');
+    g.querySelectorAll('label').forEach(l=>l.classList.remove('sel'));
+    this.closest('label').classList.add('sel');
+  };
+});
 
-        // ---- 6.1 نتایج دیگ بخار ----
-        function displaySteamResults(r) {
-            // دیگ بخار
-            const card1 = createResultCard('🔥 دیگ بخار', [
-                { label: 'ظرفیت بخار محاسبه‌شده', value: formatNumber(r.steamKgH, 1), unit: 'کیلوگرم بر ساعت',
-                  converted: `${formatNumber(r.steamKgH * 2.20462, 0)} lb/h` },
-                { label: 'ظرفیت استاندارد کاسپین', value: formatNumber(r.stdCap, 0), unit: 'kg/hr' },
-                { label: 'ضریب اطمینان', value: r.safety.toFixed(2), unit: '-' },
-                { label: 'مدل انتخابی', value: r.model || '-', unit: '' }
-            ], 'حوزه بخار');
-            resultsDiv.appendChild(card1);
-            
-            // رقبا
-            const compItems = r.competitors.map(c => ({
-                label: `ظرفیت معادل ${c.brand}`, value: formatNumber(c.value, 0), unit: c.unit
-            }));
-            resultsDiv.appendChild(createResultCard('📦 مقایسه ظرفیت با رقبا', compItems, 'مقایسه'));
-            
-            // سختی‌گیر
-            const s = r.softener;
-            resultsDiv.appendChild(createResultCard('🧂 سختی‌گیر', [
-                { label: 'ظرفیت تبادل', value: formatNumber(s.totalGrains, 0), unit: 'گرین' },
-                { label: 'حجم رزین', value: s.resinCuft.toFixed(1), unit: 'فوت مکعب',
-                  converted: `${(s.resinCuft * 28.3168).toFixed(1)} لیتر` },
-                { label: 'قطر مخزن', value: s.diameterCm, unit: 'سانتی‌متر' },
-                { label: 'مصرف نمک/احیاء', value: s.saltKg.toFixed(1), unit: 'کیلوگرم',
-                  converted: `${s.saltLb} lb` }
-            ], 'تجهیز جانبی'));
-            
-            // فرمول سختی‌گیر
-            const softFormula = createFormulaBox('محاسبه سختی‌گیر (WQA)', [
-                `سختی حذف‌شده = ${s.removed} ppm`,
-                `سختی (GPG) = ${s.removed} ÷ 17.1 = ${s.grainsPerGal.toFixed(2)} GPG`,
-                `گرین روزانه = ${s.flowGpm.toFixed(2)} GPM × ${s.grainsPerGal.toFixed(2)} × 60 × ${s.serviceHours} = ${formatNumber(s.totalGrains, 0)}`,
-                `حجم رزین = ${formatNumber(s.totalGrains, 0)} ÷ 30,000 = ${s.resinCuft.toFixed(1)} ft³`
-            ], 'WQA (Water Quality Association)');
-            resultsDiv.appendChild(softFormula);
-            
-            // دی‌اریتور
-            const d = r.deaerator;
-            resultsDiv.appendChild(createResultCard('💧 دی‌اریتور', [
-                { label: 'مصرف بخار پیش‌گرمایش', value: d.steamConsumption.toFixed(1), unit: 'kg/hr' },
-                { label: 'حجم مخزن ذخیره', value: d.tankVol, unit: 'لیتر',
-                  converted: `${d.tankGal} gal` }
-            ], 'تجهیز جانبی'));
-            
-            // منبع کندانس
-            const c = r.condensate;
-            resultsDiv.appendChild(createResultCard('📦 منبع کندانس', [
-                { label: 'حجم مخزن', value: c.volume, unit: 'لیتر', converted: `${c.volumeGal} gal` }
-            ], 'تجهیز جانبی'));
-            
-            // منبع انبساط
-            const e = r.expansionTank;
-            resultsDiv.appendChild(createResultCard('🎈 منبع انبساط', [
-                { label: 'حجم بسته (دیافراگمی)', value: e.closed, unit: 'لیتر',
-                  converted: `${e.closedGal} gal` },
-                { label: 'حجم باز', value: e.open, unit: 'لیتر', converted: `${e.openGal} gal` },
-                { label: 'قطر تقریبی', value: e.diameter, unit: 'سانتی‌متر' }
-            ], 'تجهیز جانبی'));
-            
-            // فرمول دیگ بخار
-            const steamFormula = createFormulaBox('محاسبه دیگ بخار (Fulton)', [
-                `W = (${formatNumber(r.heatLoadW, 0)} W × 3600) / (4.186 × 1000) = ${formatNumber(r.heatLoadW * 3600 / 4186, 1)} kg/h`,
-                `Q = (W × Sp × ΔT) / (L × h)`,
-                `Q = (${formatNumber(r.heatLoadW * 3600 / 4186, 1)} × 4.186 × 60) / (2048 × 1)`,
-                `Q = ${formatNumber((r.heatLoadW * 3600 / 4186 * 4.186 * 60) / 2048, 1)} kg/h`,
-                `Q_final = ${formatNumber((r.heatLoadW * 3600 / 4186 * 4.186 * 60) / 2048, 1)} × ${r.safety} = ${formatNumber(r.steamKgH, 1)} kg/h`
-            ], 'Fulton Boiler Works');
-            resultsDiv.appendChild(steamFormula);
-        }
+// ================================================================
+// 5. نمایش نتایج با فرمول
+// ================================================================
+function card(title,items,badge=''){
+  const d=document.createElement('div');
+  d.className='card';
+  const its=items.map(i=>`<div class="item"><span>${i.l}</span>
+    <span><span class="v">${i.v}</span><span class="u">${i.u}</span>
+    ${i.c?`<span class="c">(${i.c})</span>`:''}</span></div>`).join('');
+  d.innerHTML=`<h3>${title} ${badge?`<span class="badge">${badge}</span>`:''}</h3>${its}`;
+  return d;
+}
 
-        // ---- 6.2 نتایج دیگ آبگرم ----
-        function displayHotWaterBoilerResults(r) {
-            const dhw = r.dhw;
-            const heat = r.heating;
-            
-            // دیگ آبگرم
-            resultsDiv.appendChild(createResultCard('💧 دیگ آبگرم / آب‌داغ', [
-                { label: 'حداکثر بار (آبگرم یا شوفاژ)', value: formatNumber(r.maxLoadKW, 1), unit: 'کیلووات',
-                  converted: `${formatNumber(r.maxLoadKcalh, 0)} kcal/h` },
-                { label: 'ظرفیت استاندارد کاسپین', value: formatNumber(r.stdCap, 0), unit: 'kcal/hr' },
-                { label: 'ضریب اطمینان', value: dhw.safety.toFixed(2), unit: '-' }
-            ], 'حوزه آبگرم'));
-            
-            // رقبا
-            const compItems = r.competitors.map(c => ({
-                label: `ظرفیت معادل ${c.brand}`, value: formatNumber(c.value, 0), unit: c.unit
-            }));
-            resultsDiv.appendChild(createResultCard('📦 مقایسه ظرفیت با رقبا', compItems, 'مقایسه'));
-            
-            // بار آبگرم مصرفی
-            resultsDiv.appendChild(createResultCard('🚿 آبگرم مصرفی (DHW)', [
-                { label: 'مصرف پیک ساعتی', value: formatNumber(dhw.peakGPH, 1), unit: 'گالن بر ساعت',
-                  converted: `${formatNumber(dhw.peakGPH * 3.785, 1)} لیتر بر ساعت` },
-                { label: 'بار حرارتی', value: formatNumber(dhw.kw, 1), unit: 'کیلووات',
-                  converted: `${formatNumber(dhw.kcalh, 0)} kcal/h, ${formatNumber(dhw.btuPerHour, 0)} BTU/h` },
-                { label: 'حجم منبع ذخیره', value: formatNumber(dhw.storageLiter, 0), unit: 'لیتر',
-                  converted: `${formatNumber(dhw.storageGal, 1)} gal` },
-                { label: 'ضریب تقاضا', value: dhw.demandFactor.toFixed(2), unit: '-' },
-                { label: 'ضریب ذخیره', value: dhw.storageFactor.toFixed(2), unit: '-' }
-            ], 'ASHRAE'));
-            
-            // فرمول آبگرم
-            const dhwFormula = createFormulaBox('محاسبه آبگرم مصرفی (ASHRAE Fixture-based)', [
-                ...dhw.fixtureDetails.map(f => 
-                    `${f.fixture}: ${f.qty} × ${f.perFixture} = ${f.total} GPH`
-                ),
-                `Total GPH = ${formatNumber(dhw.totalGPH, 1)}`,
-                `Peak GPH = ${formatNumber(dhw.totalGPH, 1)} × ${dhw.demandFactor} × ${dhw.safety} = ${formatNumber(dhw.peakGPH, 1)}`,
-                `Storage = ${formatNumber(dhw.peakGPH, 1)} × ${dhw.storageFactor} = ${formatNumber(dhw.storageGal, 1)} gal`,
-                `Q = ${formatNumber(dhw.peakGPH, 1)} × 8.33 × ${dhw.deltaT} = ${formatNumber(dhw.btuPerHour, 0)} BTU/h`
-            ], 'ASHRAE Handbook - HVAC Applications, Ch. 51');
-            resultsDiv.appendChild(dhwFormula);
-            
-            // بار گرمایش (شوفاژ)
-            resultsDiv.appendChild(createResultCard('🔥 بار گرمایش (شوفاژ)', [
-                { label: 'سطح زیربنا', value: formatNumber(heat.area, 0), unit: 'مترمربع' },
-                { label: 'ضریب U', value: heat.U.toFixed(2), unit: 'W/m²·K' },
-                { label: 'بار هدایتی', value: formatNumber(heat.conductiveLoad / 1000, 1), unit: 'کیلووات' },
-                { label: 'بار نفوذ هوا', value: formatNumber(heat.infiltrationW / 1000, 1), unit: 'کیلووات' },
-                { label: 'بار کل', value: formatNumber(heat.totalLoadKW, 1), unit: 'کیلووات',
-                  converted: `${formatNumber(heat.totalLoadBTU, 0)} BTU/h` }
-            ], 'ASHRAE'));
-            
-            // فرمول شوفاژ
-            const heatFormula = createFormulaBox('محاسبه بار گرمایش (ASHRAE)', [
-                `Q_conductive = A × U × ΔT`,
-                `Q_conductive = ${formatNumber(heat.area, 0)} × ${heat.U} × ${heat.deltaT} = ${formatNumber(heat.conductiveLoad, 0)} W`,
-                `Q_infiltration = 1.08 × CFM × ΔT`,
-                `Q_infiltration = 1.08 × ${formatNumber(heat.infiltrationLoad / (1.08 * heat.deltaT * 1.8), 1)} × ${heat.deltaT * 1.8} = ${formatNumber(heat.infiltrationLoad, 0)} BTU/h`,
-                `Q_total = (${formatNumber(heat.conductiveLoad, 0)} + ${formatNumber(heat.infiltrationW, 0)}) × ${heat.safety} = ${formatNumber(heat.totalLoad, 0)} W`
-            ], 'ASHRAE Fundamentals, Ch. 18');
-            resultsDiv.appendChild(heatFormula);
-            
-            // منبع کویلی/اسپیرال
-            const tank = calcCoilTank(dhw.storageLiter, r.maxLoadKcalh);
-            resultsDiv.appendChild(createResultCard('🛢 منبع کویلی / اسپیرال', [
-                { label: 'حجم مخزن', value: formatNumber(tank.tankVol, 0), unit: 'لیتر',
-                  converted: `${tank.tankGal} gal` },
-                { label: 'سطح کویل', value: tank.coilArea.toFixed(1), unit: 'مترمربع' },
-                { label: 'دبی کویل', value: formatNumber(tank.coilFlowLph, 0), unit: 'لیتر در ساعت',
-                  converted: `${tank.coilFlowGpm} GPM` }
-            ], 'تجهیز جانبی'));
-            
-            // منبع انبساط
-            const exp = calcExpansionTank(tank.tankVol * 1.5);
-            resultsDiv.appendChild(createResultCard('🎈 منبع انبساط', [
-                { label: 'حجم بسته (دیافراگمی)', value: exp.closed, unit: 'لیتر',
-                  converted: `${exp.closedGal} gal` },
-                { label: 'حجم باز', value: exp.open, unit: 'لیتر', converted: `${exp.openGal} gal` },
-                { label: 'قطر تقریبی', value: exp.diameter, unit: 'سانتی‌متر' }
-            ], 'تجهیز جانبی'));
-        }
+function formula(title,lines,ref){
+  const d=document.createElement('div');
+  d.className='formula';
+  d.innerHTML=`<div class="ft">📐 ${title}</div>
+    ${lines.map(l=>`<div class="fl">${l}</div>`).join('')}
+    <div class="ref">📚 مرجع: ${ref}</div>`;
+  return d;
+}
 
-        // ---- 6.3 نتایج گلخانه ----
-        function displayGreenhouseResults(r) {
-            resultsDiv.appendChild(createResultCard('🌿 گلخانه', [
-                { label: 'سطح کل پوشش', value: formatNumber(r.area, 1), unit: 'مترمربع' },
-                { label: 'ضریب U پوشش', value: r.U.toFixed(2), unit: 'W/m²·K' },
-                { label: 'اختلاف دما', value: r.deltaT, unit: '°C' },
-                { label: 'بار حرارتی کل', value: formatNumber(r.heatLoadKW, 1), unit: 'کیلووات',
-                  converted: `${formatNumber(r.heatLoadKcalh, 0)} kcal/h` }
-            ], 'گلخانه'));
-            
-            const formula = createFormulaBox('محاسبه بار حرارتی گلخانه', [
-                `A = 2 × (L + W) × H + (L × W)`,
-                `A = 2 × (${r.length} + ${r.width}) × ${r.height} + (${r.length} × ${r.width}) = ${formatNumber(r.area, 1)} m²`,
-                `Q = A × U × ΔT × SF`,
-                `Q = ${formatNumber(r.area, 1)} × ${r.U} × ${r.deltaT} × ${r.safety} = ${formatNumber(r.heatLoad, 0)} W`,
-                `Q = ${formatNumber(r.heatLoadKW, 1)} kW`
-            ], 'P.V. Nelson / ASHRAE');
-            resultsDiv.appendChild(formula);
-        }
+function showHW(loc,count,pat,sf){
+  results.innerHTML='';
+  if(loc==='greenhouse'){
+    const L=parseFloat(document.getElementById('ghL').value);
+    const W=parseFloat(document.getElementById('ghW').value);
+    const H=parseFloat(document.getElementById('ghH').value);
+    const c=document.getElementById('ghC').value;
+    const r=calcGH(L,W,H,c,sf);
+    results.appendChild(card('🌿 گلخانه',[
+      {l:'سطح کل پوشش',v:fmt(r.A,1),u:'m²'},
+      {l:'ضریب U',v:r.u.toFixed(2),u:'W/m²·K'},
+      {l:'اختلاف دما',v:r.dT,u:'°C'},
+      {l:'بار حرارتی',v:fmt(r.kw,1),u:'kW',c:`${fmt(r.kcal,0)} kcal/h`}
+    ],'گلخانه'));
+    results.appendChild(formula('بار حرارتی گلخانه (P.V. Nelson)',[
+      `A = 2 × (L + W) × H + (L × W)`,
+      `A = 2 × (${L} + ${W}) × ${H} + (${L} × ${W}) = ${fmt(r.A,1)} m²`,
+      `Q = A × U × ΔT × SF`,
+      `Q = ${fmt(r.A,1)} × ${r.u} × ${r.dT} × ${sf} = ${fmt(r.q,0)} W = ${fmt(r.kw,1)} kW`
+    ],'P.V. Nelson - Greenhouse Engineering'));
+  } else if(loc==='sauna'){
+    const L=parseFloat(document.getElementById('saL').value);
+    const W=parseFloat(document.getElementById('saW').value);
+    const H=parseFloat(document.getElementById('saH').value);
+    const v=document.getElementById('saV').value;
+    const c=document.getElementById('saC').value;
+    const r=calcSauna(L,W,H,v,c,sf);
+    results.appendChild(card('🧖 سونا بخار',[
+      {l:'حجم اتاق',v:r.V.toFixed(2),u:'m³'},
+      {l:'ضریب K1',v:r.k1,u:'-'},
+      {l:'ضریب K2',v:r.k2,u:'-'},
+      {l:'توان',v:r.kw.toFixed(2),u:'kW'},
+      {l:'بخار معادل',v:r.steam.toFixed(2),u:'kg/hr'}
+    ],'سونا'));
+    results.appendChild(formula('توان سونا (EOS / Harvia)',[
+      `V = ${L} × ${W} × ${H} = ${r.V.toFixed(2)} m³`,
+      `kW = V × K1 × K2 × SF`,
+      `kW = ${r.V.toFixed(2)} × ${r.k1} × ${r.k2} × ${sf} = ${r.kw.toFixed(2)} kW`,
+      `Steam = ${r.kw.toFixed(2)} × 1.5 = ${r.steam.toFixed(2)} kg/h`
+    ],'EOS SteamRock II / Harvia'));
+  } else if(loc==='pool'){
+    const L=parseFloat(document.getElementById('plL').value);
+    const W=parseFloat(document.getElementById('plW').value);
+    const D=parseFloat(document.getElementById('plD').value);
+    const T=parseFloat(document.getElementById('plT').value);
+    const A=parseFloat(document.getElementById('plA').value);
+    const wind=parseFloat(document.getElementById('plWind').value);
+    const turn=parseFloat(document.getElementById('plTurn').value);
+    const r=calcPool(L,W,D,T,A,wind,turn,sf);
+    results.appendChild(card('🏊 استخر',[
+      {l:'حجم',v:fmt(r.V,1),u:'m³',c:`${fmt(r.gal,0)} gal`},
+      {l:'سطح',v:fmt(r.A,1),u:'m²'},
+      {l:'بار نگهداری',v:fmt(r.maint/1000,1),u:'kW'},
+      {l:'بار گرمایش اولیه',v:fmt(r.heatUp/1000,1),u:'kW'},
+      {l:'بار کل',v:fmt(r.kw,1),u:'kW'},
+      {l:'دوره گردش',v:r.turn,u:'ساعت'}
+    ],'استخر'));
+    results.appendChild(formula('بار حرارتی استخر (ASHRAE)',[
+      `Q_evap = A × (0.5 + 0.3V) × ΔT × 1.16`,
+      `Q_evap = ${fmt(r.A,1)} × (0.5+0.3×${wind}) × ${r.dT} × 1.16 = ${fmt(r.maint,0)} W`,
+      `Q_heat = (V×1000×4.18×ΔT) / (t×3600)`,
+      `Q_heat = (${r.V.toFixed(1)}×1000×4.18×${r.dT}) / (${r.turn}×3600) = ${fmt(r.heatUp,0)} W`,
+      `Q_total = (${fmt(r.maint,0)} + ${fmt(r.heatUp,0)}) × ${sf} = ${fmt(r.total,0)} W`
+    ],'ASHRAE HVAC Applications, Ch. 6'));
 
-        // ---- 6.4 نتایج سونا ----
-        function displaySaunaResults(r) {
-            resultsDiv.appendChild(createResultCard('🧖 سونا بخار', [
-                { label: 'حجم اتاق', value: r.volume.toFixed(2), unit: 'مترمکعب' },
-                { label: 'ضریب تهویه (K1)', value: r.K1, unit: '-' },
-                { label: 'ضریب ساخت (K2)', value: r.K2, unit: '-' },
-                { label: 'توان مورد نیاز', value: r.kw.toFixed(2), unit: 'کیلووات' },
-                { label: 'ظرفیت بخار معادل', value: r.steamKgH.toFixed(2), unit: 'kg/hr' }
-            ], 'سونا'));
-            
-            const formula = createFormulaBox('محاسبه توان سونا (EOS)', [
-                `Volume = ${r.length} × ${r.width} × ${r.height} = ${r.volume.toFixed(2)} m³`,
-                `kW = Volume × K1 × K2 × SF`,
-                `kW = ${r.volume.toFixed(2)} × ${r.K1} × ${r.K2} × ${r.safety} = ${r.kw.toFixed(2)} kW`,
-                `Steam = ${r.kw.toFixed(2)} × 1.5 = ${r.steamKgH.toFixed(2)} kg/h`
-            ], 'EOS SteamRock II');
-            resultsDiv.appendChild(formula);
-        }
+    const f=calcFilter(r.V,r.turn);
+    results.appendChild(card('💧 فیلتر شنی (بخش تصفیه آب - جداگانه)',[
+      {l:'دبی',v:fmt(f.m3h,1),u:'m³/h',c:`${fmt(f.gpm,1)} GPM`},
+      {l:'نرخ بارگذاری',v:f.lr,u:'GPM/ft²'},
+      {l:'سطح فیلتر',v:fmt(f.area,1),u:'ft²',c:`${fmt(f.areaM2,2)} m²`},
+      {l:'قطر',v:fmt(f.diamCm,0),u:'cm',c:`${fmt(f.diamIn,1)} in`},
+      {l:'پمپ',v:f.hp.toFixed(1),u:'HP',c:`${fmt(f.kw,2)} kW`}
+    ],'تصفیه آب'));
+  } else {
+    const r=calcHW(loc,count,pat,sf);
+    const d=r.dhw, h=r.ht;
 
-        // ---- 6.5 نتایج استخر ----
-        function displayPoolResults(r) {
-            resultsDiv.appendChild(createResultCard('🏊 استخر', [
-                { label: 'حجم استخر', value: formatNumber(r.volume, 1), unit: 'مترمکعب',
-                  converted: `${formatNumber(r.poolVolumeGal, 0)} gal` },
-                { label: 'سطح استخر', value: formatNumber(r.surfaceArea, 1), unit: 'مترمربع' },
-                { label: 'بار نگهداری', value: formatNumber(r.maintenanceLoad / 1000, 1), unit: 'کیلووات' },
-                { label: 'بار گرمایش اولیه', value: formatNumber(r.heatUpLoad / 1000, 1), unit: 'کیلووات' },
-                { label: 'بار کل', value: formatNumber(r.totalLoadKW, 1), unit: 'کیلووات' },
-                { label: 'دوره گردش', value: r.turnover, unit: 'ساعت' }
-            ], 'استخر'));
-            
-            const formula = createFormulaBox('محاسبه بار حرارتی استخر (ASHRAE)', [
-                `Q_evap = A × (95 + 0.425V) × (p_w - p_a) × h_lat / 3600`,
-                `Q_evap ≈ ${formatNumber(r.maintenanceLoad, 0)} W`,
-                `Q_heat-up = (V × 1000 × 4.18 × ΔT) / (t × 3600)`,
-                `Q_heat-up = (${r.volume.toFixed(1)} × 1000 × 4.18 × ${r.deltaT}) / (${r.turnover} × 3600) = ${formatNumber(r.heatUpLoad, 0)} W`,
-                `Q_total = (${formatNumber(r.maintenanceLoad, 0)} + ${formatNumber(r.heatUpLoad, 0)}) × ${r.safety} = ${formatNumber(r.totalLoad, 0)} W`
-            ], 'ASHRAE HVAC Applications, Ch. 6');
-            resultsDiv.appendChild(formula);
-            
-            // فیلتر شنی (بخش جداگانه تصفیه آب)
-            const filter = calcSandFilter(r.volume, r.turnover);
-            resultsDiv.appendChild(createResultCard('💧 فیلتر شنی (تصفیه آب)', [
-                { label: 'دبی فیلتر', value: formatNumber(filter.flowM3h, 1), unit: 'm³/h',
-                  converted: `${formatNumber(filter.flowGpm, 1)} GPM` },
-                { label: 'نرخ بارگذاری', value: filter.loadingRate, unit: 'GPM/ft²' },
-                { label: 'سطح فیلتر', value: formatNumber(filter.filterArea, 1), unit: 'ft²',
-                  converted: `${formatNumber(filter.filterAreaM2, 2)} m²` },
-                { label: 'قطر فیلتر', value: formatNumber(filter.diameterCm, 0), unit: 'سانتی‌متر',
-                  converted: `${formatNumber(filter.diameterInch, 1)} اینچ` },
-                { label: 'توان پمپ', value: filter.pumpHP.toFixed(1), unit: 'HP',
-                  converted: `${formatNumber(filter.pumpKW, 2)} kW` }
-            ], 'تصفیه آب'));
-        }
+    results.appendChild(card('💧 دیگ آبگرم / آب‌داغ',[
+      {l:'حداکثر بار (DHW یا Heating)',v:fmt(r.maxKW,1),u:'kW',
+       c:`${fmt(r.maxKcal,0)} kcal/h`},
+      {l:'ظرفیت استاندارد کاسپین',v:fmt(r.std,0),u:'kcal/hr'},
+      {l:'ضریب اطمینان',v:sf,u:'-'},
+      {l:'الگوی مصرف',v:pat==='peak'?'پیک‌دار':'پیوسته',u:''},
+      {l:'مدل انتخابی',v:model.value,u:''}
+    ],'حوزه آبگرم'));
 
-        // ================================================================
-        // 7. رویدادها
-        // ================================================================
+    results.appendChild(card('📦 مقایسه با رقبا',[
+      {l:'ظرفیت معادل پاکمن',v:fmt(r.pak,0),u:'kcal/hr'},
+      {l:'ظرفیت معادل دابوصنعت',v:fmt(r.dab,0),u:'kcal/hr'}
+    ],'مقایسه'));
 
-        typeSelect.addEventListener('change', updateModels);
-        locationSelect.addEventListener('change', updateDynamicInputs);
-        
-        // رویداد رادیو باتن‌ها
-        document.querySelectorAll('.radio-group input').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const group = this.closest('.radio-group');
-                group.querySelectorAll('label').forEach(l => l.classList.remove('selected'));
-                this.closest('label').classList.add('selected');
-            });
-        });
+    results.appendChild(formula('انتخاب ظرفیت دیگ آبگرم (ضریب همزمانی ASHRAE)',[
+      `Q_DHW = ${fmt(d.kw,2)} kW`,
+      `Q_Heating = ${fmt(h.kw,2)} kW`,
+      `Q_boiler = max(Q_DHW, Q_Heating) × SF`,
+      `Q_boiler = max(${fmt(d.kw,2)}, ${fmt(h.kw,2)}) × ${sf} = ${fmt(r.maxKW,2)} kW`,
+      `Q_boiler = ${fmt(r.maxKW,2)} × 860 = ${fmt(r.maxKcal,0)} kcal/h`,
+      `→ ظرفیت استاندارد کاسپین: ${fmt(r.std,0)} kcal/h`
+    ],'ASHRAE - Diversity Factor (max not sum)'));
 
-        // دکمه محاسبه
-        document.getElementById('calcBtn').addEventListener('click', function() {
-            const inputs = getInputs();
-            
-            try {
-                if (inputs.type === 'steam') {
-                    const result = calcSteamBoiler(inputs);
-                    result.model = inputs.model;
-                    displayResults(result, 'steam');
-                } else {
-                    if (inputs.location === 'greenhouse') {
-                        const result = calcGreenhouse(inputs);
-                        displayResults(result, 'hotwater');
-                    } else if (inputs.location === 'sauna') {
-                        const result = calcSauna(inputs);
-                        displayResults(result, 'hotwater');
-                    } else if (inputs.location === 'pool') {
-                        const result = calcPool(inputs);
-                        displayResults(result, 'hotwater');
-                    } else {
-                        const result = calcHotWaterBoiler(inputs);
-                        result.model = inputs.model;
-                        displayResults(result, 'hotwater');
-                    }
-                }
-            } catch (e) {
-                resultsDiv.innerHTML = `
-                    <div class="result-card">
-                        <h3>❌ خطای محاسباتی</h3>
-                        <p>${e.message}</p>
-                    </div>
-                `;
-                document.getElementById('output').style.display = 'block';
-                console.error(e);
-            }
-        });
+    results.appendChild(card('🚿 آبگرم مصرفی (DHW)',[
+      {l:'مصرف پیک ساعتی',v:fmt(d.peakGPH,1),u:'GPH',c:`${fmt(d.peakGPH*3.785,1)} L/h`},
+      {l:'بار حرارتی DHW',v:fmt(d.kw,2),u:'kW',c:`${fmt(d.kcal,0)} kcal/h`},
+      {l:'حجم منبع ذخیره',v:fmt(d.storageL,0),u:'لیتر',c:`${fmt(d.storageGal,1)} gal`},
+      {l:'ضریب تقاضا',v:d.df,u:'-'},
+      {l:'ضریب ذخیره',v:d.sf,u:'-'}
+    ],'ASHRAE'));
 
-        // دکمه ریست
-        document.getElementById('resetBtn').addEventListener('click', function() {
-            document.getElementById('output').style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+    const fixLines=d.items.map(i=>
+      `${i.f}: ${i.q} × ${count} × ${i.c} = ${i.tot} GPH`);
+    results.appendChild(formula('آبگرم مصرفی (ASHRAE Fixture-based)',[
+      ...fixLines,
+      `Total = ${fmt(d.totalGPH,1)} GPH`,
+      `Peak = Total × DF × PF × SF`,
+      `Peak = ${fmt(d.totalGPH,1)} × ${d.df} × ${d.pf} × ${sf} = ${fmt(d.peakGPH,1)} GPH`,
+      `Storage = Peak × StorageFactor = ${fmt(d.peakGPH,1)} × ${d.sf} = ${fmt(d.storageGal,1)} gal`,
+      `Q = ${fmt(d.peakGPH,1)} × 8.33 × 90 = ${fmt(d.btu,0)} BTU/h = ${fmt(d.kw,2)} kW`
+    ],'ASHRAE Handbook HVAC Applications, Ch. 51'));
 
-        // ================================================================
-        // 8. مقداردهی اولیه
-        // ================================================================
+    results.appendChild(card('🔥 بار گرمایش (شوفاژ)',[
+      {l:'سطح زیربنا',v:fmt(h.area,0),u:'m²'},
+      {l:'ضریب U',v:h.U.toFixed(2),u:'W/m²·K'},
+      {l:'بار هدایتی',v:fmt(h.cond/1000,2),u:'kW'},
+      {l:'بار نفوذ هوا',v:fmt(h.infW/1000,2),u:'kW'},
+      {l:'بار کل',v:fmt(h.kw,2),u:'kW',c:`${fmt(h.btu,0)} BTU/h`}
+    ],'ASHRAE'));
 
-        populateLocations();
-        updateModels();
-        updateDynamicInputs();
+    results.appendChild(formula('بار گرمایش (ASHRAE Fundamentals Ch. 18)',[
+      `Q_cond = A × U × ΔT`,
+      `Q_cond = ${fmt(h.area,0)} × ${h.U} × ${h.dT} = ${fmt(h.cond,0)} W`,
+      `Q_inf = 1.08 × CFM × ΔT`,
+      `Q_inf = 1.08 × ${fmt(h.infBtu/(1.08*h.dT*1.8),1)} × ${h.dT*1.8} = ${fmt(h.infBtu,0)} BTU/h = ${fmt(h.infW,0)} W`,
+      `Q_total = (${fmt(h.cond,0)} + ${fmt(h.infW,0)}) × ${sf} = ${fmt(h.total,0)} W = ${fmt(h.kw,2)} kW`
+    ],'ASHRAE Fundamentals, Ch. 18'));
 
-        // PWA Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(() => {});
-        }
+    const tankV=d.storageL;
+    const coilA=Math.ceil(r.maxKcal/15000*10)/10;
+    const coilF=Math.ceil(tankV/3*10)/10;
+    results.appendChild(card('🛢 منبع کویلی / اسپیرال',[
+      {l:'حجم مخزن',v:fmt(tankV,0),u:'لیتر',c:`${fmt(U.lToGal(tankV),0)} gal`},
+      {l:'سطح کویل',v:coilA.toFixed(1),u:'m²'},
+      {l:'دبی کویل',v:fmt(coilF,0),u:'L/h'}
+    ],'تجهیز جانبی'));
 
-        console.log('✅ Capacity Assistant بارگذاری شد.');
-        console.log('📌 GitHub: @caspianmobadelamard');
-    </script>
+    const sysV=tankV*1.5;
+    const eC=Math.ceil(sysV*0.06*1.2);
+    const eO=Math.ceil(eC*2);
+    const eD=Math.ceil(Math.cbrt(eC*1.2)*10);
+    results.appendChild(card('🎈 منبع انبساط',[
+      {l:'حجم بسته (دیافراگمی)',v:eC,u:'لیتر',c:`${fmt(U.lToGal(eC),1)} gal`},
+      {l:'حجم باز',v:eO,u:'لیتر',c:`${fmt(U.lToGal(eO),1)} gal`},
+      {l:'قطر تقریبی',v:eD,u:'cm'}
+    ],'تجهیز جانبی'));
+  }
+}
+
+function showST(loc,count,pat,sf){
+  const hardIn=parseFloat(document.getElementById('hardIn').value);
+  const hardOut=parseFloat(document.getElementById('hardOut').value);
+  const feedT=parseFloat(document.getElementById('feedT').value);
+  const svcH=parseFloat(document.getElementById('svcH').value);
+  const r=calcST(loc,count,pat,sf,hardIn,hardOut,feedT,svcH);
+
+  results.innerHTML='';
+
+  results.appendChild(card('🔥 دیگ بخار',[
+    {l:'ظرفیت بخار محاسبه‌شده',v:fmt(r.steamKgH,1),u:'kg/hr',
+     c:`${fmt(r.steamKgH*2.20462,0)} lb/h`},
+    {l:'ظرفیت استاندارد کاسپین',v:fmt(r.std,0),u:'kg/hr'},
+    {l:'ضریب اطمینان',v:sf,u:'-'},
+    {l:'الگوی مصرف',v:pat==='peak'?'پیک‌دار':'پیوسته',u:''},
+    {l:'مدل انتخابی',v:model.value,u:''}
+  ],'حوزه بخار'));
+
+  results.appendChild(card('📦 مقایسه با رقبا',[
+    {l:'ظرفیت معادل پاکمن',v:fmt(r.pak,0),u:'kg/hr'},
+    {l:'ظرفیت معادل دابوصنعت',v:fmt(r.dab,0),u:'kg/hr'}
+  ],'مقایسه'));
+
+  results.appendChild(formula('محاسبه دیگ بخار (Fulton)',[
+    `Q_heat = A × U × ΔT = ${fmt(r.heatW,0)} W`,
+    `W = (Q × 3600) / (4.186 × 1000) = ${fmt(r.heatW*3600/4186,1)} kg/h`,
+    `Q_steam = (W × Sp × ΔT) / (L × h)`,
+    `Q_steam = (${fmt(r.heatW*3600/4186,1)} × 4.186 × 60) / (2048 × 1)`,
+    `Q_steam = ${fmt(r.steamKgH/(patFactor(pat)*sf),1)} kg/h`,
+    `Q_final = ${fmt(r.steamKgH/(patFactor(pat)*sf),1)} × ${patFactor(pat)} × ${sf} = ${fmt(r.steamKgH,1)} kg/h`,
+    `→ ظرفیت استاندارد کاسپین: ${fmt(r.std,0)} kg/h`
+  ],'Fulton Boiler Works'));
+
+  results.appendChild(card('🧂 سختی‌گیر (WQA)',[
+    {l:'ظرفیت تبادل',v:fmt(r.grains,0),u:'گرین'},
+    {l:'حجم رزین',v:r.resin.toFixed(1),u:'ft³',c:`${(r.resin*28.3168).toFixed(1)} L`},
+    {l:'قطر مخزن',v:r.diam,u:'cm'},
+    {l:'نمک/احیاء',v:r.salt.toFixed(1),u:'kg',c:`${(r.salt*2.20462).toFixed(1)} lb`}
+  ],'تجهیز جانبی'));
+
+  results.appendChild(formula('سختی‌گیر (WQA)',[
+    `سختی حذف‌شده = ${r.removed} ppm`,
+    `GPG = ${r.removed} ÷ 17.1 = ${r.gpg.toFixed(2)}`,
+    `گرین روزانه = ${r.gpm.toFixed(2)} GPM × ${r.gpg.toFixed(2)} × 60 × ${svcH} = ${fmt(r.grains,0)}`,
+    `حجم رزین = ${fmt(r.grains,0)} ÷ 30,000 = ${r.resin.toFixed(1)} ft³`
+  ],'WQA - Water Quality Association'));
+
+  results.appendChild(card('💧 دی‌اریتور',[
+    {l:'مصرف بخار پیش‌گرمایش',v:r.dSteam.toFixed(1),u:'kg/hr'},
+    {l:'حجم مخزن',v:r.dTank,u:'لیتر',c:`${fmt(U.lToGal(r.dTank),0)} gal`}
+  ],'تجهیز جانبی'));
+
+  results.appendChild(card('📦 منبع کندانس',[
+    {l:'حجم مخزن',v:r.conV,u:'لیتر',c:`${fmt(U.lToGal(r.conV),0)} gal`}
+  ],'تجهیز جانبی'));
+
+  results.appendChild(card('🎈 منبع انبساط',[
+    {l:'حجم بسته',v:r.expC,u:'لیتر',c:`${fmt(U.lToGal(r.expC),1)} gal`},
+    {l:'حجم باز',v:r.expO,u:'لیتر',c:`${fmt(U.lToGal(r.expO),1)} gal`},
+    {l:'قطر',v:r.expD,u:'cm'}
+  ],'تجهیز جانبی'));
+}
+
+// ================================================================
+// 6. رویدادها
+// ================================================================
+document.getElementById('calcBtn').onclick=()=>{
+  const loc=location.value;
+  const count=parseInt(document.getElementById('count').value)||1;
+  const sf=parseFloat(document.querySelector('input[name=sf]:checked').value);
+  const pat=document.querySelector('input[name=pat]:checked').value;
+  try{
+    if(curType==='st'){
+      showST(loc,count,pat,sf);
+    } else {
+      showHW(loc,count,pat,sf);
+    }
+    document.getElementById('output').style.display='block';
+    document.getElementById('output').scrollIntoView({behavior:'smooth'});
+  }catch(e){
+    results.innerHTML=`<div class="card"><h3>❌ خطا</h3><p>${e.message}</p></div>`;
+    document.getElementById('output').style.display='block';
+    console.error(e);
+  }
+};
+
+document.getElementById('resetBtn').onclick=()=>{
+  document.getElementById('output').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+setTab('hw');
+
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+}
+console.log('✅ Capacity Assistant loaded.');
+</script>
 </body>
 </html>
