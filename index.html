@@ -97,7 +97,7 @@
   .conv-item{background:#F5F7F8;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:.82rem;}
   .conv-item .ck{color:var(--ink-soft);font-size:.72rem;display:block;margin-bottom:2px;}
   .conv-item .cv{font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;}
-  /* ============ NEW (تغییر ۲ و ۱): Formula Display + Settings Bar ============ */
+  /* ============ Formula Display + Settings Bar ============ */
   .formula{background:#F5F7F8;border-right:3px solid var(--steel);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:.78rem;direction:ltr;text-align:left;font-family:'Consolas','Monaco',monospace;color:#0a4f7f;overflow-x:auto;line-height:1.75;}
   .formula .ft{color:var(--brass);font-weight:700;font-size:.74rem;margin-bottom:6px;direction:rtl;text-align:right;font-family:"Vazirmatn",Tahoma,sans-serif;}
   .formula .fl{margin:1px 0;}
@@ -144,25 +144,25 @@
 
   <main>
 
-    <!-- ============ NEW (تغییر ۱): نوار تنظیمات مشترک ============ -->
+    <!-- ============ نوار تنظیمات مشترک ============ -->
     <div class="settings-bar">
       <div class="sg">
-        <label>⚖️ ضریب اطمینان (Safety Factor)</label>
+        <label>⚖️ ضریب اطمینان (Safety Factor) — فقط برای انتخاب ظرفیت تجهیزات</label>
         <select id="global_safety">
-          <option value="1.2" selected>1.2 — بهینه (توصیه کاسپین)</option>
-          <option value="1.3">1.3 — استاندارد Fulton</option>
-          <option value="1.35">1.35 — محافظه‌کارانه</option>
+          <option value="1.0" selected>1.0 — بدون ضریب (محاسبه خالص)</option>
+          <option value="1.1">1.1 — ۱۰٪ (توصیه ASHRAE برای انتخاب تجهیزات)</option>
+          <option value="1.2">1.2 — ۲۰٪ (محافظه‌کارانه)</option>
         </select>
       </div>
       <div class="sg">
-        <label>📊 الگوی مصرف</label>
+        <label>📊 الگوی مصرف — فقط برای محاسبات مصرف آبگرم</label>
         <select id="global_pattern">
           <option value="continuous" selected>پیوسته (Continuous) — بیمارستان، هتل</option>
           <option value="peak">پیک‌دار (Peak) — مسکونی، اداری</option>
         </select>
       </div>
     </div>
-    <!-- ============ END NEW ============ -->
+    <!-- ============ END ============ -->
 
     <!-- ==================== BOILERS ==================== -->
     <section id="panel-boilers" class="panel active">
@@ -502,7 +502,7 @@
         <button class="subtab-btn" data-subpanel="app-industrial">بخار صنعتی</button>
       </nav>
 
-      <!-- ============ NEW (تغییر ۳): گلخانه با ابعاد و نوع پوشش ============ -->
+      <!-- ===== GREENHOUSE ===== -->
       <div id="subpanel-app-greenhouse" class="subpanel active">
         <div class="card">
           <span class="badge">Greenhouse</span>
@@ -542,9 +542,8 @@
           <div class="results" id="gh_results"></div>
         </div>
       </div>
-      <!-- ============ END NEW ============ -->
 
-      <!-- ============ NEW (تغییر ۴): استخر با گردش ۱۲/۲۴/۴۸ ============ -->
+      <!-- ===== POOL ===== -->
       <div id="subpanel-app-pool" class="subpanel">
         <div class="card">
           <span class="badge">Pool</span>
@@ -582,9 +581,8 @@
           <div class="results" id="pl_results"></div>
         </div>
       </div>
-      <!-- ============ END NEW ============ -->
 
-      <!-- ============ NEW (تغییر ۶): DHW با مکان‌های جدید ============ -->
+      <!-- ===== DHW ===== -->
       <div id="subpanel-app-dhw" class="subpanel">
         <div class="card">
           <span class="badge">Domestic Hot Water</span>
@@ -638,14 +636,28 @@
           <div class="results" id="dhw_results"></div>
         </div>
       </div>
-      <!-- ============ END NEW ============ -->
 
-      <!-- ============ NEW (تغییر ۸): گرمایش (شوفاژ) ============ -->
+      <!-- ===== HEATING (Space Heating) — MODIFIED ===== -->
       <div id="subpanel-app-heating" class="subpanel">
         <div class="card">
           <span class="badge">Space Heating</span>
           <h2>بار گرمایش (شوفاژ)</h2>
-          <p class="hint">ASHRAE Fundamentals Ch. 18 — Q = A×U×ΔT + Infiltration.</p>
+          <p class="hint">ASHRAE Fundamentals Ch. 18 — Q = A×U×ΔT + Infiltration + Internal Gains (اختیاری).</p>
+          
+          <div class="field">
+            <label>نوع کاربری ساختمان</label>
+            <select id="ht_building" onchange="onHeatingBuildingChange()">
+              <option value="office">اداری</option>
+              <option value="residential">مسکونی</option>
+              <option value="hospital">بیمارستان</option>
+              <option value="school">مدرسه / دانشگاه</option>
+              <option value="hotel">هتل</option>
+              <option value="restaurant">رستوران</option>
+              <option value="industrial">کارخانه / صنعتی</option>
+              <option value="warehouse">انبار</option>
+            </select>
+          </div>
+
           <div class="row3">
             <div class="field"><label>سطح زیربنا</label><input type="number" id="ht_area" value="500"><span class="unit">m²</span></div>
             <div class="field"><label>ارتفاع سقف</label><input type="number" id="ht_h" value="3" step="0.1"><span class="unit">m</span></div>
@@ -659,20 +671,23 @@
             </div>
           </div>
           <div class="row4">
-            <div class="field"><label>دمای داخل</label><input type="number" id="ht_tin" value="22"><span class="unit">°C</span></div>
+            <div class="field"><label>دمای هدف داخل</label><input type="number" id="ht_tin" value="22" readonly><span class="unit">°C</span></div>
             <div class="field"><label>حداقل بیرون</label><input type="number" id="ht_tout" value="-5"><span class="unit">°C</span></div>
             <div class="field"><label>ACH نفوذ</label><input type="number" id="ht_ach" value="0.5" step="0.1"><span class="unit">تعویض/ساعت</span></div>
             <div class="field"><label>نوع</label>
               <select id="ht_type"><option value="radiator">رادیاتور</option><option value="fancoil">فن‌کویل</option><option value="underfloor">گرمایش از کف</option></select>
             </div>
           </div>
+          <div class="row">
+            <div class="field"><label>تعداد نفرات (اختیاری)</label><input type="number" id="ht_people" value="0"><span class="unit">نفر</span></div>
+            <div class="field"><label>تجهیزات (اختیاری)</label><input type="number" id="ht_equipment" value="0"><span class="unit">kW</span></div>
+          </div>
           <button class="btn" onclick="calcHeating()">محاسبه</button>
           <div class="results" id="ht_results"></div>
         </div>
       </div>
-      <!-- ============ END NEW ============ -->
 
-      <!-- ============ NEW (تغییر ۷): سونا ============ -->
+      <!-- ===== SAUNA ===== -->
       <div id="subpanel-app-sauna" class="subpanel">
         <div class="card">
           <span class="badge">Sauna</span>
@@ -703,7 +718,6 @@
           <div class="results" id="sa_results"></div>
         </div>
       </div>
-      <!-- ============ END NEW ============ -->
 
       <div id="subpanel-app-industrial" class="subpanel">
         <div class="card">
@@ -865,7 +879,6 @@
         </div>
       </div>
 
-      <!-- ============ NEW (تغییر ۵): افزودن گزینه ۱۲ GPM/ft² ============ -->
       <div id="subpanel-tr-sand" class="subpanel">
         <div class="card">
           <span class="badge">Sand / Carbon</span>
@@ -887,7 +900,6 @@
           <div class="results" id="sf2_results"></div>
         </div>
       </div>
-      <!-- ============ END NEW ============ -->
 
       <div id="subpanel-tr-deaerator" class="subpanel">
         <div class="card">
@@ -1068,14 +1080,14 @@ function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.
 function copyText(id){ const el=document.getElementById(id); navigator.clipboard.writeText(el.value||el.textContent).then(()=>toast('کپی شد')); }
 function heatUnits(k){ return `${fmt(k*1.163/1000)} kW · ${fmt(k*3.968)} BTU/hr · ${fmt(k/8434.5,2)} BHP`; }
 function massFlow(kg){ return `${fmt(kg)} kg/hr · ${fmt(kg/1000,2)} ton/hr · ${fmt(kg*2.2046)} lb/hr`; }
-/* ============ NEW (تغییر ۱ و ۲): Safety Factor + Formula Helper ============ */
-function getSafety(){ return n(document.getElementById('global_safety').value) || 1.2; }
+/* ============ Safety Factor + Formula Helper ============ */
+function getSafety(){ return n(document.getElementById('global_safety').value) || 1.0; }
 function getPattern(){ return document.getElementById('global_pattern').value; }
 function patternFactor(p){ return p === 'peak' ? 1.5 : 1.0; }
 function formulaBlock(title, lines, ref){
   return `<div class="formula"><div class="ft">📐 ${title}</div>${lines.map(l=>`<div class="fl">${l}</div>`).join('')}<div class="ref">📚 مرجع: ${ref}</div></div>`;
 }
-/* ============ END NEW ============ */
+/* ============ END ============ */
 function printReport(title,bodyHtml){
   let area=document.getElementById('print-area');
   if(!area){ area=document.createElement('div'); area.id='print-area'; document.body.appendChild(area); }
@@ -1337,7 +1349,7 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
   const tamb = n(document.getElementById(prefix+'_tamb').value);
   const hard = n(document.getElementById(prefix+'_hard').value);
   const pdea = n(document.getElementById(prefix+'_pdea')?.value || 0.3);
-  const SF = getSafety(); /* NEW: تغییر ۱ */
+  const SF = getSafety(); /* فقط برای انتخاب تجهیزات */
 
   if(cap < catalog.min || cap > catalog.max){
     document.getElementById(resultsId).innerHTML = warn(`ظرفیت باید بین ${catalog.min} و ${catalog.max} kg/hr باشد.`);
@@ -1353,14 +1365,14 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
   const sp = satP(p + 1.013);
   const hSteam = sp.hf + sp.hfg * xQual;
   const hFeed = tfeed * 4.187;
-  const qBoiler = cap * (hSteam - hFeed);
-  const qBoilerDesign = qBoiler * SF;
+  const qBoiler = cap * (hSteam - hFeed); /* بار خالص — بدون SF */
+  const qBoilerDesign = qBoiler * SF; /* فقط برای انتخاب مشعل و تجهیزات */
 
   const makeupKg = cap * (1 - cond) + cap * blowFrac;
   const makeupM3 = makeupKg / 1000;
   const dailyGal = makeupM3 * 1000 * 24 / 3.785;
   const dailyGrains = dailyGal * (hard / 17.1);
-  const reqGrains = dailyGrains * 1.3;
+  const reqGrains = dailyGrains * 1.3; /* حاشیه ۳۰٪ برای سختی‌گیر طبق WQA */
   const softModel = pick(SOFTENER, 'grain', reqGrains);
   const resinFt3 = reqGrains / 30000;
   const saltKg = resinFt3 * 15 * 0.4536;
@@ -1375,13 +1387,13 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
 
   const pump = feedPump(cap, blowPct, p, pdea, 2, 15);
   const sv = safetyValve(cap, p);
-  const burnerHtml = burnerBlock(qBoiler, eff, fuel, alt, tamb, `(${modelLabel})`);
+  const burnerHtml = burnerBlock(qBoilerDesign, eff, fuel, alt, tamb, `(${modelLabel})`);
 
   const html = `
     ${g('ظرفیت تاییدشده', fmt(cap), 'kg/hr', massFlow(cap))}
     ${g('دمای اشباع در فشار کاری', fmt(sp.t,1), '°C', 'فشار مطلق '+fmt(p+1.013,2)+' bar')}
-    ${g('بار حرارتی مفید دیگ', fmt(qBoiler), 'kcal/hr', heatUnits(qBoiler))}
-    ${g('بار طراحی (با ضریب اطمینان '+SF+')', fmt(qBoilerDesign), 'kcal/hr', heatUnits(qBoilerDesign))}
+    ${g('بار حرارتی مفید دیگ', fmt(qBoiler), 'kcal/hr', heatUnits(qBoiler)+' — خالص بدون ضریب')}
+    ${g('بار طراحی برای انتخاب مشعل (با SF='+SF+')', fmt(qBoilerDesign), 'kcal/hr', heatUnits(qBoilerDesign))}
     
     <div class="card" style="margin-top:10px;padding:12px 14px;border-right:4px solid var(--steel);">
       <h2 style="font-size:.92rem;margin-bottom:8px;">💧 بلودان و کیفیت آب</h2>
@@ -1440,8 +1452,8 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
     ${formulaBlock('محاسبه بار حرارتی دیگ بخار (Fulton)', [
       `h_steam = h_f + x·h_fg = ${fmt(sp.hf,1)} + ${xQual}·${fmt(sp.hfg,1)} = ${fmt(hSteam,1)} kJ/kg`,
       `h_feed = Cp × T = 4.187 × ${tfeed} = ${fmt(hFeed,1)} kJ/kg`,
-      `Q_boiler = m·(h_steam - h_feed) = ${cap} × (${fmt(hSteam,1)} - ${fmt(hFeed,1)}) = ${fmt(qBoiler)} kcal/hr`,
-      `Q_design = Q_boiler × SF = ${fmt(qBoiler)} × ${SF} = ${fmt(qBoilerDesign)} kcal/hr`,
+      `Q_boiler = m·(h_steam - h_feed) = ${cap} × (${fmt(hSteam,1)} - ${fmt(hFeed,1)}) = ${fmt(qBoiler)} kcal/hr (خالص)`,
+      `Q_design = Q_boiler × SF = ${fmt(qBoiler)} × ${SF} = ${fmt(qBoilerDesign)} kcal/hr (برای انتخاب مشعل)`,
       `CoC = TDS_boiler / TDS_feed = ${tdsb} / ${tdsf} = ${fmt(coc,2)}`,
       `Blowdown % = 100 / CoC = 100 / ${fmt(coc,2)} = ${fmt(blowPct,2)}%`,
       `Makeup = cap×(1-cond) + cap×blow = ${fmt(makeupKg,1)} kg/hr`
@@ -1451,11 +1463,12 @@ function steamBoilerFull(prefix, catalog, resultsId, modelLabel){
       <h2 style="font-size:.92rem;">خلاصه برای مشتری</h2>
       <textarea class="summary-box" id="${prefix}_summary" readonly>${
 `${modelLabel}: ${fmt(cap)} kg/hr @ ${p} bar (${fmt(sp.t,0)}°C)
-بار حرارتی طراحی: ${fmt(qBoilerDesign)} kcal/hr (SF=${SF})
+بار حرارتی خالص: ${fmt(qBoiler)} kcal/hr
+بار طراحی (با SF=${SF}): ${fmt(qBoilerDesign)} kcal/hr
 بلودان: ${fmt(blowPct,1)}٪ — کندانس برگشتی: ${fmt(condFlow)} kg/hr
 آب جبرانی: ${fmt(makeupM3,3)} m³/h
 سختی‌گیر: ${softModel.model}
-مشعل: ${fmt(calcBurner(qBoiler, eff, fuel, alt, tamb).qInputAdj)} kcal/hr — مصرف سوخت ${fmt(calcBurner(qBoiler, eff, fuel, alt, tamb).fuelRate,2)} ${calcBurner(qBoiler, eff, fuel, alt, tamb).fuelUnit}
+مشعل: ${fmt(calcBurner(qBoilerDesign, eff, fuel, alt, tamb).qInputAdj)} kcal/hr — مصرف سوخت ${fmt(calcBurner(qBoilerDesign, eff, fuel, alt, tamb).fuelRate,2)} ${calcBurner(qBoilerDesign, eff, fuel, alt, tamb).fuelUnit}
 پمپ تغذیه: ${fmt(pump.flowKgHr)} kg/hr @ ${fmt(pump.headM,1)} m head
 شیر اطمینان: Orifice ${sv.orificeLetter} — ظرفیت ${fmt(sv.requiredCap)} kg/hr
 لوله اصلی بخار: DN ${pipeMain.pipeDN}`}</textarea>
@@ -1589,7 +1602,7 @@ function calcHWPackage(){
   const totalSurface = units * area * 2.5;
   const qHeat = U * totalSurface * (tin - tout);
   const dhwQ = dhw ? units * 4 * 50 * (60-5)/24 : 0;
-  const qMax = Math.max(qHeat, dhwQ); /* NEW: تغییر ۹ — max نه sum */
+  const qMax = Math.max(qHeat, dhwQ); /* ضریب همزمانی — max نه sum */
   const qTotal = qMax * SF;
   const model = HW_PACKAGE.find(m => qTotal >= m.min && qTotal <= m.max);
   document.getElementById('pk_results').innerHTML = `
@@ -1606,7 +1619,7 @@ function calcHWPackage(){
     ], 'ASHRAE — Diversity Factor')}`;
 }
 
-/* ==================== GREENHOUSE (تغییر ۳) ==================== */
+/* ==================== GREENHOUSE ==================== */
 function calcGreenhouse(){
   const L = n(document.getElementById('gh_l').value);
   const W = n(document.getElementById('gh_w').value);
@@ -1628,14 +1641,16 @@ function calcGreenhouse(){
   const qCond = U * totalA * dT;
   const vol = A * H;
   const qInfil = 0.33 * vol * infil * dT;
-  const qTotal = (qCond + qInfil) * SF;
+  const qBase = qCond + qInfil; /* بار خالص */
+  const qTotal = qBase * SF; /* برای انتخاب تجهیزات */
   document.getElementById('gh_results').innerHTML = `
     ${g('سطح کل پوشش', fmt(totalA,1), 'm²', `دیوار ${fmt(wallA,1)} + سقف ${fmt(roofA,1)}`)}
     ${g('ضریب U پوشش', U, 'W/m²·K', '')}
     ${g('اختلاف دما', dT, '°C', '')}
     ${g('تلفات هدایت', fmt(qCond), 'kcal/hr', '')}
     ${g('تلفات نفوذ', fmt(qInfil), 'kcal/hr', infil+' ACH')}
-    ${g('بار کل طراحی', fmt(qTotal), 'kcal/hr', heatUnits(qTotal)+' — SF='+SF)}
+    ${g('بار خالص', fmt(qBase), 'kcal/hr', '')}
+    ${g('بار طراحی (با SF='+SF+')', fmt(qTotal), 'kcal/hr', heatUnits(qTotal))}
     ${burnerBlock(qTotal, 88, fuel, alt, tamb, '(گلخانه)')}
     ${formulaBlock('بار حرارتی گلخانه (P.V. Nelson)', [
       `A_wall = 2(L+W)·H = 2(${L}+${W})·${H} = ${fmt(wallA,1)} m²`,
@@ -1643,11 +1658,11 @@ function calcGreenhouse(){
       `A_total = ${fmt(totalA,1)} m²`,
       `Q_cond = U·A·ΔT = ${U} × ${fmt(totalA,1)} × ${dT} = ${fmt(qCond)} W`,
       `Q_infil = 0.33·V·ACH·ΔT = 0.33 × ${fmt(vol,1)} × ${infil} × ${dT} = ${fmt(qInfil)} W`,
-      `Q_design = (Q_cond + Q_infil) × SF = ${fmt(qCond+qInfil)} × ${SF} = ${fmt(qTotal)} W`
+      `Q_design = (Q_cond + Q_infil) × SF = ${fmt(qBase)} × ${SF} = ${fmt(qTotal)} W`
     ], 'P.V. Nelson - Greenhouse Engineering')}`;
 }
 
-/* ==================== POOL (تغییر ۴) ==================== */
+/* ==================== POOL ==================== */
 function calcPool(){
   const L = n(document.getElementById('pl_l').value), W = n(document.getElementById('pl_w').value), D = n(document.getElementById('pl_d').value);
   const tt = n(document.getElementById('pl_tt').value), ta = n(document.getElementById('pl_ta').value);
@@ -1666,14 +1681,14 @@ function calcPool(){
   const hConv = 3*wind+1.5;
   const qConv = hConv*A*(tt-ta)/1000;
   const qRad = 0.95*5.67e-8*A*(Math.pow(tt+273.15,4)-Math.pow(ta+273.15,4))/1000;
-  const qBase = (qEvap+qConv+qRad)*(1+useF*0.2);
-  const qKW = qBase * SF;
+  const qBase = (qEvap+qConv+qRad)*(1+useF*0.2); /* بار خالص */
+  const qKW = qBase * SF; /* برای انتخاب تجهیزات */
   const qKcal = qKW*860;
   const circ = V/turnH;
   const gpm = circ*4.403;
   document.getElementById('pl_results').innerHTML = `
     ${g('حجم استخر', fmt(V*1000), 'L', fmt(V,1)+' m³ — جهت: '+(orient==='horizontal'?'افقی':'عمودی'))}
-    ${g('بار پایه', fmt(qBase,2), 'kW', heatUnits(qBase*860))}
+    ${g('بار پایه (خالص)', fmt(qBase,2), 'kW', heatUnits(qBase*860))}
     ${g('بار طراحی (با SF='+SF+')', fmt(qKW,2), 'kW', heatUnits(qKcal))}
     ${g('دبی گردش', fmt(circ,1), 'm³/h', fmt(gpm)+' GPM — دوره '+turnH+' ساعت')}
     <div class="note" style="font-size:.76rem;color:var(--ink-soft);padding:8px;background:#F5F7F8;border-radius:6px;">
@@ -1691,7 +1706,7 @@ function calcPool(){
     ], 'ASHRAE HVAC Applications, Ch. 6')}`;
 }
 
-/* ==================== DHW (تغییر ۶) ==================== */
+/* ==================== DHW ==================== */
 const ASHRAE_FIX = {
   apartment:{lav:2,bath:20,shower:30,kitchen:10,dw:15,laundry:35,df:0.30,label:'آپارتمان'},
   dormitory:{lav:2,bath:0,shower:30,kitchen:5,dw:10,laundry:35,df:0.25,label:'خوابگاه'},
@@ -1742,7 +1757,7 @@ function calcDHW(){
       if(el) { const cnt = n(el.value); gph += cnt*d[k]; if(cnt>0) fixLines.push(`${k}: ${cnt} × ${d[k]} = ${cnt*d[k]} GPH`); }
     });
     gphBase = gph;
-    hourly = gph*div*pf*SF*3.785;
+    hourly = gph*div*pf*SF*3.785; /* SF و PF برای انتخاب تجهیزات */
     daily = hourly*8;
   } else if(m==='percapita'){
     daily = n(document.getElementById('dhw_count').value)*n(document.getElementById('dhw_pc').value)*SF;
@@ -1772,38 +1787,61 @@ function calcDHW(){
     ], 'ASHRAE Handbook - HVAC Applications, Ch. 51')}`;
 }
 
-/* ==================== HEATING (تغییر ۸) ==================== */
+/* ==================== HEATING (Space Heating) — MODIFIED ==================== */
+const HT_BUILDINGS = {
+  office:     {label:'اداری',            tin:22, intermittency:1.10, internal:1.0},
+  residential:{label:'مسکونی',           tin:21, intermittency:1.05, internal:1.0},
+  hospital:   {label:'بیمارستان',        tin:24, intermittency:1.00, internal:1.0},
+  school:     {label:'مدرسه / دانشگاه',  tin:20, intermittency:1.15, internal:1.0},
+  hotel:      {label:'هتل',              tin:22, intermittency:1.05, internal:1.0},
+  restaurant: {label:'رستوران',          tin:22, intermittency:1.05, internal:1.0},
+  industrial: {label:'کارخانه / صنعتی',  tin:18, intermittency:1.10, internal:1.0},
+  warehouse:  {label:'انبار',            tin:15, intermittency:1.00, internal:1.0},
+};
+function onHeatingBuildingChange(){
+  const b = document.getElementById('ht_building').value;
+  const cfg = HT_BUILDINGS[b];
+  if(!cfg) return;
+  document.getElementById('ht_tin').value = cfg.tin;
+}
+onHeatingBuildingChange();
 function calcHeating(){
+  const buildingKey = document.getElementById('ht_building').value;
+  const cfg = HT_BUILDINGS[buildingKey];
   const area = n(document.getElementById('ht_area').value);
   const H = n(document.getElementById('ht_h').value);
   const U = n(document.getElementById('ht_u').value);
-  const tin = n(document.getElementById('ht_tin').value);
   const tout = n(document.getElementById('ht_tout').value);
   const ach = n(document.getElementById('ht_ach').value);
+  const tin = cfg.tin; /* دمای هدف بر اساس نوع کاربری */
+  const intermittency = cfg.intermittency; /* ضریب تناوب */
   const SF = getSafety();
   const dT = tin - tout;
   const volume = area * H;
   const qCond = U * area * dT;
   const qInfil = 0.33 * volume * ach * dT;
-  const qBase = qCond + qInfil;
-  const qDesign = qBase * SF;
+  const qInternal = 0; /* بار داخلی به عنوان امتیاز گرمایشی در نظر گرفته نمی‌شود (محافظه‌کارانه) */
+  const qBase = qCond + qInfil; /* بار خالص */
+  const qDesign = qBase * intermittency * SF; /* برای انتخاب تجهیزات */
   document.getElementById('ht_results').innerHTML = `
+    ${g('نوع کاربری', cfg.label, '', '')}
+    ${g('دمای هدف داخل', tin, '°C', '')}
+    ${g('ضریب تناوب (Intermittency)', intermittency, '×', 'برای گرمایش غیردائم')}
     ${g('حجم فضا', fmt(volume), 'm³', '')}
-    ${g('اختلاف دما', dT, '°C', '')}
-    ${g('بار هدایتی', fmt(qCond), 'kcal/hr', 'U='+U+' W/m²·K')}
-    ${g('بار نفوذ', fmt(qInfil), 'kcal/hr', ach+' ACH')}
-    ${g('بار پایه', fmt(qBase), 'kcal/hr', '')}
-    ${g('بار طراحی با SF='+SF, fmt(qDesign), 'kcal/hr', heatUnits(qDesign))}
-    ${formulaBlock('بار گرمایش (ASHRAE Ch. 18)', [
+    ${g('بار هدایتی خالص', fmt(qCond), 'kcal/hr', 'U='+U+' W/m²·K')}
+    ${g('بار نفوذ خالص', fmt(qInfil), 'kcal/hr', ach+' ACH')}
+    ${g('بار خالص کل', fmt(qBase), 'kcal/hr', '')}
+    ${g('بار طراحی (با تناوب و SF='+SF+')', fmt(qDesign), 'kcal/hr', heatUnits(qDesign))}
+    ${formulaBlock('بار گرمایش (ASHRAE Ch. 18 + CIBSE تناوب)', [
       `Q_cond = A × U × ΔT = ${area} × ${U} × ${dT} = ${fmt(qCond)} W`,
       `V = A × H = ${area} × ${H} = ${fmt(volume)} m³`,
       `Q_inf = 0.33 × V × ACH × ΔT = 0.33 × ${fmt(volume)} × ${ach} × ${dT} = ${fmt(qInfil)} W`,
       `Q_base = Q_cond + Q_inf = ${fmt(qBase)} W = ${fmt(qBase*0.86)} kcal/hr`,
-      `Q_design = Q_base × SF = ${fmt(qBase)} × ${SF} = ${fmt(qDesign)} W`
-    ], 'ASHRAE Fundamentals, Ch. 18 + Manual J')}`;
+      `Q_design = Q_base × IF × SF = ${fmt(qBase)} × ${intermittency} × ${SF} = ${fmt(qDesign)} W`
+    ], 'ASHRAE Fundamentals, Ch. 18 + CIBSE Guide A (Intermittency)')}`;
 }
 
-/* ==================== SAUNA (تغییر ۷) ==================== */
+/* ==================== SAUNA ==================== */
 function calcSauna(){
   const L = n(document.getElementById('sa_l').value);
   const W = n(document.getElementById('sa_w').value);
