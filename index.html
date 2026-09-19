@@ -5,52 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#2563EB" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-title" content="Capacity" />
-<meta name="description" content="دستیار مهندسی تعیین ظرفیت تجهیزات — کاسپین مبدل آمارد" />
+<title>Capacity Assistant v5 — Caspian Mobaddel Amard</title>
 <link rel="manifest" href="./manifest.json" />
 <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
-<link rel="apple-touch-icon" href="./icon-192.png" />
-<title>Capacity Assistant v5 — Caspian Mobaddel Amard</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
-:root{
-  --bg:#F4F6FB;--card:#FFFFFF;--card-2:#FAFBFE;
-  --text:#0F172A;--text-soft:#64748B;--text-mute:#94A3B8;
-  --border:#E2E8F0;--border-2:#CBD5E1;
-  --brand-1:#0F172A;--brand-2:#1E3A8A;--brand-3:#2563EB;--brand-4:#3B82F6;--brand-5:#60A5FA;
-  --accent:#06B6D4;--accent-2:#22D3EE;
-  --gold:#F59E0B;--gold-2:#FBBF24;--gold-3:#FCD34D;
-  --success:#10B981;--success-bg:#ECFDF5;--success-bd:#A7F3D0;
-  --warn:#F59E0B;--warn-bg:#FFFBEB;--warn-bd:#FDE68A;
-  --danger:#EF4444;--danger-bg:#FEF2F2;--danger-bd:#FECACA;
-  --info:#3B82F6;--info-bg:#EFF6FF;--info-bd:#BFDBFE;
-  --radius:14px;--radius-sm:10px;
-  --shadow-xs:0 1px 2px rgba(15,23,42,0.04);
-  --shadow-sm:0 2px 4px rgba(15,23,42,0.05),0 1px 2px rgba(15,23,42,0.03);
-  --shadow-md:0 4px 12px rgba(15,23,42,0.07),0 2px 4px rgba(15,23,42,0.04);
-  --shadow-lg:0 12px 32px rgba(15,23,42,0.10),0 4px 8px rgba(15,23,42,0.05);
-  --shadow-brand:0 12px 32px rgba(37,99,235,0.25);
-}
+:root{--bg:#F4F6FB;--card:#FFFFFF;--card-2:#FAFBFE;--text:#0F172A;--text-soft:#64748B;--text-mute:#94A3B8;--border:#E2E8F0;--border-2:#CBD5E1;--brand-2:#1E3A8A;--brand-3:#2563EB;--brand-4:#3B82F6;--accent:#06B6D4;--gold:#F59E0B;--gold-2:#FBBF24;--success:#10B981;--success-bg:#ECFDF5;--success-bd:#A7F3D0;--warn:#F59E0B;--warn-bg:#FFFBEB;--warn-bd:#FDE68A;--danger:#EF4444;--danger-bd:#FECACA;--info:#3B82F6;--info-bg:#EFF6FF;--info-bd:#BFDBFE;--radius:14px;--radius-sm:10px;--shadow-sm:0 2px 4px rgba(15,23,42,0.05);--shadow-md:0 4px 12px rgba(15,23,42,0.07);--shadow-lg:0 12px 32px rgba(15,23,42,0.10);--shadow-brand:0 12px 32px rgba(37,99,235,0.25);}
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.75;min-height:100vh;}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 600px at 85% -10%,rgba(37,99,235,0.08),transparent 60%),radial-gradient(1000px 500px at -10% 20%,rgba(6,182,212,0.06),transparent 60%),radial-gradient(800px 500px at 50% 110%,rgba(245,158,11,0.05),transparent 60%);pointer-events:none;z-index:0;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 600px at 85% -10%,rgba(37,99,235,0.08),transparent 60%),radial-gradient(1000px 500px at -10% 20%,rgba(6,182,212,0.06),transparent 60%);pointer-events:none;z-index:0;}
 .app{max-width:1180px;margin:0 auto;position:relative;z-index:1;padding:0 14px 80px;}
-
-.sticky-shell{position:sticky;top:0;z-index:100;padding:10px 0 8px;background:linear-gradient(180deg,var(--bg) 60%,rgba(244,246,251,0.85) 100%);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);}
-.header{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(135deg,#0B1120 0%,#14275A 35%,#1E3A8A 55%,#2563EB 80%,#06B6D4 120%);color:#fff;padding:18px 22px;box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,0.08);}
-.header::before{content:"";position:absolute;top:-40%;right:-10%;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,0.35) 0%,transparent 65%);animation:floatA 14s ease-in-out infinite;pointer-events:none;}
-.header::after{content:"";position:absolute;bottom:-50%;left:-10%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,0.28) 0%,transparent 65%);animation:floatA 18s ease-in-out infinite reverse;pointer-events:none;}
+.sticky-shell{position:sticky;top:0;z-index:100;padding:10px 0 8px;background:linear-gradient(180deg,var(--bg) 60%,rgba(244,246,251,0.85) 100%);backdrop-filter:saturate(140%) blur(8px);}
+.header{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(135deg,#0B1120 0%,#14275A 35%,#1E3A8A 55%,#2563EB 80%,#06B6D4 120%);color:#fff;padding:18px 22px;box-shadow:var(--shadow-lg);}
+.header::before{content:"";position:absolute;top:-40%;right:-10%;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,0.35),transparent 65%);animation:floatA 14s ease-in-out infinite;pointer-events:none;}
+.header::after{content:"";position:absolute;bottom:-50%;left:-10%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,0.28),transparent 65%);animation:floatA 18s ease-in-out infinite reverse;pointer-events:none;}
 @keyframes floatA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-24px,18px) scale(1.05);}}
 .header-inner{position:relative;z-index:2;display:flex;align-items:center;gap:16px;}
-.logo-wrap{width:66px;height:66px;flex:0 0 66px;border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,0.16),rgba(255,255,255,0.04));border:1px solid rgba(255,255,255,0.2);box-shadow:inset 0 1px 0 rgba(255,255,255,0.25),0 8px 24px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.logo-wrap{width:66px;height:66px;flex:0 0 66px;border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,0.16),rgba(255,255,255,0.04));border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .logo-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.25) 50%,transparent 70%);transform:translateX(-100%);animation:shine 4.5s ease-in-out infinite;}
 @keyframes shine{0%{transform:translateX(-100%);}45%,100%{transform:translateX(100%);}}
 .logo-svg{width:52px;height:52px;position:relative;z-index:1;}
 .flame{transform-origin:20px 14px;animation:flameSway 1.4s ease-in-out infinite;}
 .flame-inner{transform-origin:20px 16px;animation:flameSway 1.1s ease-in-out infinite reverse;}
-@keyframes flameSway{0%,100%{transform:scale(1,1) rotate(0deg);opacity:1;}50%{transform:scale(1.08,0.92) rotate(-2deg);opacity:0.92;}}
+@keyframes flameSway{0%,100%{transform:scale(1,1);}50%{transform:scale(1.08,0.92);}}
 .steam-1{animation:steamRise 2.6s ease-in-out infinite;}
 .steam-2{animation:steamRise 3.2s ease-in-out infinite 0.5s;}
 .steam-3{animation:steamRise 2.9s ease-in-out infinite 1s;}
@@ -58,184 +37,1728 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px
 .water-drop{animation:waterDrip 2.4s ease-in-out infinite;}
 @keyframes waterDrip{0%,100%{transform:translateY(0);opacity:1;}50%{transform:translateY(2px);opacity:0.75;}}
 .header-text{flex:1;min-width:0;}
-.header-text .title{font-size:1.15rem;font-weight:800;letter-spacing:-0.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.header-text .title{font-size:1.15rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .header-text .subtitle{font-size:0.78rem;opacity:0.82;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .header-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.66rem;font-weight:700;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.22);padding:3px 10px;border-radius:99px;margin-top:6px;}
 .header-badge .dot{width:6px;height:6px;border-radius:50%;background:#22D3EE;box-shadow:0 0 8px #22D3EE;animation:pulseDot 2s ease-in-out infinite;}
-@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.55;transform:scale(1.4);}}
-
-.tabs-sticky{position:sticky;top:96px;z-index:99;background:rgba(244,246,251,0.92);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);padding:8px 0 6px;margin-bottom:8px;}
-.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin;}
-.tabs::-webkit-scrollbar{height:4px;}
-.tabs::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:4px;}
-.tabs button{padding:10px 18px;border:1.5px solid var(--border);background:var(--card);border-radius:99px;font-family:inherit;font-size:0.82rem;font-weight:700;color:var(--text-soft);cursor:pointer;white-space:nowrap;transition:all 0.25s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadow-xs);}
-.tabs button .ic{margin-left:4px;font-size:0.9rem;}
+@keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.55;}}
+.tabs-sticky{position:sticky;top:96px;z-index:99;background:rgba(244,246,251,0.92);backdrop-filter:saturate(140%) blur(8px);padding:8px 0 6px;margin-bottom:8px;}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;}
+.tabs button{padding:10px 18px;border:1.5px solid var(--border);background:var(--card);border-radius:99px;font-family:inherit;font-size:0.82rem;font-weight:700;color:var(--text-soft);cursor:pointer;white-space:nowrap;transition:all 0.25s;box-shadow:var(--shadow-sm);}
 .tabs button.active{background:linear-gradient(135deg,var(--brand-3),var(--brand-2));color:#fff;border-color:var(--brand-2);box-shadow:var(--shadow-brand);transform:translateY(-1px);}
-.tabs button:hover:not(.active){border-color:var(--brand-3);color:var(--brand-3);transform:translateY(-1px);box-shadow:var(--shadow-sm);}
-
-.subtabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;padding:0 2px;}
+.tabs button:hover:not(.active){border-color:var(--brand-3);color:var(--brand-3);}
+.subtabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
 .subtabs button{padding:7px 14px;border:1px solid var(--border);background:var(--card);border-radius:99px;font-family:inherit;font-size:0.76rem;font-weight:600;color:var(--text-soft);cursor:pointer;transition:all 0.2s;}
 .subtabs button.active{background:linear-gradient(135deg,var(--accent),var(--brand-4));color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(6,182,212,0.35);}
-.subtabs button:hover:not(.active){border-color:var(--accent);color:var(--accent);}
-
-.card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow-sm);transition:box-shadow 0.3s;overflow:hidden;}
-.card::before{content:"";position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle at top right,rgba(37,99,235,0.05),transparent 70%);pointer-events:none;}
-.card:hover{box-shadow:var(--shadow-md);}
-.card h2{font-size:1.08rem;font-weight:800;color:var(--text);margin-bottom:4px;letter-spacing:-0.2px;}
+.card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow-sm);}
+.card h2{font-size:1.08rem;font-weight:800;color:var(--text);margin-bottom:4px;}
 .card .hint{font-size:0.8rem;color:var(--text-soft);margin-bottom:18px;line-height:1.7;}
-.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(6,182,212,0.12),rgba(37,99,235,0.12));color:#0E7490;font-size:0.7rem;font-weight:800;padding:5px 12px;border-radius:99px;border:1px solid rgba(6,182,212,0.25);margin-bottom:12px;letter-spacing:0.2px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(6,182,212,0.12),rgba(37,99,235,0.12));color:#0E7490;font-size:0.7rem;font-weight:800;padding:5px 12px;border-radius:99px;border:1px solid rgba(6,182,212,0.25);margin-bottom:12px;}
 .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent);}
-
 .field{margin-bottom:14px;}
-.field label{display:block;font-size:0.78rem;font-weight:700;color:var(--text);margin-bottom:6px;letter-spacing:0.1px;}
+.field label{display:block;font-size:0.78rem;font-weight:700;color:var(--text);margin-bottom:6px;}
 .field .unit{color:var(--text-mute);font-weight:500;font-size:0.7rem;margin-right:4px;}
 input,select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:0.9rem;background:var(--card-2);color:var(--text);transition:all 0.2s;appearance:none;}
-input:hover,select:hover{border-color:var(--border-2);}
 input:focus,select:focus{outline:none;background:#fff;border-color:var(--brand-3);box-shadow:0 0 0 4px rgba(37,99,235,0.12);}
 select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:left 14px center;padding-left:34px;}
 input[type=checkbox]{width:auto;accent-color:var(--brand-3);}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
 .row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
-@media(max-width:640px){.row3,.row4{grid-template-columns:1fr 1fr;}.header-text .title{font-size:1rem;}}
+@media(max-width:640px){.row3,.row4{grid-template-columns:1fr 1fr;}}
 @media(max-width:400px){.row3,.row4{grid-template-columns:1fr;}}
-
-.calc-settings{border:1.5px solid var(--warn-bd);background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%);border-radius:var(--radius-sm);padding:14px 16px;margin:0 0 16px;position:relative;}
+.calc-settings{border:1.5px solid var(--warn-bd);background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border-radius:var(--radius-sm);padding:14px 16px;margin:0 0 16px;}
 .calc-settings legend{font-size:0.76rem;font-weight:800;color:#92400E;padding:0 10px;background:#FFFBEB;border-radius:6px;border:1px solid var(--warn-bd);}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;background:linear-gradient(135deg,var(--brand-3) 0%,var(--brand-2) 100%);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:0.92rem;font-weight:800;cursor:pointer;transition:all 0.25s cubic-bezier(.4,0,.2,1);width:100%;box-shadow:0 4px 14px rgba(37,99,235,0.28),inset 0 1px 0 rgba(255,255,255,0.15);letter-spacing:0.2px;position:relative;overflow:hidden;}
-.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.25) 50%,transparent 70%);transform:translateX(-100%);transition:transform 0.7s;}
-.btn:hover::before{transform:translateX(100%);}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,99,235,0.4),inset 0 1px 0 rgba(255,255,255,0.2);}
-.btn:active{transform:translateY(0);}
-.btn.secondary{background:var(--card);color:var(--brand-3);border:1.5px solid var(--brand-3);box-shadow:var(--shadow-xs);}
-.btn.secondary:hover{background:rgba(37,99,235,0.05);}
-
-.gauge{background:linear-gradient(135deg,#ECFDF5 0%,#D1FAE5 100%);border:1px solid var(--success-bd);border-right:5px solid var(--success);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;transition:transform 0.2s,box-shadow 0.2s;box-shadow:var(--shadow-xs);}
-.gauge:hover{transform:translateX(-3px);box-shadow:var(--shadow-sm);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;background:linear-gradient(135deg,var(--brand-3),var(--brand-2));color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:0.92rem;font-weight:800;cursor:pointer;transition:all 0.25s;width:100%;box-shadow:0 4px 14px rgba(37,99,235,0.28);}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,99,235,0.4);}
+.btn.secondary{background:var(--card);color:var(--brand-3);border:1.5px solid var(--brand-3);box-shadow:none;}
+.gauge{background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:1px solid var(--success-bd);border-right:5px solid var(--success);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;transition:transform 0.2s;}
+.gauge:hover{transform:translateX(-3px);}
 .gauge .k{font-size:0.76rem;color:var(--text-soft);font-weight:700;margin-bottom:3px;}
-.gauge .v{font-size:1.35rem;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-0.5px;}
+.gauge .v{font-size:1.35rem;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;}
 .gauge .v small{font-size:0.68rem;font-weight:600;color:var(--text-soft);margin-right:5px;}
-.gauge .note{font-size:0.73rem;color:var(--text-soft);margin-top:4px;line-height:1.6;}
-.gauge.gold{background:linear-gradient(135deg,#FFFBEB 0%,#FEF3C7 100%);border-color:var(--warn-bd);border-right-color:var(--warn);}
-.gauge.info{background:linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%);border-color:var(--info-bd);border-right-color:var(--info);}
-.gauge.err{background:linear-gradient(135deg,#FEF2F2 0%,#FECACA 100%);border-color:var(--danger-bd);border-right-color:var(--danger);}
-
-.formula{background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:var(--radius-sm);padding:16px 18px;margin-top:14px;font-size:0.76rem;direction:ltr;text-align:left;font-family:'SF Mono','Consolas','Monaco',monospace;color:#93C5FD;overflow-x:auto;line-height:1.9;box-shadow:var(--shadow-md);position:relative;}
+.gauge .note{font-size:0.73rem;color:var(--text-soft);margin-top:4px;}
+.gauge.gold{background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border-color:var(--warn-bd);border-right-color:var(--warn);}
+.gauge.info{background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-color:var(--info-bd);border-right-color:var(--info);}
+.formula{background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:var(--radius-sm);padding:16px 18px;margin-top:14px;font-size:0.76rem;direction:ltr;text-align:left;font-family:'Consolas',monospace;color:#93C5FD;overflow-x:auto;line-height:1.9;position:relative;}
 .formula::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--brand-3),var(--gold));border-radius:var(--radius-sm) var(--radius-sm) 0 0;}
-.formula .ft{color:var(--gold-2);font-weight:800;font-size:0.74rem;margin-bottom:10px;direction:rtl;text-align:right;font-family:'Vazirmatn',Tahoma,sans-serif;display:flex;align-items:center;gap:6px;}
+.formula .ft{color:var(--gold-2);font-weight:800;font-size:0.74rem;margin-bottom:10px;direction:rtl;text-align:right;font-family:'Vazirmatn',sans-serif;}
 .formula .fl{margin:2px 0;}
 .formula .hl{color:#34D399;font-weight:700;}
-.formula .ref{color:#94A3B8;font-size:0.68rem;margin-top:10px;direction:rtl;text-align:right;font-family:'Vazirmatn',Tahoma,sans-serif;font-style:italic;border-top:1px dashed rgba(148,163,184,0.3);padding-top:8px;}
-
-.notice{background:var(--info-bg);border:1px solid var(--info-bd);border-right:4px solid var(--info);border-radius:var(--radius-sm);padding:12px 16px;font-size:0.8rem;color:#1E40AF;margin-bottom:14px;line-height:1.7;display:flex;gap:10px;align-items:flex-start;}
+.formula .ref{color:#94A3B8;font-size:0.68rem;margin-top:10px;direction:rtl;text-align:right;font-family:'Vazirmatn',sans-serif;font-style:italic;border-top:1px dashed rgba(148,163,184,0.3);padding-top:8px;}
+.notice{background:var(--info-bg);border:1px solid var(--info-bd);border-right:4px solid var(--info);border-radius:var(--radius-sm);padding:12px 16px;font-size:0.8rem;color:#1E40AF;margin-bottom:14px;line-height:1.7;display:flex;gap:10px;}
 .notice::before{content:"💡";font-size:1.1rem;flex-shrink:0;}
-
-.disclaimer{text-align:center;font-size:0.72rem;color:var(--text-mute);padding:24px 16px;line-height:1.9;border-top:1px solid var(--border);margin-top:24px;}
-.disclaimer strong{color:var(--brand-3);}
-
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:#fff;padding:12px 24px;border-radius:99px;font-size:0.85rem;opacity:0;pointer-events:none;transition:all 0.3s;z-index:200;box-shadow:var(--shadow-lg);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-.summary-box{background:linear-gradient(135deg,#0F172A,#1E293B);color:#E2E8F0;border-radius:var(--radius-sm);padding:14px 16px;font-size:0.82rem;line-height:1.9;white-space:pre-wrap;font-family:'SF Mono','Consolas',monospace;border:none;width:100%;resize:vertical;min-height:140px;direction:ltr;text-align:left;box-shadow:var(--shadow-md);}
-
-table.std{width:100%;border-collapse:collapse;font-size:0.8rem;margin-top:8px;border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow-xs);}
+.summary-box{background:linear-gradient(135deg,#0F172A,#1E293B);color:#E2E8F0;border-radius:var(--radius-sm);padding:14px 16px;font-size:0.82rem;line-height:1.9;white-space:pre-wrap;font-family:'Consolas',monospace;border:none;width:100%;resize:vertical;min-height:140px;direction:ltr;text-align:left;}
+table.std{width:100%;border-collapse:collapse;font-size:0.8rem;margin-top:8px;border-radius:var(--radius-sm);overflow:hidden;}
 table.std th,table.std td{border:1px solid var(--border);padding:8px 10px;text-align:center;}
 table.std th{background:linear-gradient(135deg,var(--brand-3),var(--brand-2));color:#fff;font-weight:700;font-size:0.78rem;}
 table.std tr:nth-child(even){background:var(--card-2);}
-
-.calc-result{background:linear-gradient(135deg,#ECFDF5 0%,#D1FAE5 100%);border:2px solid var(--success-bd);border-radius:var(--radius-sm);padding:16px;text-align:center;margin-top:14px;box-shadow:var(--shadow-sm);}
-.calc-result .num{font-size:1.9rem;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-1px;}
+.calc-result{background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border:2px solid var(--success-bd);border-radius:var(--radius-sm);padding:16px;text-align:center;margin-top:14px;}
+.calc-result .num{font-size:1.9rem;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;}
 .calc-result .lbl{font-size:0.78rem;color:var(--text-soft);margin-top:4px;}
-
 .conversion-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:12px;}
-.conv-item{background:var(--card-2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.82rem;transition:all 0.2s;}
-.conv-item:hover{background:var(--info-bg);border-color:var(--info-bd);}
+.conv-item{background:var(--card-2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.82rem;}
 .conv-item .ck{color:var(--text-soft);font-size:0.72rem;display:block;margin-bottom:3px;}
 .conv-item .cv{font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:end;}
 @media(max-width:640px){.calc-grid{grid-template-columns:1fr;}}
-
 fieldset{border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin:0 0 14px;}
 legend{font-size:0.78rem;font-weight:800;color:var(--brand-3);padding:0 8px;}
-
-.fab{position:fixed;bottom:20px;left:20px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--brand-3));color:#fff;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(6,182,212,0.45);font-size:22px;display:flex;align-items:center;justify-content:center;z-index:90;transition:transform 0.2s;font-weight:700;}
-.fab:hover{transform:scale(1.08) rotate(15deg);}
-
 .panel,.subpanel{display:none;}
 .panel.active,.subpanel.active{display:block;animation:fade .22s ease;}
 @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
-
-/* PDF Toolbar */
 .pdf-toolbar{display:flex;gap:10px;margin-top:16px;padding-top:16px;border-top:2px dashed var(--border);flex-wrap:wrap;}
-.pdf-toolbar .btn-pdf{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;background:linear-gradient(135deg,#DC2626,#B91C1C);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;box-shadow:0 4px 12px rgba(220,38,38,0.3);flex:1;min-width:140px;}
+.pdf-toolbar .btn-pdf{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;background:linear-gradient(135deg,#DC2626,#B91C1C);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;flex:1;min-width:140px;box-shadow:0 4px 12px rgba(220,38,38,0.3);}
 .pdf-toolbar .btn-pdf:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(220,38,38,0.4);}
 .pdf-toolbar .btn-pdf::before{content:"📄";}
 .pdf-toolbar .btn-print-local{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;background:var(--card);color:var(--brand-3);border:1.5px solid var(--brand-3);border-radius:var(--radius-sm);font-family:inherit;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;flex:1;min-width:140px;}
-.pdf-toolbar .btn-print-local:hover{background:rgba(37,99,235,0.06);transform:translateY(-2px);}
 .pdf-toolbar .btn-print-local::before{content:"🖨️";}
-
-.pdf-exporting{background:#fff !important;padding:24px !important;border-radius:0 !important;box-shadow:none !important;width:210mm !important;max-width:210mm !important;}
-.pdf-exporting .gauge{background:#F0FDF4 !important;border:1px solid #BBF7D0 !important;break-inside:avoid;page-break-inside:avoid;}
-.pdf-exporting .formula{background:#F8FAFC !important;color:#1E40AF !important;border-right:3px solid #2563EB !important;break-inside:avoid;page-break-inside:avoid;}
-.pdf-exporting .formula::before{display:none !important;}
-.pdf-exporting .card{border:1px solid #E2E8F0 !important;box-shadow:none !important;page-break-inside:avoid;}
-.pdf-exporting .badge{background:#DBEAFE !important;color:#1E40AF !important;}
-.pdf-exporting .summary-box{background:#F8FAFC !important;color:#0F172A !important;border:1px solid #E2E8F0 !important;}
+.pdf-exporting{background:#fff!important;padding:24px!important;box-shadow:none!important;width:210mm!important;}
+.pdf-exporting .gauge{background:#F0FDF4!important;border:1px solid #BBF7D0!important;page-break-inside:avoid;}
+.pdf-exporting .formula{background:#F8FAFC!important;color:#1E40AF!important;border-right:3px solid #2563EB!important;page-break-inside:avoid;}
+.pdf-exporting .formula::before{display:none!important;}
+.pdf-exporting .card{border:1px solid #E2E8F0!important;box-shadow:none!important;page-break-inside:avoid;}
+.trim-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:12px;}
+.trim-item{background:linear-gradient(135deg,#F8FAFC,#EFF6FF);border:1px solid var(--info-bd);border-right:4px solid var(--info);border-radius:8px;padding:12px 14px;font-size:0.82rem;}
+.trim-item .name{font-weight:800;color:var(--brand-3);margin-bottom:4px;}
+.trim-item .spec{color:var(--text-soft);font-size:0.76rem;line-height:1.6;}
+.disclaimer{text-align:center;font-size:0.72rem;color:var(--text-mute);padding:24px 16px;line-height:1.9;border-top:1px solid var(--border);margin-top:24px;}
+.disclaimer strong{color:var(--brand-3);}
 </style>
 </head>
 <body>
 <div class="app">
+<div class="sticky-shell">
+<header class="header">
+<div class="header-inner">
+<div class="logo-wrap">
+<svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+<path class="flame" d="M20 12 C18 15,17 18,19 21 C20 23,22 23,22 21 C23 19,22 16,20 12 Z" fill="#FBBF24"/>
+<path class="flame-inner" d="M20 14 C19 16,19 18,20 20 C21 21,21.5 20,21 19 C20.5 17,20.5 16,20 14 Z" fill="#F59E0B"/>
+<g stroke="#60A5FA" stroke-width="1.4" stroke-linecap="round" fill="none">
+<path class="steam-1" d="M34 16 q2 -3 4 0 q2 3 4 0"/>
+<path class="steam-2" d="M36 12 q2 -3 4 0 q2 3 4 0"/>
+<path class="steam-3" d="M38 18 q2 -3 4 0 q2 3 4 0"/>
+</g>
+<rect x="8" y="28" width="32" height="18" rx="3" fill="#1E3A8A" stroke="#3B82F6" stroke-width="1.2"/>
+<rect x="12" y="24" width="6" height="4" rx="1" fill="#60A5FA"/>
+<rect x="30" y="24" width="6" height="4" rx="1" fill="#60A5FA"/>
+<rect x="14" y="18" width="4" height="8" fill="#64748B"/>
+<rect x="13" y="17" width="6" height="2" fill="#475569"/>
+<line x1="12" y1="34" x2="36" y2="34" stroke="#60A5FA" stroke-width="0.6"/>
+<line x1="12" y1="38" x2="36" y2="38" stroke="#60A5FA" stroke-width="0.6"/>
+<line x1="12" y1="42" x2="36" y2="42" stroke="#60A5FA" stroke-width="0.6"/>
+<rect x="44" y="24" width="10" height="22" rx="2" fill="#0F172A" stroke="#06B6D4" stroke-width="1.2"/>
+<rect x="46" y="22" width="6" height="3" rx="1" fill="#06B6D4"/>
+<path class="water-drop" d="M49 32 C47 35,47 38,49 38 C51 38,51 35,49 32 Z" fill="#22D3EE" opacity="0.9"/>
+<rect x="10" y="46" width="4" height="4" fill="#475569"/>
+<rect x="34" y="46" width="4" height="4" fill="#475569"/>
+</svg>
+</div>
+<div class="header-text">
+<div class="title">Capacity Assistant v5</div>
+<div class="subtitle">کاسپین مبدل آمارد — دستیار مهندسی تعیین ظرفیت</div>
+<span class="header-badge"><span class="dot"></span> ASHRAE / Fulton / Spirax / Mabhas 19</span>
+</div>
+</div>
+</header>
+<div class="tabs-sticky">
+<nav class="tabs">
+<button class="tab-btn active" data-panel="boilers"><span class="ic">🔥</span> دیگ‌ها</button>
+<button class="tab-btn" data-panel="hwboilers"><span class="ic">💧</span> آبگرم / آب‌داغ</button>
+<button class="tab-btn" data-panel="applications"><span class="ic">📐</span> محاسبات کاربردی</button>
+<button class="tab-btn" data-panel="tanks"><span class="ic">🛢</span> مخازن</button>
+<button class="tab-btn" data-panel="treatment"><span class="ic">🧪</span> تصفیه آب</button>
+<button class="tab-btn" data-panel="accessories"><span class="ic">⚙️</span> تجهیزات جانبی</button>
+<button class="tab-btn" data-panel="calculator"><span class="ic">🧮</span> ماشین‌حساب</button>
+</nav>
+</div>
+</div>
 
-  <!-- ==================== هدر چسبنده ==================== -->
-  <div class="sticky-shell">
-    <header class="header">
-      <div class="header-inner">
-        <div class="logo-wrap">
-          <svg class="logo-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g>
-              <path class="flame" d="M20 12 C18 15,17 18,19 21 C20 23,22 23,22 21 C23 19,22 16,20 12 Z" fill="#FBBF24"/>
-              <path class="flame-inner" d="M20 14 C19 16,19 18,20 20 C21 21,21.5 20,21 19 C20.5 17,20.5 16,20 14 Z" fill="#F59E0B"/>
-            </g>
-            <g stroke="#60A5FA" stroke-width="1.4" stroke-linecap="round" fill="none">
-              <path class="steam-1" d="M34 16 q2 -3 4 0 q2 3 4 0"/>
-              <path class="steam-2" d="M36 12 q2 -3 4 0 q2 3 4 0"/>
-              <path class="steam-3" d="M38 18 q2 -3 4 0 q2 3 4 0"/>
-            </g>
-            <rect x="8" y="28" width="32" height="18" rx="3" fill="#1E3A8A" stroke="#3B82F6" stroke-width="1.2"/>
-            <rect x="12" y="24" width="6" height="4" rx="1" fill="#60A5FA"/>
-            <rect x="30" y="24" width="6" height="4" rx="1" fill="#60A5FA"/>
-            <rect x="14" y="18" width="4" height="8" fill="#64748B"/>
-            <rect x="13" y="17" width="6" height="2" fill="#475569"/>
-            <line x1="12" y1="34" x2="36" y2="34" stroke="#60A5FA" stroke-width="0.6"/>
-            <line x1="12" y1="38" x2="36" y2="38" stroke="#60A5FA" stroke-width="0.6"/>
-            <line x1="12" y1="42" x2="36" y2="42" stroke="#60A5FA" stroke-width="0.6"/>
-            <rect x="44" y="24" width="10" height="22" rx="2" fill="#0F172A" stroke="#06B6D4" stroke-width="1.2"/>
-            <rect x="46" y="22" width="6" height="3" rx="1" fill="#06B6D4"/>
-            <path class="water-drop" d="M49 32 C47 35,47 38,49 38 C51 38,51 35,49 32 Z" fill="#22D3EE" opacity="0.9"/>
-            <rect x="10" y="46" width="4" height="4" fill="#475569"/>
-            <rect x="34" y="46" width="4" height="4" fill="#475569"/>
-          </svg>
-        </div>
-        <div class="header-text">
-          <div class="title">Capacity Assistant v5</div>
-          <div class="subtitle">کاسپین مبدل آمارد — دستیار مهندسی تعیین ظرفیت</div>
-          <span class="header-badge"><span class="dot"></span> ASHRAE / Fulton / Spirax / Mabhas 19</span>
-        </div>
-      </div>
-    </header>
+<main>
+<!-- BOILERS -->
+<section id="panel-boilers" class="panel active">
+<nav class="subtabs" data-parent="boilers">
+<button class="subtab-btn active" data-subpanel="steam-horizontal">افقی سه‌پاس</button>
+<button class="subtab-btn" data-subpanel="steam-firebox">فایرباکس</button>
+<button class="subtab-btn" data-subpanel="steam-vertical">عمودی</button>
+<button class="subtab-btn" data-subpanel="steam-clean">مولد بخار تمیز</button>
+<button class="subtab-btn" data-subpanel="hot-oil">روغن داغ</button>
+</nav>
 
-    <div class="tabs-sticky">
-      <nav class="tabs" id="main-tabs">
-        <button class="tab-btn active" data-panel="boilers"><span class="ic">🔥</span> دیگ‌ها</button>
-        <button class="tab-btn" data-panel="hwboilers"><span class="ic">💧</span> آبگرم / آب‌داغ</button>
-        <button class="tab-btn" data-panel="applications"><span class="ic">📐</span> محاسبات کاربردی</button>
-        <button class="tab-btn" data-panel="tanks"><span class="ic">🛢</span> مخازن</button>
-        <button class="tab-btn" data-panel="treatment"><span class="ic">🧪</span> تصفیه آب</button>
-        <button class="tab-btn" data-panel="accessories"><span class="ic">⚙️</span> تجهیزات جانبی</button>
-        <button class="tab-btn" data-panel="calculator"><span class="ic">🧮</span> ماشین‌حساب</button>
-      </nav>
-    </div>
+<div id="subpanel-steam-horizontal" class="subpanel active">
+<div class="card">
+<span class="badge">Steam Boiler — Horizontal Wet-back</span>
+<h2>دیگ بخار افقی سه‌پاس وت‌بک</h2>
+<p class="hint">ظرفیت ۱۰۰ تا ۱۵٬۰۰۰ kg/hr — فشار ۳ تا ۲۰ bar. EN12953 / BS2790 / ISIRI 4231. محاسبه کامل مشعل + تجهیزات جانبی.</p>
+<div class="row">
+<div class="field"><label>ظرفیت <span class="unit">kg/hr</span></label><input type="number" id="hwb_cap" value="3000"></div>
+<div class="field"><label>فشار کاری <span class="unit">bar</span></label><input type="number" id="hwb_p" value="10"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای آب تغذیه <span class="unit">°C</span></label><input type="number" id="hwb_tfeed" value="105"></div>
+<div class="field"><label>بازگشت کندانس <span class="unit">٪</span></label><input type="number" id="hwb_cond" value="60"></div>
+<div class="field"><label>دمای کندانس <span class="unit">°C</span></label><input type="number" id="hwb_tcond" value="85"></div>
+<div class="field"><label>دمای جبرانی <span class="unit">°C</span></label><input type="number" id="hwb_tmakeup" value="20"></div>
+</div>
+<div class="row4">
+<div class="field"><label>TDS آب تغذیه <span class="unit">ppm</span></label><input type="number" id="hwb_tdsf" value="250"></div>
+<div class="field"><label>TDS حداکثر <span class="unit">ppm</span></label><input type="number" id="hwb_tdsb" value="3500"></div>
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="hwb_eff" value="88"></div>
+<div class="field"><label>کیفیت بخار <span class="unit">٪</span></label><input type="number" id="hwb_x" value="97"></div>
+</div>
+<div class="row4">
+<div class="field"><label>سوخت</label><select id="hwb_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="hwb_alt" value="0"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="hwb_tamb" value="20"></div>
+<div class="field"><label>سختی آب <span class="unit">ppm</span></label><input type="number" id="hwb_hard" value="300"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای دودکش <span class="unit">°C</span></label><input type="number" id="hwb_stack" value="200"></div>
+<div class="field"><label>هوای اضافی <span class="unit">٪</span></label><input type="number" id="hwb_excess" value="15"></div>
+<div class="field"><label>فشار دی‌اریتور <span class="unit">bar</span></label><input type="number" id="hwb_pdea" value="0.3"></div>
+<div class="field"><label>طول لوله بخار <span class="unit">m</span></label><input type="number" id="hwb_pipelen" value="50"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات این محاسبه</legend>
+<div class="row3">
+<div class="field"><label>ضریب اطمینان</label><select id="hwb_sf"><option value="1.0">۱.۰ — خالص</option><option value="1.1">۱.۱ — ۱۰٪</option><option value="1.2" selected>۱.۲ — ۲۰٪</option><option value="1.3">۱.۳ — Fulton</option><option value="1.35">۱.۳۵ — محافظه</option></select></div>
+<div class="field"><label>بازیافت بلودان</label><select id="hwb_blow_recovery"><option value="1" selected>فعال</option><option value="0">غیرفعال</option></select></div>
+<div class="field"><label>اکونومایزر</label><select id="hwb_economizer"><option value="0" selected>غیرفعال</option><option value="1">فعال</option></select></div>
+</div>
+<div class="row2" style="margin-top:8px;">
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="hwb_show_trim" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات نصب‌شده روی دیگ</label></div>
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="hwb_show_aux" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات جانبی سیستم</label></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcHorizontalSteam()">⚡ محاسبه کامل + PDF</button>
+<div class="results" id="hwb_results"></div>
+</div>
+</div>
+
+<div id="subpanel-steam-firebox" class="subpanel">
+<div class="card">
+<span class="badge">Steam Boiler — Firebox</span>
+<h2>دیگ بخار فایرباکس</h2>
+<p class="hint">ظرفیت ۳۰۰ تا ۸٬۰۰۰ kg/hr — فشار ۶ تا ۱۶ bar.</p>
+<div class="row">
+<div class="field"><label>ظرفیت <span class="unit">kg/hr</span></label><input type="number" id="fb_cap" value="1500"></div>
+<div class="field"><label>فشار کاری <span class="unit">bar</span></label><input type="number" id="fb_p" value="10"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای آب تغذیه <span class="unit">°C</span></label><input type="number" id="fb_tfeed" value="105"></div>
+<div class="field"><label>بازگشت کندانس <span class="unit">٪</span></label><input type="number" id="fb_cond" value="60"></div>
+<div class="field"><label>دمای کندانس <span class="unit">°C</span></label><input type="number" id="fb_tcond" value="85"></div>
+<div class="field"><label>دمای جبرانی <span class="unit">°C</span></label><input type="number" id="fb_tmakeup" value="20"></div>
+</div>
+<div class="row4">
+<div class="field"><label>TDS آب تغذیه <span class="unit">ppm</span></label><input type="number" id="fb_tdsf" value="250"></div>
+<div class="field"><label>TDS حداکثر <span class="unit">ppm</span></label><input type="number" id="fb_tdsb" value="3000"></div>
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="fb_eff" value="86"></div>
+<div class="field"><label>کیفیت بخار <span class="unit">٪</span></label><input type="number" id="fb_x" value="97"></div>
+</div>
+<div class="row4">
+<div class="field"><label>سوخت</label><select id="fb_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="fb_alt" value="0"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="fb_tamb" value="20"></div>
+<div class="field"><label>سختی آب <span class="unit">ppm</span></label><input type="number" id="fb_hard" value="300"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای دودکش <span class="unit">°C</span></label><input type="number" id="fb_stack" value="200"></div>
+<div class="field"><label>هوای اضافی <span class="unit">٪</span></label><input type="number" id="fb_excess" value="15"></div>
+<div class="field"><label>فشار دی‌اریتور <span class="unit">bar</span></label><input type="number" id="fb_pdea" value="0.3"></div>
+<div class="field"><label>طول لوله بخار <span class="unit">m</span></label><input type="number" id="fb_pipelen" value="30"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات این محاسبه</legend>
+<div class="row3">
+<div class="field"><label>ضریب اطمینان</label><select id="fb_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option><option value="1.35">۱.۳۵</option></select></div>
+<div class="field"><label>بازیافت بلودان</label><select id="fb_blow_recovery"><option value="1" selected>فعال</option><option value="0">غیرفعال</option></select></div>
+<div class="field"><label>اکونومایزر</label><select id="fb_economizer"><option value="0" selected>غیرفعال</option><option value="1">فعال</option></select></div>
+</div>
+<div class="row2" style="margin-top:8px;">
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="fb_show_trim" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات نصب‌شده روی دیگ</label></div>
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="fb_show_aux" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات جانبی سیستم</label></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcFireboxSteam()">⚡ محاسبه کامل + PDF</button>
+<div class="results" id="fb_results"></div>
+</div>
+</div>
+
+<div id="subpanel-steam-vertical" class="subpanel">
+<div class="card">
+<span class="badge">Steam Boiler — Vertical</span>
+<h2>دیگ بخار عمودی</h2>
+<p class="hint">ظرفیت ۶۰ تا ۵۰۰ kg/hr — فشار ۳ تا ۱۰ bar.</p>
+<div class="row">
+<div class="field"><label>ظرفیت <span class="unit">kg/hr</span></label><input type="number" id="vrt_cap" value="200"></div>
+<div class="field"><label>فشار کاری <span class="unit">bar</span></label><input type="number" id="vrt_p" value="8"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای آب تغذیه <span class="unit">°C</span></label><input type="number" id="vrt_tfeed" value="20"></div>
+<div class="field"><label>بازگشت کندانس <span class="unit">٪</span></label><input type="number" id="vrt_cond" value="0"></div>
+<div class="field"><label>TDS آب تغذیه <span class="unit">ppm</span></label><input type="number" id="vrt_tdsf" value="300"></div>
+<div class="field"><label>TDS حداکثر <span class="unit">ppm</span></label><input type="number" id="vrt_tdsb" value="3500"></div>
+</div>
+<div class="row4">
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="vrt_eff" value="85"></div>
+<div class="field"><label>کیفیت بخار <span class="unit">٪</span></label><input type="number" id="vrt_x" value="96"></div>
+<div class="field"><label>سوخت</label><select id="vrt_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option></select></div>
+<div class="field"><label>سختی آب <span class="unit">ppm</span></label><input type="number" id="vrt_hard" value="300"></div>
+</div>
+<div class="row4">
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="vrt_alt" value="0"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="vrt_tamb" value="20"></div>
+<div class="field"><label>دمای دودکش <span class="unit">°C</span></label><input type="number" id="vrt_stack" value="220"></div>
+<div class="field"><label>هوای اضافی <span class="unit">٪</span></label><input type="number" id="vrt_excess" value="15"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات این محاسبه</legend>
+<div class="row2">
+<div class="field"><label>ضریب اطمینان</label><select id="vrt_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option><option value="1.35">۱.۳۵</option></select></div>
+<div class="field"><label>بازیافت بلودان</label><select id="vrt_blow_recovery"><option value="1" selected>فعال</option><option value="0">غیرفعال</option></select></div>
+</div>
+<div class="row2" style="margin-top:8px;">
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="vrt_show_trim" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات روی دیگ</label></div>
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="vrt_show_aux" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات جانبی سیستم</label></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcVerticalSteam()">⚡ محاسبه کامل + PDF</button>
+<div class="results" id="vrt_results"></div>
+</div>
+</div>
+
+<div id="subpanel-steam-clean" class="subpanel">
+<div class="card">
+<span class="badge">Clean Steam Generator</span>
+<h2>مولد بخار تمیز</h2>
+<p class="hint">EN285 / HTM2031. استنلس استیل ۳۱۶L.</p>
+<div class="field"><label>نوع کاربرد</label><select id="cs_app" onchange="onCleanSteamAppChange()"><option value="hospital">بیمارستان — استریلیزاسیون</option><option value="pharma">داروسازی — CIP/SIP</option><option value="food">صنایع غذایی</option><option value="lab">آزمایشگاه — اتوکلاو</option></select></div>
+<div id="cs_dynamic_inputs"></div>
+<div class="row3">
+<div class="field"><label>فشار کاری <span class="unit">bar</span></label><input type="number" id="cs_p" value="4"></div>
+<div class="field"><label>منبع انرژی</label><select id="cs_primary"><option value="steam">بخار بویلر</option><option value="hotoil">روغن داغ</option><option value="hotwater">آب داغ</option></select></div>
+<div class="field"><label>حاشیه <span class="unit">٪</span></label><input type="number" id="cs_margin" value="15"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="field"><label>ضریب اطمینان</label><select id="cs_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+</fieldset>
+<button class="btn" onclick="calcCleanSteam()">⚡ محاسبه + PDF</button>
+<div class="results" id="cs_results"></div>
+</div>
+</div>
+
+<div id="subpanel-hot-oil" class="subpanel">
+<div class="card">
+<span class="badge">Hot Oil Boiler</span>
+<h2>دیگ روغن داغ</h2>
+<p class="hint">DIN 4754. ظرفیت ۱۰۰٬۰۰۰ تا ۳٬۰۰۰٬۰۰۰ kcal/hr.</p>
+<div class="row3">
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="ho_q" value="500000"></div>
+<div class="field"><label>دمای رفت <span class="unit">°C</span></label><input type="number" id="ho_tin" value="280"></div>
+<div class="field"><label>دمای برگشت <span class="unit">°C</span></label><input type="number" id="ho_tout" value="250"></div>
+</div>
+<div class="row4">
+<div class="field"><label>حاشیه <span class="unit">٪</span></label><input type="number" id="ho_margin" value="15"></div>
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="ho_eff" value="90"></div>
+<div class="field"><label>سوخت</label><select id="ho_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option></select></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="ho_alt" value="0"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="field"><label>ضریب اطمینان</label><select id="ho_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+</fieldset>
+<button class="btn" onclick="calcHotOil()">⚡ محاسبه + PDF</button>
+<div class="results" id="ho_results"></div>
+</div>
+</div>
+</section>
+
+<!-- HW BOILERS -->
+<section id="panel-hwboilers" class="panel">
+<nav class="subtabs" data-parent="hwboilers">
+<button class="subtab-btn active" data-subpanel="hw-threepass">سه‌پاس</button>
+<button class="subtab-btn" data-subpanel="hw-reverse">شعله برگشتی</button>
+<button class="subtab-btn" data-subpanel="hw-firebox">فایرباکس</button>
+<button class="subtab-btn" data-subpanel="hw-azaran">آذران</button>
+<button class="subtab-btn" data-subpanel="hw-package">پکیج</button>
+</nav>
+
+<div id="subpanel-hw-threepass" class="subpanel active">
+<div class="card">
+<span class="badge">Hot Water — Three-pass</span>
+<h2>دیگ آبگرم سه‌پاس</h2>
+<p class="hint">۸۰٬۰۰۰ تا ۶٬۰۰۰٬۰۰۰ kcal/hr — ۳ تا ۲۰ bar.</p>
+<div class="row">
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="tp_q" value="500000"></div>
+<div class="field"><label>فشار کاری <span class="unit">bar</span></label><input type="number" id="tp_p" value="6"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای رفت <span class="unit">°C</span></label><input type="number" id="tp_tin" value="90"></div>
+<div class="field"><label>دمای برگشت <span class="unit">°C</span></label><input type="number" id="tp_tout" value="70"></div>
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="tp_eff" value="88"></div>
+<div class="field"><label>حاشیه <span class="unit">٪</span></label><input type="number" id="tp_margin" value="15"></div>
+</div>
+<div class="row4">
+<div class="field"><label>سوخت</label><select id="tp_fuel"><option value="gas">گاز طبیعی</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="tp_alt" value="0"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="tp_tamb" value="20"></div>
+<div class="field"><label>دمای دودکش <span class="unit">°C</span></label><input type="number" id="tp_stack" value="200"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="row2">
+<div class="field"><label>ضریب اطمینان</label><select id="tp_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="tp_show_trim" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات جانبی روی دیگ</label></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcHWThreePass()">⚡ محاسبه + PDF</button>
+<div class="results" id="tp_results"></div>
+</div>
+</div>
+
+<div id="subpanel-hw-reverse" class="subpanel">
+<div class="card">
+<span class="badge">Hot Water — Reverse Flame</span>
+<h2>دیگ آبگرم شعله برگشتی</h2>
+<div class="row">
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="rf_q" value="400000"></div>
+<div class="field"><label>فشار <span class="unit">bar</span></label><input type="number" id="rf_p" value="6"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای رفت <span class="unit">°C</span></label><input type="number" id="rf_tin" value="90"></div>
+<div class="field"><label>دمای برگشت <span class="unit">°C</span></label><input type="number" id="rf_tout" value="70"></div>
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="rf_eff" value="85"></div>
+<div class="field"><label>حاشیه <span class="unit">٪</span></label><input type="number" id="rf_margin" value="15"></div>
+</div>
+<div class="row4">
+<div class="field"><label>سوخت</label><select id="rf_fuel"><option value="gas">گاز</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="rf_alt" value="0"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="rf_tamb" value="20"></div>
+<div class="field"><label>دمای دودکش <span class="unit">°C</span></label><input type="number" id="rf_stack" value="200"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="row2">
+<div class="field"><label>ضریب اطمینان</label><select id="rf_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="rf_show_trim" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات روی دیگ</label></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcHWReverse()">⚡ محاسبه + PDF</button>
+<div class="results" id="rf_results"></div>
+</div>
+</div>
+
+<div id="subpanel-hw-firebox" class="subpanel">
+<div class="card">
+<span class="badge">Hot Water — Firebox</span>
+<h2>دیگ آبگرم فایرباکس</h2>
+<div class="row">
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="hfb_q" value="300000"></div>
+<div class="field"><label>فشار <span class="unit">bar</span></label><input type="number" id="hfb_p" value="6"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای رفت <span class="unit">°C</span></label><input type="number" id="hfb_tin" value="90"></div>
+<div class="field"><label>دمای برگشت <span class="unit">°C</span></label><input type="number" id="hfb_tout" value="70"></div>
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="hfb_eff" value="86"></div>
+<div class="field"><label>حاشیه <span class="unit">٪</span></label><input type="number" id="hfb_margin" value="15"></div>
+</div>
+<div class="row4">
+<div class="field"><label>سوخت</label><select id="hfb_fuel"><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="hfb_alt" value="0"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="hfb_tamb" value="20"></div>
+<div class="field"><label>دمای دودکش <span class="unit">°C</span></label><input type="number" id="hfb_stack" value="200"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="row2">
+<div class="field"><label>ضریب اطمینان</label><select id="hfb_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="hfb_show_trim" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات روی دیگ</label></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcHWFirebox()">⚡ محاسبه + PDF</button>
+<div class="results" id="hfb_results"></div>
+</div>
+</div>
+
+<div id="subpanel-hw-azaran" class="subpanel">
+<div class="card">
+<span class="badge">Hot Water — Azaran</span>
+<h2>دیگ آبگرم آذران</h2>
+<div class="row">
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="az_q" value="250000"></div>
+<div class="field"><label>فشار <span class="unit">bar</span></label><input type="number" id="az_p" value="4"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای رفت <span class="unit">°C</span></label><input type="number" id="az_tin" value="85"></div>
+<div class="field"><label>دمای برگشت <span class="unit">°C</span></label><input type="number" id="az_tout" value="70"></div>
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="az_eff" value="80"></div>
+<div class="field"><label>حاشیه <span class="unit">٪</span></label><input type="number" id="az_margin" value="15"></div>
+</div>
+<div class="row4">
+<div class="field"><label>سوخت</label><select id="az_fuel"><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="az_alt" value="0"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="az_tamb" value="20"></div>
+<div class="field"><label>دمای دودکش <span class="unit">°C</span></label><input type="number" id="az_stack" value="200"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="row2">
+<div class="field"><label>ضریب اطمینان</label><select id="az_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="az_show_trim" checked><label style="margin:0;font-weight:500;">نمایش تجهیزات روی دیگ</label></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcHWAzaran()">⚡ محاسبه + PDF</button>
+<div class="results" id="az_results"></div>
+</div>
+</div>
+
+<div id="subpanel-hw-package" class="subpanel">
+<div class="card">
+<span class="badge">Central Heating Package</span>
+<h2>پکیج موتورخانه</h2>
+<p class="hint">سری H و M. ۱۷٬۰۰۰ تا ۱۰۰٬۰۰۰ kcal/hr.</p>
+<div class="field"><label>سری</label><select id="pk_series"><option value="H">سری H</option><option value="M">سری M</option></select></div>
+<div class="row4">
+<div class="field"><label>تعداد واحد</label><input type="number" id="pk_units" value="6"></div>
+<div class="field"><label>متراژ واحد <span class="unit">m²</span></label><input type="number" id="pk_area" value="120"></div>
+<div class="field"><label>ارتفاع سقف <span class="unit">m</span></label><input type="number" id="pk_h" value="2.8" step="0.1"></div>
+<div class="field"><label>نیاز آبگرم</label><select id="pk_dhw"><option value="0">بدون</option><option value="1" selected>با</option></select></div>
+</div>
+<div class="row3">
+<div class="field"><label>دمای هدف <span class="unit">°C</span></label><input type="number" id="pk_tin" value="22"></div>
+<div class="field"><label>ضریب U</label><select id="pk_u"><option value="1.2">1.2</option><option value="0.8" selected>0.8</option><option value="0.5">0.5</option><option value="0.35">0.35</option></select></div>
+<div class="field"><label>استان</label><select id="pk_province" onchange="onProvinceChange('pk_province','pk_tout')"></select></div>
+</div>
+<div class="field"><label>دمای طرح زمستانی <span class="unit">°C</span></label><input type="number" id="pk_tout" value="-5"></div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="field"><label>ضریب اطمینان</label><select id="pk_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+</fieldset>
+<button class="btn" onclick="calcHWPackage()">⚡ محاسبه + PDF</button>
+<div class="results" id="pk_results"></div>
+</div>
+</div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="panel-applications" class="panel">
+<nav class="subtabs" data-parent="applications">
+<button class="subtab-btn active" data-subpanel="app-greenhouse">🌿 گلخانه</button>
+<button class="subtab-btn" data-subpanel="app-pool">🏊 استخر</button>
+<button class="subtab-btn" data-subpanel="app-dhw">🚿 آبگرم مصرفی</button>
+<button class="subtab-btn" data-subpanel="app-heating">🏢 گرمایش</button>
+<button class="subtab-btn" data-subpanel="app-sauna">🧖 سونا</button>
+<button class="subtab-btn" data-subpanel="app-industrial">🏭 بخار صنعتی</button>
+</nav>
+
+<div id="subpanel-app-greenhouse" class="subpanel active">
+<div class="card">
+<span class="badge">Greenhouse</span>
+<h2>بار حرارتی گلخانه</h2>
+<div class="row3">
+<div class="field"><label>طول <span class="unit">m</span></label><input type="number" id="gh_l" value="30" step="0.5"></div>
+<div class="field"><label>عرض <span class="unit">m</span></label><input type="number" id="gh_w" value="15" step="0.5"></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="gh_h" value="4" step="0.1"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای هدف <span class="unit">°C</span></label><input type="number" id="gh_tin" value="22"></div>
+<div class="field"><label>دمای طرح <span class="unit">°C</span></label><input type="number" id="gh_tout" value="-3"></div>
+<div class="field"><label>نوع پوشش</label><select id="gh_cover"><option value="6.53">نایلون تک‌لایه (6.53)</option><option value="4.54" selected>نایلون دولایه (4.54)</option><option value="6.42">شیشه تک (6.42)</option><option value="3.69">شیشه دو (3.69)</option><option value="3.29">پلی‌کربنات دو (3.29)</option></select></div>
+<div class="field"><label>نفوذ هوا (ACH)</label><select id="gh_infil"><option value="0.5">کم (0.5)</option><option value="1.0" selected>متوسط (1.0)</option><option value="1.5">زیاد (1.5)</option></select></div>
+</div>
+<div class="row3">
+<div class="field"><label>سوخت</label><select id="gh_fuel"><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="gh_alt" value="0"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="gh_tamb" value="20"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="row">
+<div class="field"><label>ضریب اطمینان</label><select id="gh_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+<div class="field"><label>استان</label><select id="gh_province" onchange="onProvinceChange('gh_province','gh_tout')"></select></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcGreenhouse()">⚡ محاسبه + PDF</button>
+<div class="results" id="gh_results"></div>
+</div>
+</div>
+
+<div id="subpanel-app-pool" class="subpanel">
+<div class="card">
+<span class="badge">Pool — ASHRAE Ch.6</span>
+<h2>بار حرارتی استخر</h2>
+<p class="hint">پیش‌گرمایش + نگهداری + آب جبرانی + دوش‌ها. تمام ضرایب انتخابی.</p>
+<div class="row3">
+<div class="field"><label>طول <span class="unit">m</span></label><input type="number" id="pl_l" value="25"></div>
+<div class="field"><label>عرض <span class="unit">m</span></label><input type="number" id="pl_w" value="12"></div>
+<div class="field"><label>عمق <span class="unit">m</span></label><input type="number" id="pl_d" value="1.4" step="0.1"></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای مطلوب <span class="unit">°C</span></label><input type="number" id="pl_tt" value="26"></div>
+<div class="field"><label>دمای آب ورودی <span class="unit">°C</span></label><input type="number" id="pl_tin" value="8"></div>
+<div class="field"><label>دمای محیط <span class="unit">°C</span></label><input type="number" id="pl_ta" value="-5"></div>
+<div class="field"><label>رطوبت <span class="unit">٪</span></label><input type="number" id="pl_rh" value="60"></div>
+</div>
+<div class="row4">
+<div class="field"><label>باد <span class="unit">m/s</span></label><input type="number" id="pl_wind" value="0.5" step="0.1"></div>
+<div class="field"><label>نوع استخر</label><select id="pl_use"><option value="0.3">درمانی</option><option value="0.7" selected>تفریحی</option><option value="0.5">ورزشی</option><option value="1.0">روباز</option></select></div>
+<div class="field"><label>پوشش</label><select id="pl_cover"><option value="1">ندارد</option><option value="0.3" selected>دارد</option></select></div>
+<div class="field"><label>تعداد دوش</label><input type="number" id="pl_showers" value="0" min="0"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات انتخابی</legend>
+<div class="row4">
+<div class="field"><label>زمان پیش‌گرمایش</label><select id="pl_preheat"><option value="6">۶ ساعته</option><option value="8" selected>۸ ساعته</option><option value="12">۱۲ ساعته</option><option value="24">۲۴ ساعته</option></select></div>
+<div class="field"><label>روش محاسبه</label><select id="pl_method"><option value="ashrae" selected>ASHRAE</option><option value="formula">فرمول دست‌نویس</option><option value="simple">ساده</option></select></div>
+<div class="field"><label>ضریب اطمینان</label><select id="pl_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+<div class="field"><label>استان</label><select id="pl_province" onchange="onProvinceChange('pl_province','pl_ta')"></select></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcPool()">⚡ محاسبه + PDF</button>
+<div class="results" id="pl_results"></div>
+</div>
+</div>
+
+<div id="subpanel-app-dhw" class="subpanel">
+<div class="card">
+<span class="badge">Domestic Hot Water — ASHRAE Ch.51</span>
+<h2>آبگرم مصرفی</h2>
+<div class="row3">
+<div class="field"><label>روش محاسبه</label><select id="dhw_method" onchange="onDhwMethodChange()"><option value="fixture">ASHRAE فیکسچر</option><option value="percapita">سرانه</option><option value="custom">سفارشی</option></select></div>
+<div class="field"><label>نوع ساختمان</label><select id="dhw_building" onchange="onDhwBuildingChange()"><option value="apartment">آپارتمان</option><option value="dormitory">خوابگاه</option><option value="nursing">خانه سالمندان</option><option value="hotel">هتل</option><option value="hospital">بیمارستان</option><option value="office">اداری</option><option value="school">مدرسه</option><option value="prison">زندان</option><option value="restaurant">رستوران</option><option value="laundry">رخت‌شویخانه</option><option value="dairy">لبنیات</option><option value="slaughter">کشتارگاه</option><option value="industrial">کارخانه</option></select></div>
+<div class="field"><label>تعداد واحد</label><input type="number" id="dhw_units" value="1" min="1"></div>
+</div>
+<div class="row3">
+<div class="field"><label>تعداد طبقات</label><input type="number" id="dhw_floors" value="1" min="1"></div>
+<div class="field"><label>اتاق در طبقه</label><input type="number" id="dhw_rooms" value="4" min="1"></div>
+<div class="field"><label>ظرفیت اتاق <span class="unit">نفر</span></label><input type="number" id="dhw_capacity" value="2" min="1"></div>
+</div>
+<div id="dhw_fixture_block">
+<div id="dhw_fixture_inputs"></div>
+<div class="field"><label>ضریب تقاضا</label><input type="number" id="dhw_div" value="0.3" step="0.05" min="0.1" max="1"></div>
+</div>
+<div id="dhw_percapita_block" style="display:none;">
+<div class="row">
+<div class="field"><label>تعداد نفرات</label><input type="number" id="dhw_count" value="300"></div>
+<div class="field"><label>سرانه <span class="unit">L/نفر/روز</span></label><input type="number" id="dhw_pc" value="50"></div>
+</div>
+<div class="field"><label>ساعت پیک</label><input type="number" id="dhw_ph" value="4"></div>
+</div>
+<div id="dhw_custom_block" style="display:none;">
+<div class="row3">
+<div class="field"><label>حداکثر ساعتی <span class="unit">L/hr</span></label><input type="number" id="dhw_ch" value="1000"></div>
+<div class="field"><label>حداکثر روزانه <span class="unit">L/day</span></label><input type="number" id="dhw_cd" value="5000"></div>
+<div class="field"><label>دمای هدف/ورودی</label><div class="row"><input type="number" id="dhw_th" value="60"><input type="number" id="dhw_tc" value="15"></div></div>
+</div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات انتخابی</legend>
+<div class="row3">
+<div class="field"><label>ضریب اطمینان</label><select id="dhw_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option><option value="1.35">۱.۳۵</option></select></div>
+<div class="field"><label>الگوی مصرف</label><select id="dhw_pattern"><option value="continuous" selected>پیوسته</option><option value="peak">پیک‌دار</option></select></div>
+<div class="field"><label>دمای آب ورودی <span class="unit">°C</span></label><input type="number" id="dhw_tin" value="10"></div>
+</div>
+</fieldset>
+<div class="notice">مقادیر GPH فیکسچرها بر اساس ASHRAE Table 10 و استاندارد EPAct 1992 اصلاح شدند.</div>
+<button class="btn" onclick="calcDHW()">⚡ محاسبه + PDF</button>
+<div class="results" id="dhw_results"></div>
+</div>
+</div>
+
+<div id="subpanel-app-heating" class="subpanel">
+<div class="card">
+<span class="badge">Space Heating — ASHRAE Ch.18 + CIBSE</span>
+<h2>بار گرمایش (شوفاژ)</h2>
+<p class="hint">Q = Q_transmission + Q_ventilation + ضریب تناوب</p>
+<div class="row3">
+<div class="field"><label>سطح زیربنا <span class="unit">m²</span></label><input type="number" id="ht_area" value="500"></div>
+<div class="field"><label>ارتفاع سقف <span class="unit">m</span></label><input type="number" id="ht_h" value="3" step="0.1"></div>
+<div class="field"><label>نوع کاربری</label><select id="ht_building" onchange="onHeatingBuildingChange()"><option value="office">اداری — T=۲۲°C، IF=1.10</option><option value="residential">مسکونی — T=۲۱°C، IF=1.05</option><option value="hospital">بیمارستان — T=۲۴°C، IF=1.00</option><option value="school">مدرسه — T=۲۰°C، IF=1.15</option><option value="hotel">هتل — T=۲۲°C، IF=1.05</option><option value="restaurant">رستوران — T=۲۲°C، IF=1.05</option><option value="industrial">کارخانه — T=۱۸°C، IF=1.10</option><option value="warehouse">انبار — T=۱۵°C، IF=1.00</option></select><div id="ht_building_info" style="font-size:0.75rem;color:var(--text-soft);margin-top:6px;"></div></div>
+</div>
+<div class="row4">
+<div class="field"><label>دمای داخل <span class="unit">°C</span></label><input type="number" id="ht_tin" value="22" readonly style="background:#EEF2F7;"></div>
+<div class="field"><label>دمای طرح <span class="unit">°C</span></label><input type="number" id="ht_tout" value="-5"></div>
+<div class="field"><label>ACH نفوذ</label><input type="number" id="ht_ach" value="0.5" step="0.1"></div>
+<div class="field"><label>ضریب U</label><select id="ht_u"><option value="1.2">1.2</option><option value="0.8" selected>0.8</option><option value="0.5">0.5</option><option value="0.35">0.35</option></select></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات انتخابی</legend>
+<div class="row3">
+<div class="field"><label>روش محاسبه</label><select id="ht_method"><option value="detailed" selected>تفصیلی</option><option value="simple">ساده</option></select></div>
+<div class="field"><label>ضریب اطمینان</label><select id="ht_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+<div class="field"><label>استان</label><select id="ht_province" onchange="onProvinceChange('ht_province','ht_tout')"></select></div>
+</div>
+</fieldset>
+<button class="btn" onclick="calcHeating()">⚡ محاسبه + PDF</button>
+<div class="results" id="ht_results"></div>
+</div>
+</div>
+
+<div id="subpanel-app-sauna" class="subpanel">
+<div class="card">
+<span class="badge">Sauna — EOS / Harvia</span>
+<h2>بار حرارتی سونا</h2>
+<div class="row3">
+<div class="field"><label>طول <span class="unit">m</span></label><input type="number" id="sa_l" value="3" step="0.1"></div>
+<div class="field"><label>عرض <span class="unit">m</span></label><input type="number" id="sa_w" value="2.5" step="0.1"></div>
+<div class="field"><label>ارتفاع <span class="unit">m</span></label><input type="number" id="sa_h" value="2.2" step="0.1"></div>
+</div>
+<div class="row">
+<div class="field"><label>تهویه</label><select id="sa_vent"><option value="0.75" selected>تهویه‌دار (0.75)</option><option value="0.52">بدون تهویه (0.52)</option></select></div>
+<div class="field"><label>نوع ساخت</label><select id="sa_const"><option value="1">آکریلیک (1)</option><option value="1.25">فوم (1.25)</option><option value="1.5" selected>بتن (1.5)</option><option value="2">سنگ (2)</option></select></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="field"><label>ضریب اطمینان</label><select id="sa_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+</fieldset>
+<button class="btn" onclick="calcSauna()">⚡ محاسبه + PDF</button>
+<div class="results" id="sa_results"></div>
+</div>
+</div>
+
+<div id="subpanel-app-industrial" class="subpanel">
+<div class="card">
+<span class="badge">Industrial Steam — Spirax Sarco</span>
+<h2>بخار صنعتی</h2>
+<div class="field"><label>صنعت</label><select id="is_facility" onchange="onIsFacilityChange()"></select></div>
+<fieldset id="is_driver_block"><legend>تخمین سریع</legend><div class="row" style="align-items:end;"><div class="field" style="margin-bottom:0;"><label id="is_driver_label">—</label><input type="number" id="is_driver_val"></div><button class="btn secondary" style="width:auto;padding:10px 16px;" onclick="applyIsDriver()">تخمین</button></div></fieldset>
+<div id="is_equipment_list"></div>
+<div class="row3">
+<div class="field"><label>ضریب هم‌زمانی <span class="unit">٪</span></label><input type="number" id="is_div" value="80"></div>
+<div class="field"><label>حاشیه <span class="unit">٪</span></label><input type="number" id="is_margin" value="15"></div>
+<div class="field"><label>فشار <span class="unit">bar</span></label><input type="number" id="is_p" value="6"></div>
+</div>
+<fieldset class="calc-settings">
+<legend>⚙️ تنظیمات</legend>
+<div class="field"><label>ضریب اطمینان</label><select id="is_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div>
+</fieldset>
+<button class="btn" onclick="calcIndustrial()">⚡ محاسبه + PDF</button>
+<div class="results" id="is_results"></div>
+</div>
+</div>
+</section>
+
+<!-- TANKS -->
+<section id="panel-tanks" class="panel">
+<nav class="subtabs" data-parent="tanks">
+<button class="subtab-btn active" data-subpanel="tank-open">انبساط باز</button>
+<button class="subtab-btn" data-subpanel="tank-closed">انبساط بسته</button>
+<button class="subtab-btn" data-subpanel="tank-cond">کندانس</button>
+<button class="subtab-btn" data-subpanel="tank-coil-u">کویلی U</button>
+<button class="subtab-btn" data-subpanel="tank-coil-spiral">اسپیرال</button>
+<button class="subtab-btn" data-subpanel="tank-fluid">ذخیره مایعات</button>
+</nav>
+
+<div id="subpanel-tank-open" class="subpanel active">
+<div class="card">
+<span class="badge">Open Expansion Tank</span>
+<h2>منبع انبساط باز</h2>
+<div class="row3">
+<div class="field"><label>حجم آب <span class="unit">L</span></label><input type="number" id="oe_vs" value="2000"></div>
+<div class="field"><label>حداکثر دما <span class="unit">°C</span></label><input type="number" id="oe_t" value="90"></div>
+<div class="field"><label>حداقل دما <span class="unit">°C</span></label><input type="number" id="oe_tmin" value="10"></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="oe_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcOpenExp()">⚡ محاسبه + PDF</button>
+<div class="results" id="oe_results"></div>
+</div>
+</div>
+
+<div id="subpanel-tank-closed" class="subpanel">
+<div class="card">
+<span class="badge">Closed Expansion Tank</span>
+<h2>منبع انبساط بسته</h2>
+<div class="row3">
+<div class="field"><label>حجم آب <span class="unit">L</span></label><input type="number" id="ce_vs" value="2000"></div>
+<div class="field"><label>حداکثر دما <span class="unit">°C</span></label><input type="number" id="ce_t" value="90"></div>
+<div class="field"><label>حداقل دما <span class="unit">°C</span></label><input type="number" id="ce_tmin" value="10"></div>
+</div>
+<div class="row">
+<div class="field"><label>فشار اولیه <span class="unit">bar</span></label><input type="number" id="ce_p1" value="1.5"></div>
+<div class="field"><label>فشار حداکثر <span class="unit">bar</span></label><input type="number" id="ce_p2" value="3.0"></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="ce_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcClosedExp()">⚡ محاسبه + PDF</button>
+<div class="results" id="ce_results"></div>
+</div>
+</div>
+
+<div id="subpanel-tank-cond" class="subpanel">
+<div class="card">
+<span class="badge">Condensate Tank</span>
+<h2>مخزن کندانس</h2>
+<div class="row3">
+<div class="field"><label>دبی کندانس <span class="unit">kg/hr</span></label><input type="number" id="ct_flow" value="1500"></div>
+<div class="field"><label>هولدآپ <span class="unit">min</span></label><input type="number" id="ct_hold" value="10"></div>
+<div class="field"><label>فشار ورودی/مخزن</label><div class="row"><input type="number" id="ct_pin" value="4"><input type="number" id="ct_ptank" value="0.3"></div></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="ct_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcCondTank()">⚡ محاسبه + PDF</button>
+<div class="results" id="ct_results"></div>
+</div>
+</div>
+
+<div id="subpanel-tank-coil-u" class="subpanel">
+<div class="card">
+<span class="badge">U-Type Coil</span>
+<h2>منبع کویلی U-Type</h2>
+<div class="row3">
+<div class="field"><label>حجم ذخیره <span class="unit">L</span></label><input type="number" id="cu_vol" value="2000"></div>
+<div class="field"><label>دمای هدف/ورودی</label><div class="row"><input type="number" id="cu_th" value="60"><input type="number" id="cu_tc" value="15"></div></div>
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="cu_q" value="150000"></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="cu_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcCoilU()">⚡ محاسبه + PDF</button>
+<div class="results" id="cu_results"></div>
+</div>
+</div>
+
+<div id="subpanel-tank-coil-spiral" class="subpanel">
+<div class="card">
+<span class="badge">Spiral Coil</span>
+<h2>منبع اسپیرال</h2>
+<div class="row3">
+<div class="field"><label>حجم ذخیره <span class="unit">L</span></label><input type="number" id="cs_vol" value="1500"></div>
+<div class="field"><label>دمای هدف/ورودی</label><div class="row"><input type="number" id="cs_th" value="60"><input type="number" id="cs_tc" value="5"></div></div>
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="cs_q" value="150000"></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="csp_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcCoilSpiral()">⚡ محاسبه + PDF</button>
+<div class="results" id="cs_result"></div>
+</div>
+</div>
+
+<div id="subpanel-tank-fluid" class="subpanel">
+<div class="card">
+<span class="badge">Fluid Storage</span>
+<h2>مخزن ذخیره مایعات</h2>
+<div class="row3">
+<div class="field"><label>حجم <span class="unit">m³</span></label><input type="number" id="fs_vol" value="20"></div>
+<div class="field"><label>فشار <span class="unit">bar</span></label><input type="number" id="fs_p" value="10"></div>
+<div class="field"><label>سیال</label><select id="fs_fluid"><option value="water">آب</option><option value="oil">روغن</option><option value="chemical">شیمیایی</option><option value="fuel">سوخت</option></select></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="fs_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcFluidTank()">⚡ محاسبه + PDF</button>
+<div class="results" id="fs_results"></div>
+</div>
+</div>
+</section>
+
+<!-- TREATMENT -->
+<section id="panel-treatment" class="panel">
+<nav class="subtabs" data-parent="treatment">
+<button class="subtab-btn active" data-subpanel="tr-softener">سختی‌گیر</button>
+<button class="subtab-btn" data-subpanel="tr-sand">فیلتر شنی/کربن</button>
+<button class="subtab-btn" data-subpanel="tr-deaerator">دی‌اریتور</button>
+</nav>
+
+<div id="subpanel-tr-softener" class="subpanel active">
+<div class="card">
+<span class="badge">Softener</span>
+<h2>سختی‌گیر</h2>
+<div class="row3">
+<div class="field"><label>دبی <span class="unit">m³/h</span></label><input type="number" id="sf_flow" value="5"></div>
+<div class="field"><label>سختی <span class="unit">ppm</span></label><input type="number" id="sf_hard" value="300"></div>
+<div class="field"><label>دوره احیا <span class="unit">روز</span></label><input type="number" id="sf_days" value="1"></div>
+</div>
+<label style="display:flex;align-items:center;gap:6px;font-weight:500;margin-bottom:10px;"><input type="checkbox" id="sf_duplex"> Duplex</label>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="sfs_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcSoftener()">⚡ محاسبه + PDF</button>
+<div class="results" id="sf_results"></div>
+</div>
+</div>
+
+<div id="subpanel-tr-sand" class="subpanel">
+<div class="card">
+<span class="badge">Sand / Carbon</span>
+<h2>فیلتر شنی و کربن</h2>
+<div class="row3">
+<div class="field"><label>دبی <span class="unit">m³/h</span></label><input type="number" id="sf2_flow" value="10"></div>
+<div class="field"><label>بارگذاری</label><select id="sf2_rate"><option value="12">۱۲ GPM/ft²</option><option value="15" selected>۱۵ GPM/ft²</option><option value="18">۱۸ GPM/ft²</option><option value="20">۲۰ GPM/ft²</option></select></div>
+<div class="field"><label>نوع</label><select id="sf2_type"><option value="sand">شنی</option><option value="carbon">کربن</option><option value="both">هر دو</option></select></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="sf2_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcSandFilter()">⚡ محاسبه + PDF</button>
+<div class="results" id="sf2_results"></div>
+</div>
+</div>
+
+<div id="subpanel-tr-deaerator" class="subpanel">
+<div class="card">
+<span class="badge">Deaerator</span>
+<h2>دی‌اریتور</h2>
+<div class="row3">
+<div class="field"><label>ظرفیت دیگ <span class="unit">kg/hr</span></label><input type="number" id="de_cap" value="3000"></div>
+<div class="field"><label>کندانس برگشتی <span class="unit">٪</span></label><input type="number" id="de_cond" value="60"></div>
+<div class="field"><label>بلودان <span class="unit">٪</span></label><input type="number" id="de_blow" value="5"></div>
+</div>
+<div class="row">
+<div class="field"><label>نوع</label><select id="de_type"><option value="pressurized">تحت فشار</option><option value="permutit">پرموتیت</option></select></div>
+<div class="field"><label>حاشیه <span class="unit">٪</span></label><input type="number" id="de_margin" value="15"></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="de_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcDeaerator()">⚡ محاسبه + PDF</button>
+<div class="results" id="de_results"></div>
+</div>
+</div>
+</section>
+
+<!-- ACCESSORIES -->
+<section id="panel-accessories" class="panel">
+<nav class="subtabs" data-parent="accessories">
+<button class="subtab-btn active" data-subpanel="ac-hydraulic">هیدرولیک</button>
+<button class="subtab-btn" data-subpanel="ac-air">ایر سپراتور</button>
+<button class="subtab-btn" data-subpanel="ac-super">سوپر هیتر</button>
+<button class="subtab-btn" data-subpanel="ac-hx">مبدل</button>
+</nav>
+
+<div id="subpanel-ac-hydraulic" class="subpanel active">
+<div class="card">
+<span class="badge">Hydraulic Separator</span>
+<h2>هیدرولیک سپراتور</h2>
+<div class="row4">
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="hs_q" value="300000"></div>
+<div class="field"><label>دمای رفت <span class="unit">°C</span></label><input type="number" id="hs_tin" value="90"></div>
+<div class="field"><label>دمای برگشت <span class="unit">°C</span></label><input type="number" id="hs_tout" value="70"></div>
+<div class="field"><label>سرعت مجاز <span class="unit">m/s</span></label><input type="number" id="hs_v" value="0.8" step="0.1"></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="hs_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcHydraulic()">⚡ محاسبه + PDF</button>
+<div class="results" id="hs_results"></div>
+</div>
+</div>
+
+<div id="subpanel-ac-air" class="subpanel">
+<div class="card">
+<span class="badge">Air Separator</span>
+<h2>ایر سپراتور</h2>
+<div class="row3">
+<div class="field"><label>دبی <span class="unit">GPM</span></label><input type="number" id="as_flow" value="200"></div>
+<div class="field"><label>دبی <span class="unit">m³/h</span></label><input type="number" id="as_flow_m3" value="45"></div>
+<div class="field"><label>دما <span class="unit">°C</span></label><input type="number" id="as_t" value="90"></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="as_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcAirSep()">⚡ محاسبه + PDF</button>
+<div class="results" id="as_results"></div>
+</div>
+</div>
+
+<div id="subpanel-ac-super" class="subpanel">
+<div class="card">
+<span class="badge">Superheater</span>
+<h2>سوپر هیتر</h2>
+<div class="row3">
+<div class="field"><label>دبی بخار <span class="unit">kg/hr</span></label><input type="number" id="sh_flow" value="2000"></div>
+<div class="field"><label>فشار <span class="unit">bar</span></label><input type="number" id="sh_p" value="10"></div>
+<div class="field"><label>دمای اشباع <span class="unit">°C</span></label><input type="number" id="sh_tsat" value="184"></div>
+</div>
+<div class="row3">
+<div class="field"><label>دمای نهایی <span class="unit">°C</span></label><input type="number" id="sh_tout" value="250"></div>
+<div class="field"><label>منبع</label><select id="sh_source"><option value="flue">گازهای داغ</option><option value="burner">مشعل مستقل</option></select></div>
+<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="sh_eff" value="92"></div>
+</div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="sh_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcSuperheater()">⚡ محاسبه + PDF</button>
+<div class="results" id="sh_results"></div>
+</div>
+</div>
+
+<div id="subpanel-ac-hx" class="subpanel">
+<div class="card">
+<span class="badge">Heat Exchanger</span>
+<h2>مبدل حرارتی</h2>
+<div class="row">
+<div class="field"><label>بار حرارتی <span class="unit">kcal/hr</span></label><input type="number" id="hx_q" value="150000"></div>
+<div class="field"><label>نوع</label><select id="hx_type" onchange="onHxTypeChange()"><option value="plate">صفحه‌ای</option><option value="shell">پوسته-لوله</option></select></div>
+</div>
+<div class="row4">
+<div class="field"><label>گرم ورودی <span class="unit">°C</span></label><input type="number" id="hx_thin" value="90"></div>
+<div class="field"><label>گرم خروجی <span class="unit">°C</span></label><input type="number" id="hx_thout" value="70"></div>
+<div class="field"><label>سرد ورودی <span class="unit">°C</span></label><input type="number" id="hx_tcin" value="15"></div>
+<div class="field"><label>سرد خروجی <span class="unit">°C</span></label><input type="number" id="hx_tcout" value="55"></div>
+</div>
+<div class="field"><label>ضریب U <span class="unit">W/m²K</span></label><input type="number" id="hx_u" value="4000"></div>
+<fieldset class="calc-settings"><legend>⚙️ تنظیمات</legend><div class="field"><label>ضریب اطمینان</label><select id="hx_sf"><option value="1.0">۱.۰</option><option value="1.1">۱.۱</option><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option></select></div></fieldset>
+<button class="btn" onclick="calcHX()">⚡ محاسبه + PDF</button>
+<div class="results" id="hx_results"></div>
+</div>
+</div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="panel-calculator" class="panel">
+<div class="card">
+<span class="badge">Unit Converter — جامع</span>
+<h2>ماشین‌حساب تبدیل واحدها</h2>
+<p class="hint">تبدیل بین واحدهای ظرفیت حرارتی، توان، فشار، حجم، دبی، دما، طول، جرم، انرژی، چگالی و...</p>
+<div class="field"><label>دسته تبدیل</label>
+<select id="calc_category" onchange="onCalcCategoryChange()">
+<option value="heat">ظرفیت حرارتی / توان</option>
+<option value="steam">ظرفیت بخار</option>
+<option value="pressure">فشار</option>
+<option value="volume">حجم</option>
+<option value="vflow">دبی حجمی</option>
+<option value="mflow">دبی جرمی</option>
+<option value="temp">دما</option>
+<option value="length">طول</option>
+<option value="area">مساحت</option>
+<option value="mass">جرم</option>
+<option value="velocity">سرعت</option>
+<option value="softness">سختی آب</option>
+<option value="energy">انرژی / کار</option>
+<option value="specific">آنالپی / آنتروپی</option>
+<option value="density">چگالی</option>
+<option value="area_heat">شار حرارتی</option>
+<option value="holding">حجم مخزن (Holding Time)</option>
+</select>
+</div>
+<div class="calc-grid">
+<div class="field"><label>مقدار ورودی</label><input type="number" id="calc_value" value="1" step="any" oninput="runCalc()"></div>
+<div class="field"><label>واحد مبدأ</label><select id="calc_from" onchange="runCalc()"></select></div>
+<div class="field" style="display:flex;align-items:end;"><button class="btn secondary" onclick="swapUnits()">⇄ جابجایی</button></div>
+</div>
+<div class="calc-result">
+<div class="num" id="calc_result">1</div>
+<div class="lbl" id="calc_result_label">واحد</div>
+</div>
+<div class="conversion-row" id="calc_conversions"></div>
+</div>
+<div class="card">
+<span class="badge">Quick Reference</span>
+<h2>جدول مرجع سریع</h2>
+<table class="std">
+<tr><th>کمیت</th><th>مقدار</th></tr>
+<tr><td>1 kW</td><td>860 kcal/hr = 3412 BTU/hr = 1.341 HP</td></tr>
+<tr><td>1 kg/hr بخار</td><td>≈ 539 kcal/hr</td></tr>
+<tr><td>1 BHP</td><td>9.81 kW = 34.5 lb/hr = 8434 kcal/hr</td></tr>
+<tr><td>1 bar</td><td>14.504 psi = 100 kPa = 1.020 kg/cm²</td></tr>
+<tr><td>1 m³</td><td>1000 L = 35.315 ft³ = 264.17 US gal</td></tr>
+<tr><td>1 GPM (US)</td><td>0.2271 m³/hr = 3.785 L/min</td></tr>
+<tr><td>1 grain/gal (US)</td><td>17.1 ppm CaCO₃</td></tr>
+<tr><td>HHV گاز طبیعی</td><td>≈ 8500–8600 kcal/Nm³</td></tr>
+<tr><td>LHV گازوئیل</td><td>≈ 10200 kcal/kg</td></tr>
+<tr><td>LHV مازوت</td><td>≈ 9700 kcal/kg</td></tr>
+</table>
+</div>
+</section>
+
+</main>
+<p class="disclaimer">
+<strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v5<br>
+محاسبات بر مبنای ASHRAE، ASPE، Spirax Sarco، DIN، EN، ASME، BS، مبحث ۱۹ مقررات ملی ساختمان و کاتالوگ شرکت
+</p>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+/* ==================== HELPERS ==================== */
+function n(v){v=parseFloat(v);return isNaN(v)?0:v;}
+function fmt(v,d=0){return Number(v).toLocaleString('en-US',{maximumFractionDigits:d});}
+function g(k,v,u,note){return `<div class="gauge"><div class="k">${k}</div><div class="v">${v}<small>${u}</small></div>${note?`<div class="note">${note}</div>`:''}</div>`;}
+function warn(m){return `<div class="gauge err"><div class="k">خطا</div><div class="v" style="font-size:.9rem;">${m}</div></div>`;}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function heatUnits(k){return `${fmt(k*1.163/1000)} kW · ${fmt(k*3.968)} BTU/hr · ${fmt(k/8434.5,2)} BHP`;}
+function massFlow(kg){return `${fmt(kg)} kg/hr · ${fmt(kg/1000,2)} ton/hr · ${fmt(kg*2.2046)} lb/hr`;}
+function getSafety(prefix){const el=document.getElementById(prefix+'_sf');return el?(n(el.value)||1.0):1.0;}
+function getPattern(prefix){const el=document.getElementById(prefix+'_pattern');return el?el.value:'continuous';}
+function patternFactor(p){return p==='peak'?1.5:1.0;}
+function formulaBlock(title,lines,ref){return `<div class="formula"><div class="ft">📐 ${title}</div>${lines.filter(Boolean).map(l=>`<div class="fl">${l}</div>`).join('')}<div class="ref">📚 مرجع: ${ref}</div></div>`;}
+
+/* ==================== PDF EXPORT ==================== */
+function exportToPDF(resultElementId,title){
+  const element=document.getElementById(resultElementId);
+  if(!element||element.innerHTML.trim()===''){toast('ابتدا محاسبه را انجام دهید');return;}
+  toast('در حال آماده‌سازی PDF...');
+  const wrapper=document.createElement('div');
+  wrapper.className='pdf-exporting';wrapper.setAttribute('dir','rtl');
+  const header=document.createElement('div');
+  header.style.cssText='text-align:center;padding-bottom:16px;margin-bottom:16px;border-bottom:3px solid #2563EB;';
+  header.innerHTML=`<h1 style="color:#0F172A;font-size:22px;font-weight:800;margin:0;">Capacity Assistant</h1><p style="color:#64748B;font-size:13px;margin:6px 0 0 0;">کاسپین مبدل آمارد — ${title}</p><p style="color:#94A3B8;font-size:11px;margin:4px 0 0 0;">تاریخ: ${new Date().toLocaleDateString('fa-IR')} — ساعت: ${new Date().toLocaleTimeString('fa-IR')}</p>`;
+  wrapper.appendChild(header);
+  const content=element.cloneNode(true);
+  const toolbar=content.querySelector('.pdf-toolbar');if(toolbar)toolbar.remove();
+  wrapper.appendChild(content);
+  const footer=document.createElement('div');
+  footer.style.cssText='text-align:center;padding-top:16px;margin-top:24px;border-top:1px solid #E2E8F0;font-size:10px;color:#94A3B8;';
+  footer.innerHTML=`<p style="margin:0;">محاسبات بر مبنای ASHRAE، ASME، EN، مبحث ۱۹ مقررات ملی ساختمان</p><p style="margin:4px 0 0 0;">Caspian Mobaddel Amard — www.caspianboiler.ir</p>`;
+  wrapper.appendChild(footer);
+  wrapper.style.position='absolute';wrapper.style.left='-9999px';wrapper.style.top='0';
+  document.body.appendChild(wrapper);
+  const opt={margin:[10,8,10,8],filename:`Capacity-Assistant-${title}-${Date.now()}.pdf`,image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true,letterRendering:true,scrollY:0,backgroundColor:'#FFFFFF'},jsPDF:{unit:'mm',format:'a4',orientation:'portrait',compress:true},pagebreak:{mode:['avoid-all','css','legacy'],avoid:'.gauge, .formula, .card, .trim-item'}};
+  html2pdf().set(opt).from(wrapper).save().then(()=>{document.body.removeChild(wrapper);toast('✅ PDF دانلود شد');}).catch(err=>{console.error(err);document.body.removeChild(wrapper);toast('❌ خطا در تولید PDF');});
+}
+function addPDFToolbar(resultsId,title){
+  const container=document.getElementById(resultsId);if(!container)return;
+  const existing=container.querySelector('.pdf-toolbar');if(existing)existing.remove();
+  const toolbar=document.createElement('div');toolbar.className='pdf-toolbar';
+  toolbar.innerHTML=`<button class="btn-pdf" onclick="exportToPDF('${resultsId}','${title}')">دانلود PDF</button><button class="btn-print-local" onclick="window.print()">چاپ سریع</button>`;
+  container.appendChild(toolbar);
+}
+
+/* ==================== PROVINCES ==================== */
+const PROVINCES=[
+{key:'tehran',name:'تهران',winter:-5},{key:'alborz',name:'البرز (کرج)',winter:-8},{key:'mazandaran',name:'مازندران (ساری)',winter:-3},{key:'gilan',name:'گیلان (رشت)',winter:-7},{key:'golestan',name:'گلستان (گرگان)',winter:-2},{key:'east_az',name:'آذربایجان شرقی (تبریز)',winter:-11.5},{key:'west_az',name:'آذربایجان غربی (ارومیه)',winter:-10},{key:'ardabil',name:'اردبیل',winter:-22},{key:'zanjan',name:'زنجان',winter:-9},{key:'qazvin',name:'قزوین',winter:-8},{key:'hamadan',name:'همدان',winter:-16.9},{key:'kermanshah',name:'کرمانشاه',winter:-10},{key:'kurdistan',name:'کردستان (سنندج)',winter:-10},{key:'ilam',name:'ایلام',winter:-3},{key:'lorestan',name:'لرستان (خرم‌آباد)',winter:-5},{key:'chaharmahal',name:'چهارمحال (شهرکرد)',winter:-12},{key:'kohgiluyeh',name:'کهگیلویه (یاسوج)',winter:-5},{key:'khuzestan',name:'خوزستان (اهواز)',winter:2},{key:'boushehr',name:'بوشهر',winter:7},{key:'hormozgan',name:'هرمزگان (بندرعباس)',winter:10},{key:'sistan',name:'سیستان و بلوچستان (زاهدان)',winter:-5},{key:'kerman',name:'کرمان',winter:-8},{key:'yazd',name:'یزد',winter:-9.7},{key:'fars',name:'فارس (شیراز)',winter:-2},{key:'isfahan',name:'اصفهان',winter:-7},{key:'markazi',name:'مرکزی (اراک)',winter:-9},{key:'semnan',name:'سمنان',winter:-5},{key:'qom',name:'قم',winter:-4},{key:'south_khorasan',name:'خراسان جنوبی (بیرجند)',winter:-5},{key:'razavi_khorasan',name:'خراسان رضوی (مشهد)',winter:-11},{key:'north_khorasan',name:'خراسان شمالی (بجنورد)',winter:-7}];
+function populateProvinces(){
+  ['gh_province','pl_province','ht_province','pk_province'].forEach(id=>{
+    const sel=document.getElementById(id);if(!sel)return;
+    sel.innerHTML='<option value="manual" selected>— ورود دستی —</option>'+PROVINCES.map(p=>`<option value="${p.key}">${p.name} (${p.winter}°C)</option>`).join('');
+  });
+}
+function onProvinceChange(provinceSelectId,targetTempInputId){
+  const key=document.getElementById(provinceSelectId).value;const target=document.getElementById(targetTempInputId);if(!target)return;
+  if(key==='manual'||!key){toast('ورود دستی — دما را وارد کنید');target.focus();return;}
+  const prov=PROVINCES.find(p=>p.key===key);if(!prov)return;
+  target.value=prov.winter;toast(`دمای طرح ${prov.name}: ${prov.winter}°C`);
+}
+populateProvinces();
+
+/* ==================== TABS ==================== */
+document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+btn.dataset.panel).classList.add('active');});});
+document.querySelectorAll('.subtabs').forEach(nav=>{const parent=nav.dataset.parent;nav.querySelectorAll('.subtab-btn').forEach(btn=>{btn.addEventListener('click',()=>{nav.querySelectorAll('.subtab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll(`#panel-${parent} .subpanel`).forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('subpanel-'+btn.dataset.subpanel).classList.add('active');});});});
+
+/* ==================== ENGINEERING ==================== */
+function burnerDerate(alt,tamb){const pAtm=101.325*Math.pow(1-2.25577e-5*alt,5.25588);const tempFactor=293/(273+tamb);return 1/((pAtm/101.325)*tempFactor);}
+const FUELS={gas:{name:'گاز طبیعی',HHV:8500,isVolume:true,theoAir:9.52},diesel:{name:'گازوئیل',LHV:10200,isVolume:false,theoAir:11.5},mazut:{name:'مازوت',LHV:9700,isVolume:false,theoAir:11.8}};
+function calcBlowdown(tdsFeed,tdsBoiler){if(tdsBoiler<=tdsFeed)return{coc:1,blowPct:100};const coc=tdsBoiler/tdsFeed;return{coc,blowPct:100/coc};}
+function calcBurner(qBoilerKcal,effPct,fuel,altitude,ambientTemp,stackTemp,excessAirPct){
+  const eff=effPct/100;const qInputBase=qBoilerKcal/eff;
+  const derate=burnerDerate(altitude,ambientTemp);const qInputAdj=qInputBase*derate;
+  const f=FUELS[fuel];let fuelRate,fuelUnit;
+  if(f.isVolume){fuelRate=qInputAdj/f.HHV;fuelUnit='m³/hr';}else{fuelRate=qInputAdj/f.LHV;fuelUnit='kg/hr';}
+  const actualAirFlow=fuelRate*f.theoAir*(1+excessAirPct/100);
+  const flueGasFlow=actualAirFlow+fuelRate;
+  const pAtm=101.325*Math.pow(1-2.25577e-5*altitude,5.25588);
+  const flueTempK=stackTemp+273.15;
+  const flueDensity=1.293*(273.15/flueTempK)*(pAtm/101.325);
+  const flueVolumeFlow=flueGasFlow*1.2/flueDensity;
+  const chimneyV=12;const area=(flueVolumeFlow/3600)/chimneyV;
+  const diaMm=Math.sqrt(4*area/Math.PI)*1000;
+  const stdSizes=[150,200,250,300,350,400,450,500,600,700,800,900,1000,1200];
+  let chimney=stdSizes[stdSizes.length-1];
+  for(const d of stdSizes){if(d>=diaMm*1.05){chimney=d;break;}}
+  return{qInputBase,derate,qInputAdj,fuelRate,fuelUnit,fuelName:f.name,actualAirFlow,flueGasFlow,flueVolumeFlow,diaMm,chimney,stackTemp,excessAirPct};
+}
+function steamPipeSize(flowKgHr,pressureBarg,velocityMs){
+  const pAbs=pressureBarg+1.013;const sp=satP(pAbs);
+  const volFlowM3s=(flowKgHr/3600)*sp.vg;
+  const areaM2=volFlowM3s/velocityMs;
+  const diaMm=Math.sqrt(4*areaM2/Math.PI)*1000;
+  const stdDN=[15,20,25,32,40,50,65,80,100,125,150,200,250,300,350,400,450,500];
+  let pipe=stdDN[stdDN.length-1];
+  for(const d of stdDN){if(d>=diaMm*1.05){pipe=d;break;}}
+  return{diaMm,pipeDN:pipe,volFlowM3h:volFlowM3s*3600};
+}
+function feedPump(steamKgHr,blowPct,boilerP,deaeratorP,staticH,frictionFactor){
+  const designFlow=steamKgHr*(1+blowPct/100)*1.15;
+  const dP_m=(boilerP-deaeratorP)*10.2;
+  const friction=dP_m*(frictionFactor/100);
+  const totalHead=dP_m+staticH+friction;
+  return{flowKgHr:designFlow,headM:totalHead,headBar:totalHead/10.2,dP:boilerP-deaeratorP,friction,static:staticH};
+}
+function safetyValve(steamKgHr,setP){
+  const requiredCap=steamKgHr*0.75;const pAbs=setP+1.013;
+  const A_mm2=requiredCap/(51.45*0.975*pAbs);const A_cm2=A_mm2/100;
+  const orifices=[{letter:'D',area:0.71},{letter:'E',area:1.27},{letter:'F',area:1.98},{letter:'G',area:3.24},{letter:'H',area:5.06},{letter:'J',area:8.3},{letter:'K',area:11.9},{letter:'L',area:16.4},{letter:'M',area:23.2},{letter:'N',area:28.5},{letter:'P',area:41.2},{letter:'Q',area:71.2}];
+  let orifice=orifices[orifices.length-1];
+  for(const o of orifices){if(o.area>=A_cm2){orifice=o;break;}}
+  return{requiredCap,A_mm2,A_cm2,orificeLetter:orifice.letter,orificeArea:orifice.area};
+}
+function condensateRecovery(condFlow,tCond,tMakeup){const dT=Math.max(0,tCond-tMakeup);return{Q_kcalh:condFlow*4.187*dT/4.1868,dT};}
+
+/* ==================== BURNER BLOCK ==================== */
+function burnerBlock(qBoilerKcal,effPct,fuel,altitude,ambientTemp,stackTemp,excessAirPct,label){
+  const b=calcBurner(qBoilerKcal,effPct,fuel,altitude,ambientTemp,stackTemp,excessAirPct);
+  return `<div class="card" style="border-right:5px solid var(--gold);background:linear-gradient(135deg,#FFFBEB,#FEF3C7);">
+  <h2 style="font-size:0.95rem;margin-bottom:10px;">🔥 محاسبه دقیق مشعل و دودکش ${label||''}</h2>
+  ${g('ظرفیت حرارتی ورودی مشعل (پایه)',fmt(b.qInputBase),'kcal/hr',heatUnits(b.qInputBase))}
+  ${g('ضریب اصلاح ارتفاع/دما',b.derate.toFixed(3),'×',`ارتفاع ${altitude} m، دمای ${ambientTemp}°C`)}
+  ${g('ظرفیت نهایی مشعل (اصلاح‌شده)',fmt(b.qInputAdj),'kcal/hr',heatUnits(b.qInputAdj))}
+  ${g('مصرف سوخت — '+b.fuelName,fmt(b.fuelRate,2),b.fuelUnit,'در شرایط کاری')}
+  ${g('دبی هوای احتراق',fmt(b.actualAirFlow,1),'m³/hr',`با ${b.excessAirPct}٪ هوای اضافی`)}
+  ${g('دبی گازهای دودکش',fmt(b.flueVolumeFlow,1),'m³/hr',`دمای دود: ${b.stackTemp}°C`)}
+  ${g('قطر دودکش (محاسبه → استاندارد)',b.chimney,'mm',`قطر محاسبه: ${b.diaMm.toFixed(0)} mm`)}
+  <div class="note" style="font-size:.76rem;color:var(--text-soft);margin-top:8px;line-height:1.7;">
+  • Turndown Ratio پیشنهادی: ۵:۱ تا ۱۰:۱<br>
+  • راندمان دیگ فرضی: ${effPct}٪<br>
+  • مرجع: EN 676 / ASHRAE Handbook
   </div>
+  </div>`;
+}
 
-  <main>
+/* ==================== TRIM KIT (تجهیزات روی دیگ) ==================== */
+function trimKitSteam(prefix,cap,p,fuel,SF){
+  if(!document.getElementById(prefix+'_show_trim')||!document.getElementById(prefix+'_show_trim').checked)return '';
+  const sv=safetyValve(cap,p);
+  const pipeMain=steamPipeSize(cap,p,25);
+  const pipeBranch=steamPipeSize(cap,p,15);
+  const trim=[
+    {name:'شیر اطمینان (Safety Valve)',spec:`ظرفیت: ${fmt(sv.requiredCap)} kg/hr — Orifice ${sv.orificeLetter} — فشار تنظیم: ${p} bar — مرجع: ASME Section I`},
+    {name:'شیر قطع کن بخار اصلی (Main Steam Stop)',spec:`قطر: DN ${pipeMain.pipeDN} mm — فشار کاری: ${p} bar — مرجع: EN 12953-6`},
+    {name:'شیر تغذیه با چک والو',spec:`قطر: DN 25-40 mm — فشار: ${p+1.5} bar — چک والو الزامی — مرجع: EN 12953-6`},
+    {name:'شیر تخلیه سطحی (Surface Blowdown)',spec:`DN 20-25 mm — با شیر کنترل خودکار TDS — مرجع: ASME Section VII`},
+    {name:'شیر تخلیه کف (Bottom Blowdown)',spec:`DN 25-32 mm — نوع Quick-release + Slow-acting — مرجع: ASME Section VII`},
+    {name:'نمایشگر سطح آب (Level Gauge)',spec:'شیشه نمایش + تست شیرها — حداقل ۲ عدد — مرجع: EN 12953-6'},
+    {name:'فشارسنج + سیفون + شیر قطع',spec:`محدوده: ۰-${Math.round(p*1.5)} bar — قطر صفحه: ۱۰۰ mm — مرجع: EN 837`},
+    {name:'دماسنج با ول محافظ',spec:`محدوده: ۰-${Math.round((p*100)+100)}°C — مرجع: EN 13190`},
+    {name:'کنترل‌کننده سطح + لیمیت سطح پایین',spec:'قطع خودکار مشعل در سطح پایین — مرجع: EN 12953-6'},
+    {name:'کنترل‌کننده فشار + لیمیت فشار بالا',spec:`فشار تنظیم: ${p} bar — لیمیت: ${(p*1.1).toFixed(1)} bar — مرجع: EN 12953-6`}
+  ];
+  return `<div style="margin-top:16px;">
+  <span class="badge" style="background:linear-gradient(135deg,rgba(6,182,212,0.12),rgba(37,99,235,0.12));color:#0E7490;">🔧 تجهیزات نصب‌شده روی دیگ (Trim Kit)</span>
+  <div class="trim-list">${trim.map(t=>`<div class="trim-item"><div class="name">✓ ${t.name}</div><div class="spec">${t.spec}</div></div>`).join('')}</div>
+  ${formulaBlock('محاسبه شیر اطمینان',[`ظرفیت تخلیه = ۷۵٪ × ${fmt(cap)} = ${fmt(sv.requiredCap)} kg/hr`,`A = Q / (51.45 × K × P_abs) = ${fmt(sv.A_cm2,2)} cm²`,`Orifice استاندارد: ${sv.orificeLetter} (${sv.orificeArea} cm²)`],'ASME Section I — API 520')}
+  </div>`;
+}
+function trimKitHotWater(prefix,cap,p,SF){
+  if(!document.getElementById(prefix+'_show_trim')||!document.getElementById(prefix+'_show_trim').checked)return '';
+  const trim=[
+    {name:'شیر اطمینان (Safety Relief Valve)',spec:`ظرفیت: برابر ظرفیت دیگ — فشار تنظیم: ${p} bar — مرجع: ASME Section IV`},
+    {name:'شیر قطع کن رفت (Outlet Stop)',spec:`قطر: برابر نازل خروجی — فشار: ${p} bar — مرجع: EN 12953-6`},
+    {name:'شیر تغذیه با چک والو',spec:`DN 20-32 mm — چک والو الزامی — مرجع: EN 12953-6`},
+    {name:'شیر تخلیه (Drain Valve)',spec:'حداقل NPS 3/4 — نوع شیلنگی با درپوش رزوه‌ای — مرجع: ASME Section IV'},
+    {name:'شیر هواگیری خودکار (Auto Air Vent)',spec:'نصب در بالاترین نقطه — مرجع: Boiler Trim Kit استاندارد'},
+    {name:'فشارسنج + سیفون',spec:`محدوده: ۰-${Math.round(p*1.5)} bar — قطر: ۱۰۰ mm — مرجع: EN 837`},
+    {name:'دماسنج با ول محافظ',spec:`محدوده: ۰-${120}°C — قطر: ۱۲۵ mm — مرجع: EN 13190`},
+    {name:'کنترل‌کننده دما + لیمیت دمای بالا',spec:'دمای تنظیم: ۸۵°C — لیمیت: ۹۵°C — مرجع: EN 12953-6'}
+  ];
+  return `<div style="margin-top:16px;">
+  <span class="badge" style="background:linear-gradient(135deg,rgba(6,182,212,0.12),rgba(37,99,235,0.12));color:#0E7490;">🔧 تجهیزات نصب‌شده روی دیگ (Trim Kit)</span>
+  <div class="trim-list">${trim.map(t=>`<div class="trim-item"><div class="name">✓ ${t.name}</div><div class="spec">${t.spec}</div></div>`).join('')}</div>
+  ${formulaBlock('محاسبه شیر اطمینان آبگرم',[`ظرفیت تخلیه = ۱۰۰٪ × ${fmt(cap)} kcal/hr = ${fmt(cap*1.163/1000,1)} kW`,`انتخاب از کاتالوگ سازنده — مرجع: ASME Section IV`],'ASME Section IV — EN 12953-6')}
+  </div>`;
+}
+
+/* ==================== AUXILIARY EQUIPMENT ==================== */
+function auxSteamEquipment(prefix,cap,p,SF,cond,tcond,tmakeup,hard,tdsf,tdsb){
+  if(!document.getElementById(prefix+'_show_aux')||!document.getElementById(prefix+'_show_aux').checked)return '';
+  const{blowPct}=calcBlowdown(tdsf,tdsb);
+  const makeupKg=cap*(1-cond/100)+cap*(blowPct/100);
+  const makeupM3=makeupKg/1000;
+  const dailyGal=makeupM3*1000*24/3.785;
+  const dailyGrains=dailyGal*(hard/17.1);
+  const reqGrains=dailyGrains*1.3*SF;
+  const softModel=pick(SOFTENER,'grain',reqGrains);
+  const condFlow=cap*(cond/100);
+  const recov=condensateRecovery(condFlow,tcond,tmakeup);
+  const pump=feedPump(cap,blowPct,p,0.3,2,15);
+  const deaeratorCap=cap*1.15*SF;
+  const deModel=pick(DEAERATOR_PRESS,'kgHr',deaeratorCap);
+  const conTankV=(condFlow/500)*10*1.4;
+  return `<div style="margin-top:16px;">
+  <span class="badge" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(6,182,212,0.12));color:#065F46;">⚙️ تجهیزات جانبی سیستم</span>
+  ${g('دبی آب جبرانی',fmt(makeupM3,3),'m³/h',massFlow(makeupKg))}
+  ${g('سختی‌گیر پیشنهادی',softModel.model,'',`رزین ${softModel.resin} L — قطر ${softModel.d} mm — نمک ${softModel.salt} L`)}
+  ${g('دی‌اریتور پیشنهادی',deModel.model,'',`ظرفیت ${fmt(deModel.kgHr)} kg/hr — مناسب بویلر ${deModel.boiler} تن`)}
+  ${g('دبی کندانس برگشتی',fmt(condFlow),'kg/hr',(cond).toFixed(0)+'٪')}
+  ${g('مخزن کندانس',fmt(conTankV),'L','۱۰ دقیقه + ۴۰٪ فضای آزاد')}
+  ${g('انرژی قابل بازیافت',fmt(recov.Q_kcalh),'kcal/hr','ΔT='+fmt(recov.dT,0)+'°C')}
+  ${g('پمپ تغذیه',fmt(pump.flowKgHr),'kg/hr',`Head: ${fmt(pump.headM,1)} m — معادل ${fmt(pump.headBar,1)} bar`)}
+  ${formulaBlock('محاسبات تجهیزات جانبی',[
+    `Makeup = ${fmt(cap)} × (1-${(cond/100).toFixed(2)}) + ${fmt(cap)} × ${(blowPct/100).toFixed(3)} = ${fmt(makeupKg)} kg/hr`,
+    `Softener = ${fmt(dailyGrains)} grains/day × 1.3 × ${SF} = ${fmt(reqGrains)}`,
+    `Deaerator = ${fmt(cap)} × 1.15 × ${SF} = ${fmt(deaeratorCap)} kg/hr`,
+    `Feed Pump = ${fmt(cap)} × (1+${(blowPct/100).toFixed(3)}) × 1.15 = ${fmt(pump.flowKgHr)} kg/hr`
+  ],'ASHRAE + Spirax Sarco + ASME')}
+  </div>`;
+}
+
+/* ==================== STEAM BOILER ==================== */
+function steamBoilerFull(prefix,catalog,resultsId,modelLabel){
+  const cap=n(document.getElementById(prefix+'_cap').value);
+  const p=n(document.getElementById(prefix+'_p').value);
+  const tfeed=n(document.getElementById(prefix+'_tfeed').value);
+  const cond=n(document.getElementById(prefix+'_cond').value);
+  const tcond=n(document.getElementById(prefix+'_tcond')?.value||85);
+  const tmakeup=n(document.getElementById(prefix+'_tmakeup')?.value||20);
+  const tdsf=n(document.getElementById(prefix+'_tdsf').value);
+  const tdsb=n(document.getElementById(prefix+'_tdsb').value);
+  const eff=n(document.getElementById(prefix+'_eff').value);
+  const xQual=n(document.getElementById(prefix+'_x').value)/100;
+  const fuel=document.getElementById(prefix+'_fuel').value;
+  const alt=n(document.getElementById(prefix+'_alt').value);
+  const tamb=n(document.getElementById(prefix+'_tamb').value);
+  const hard=n(document.getElementById(prefix+'_hard').value);
+  const stack=n(document.getElementById(prefix+'_stack')?.value||200);
+  const excess=n(document.getElementById(prefix+'_excess')?.value||15);
+  const pdea=n(document.getElementById(prefix+'_pdea')?.value||0.3);
+  const SF=getSafety(prefix);
+  if(cap<catalog.min||cap>catalog.max){document.getElementById(resultsId).innerHTML=warn(`ظرفیت باید بین ${catalog.min} و ${catalog.max} kg/hr باشد.`);return;}
+  if(p<catalog.minP||p>catalog.maxP){document.getElementById(resultsId).innerHTML=warn(`فشار باید بین ${catalog.minP} و ${catalog.maxP} bar باشد.`);return;}
+  const{coc,blowPct}=calcBlowdown(tdsf,tdsb);
+  const blowFrac=blowPct/100;
+  const sp=satP(p+1.013);
+  const hSteam=sp.hf+sp.hfg*xQual;
+  const hFeed=tfeed*4.187;
+  const qBoiler=cap*(hSteam-hFeed);
+  const qBoilerDesign=qBoiler*SF;
+  const burnerHtml=burnerBlock(qBoilerDesign,eff,fuel,alt,tamb,stack,excess,`(${modelLabel})`);
+  const trimHtml=trimKitSteam(prefix,cap,p,fuel,SF);
+  const auxHtml=auxSteamEquipment(prefix,cap,p,SF,cond,tcond,tmakeup,hard,tdsf,tdsb);
+  const html=`
+  ${g('ظرفیت تاییدشده',fmt(cap),'kg/hr',massFlow(cap))}
+  ${g('دمای اشباع',fmt(sp.t,1),'°C','فشار مطلق '+fmt(p+1.013,2)+' bar')}
+  ${g('بار حرارتی مفید (خالص)',fmt(qBoiler),'kcal/hr',heatUnits(qBoiler))}
+  ${g('بار طراحی (SF='+SF+')',fmt(qBoilerDesign),'kcal/hr',heatUnits(qBoilerDesign))}
+  ${g('CoC',fmt(coc,2),'×','TDS دیگ/TDS تغذیه')}
+  ${g('نرخ بلودان',fmt(blowPct,2),'٪',fmt(cap*blowFrac,1)+' kg/hr')}
+  ${burnerHtml}
+  ${trimHtml}
+  ${auxHtml}
+  ${formulaBlock('محاسبه بار حرارتی دیگ بخار (Fulton)',[
+    `h_steam = h_f + x·h_fg = ${fmt(hSteam,1)} kJ/kg`,
+    `h_feed = Cp × T = ${fmt(hFeed,1)} kJ/kg`,
+    `Q_boiler = ${cap} × (${fmt(hSteam,1)} - ${fmt(hFeed,1)}) = ${fmt(qBoiler)} kcal/hr (خالص)`,
+    `Q_design = ${fmt(qBoiler)} × ${SF} = ${fmt(qBoilerDesign)} kcal/hr`
+  ],'Fulton Boiler Works / ASME PTC 4')}
+  <div class="card" style="margin-top:14px;"><h2 style="font-size:.92rem;">خلاصه برای مشتری</h2>
+  <textarea class="summary-box" readonly>${modelLabel}: ${fmt(cap)} kg/hr @ ${p} bar
+بار خالص: ${fmt(qBoiler)} kcal/hr
+بار طراحی (SF=${SF}): ${fmt(qBoilerDesign)} kcal/hr
+بلودان: ${fmt(blowPct,1)}٪ — کندانس برگشتی: ${fmt(cap*cond/100)} kg/hr</textarea></div>`;
+  document.getElementById(resultsId).innerHTML=html;
+  addPDFToolbar(resultsId,modelLabel);
+}
+function calcHorizontalSteam(){steamBoilerFull('hwb',STEAM_HORIZONTAL,'hwb_results','دیگ بخار افقی سه‌پاس وت‌بک');}
+function calcFireboxSteam(){steamBoilerFull('fb',STEAM_FIREBOX,'fb_results','دیگ بخار فایرباکس');}
+function calcVerticalSteam(){steamBoilerFull('vrt',STEAM_VERTICAL,'vrt_results','دیگ بخار عمودی');}
+
+/* ==================== CLEAN STEAM ==================== */
+const CLEAN_STEAM_APPS={hospital:{label:'تعداد تخت',est:(b)=>({autoclave:Math.ceil(b/100),sterilization:Math.ceil(b/200)})},pharma:{label:'حجم تولید روزانه (L)',est:(v)=>({cipsip:Math.ceil(v/2000),autoclave:Math.ceil(v/5000)})},food:{label:'ظرفیت روزانه (kg)',est:(k)=>({pasteurizer:Math.ceil(k/3000),sterilization:Math.ceil(k/8000)})},lab:{label:'تعداد اتوکلاو',est:(nn)=>({autoclave:nn,sterilization:Math.ceil(nn/2)})}};
+function onCleanSteamAppChange(){const a=CLEAN_STEAM_APPS[document.getElementById('cs_app').value];document.getElementById('cs_dynamic_inputs').innerHTML=`<div class="row3"><div class="field"><label>${a.label}</label><input type="number" id="cs_driver" value="100"></div><div class="field"><label>ضریب تنوع <span class="unit">٪</span></label><input type="number" id="cs_div" value="60"></div><div class="field"><label>مصرف هر تجهیز <span class="unit">kg/hr</span></label><input type="number" id="cs_per" value="80"></div></div>`;}
+onCleanSteamAppChange();
+function calcCleanSteam(){
+  const driver=n(document.getElementById('cs_driver').value);const div=n(document.getElementById('cs_div').value)/100;const per=n(document.getElementById('cs_per').value);const p=n(document.getElementById('cs_p').value);const margin=n(document.getElementById('cs_margin').value)/100;const SF=getSafety('cs');
+  const a=CLEAN_STEAM_APPS[document.getElementById('cs_app').value];
+  const est=a.est(driver);let totalUnits=0;Object.keys(est).forEach(k=>{totalUnits+=est[k];});
+  const design=totalUnits*per*div*(1+margin)*SF;const q=design*539;
+  document.getElementById('cs_results').innerHTML=`
+  ${g('تعداد تجهیزات',totalUnits,'واحد','')}
+  ${g('ظرفیت مولد',fmt(design),'kg/hr',`@ ${p} bar`)}
+  ${g('بار حرارتی',fmt(q),'kcal/hr',heatUnits(q))}
+  ${burnerBlock(q,90,'gas',0,20,200,15,'(بخار تمیز)')}
+  ${formulaBlock('مولد بخار تمیز (EN285)',[`Connected = ${totalUnits} × ${per} = ${totalUnits*per} kg/hr`,`Design = ${fmt(design)} kg/hr`],'EN285 / HTM2031')}`;
+  addPDFToolbar('cs_results','مولد بخار تمیز');
+}
+
+/* ==================== HOT OIL ==================== */
+function calcHotOil(){
+  const q=n(document.getElementById('ho_q').value);const tin=n(document.getElementById('ho_tin').value);const tout=n(document.getElementById('ho_tout').value);const margin=n(document.getElementById('ho_margin').value)/100;const eff=n(document.getElementById('ho_eff').value);const fuel=document.getElementById('ho_fuel').value;const alt=n(document.getElementById('ho_alt').value);const SF=getSafety('ho');
+  if(q<100000||q>3000000){document.getElementById('ho_results').innerHTML=warn('بار حرارتی باید بین ۱۰۰٬۰۰۰ و ۳٬۰۰۰٬۰۰۰ kcal/hr باشد.');return;}
+  const qD=q*(1+margin)*SF;const model=pick(HOT_OIL,'kcal',qD);
+  document.getElementById('ho_results').innerHTML=`
+  ${g('بار طراحی',fmt(qD),'kcal/hr','حاشیه '+(margin*100).toFixed(0)+'٪ + SF='+SF)}
+  ${g('مدل استاندارد',model.model,'','ظرفیت '+fmt(model.kcal)+' kcal/hr')}
+  ${g('دمای رفت/برگشت',tin+' / '+tout,'°C','ΔT='+(tin-tout)+'°C')}
+  ${burnerBlock(qD,eff,fuel,alt,20,250,15,'(روغن داغ)')}
+  ${formulaBlock('دیگ روغن داغ (DIN 4754)',[`Q_design = ${fmt(qD)} kcal/hr`,`Model = ${model.model}`],'DIN 4754')}`;
+  addPDFToolbar('ho_results','دیگ روغن داغ');
+}
+
+/* ==================== HOT WATER ==================== */
+function hwCalc(prefix,minQ,maxQ,minP,maxP,resultsId,modelLabel){
+  const q=n(document.getElementById(prefix+'_q').value);const p=n(document.getElementById(prefix+'_p').value);const tin=n(document.getElementById(prefix+'_tin').value);const tout=n(document.getElementById(prefix+'_tout').value);const eff=n(document.getElementById(prefix+'_eff').value);const fuel=document.getElementById(prefix+'_fuel').value;const margin=n(document.getElementById(prefix+'_margin').value)/100;const alt=n(document.getElementById(prefix+'_alt').value);const tamb=n(document.getElementById(prefix+'_tamb').value);const stack=n(document.getElementById(prefix+'_stack')?.value||200);const SF=getSafety(prefix);
+  if(q<minQ||q>maxQ){document.getElementById(resultsId).innerHTML=warn(`بار حرارتی باید بین ${fmt(minQ)} و ${fmt(maxQ)} kcal/hr باشد.`);return;}
+  if(p<minP||p>maxP){document.getElementById(resultsId).innerHTML=warn(`فشار باید بین ${minP} و ${maxP} bar باشد.`);return;}
+  if(tin>90){document.getElementById(resultsId).innerHTML=warn('حداکثر دمای آبگرم ۹۰°C است.');return;}
+  const qD=q*(1+margin)*SF;const flow=qD/((tin-tout)*1000);
+  const trimHtml=trimKitHotWater(prefix,qD,p,SF);
+  document.getElementById(resultsId).innerHTML=`
+  ${g('بار طراحی',fmt(qD),'kcal/hr',heatUnits(qD))}
+  ${g('دبی آب گرم',fmt(flow,2),'m³/h','ΔT='+(tin-tout)+'°C')}
+  ${burnerBlock(qD,eff,fuel,alt,tamb,stack,15,`(${modelLabel})`)}
+  ${trimHtml}
+  ${formulaBlock('بار دیگ آبگرم (ASHRAE)',[`Q_design = ${fmt(qD)} kcal/hr`,`Flow = ${fmt(flow,2)} m³/h`],'ASHRAE HVAC Systems & Equipment')}`;
+  addPDFToolbar(resultsId,modelLabel);
+}
+function calcHWThreePass(){hwCalc('tp',HW_THREEPASS.min,HW_THREEPASS.max,HW_THREEPASS.minP,HW_THREEPASS.maxP,'tp_results','سه‌پاس');}
+function calcHWReverse(){hwCalc('rf',HW_REVERSE.min,HW_REVERSE.max,HW_REVERSE.minP,HW_REVERSE.maxP,'rf_results','شعله برگشتی');}
+function calcHWFirebox(){hwCalc('hfb',HW_FIREBOX.min,HW_FIREBOX.max,HW_FIREBOX.minP,HW_FIREBOX.maxP,'hfb_results','فایرباکس');}
+function calcHWAzaran(){hwCalc('az',HW_AZARAN.min,HW_AZARAN.max,HW_AZARAN.minP,HW_AZARAN.maxP,'az_results','آذران');}
+
+function calcHWPackage(){
+  const units=n(document.getElementById('pk_units').value);const area=n(document.getElementById('pk_area').value);const tout=n(document.getElementById('pk_tout').value);const tin=n(document.getElementById('pk_tin').value);const dhw=document.getElementById('pk_dhw').value==='1';const U=n(document.getElementById('pk_u').value);const SF=getSafety('pk');
+  const provKey=document.getElementById('pk_province').value;const provName=provKey&&provKey!=='manual'?(PROVINCES.find(p=>p.key===provKey)?.name||'دستی'):'دستی';
+  const totalSurface=units*area*2.5;const qHeat=U*totalSurface*(tin-tout);const dhwQ=dhw?units*4*50*(60-5)/24:0;const qMax=Math.max(qHeat,dhwQ);const qTotal=qMax*SF;
+  const model=HW_PACKAGE.find(m=>qTotal>=m.min&&qTotal<=m.max);
+  document.getElementById('pk_results').innerHTML=`
+  ${g('استان',provName,'','دمای طرح: '+tout+'°C')}
+  ${g('بار گرمایش',fmt(qHeat),'kcal/hr','')}
+  ${dhw?g('بار آبگرم مصرفی',fmt(dhwQ),'kcal/hr',''):''}
+  ${g('بار حداکثر (max نه sum)',fmt(qMax),'kcal/hr','طبق ASHRAE')}
+  ${g('بار طراحی (SF='+SF+')',fmt(qTotal),'kcal/hr','')}
+  ${g('مدل پیشنهادی',model?model.model:'خارج از محدوده','',model?`گاز ${model.gas} m³/hr`:'')}
+  ${formulaBlock('پکیج موتورخانه',[`Q_heating = ${U} × ${fmt(totalSurface)} × ${tin-tout} = ${fmt(qHeat)} kcal/hr`,`Q_max = max(...) = ${fmt(qMax)}`,`Q_design = ${fmt(qTotal)} kcal/hr`],'ASHRAE — Diversity Factor')}`;
+  addPDFToolbar('pk_results','پکیج موتورخانه');
+}
+
+/* ==================== GREENHOUSE ==================== */
+function calcGreenhouse(){
+  const L=n(document.getElementById('gh_l').value);const W=n(document.getElementById('gh_w').value);const H=n(document.getElementById('gh_h').value);const tin=n(document.getElementById('gh_tin').value);const tout=n(document.getElementById('gh_tout').value);const U=n(document.getElementById('gh_cover').value);const infil=n(document.getElementById('gh_infil').value);const fuel=document.getElementById('gh_fuel').value;const alt=n(document.getElementById('gh_alt').value);const tamb=n(document.getElementById('gh_tamb').value);const SF=getSafety('gh');
+  const provKey=document.getElementById('gh_province').value;const provName=provKey&&provKey!=='manual'?(PROVINCES.find(p=>p.key===provKey)?.name||'دستی'):'دستی';
+  const A=L*W;const wallA=2*(L+W)*H;const roofA=A*1.15;const totalA=wallA+roofA;const dT=tin-tout;
+  const qCond=U*totalA*dT;const vol=A*H;const qInfil=0.33*vol*infil*dT;const qBase=qCond+qInfil;const qTotal=qBase*SF;
+  document.getElementById('gh_results').innerHTML=`
+  ${g('استان',provName,'','دمای طرح: '+tout+'°C')}
+  ${g('سطح کل پوشش',fmt(totalA,1),'m²',`دیوار ${fmt(wallA,1)} + سقف ${fmt(roofA,1)}`)}
+  ${g('ضریب U',U,'W/m²·K','')}
+  ${g('ΔT',dT,'°C','')}
+  ${g('تلفات هدایت',fmt(qCond),'kcal/hr','')}
+  ${g('تلفات نفوذ',fmt(qInfil),'kcal/hr',infil+' ACH')}
+  ${g('بار خالص',fmt(qBase),'kcal/hr','')}
+  ${g('بار طراحی (SF='+SF+')',fmt(qTotal),'kcal/hr',heatUnits(qTotal))}
+  ${burnerBlock(qTotal,88,fuel,alt,tamb,200,15,'(گلخانه)')}
+  ${formulaBlock('بار حرارتی گلخانه',[`A_total = ${fmt(totalA,1)} m²`,`Q_cond = ${fmt(qCond)} W`,`Q_infil = ${fmt(qInfil)} W`,`Q_design = ${fmt(qTotal)} W`],'P.V. Nelson + ASHRAE')}`;
+  addPDFToolbar('gh_results','گلخانه');
+}
+
+/* ==================== POOL ==================== */
+function calcPool(){
+  const L=n(document.getElementById('pl_l').value),W=n(document.getElementById('pl_w').value),D=n(document.getElementById('pl_d').value);
+  const tt=n(document.getElementById('pl_tt').value),ta=n(document.getElementById('pl_ta').value);const tin=n(document.getElementById('pl_tin').value);
+  const rh=n(document.getElementById('pl_rh').value)/100;const wind=n(document.getElementById('pl_wind').value);
+  const useF=n(document.getElementById('pl_use').value);const coverF=n(document.getElementById('pl_cover').value);
+  const preheat=n(document.getElementById('pl_preheat').value);const showers=n(document.getElementById('pl_showers').value);
+  const SF=getSafety('pl');
+  const provKey=document.getElementById('pl_province').value;const provName=provKey&&provKey!=='manual'?(PROVINCES.find(p=>p.key===provKey)?.name||'دستی'):'دستی';
+  const A=L*W;const V=L*W*D;const deltaT=tt-tin;
+  const qHeatUp_kW=(V*1000*4.186*deltaT)/(preheat*3600);
+  const pvW=0.6108*Math.exp(17.27*tt/(tt+237.3));
+  const pvA=0.6108*Math.exp(17.27*ta/(ta+237.3))*rh;
+  const evapRate=A*(95+0.425*wind)*(pvW-pvA)/3600;
+  const qEvap=evapRate*2454*coverF;const hConv=3*wind+1.5;const qConv=hConv*A*(tt-ta);
+  const qRad=0.95*5.67e-8*A*(Math.pow(tt+273.15,4)-Math.pow(ta+273.15,4));
+  const qMaint_kW=(qEvap+qConv+qRad)/1000;
+  const qMakeup_kW=(evapRate*4.186*deltaT)/3600;
+  const qShowers_kcalh=showers*10000;const qShowers_kW=qShowers_kcalh/860;
+  const qTotal_kW=(qHeatUp_kW+qMaint_kW+qMakeup_kW+qShowers_kW)*SF;
+  const qKcal=qTotal_kW*860;
+  const circ=V/4;const gpm=circ*4.403;
+  document.getElementById('pl_results').innerHTML=`
+  ${g('استان',provName,'','دمای طرح: '+ta+'°C')}
+  ${g('حجم استخر',fmt(V*1000),'L',fmt(V,1)+' m³')}
+  ${g('بار پیش‌گرمایش ('+preheat+' ساعته)',fmt(qHeatUp_kW,2),'kW','ΔT='+deltaT+'°C')}
+  ${g('بار نگهداری',fmt(qMaint_kW,2),'kW','تبخیر + جابجایی + تشعشع')}
+  ${g('بار آب جبرانی',fmt(qMakeup_kW,2),'kW','')}
+  ${showers>0?g('بار دوش‌ها ('+showers+')',fmt(qShowers_kW,2),'kW',qShowers_kcalh.toLocaleString()+' kcal/hr'):''}
+  ${g('بار کل (SF='+SF+')',fmt(qTotal_kW,2),'kW',heatUnits(qKcal))}
+  ${showers>0?g('منبع کویلی','بله','','هر دوش ۱۰٬۰۰۰ kcal/hr'):''}
+  ${burnerBlock(qKcal,88,'gas',0,20,200,15,'(استخر)')}
+  ${formulaBlock('بار حرارتی استخر',[`Q_preheat = (${fmt(V,1)}×1000×4.186×${deltaT})/(${preheat}×3600) = ${fmt(qHeatUp_kW,2)} kW`,`Q_evap = ${fmt(qEvap/1000,2)} kW`,`Q_conv = ${fmt(qConv/1000,2)} kW`,`Q_rad = ${fmt(qRad/1000,2)} kW`,`Q_total = ${fmt(qTotal_kW,2)} kW`],'ASHRAE HVAC Applications Ch.6 + Spirax Sarco')}`;
+  addPDFToolbar('pl_results','استخر');
+}
+
+/* ==================== DHW ==================== */
+const ASHRAE_FIX={
+apartment:{lav:1.5,bath:15,shower:21,kitchen:8,dw:12,laundry:28,df:0.30},
+dormitory:{lav:1.5,bath:0,shower:21,kitchen:4,dw:8,laundry:28,df:0.25},
+nursing:{lav:1.5,bath:15,shower:21,kitchen:8,dw:12,laundry:28,df:0.25},
+hotel:{lav:4,bath:15,shower:21,kitchen:15,dw:40,laundry:28,df:0.25},
+hospital:{lav:4,bath:8,shower:21,kitchen:25,dw:40,laundry:28,df:0.25},
+office:{lav:1.5,bath:0,shower:21,kitchen:8,dw:12,laundry:28,df:0.30},
+school:{lav:1.5,bath:0,shower:21,kitchen:15,dw:15,laundry:22,df:0.40},
+prison:{lav:1.5,bath:0,shower:21,kitchen:8,dw:12,laundry:28,df:0.30},
+restaurant:{lav:1.5,bath:0,shower:21,kitchen:15,dw:40,laundry:28,df:0.30},
+laundry:{lav:1.5,bath:0,shower:21,kitchen:4,dw:8,laundry:50,df:0.30},
+dairy:{lav:1.5,bath:0,shower:21,kitchen:25,dw:15,laundry:40,df:0.35},
+slaughter:{lav:1.5,bath:0,shower:21,kitchen:8,dw:8,laundry:40,df:0.35},
+industrial:{lav:1.5,bath:0,shower:21,kitchen:12,dw:12,laundry:28,df:0.35}
+};
+function onDhwMethodChange(){const m=document.getElementById('dhw_method').value;document.getElementById('dhw_fixture_block').style.display=m==='fixture'?'block':'none';document.getElementById('dhw_percapita_block').style.display=m==='percapita'?'block':'none';document.getElementById('dhw_custom_block').style.display=m==='custom'?'block':'none';if(m==='fixture')onDhwBuildingChange();}
+function onDhwBuildingChange(){
+  const b=document.getElementById('dhw_building').value;const d=ASHRAE_FIX[b];if(!d)return;
+  document.getElementById('dhw_div').value=d.df;
+  const names={lav:'سینک دستشویی',bath:'وان',shower:'دوش',kitchen:'سینک آشپزخانه',dw:'ظرفشویی',laundry:'لباسشویی'};
+  document.getElementById('dhw_fixture_inputs').innerHTML=Object.keys(names).map(k=>{if(d[k]===0)return '';return `<div class="field"><label>${names[k]} — ${d[k]} GPH</label><input type="number" id="dhw_fx_${k}" value="0" min="0"></div>`;}).join('');
+}
+onDhwMethodChange();
+function calcDHW(){
+  const m=document.getElementById('dhw_method').value;const SF=getSafety('dhw');const pat=getPattern('dhw');const pf=patternFactor(pat);
+  let hourly=0,daily=0,fixLines=[],gphBase=0;
+  if(m==='fixture'){
+    const d=ASHRAE_FIX[document.getElementById('dhw_building').value];
+    const div=n(document.getElementById('dhw_div').value);
+    const units=n(document.getElementById('dhw_units').value)||1;
+    let gph=0;
+    ['lav','bath','shower','kitchen','dw','laundry'].forEach(k=>{const el=document.getElementById('dhw_fx_'+k);if(el){const cnt=n(el.value);gph+=cnt*d[k];if(cnt>0)fixLines.push(`${k}: ${cnt} × ${d[k]} = ${cnt*d[k]} GPH`);}});
+    gphBase=gph;
+    hourly=gph*div*units*pf*SF*3.785;daily=hourly*8;
+  }else if(m==='percapita'){
+    daily=n(document.getElementById('dhw_count').value)*n(document.getElementById('dhw_pc').value)*SF;
+    hourly=daily/n(document.getElementById('dhw_ph').value)*pf;
+  }else{hourly=n(document.getElementById('dhw_ch').value)*pf*SF;daily=n(document.getElementById('dhw_cd').value)*SF;}
+  const storage=hourly;const coil=Math.max((daily-0.75*storage)/3,0);const q=coil*45;
+  const coilModel=pick(COIL_U,'cap',storage);
+  document.getElementById('dhw_results').innerHTML=`
+  ${g('حجم مخزن ذخیره',fmt(storage),'L','')}
+  ${g('حداکثر روزانه',fmt(daily),'L/day','')}
+  ${g('ظرفیت کویل',fmt(coil),'L/hr','')}
+  ${g('بار حرارتی دیگ',fmt(q),'kcal/hr',heatUnits(q))}
+  ${g('منبع کویلی','SG-HE-C-'+coilModel.cap,'L','سطح کویل '+coilModel.surf+' ft²')}
+  ${burnerBlock(q,88,'gas',0,20,200,15,'(آبگرم مصرفی)')}
+  ${formulaBlock('آبگرم مصرفی (ASHRAE Fixture-based)',[...fixLines,`GPH_base = ${gphBase}`,`الگوی مصرف: ${pat==='peak'?'پیک‌دار (PF=1.5)':'پیوسته (PF=1.0)'}`,`Hourly = ${fmt(hourly)} L/hr`,`Coil = ${fmt(coil)} L/hr`,`Q = ${fmt(q)} kcal/hr`],'ASHRAE Handbook - HVAC Applications Ch. 51')}`;
+  addPDFToolbar('dhw_results','آبگرم مصرفی');
+}
+
+/* ==================== HEATING ==================== */
+const HT_BUILDINGS={office:{label:'اداری',tin:22,if_:1.10},residential:{label:'مسکونی',tin:21,if_:1.05},hospital:{label:'بیمارستان',tin:24,if_:1.00},school:{label:'مدرسه',tin:20,if_:1.15},hotel:{label:'هتل',tin:22,if_:1.05},restaurant:{label:'رستوران',tin:22,if_:1.05},industrial:{label:'کارخانه',tin:18,if_:1.10},warehouse:{label:'انبار',tin:15,if_:1.00}};
+function onHeatingBuildingChange(){
+  const b=document.getElementById('ht_building').value;const cfg=HT_BUILDINGS[b];if(!cfg)return;
+  document.getElementById('ht_tin').value=cfg.tin;
+  const info=document.getElementById('ht_building_info');if(info)info.innerHTML=`نوع: <b>${cfg.label}</b> — دمای هدف: <b>${cfg.tin}°C</b> — ضریب تناوب: <b>${cfg.if_}</b>`;
+}
+onHeatingBuildingChange();
+function calcHeating(){
+  const cfg=HT_BUILDINGS[document.getElementById('ht_building').value];
+  const provKey=document.getElementById('ht_province').value;const provName=provKey&&provKey!=='manual'?(PROVINCES.find(p=>p.key===provKey)?.name||'دستی'):'دستی';
+  const area=n(document.getElementById('ht_area').value);const H=n(document.getElementById('ht_h').value);const U=n(document.getElementById('ht_u').value);
+  const tout=n(document.getElementById('ht_tout').value);const ach=n(document.getElementById('ht_ach').value);
+  const tin=cfg.tin;const IF=cfg.if_;const SF=getSafety('ht');const dT=tin-tout;const volume=area*H;
+  const qTrans=U*area*dT;const qVent=0.33*volume*ach*dT;const qBase=qTrans+qVent;const qDesign=qBase*IF*SF;
+  document.getElementById('ht_results').innerHTML=`
+  ${g('استان',provName,'','دمای طرح: '+tout+'°C')}
+  ${g('نوع کاربری',cfg.label,'','دمای هدف '+tin+'°C')}
+  ${g('ضریب تناوب',IF,'×','')}
+  ${g('ΔT',dT,'°C',tin+' - ('+tout+')')}
+  ${g('حجم فضا',fmt(volume),'m³','')}
+  ${g('بار انتقال',fmt(qTrans),'kcal/hr','U='+U+' W/m²·K')}
+  ${g('بار نفوذ',fmt(qVent),'kcal/hr',ach+' ACH')}
+  ${g('بار خالص کل',fmt(qBase),'kcal/hr','')}
+  ${g('بار طراحی نهایی',fmt(qDesign),'kcal/hr',heatUnits(qDesign))}
+  ${formulaBlock('بار گرمایش (ASHRAE Ch.18 + CIBSE)',[`ΔT = ${tin} - (${tout}) = ${dT}°C`,`Q_trans = ${area} × ${U} × ${dT} = ${fmt(qTrans)} W`,`Q_vent = 0.33 × ${fmt(volume)} × ${ach} × ${dT} = ${fmt(qVent)} W`,`Q_base = ${fmt(qBase)} W`,`Q_design = ${fmt(qBase)} × ${IF} × ${SF} = ${fmt(qDesign)} W`],'ASHRAE Fundamentals Ch.18 + CIBSE Guide A')}`;
+  addPDFToolbar('ht_results','گرمایش');
+}
+
+/* ==================== SAUNA ==================== */
+function calcSauna(){
+  const L=n(document.getElementById('sa_l').value);const W=n(document.getElementById('sa_w').value);const H=n(document.getElementById('sa_h').value);
+  const k1=n(document.getElementById('sa_vent').value);const k2=n(document.getElementById('sa_const').value);const SF=getSafety('sa');
+  const V=L*W*H;const kw=V*k1*k2*SF;const steam=kw*1.5;
+  document.getElementById('sa_results').innerHTML=`
+  ${g('حجم اتاق',V.toFixed(2),'m³','')}
+  ${g('K1',k1,'-','')}${g('K2',k2,'-','')}
+  ${g('توان سونا',kw.toFixed(2),'kW','')}
+  ${g('بخار معادل',steam.toFixed(2),'kg/hr','')}
+  ${formulaBlock('توان سونا (EOS/Harvia)',[`V = ${V.toFixed(2)} m³`,`kW = ${V.toFixed(2)} × ${k1} × ${k2} × ${SF} = ${kw.toFixed(2)} kW`,`Steam = ${steam.toFixed(2)} kg/hr`],'EOS SteamRock II / Harvia')}`;
+  addPDFToolbar('sa_results','سونا');
+}
+
+/* ==================== INDUSTRIAL ==================== */
+const FACILITY_DATA={
+hospital:{label:'بیمارستان',p:6,equipment:[{id:'autoclave',label:'اتوکلاو',per:60},{id:'laundry',label:'رختشویی',per:8},{id:'kitchen',label:'آشپزخانه',per:30}],driver:{label:'تعداد تخت',est:(b)=>({autoclave:Math.ceil(b/120),laundry:Math.ceil(b*5/100),kitchen:Math.ceil(b/150)})}},
+laundry:{label:'رختشویی صنعتی',p:8,equipment:[{id:'washer',label:'واشر',per:40},{id:'ironer',label:'کالندر',per:25}],driver:{label:'kg/day',est:(k)=>({washer:Math.ceil(k/500),ironer:Math.ceil(k/800)})}},
+hotel:{label:'هتل بزرگ',p:7,equipment:[{id:'kitchen',label:'آشپزخانه',per:35},{id:'laundry',label:'رختشویی',per:8}],driver:{label:'تعداد اتاق',est:(r)=>({kitchen:Math.ceil(r/100),laundry:Math.ceil(r*3/100)})}},
+food:{label:'صنایع غذایی',p:7,equipment:[{id:'pasteurizer',label:'پاستوریزاتور',per:180},{id:'kettle',label:'کتری پخت',per:50},{id:'cip',label:'CIP',per:100}],driver:{label:'L/day',est:(l)=>({pasteurizer:Math.ceil((l/16)/1000),kettle:Math.ceil(l/8000),cip:Math.ceil(l/15000)})}},
+textile:{label:'نساجی',p:8,equipment:[{id:'dyeing',label:'رنگرزی',per:90},{id:'finishing',label:'استنتر',per:180}],driver:{label:'تعداد دستگاه',est:(d)=>({dyeing:d,finishing:Math.ceil(d/3)})}},
+sauna:{label:'سونا',p:2,equipment:[{id:'generator',label:'ژنراتور',per:12}],driver:{label:'تعداد اتاق',est:(r)=>({generator:r})}}
+};
+(function initIs(){const sel=document.getElementById('is_facility');if(!sel)return;Object.keys(FACILITY_DATA).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=FACILITY_DATA[k].label;sel.appendChild(o);});onIsFacilityChange();})();
+function onIsFacilityChange(){
+  const f=FACILITY_DATA[document.getElementById('is_facility').value];
+  document.getElementById('is_p').value=f.p;
+  document.getElementById('is_driver_label').textContent=f.driver.label;
+  document.getElementById('is_equipment_list').innerHTML=`<fieldset><legend>تجهیزات</legend>`+f.equipment.map(e=>`<div class="row" style="align-items:end;margin-bottom:8px;"><div class="field" style="margin-bottom:0;"><label>${e.label}</label><input type="number" id="is_qty_${e.id}" value="0"><span class="unit">تعداد</span></div><div class="field" style="margin-bottom:0;"><label>مصرف</label><input type="number" id="is_cons_${e.id}" value="${e.per}"><span class="unit">kg/hr</span></div></div>`).join('')+`</fieldset>`;
+}
+function applyIsDriver(){const f=FACILITY_DATA[document.getElementById('is_facility').value];const v=n(document.getElementById('is_driver_val').value);if(v<=0){toast('عدد بزرگ‌تر از صفر');return;}const est=f.driver.est(v);Object.keys(est).forEach(k=>{const el=document.getElementById('is_qty_'+k);if(el)el.value=est[k];});toast('تخمین اعمال شد');}
+function calcIndustrial(){
+  const f=FACILITY_DATA[document.getElementById('is_facility').value];let connected=0;const lines=[];
+  f.equipment.forEach(e=>{const q=n(document.getElementById('is_qty_'+e.id).value);const c=n(document.getElementById('is_cons_'+e.id).value);connected+=q*c;if(q>0)lines.push(`${e.label}: ${q} × ${c} = ${q*c} kg/hr`);});
+  if(connected<=0){document.getElementById('is_results').innerHTML=warn('حداقل یک تجهیز وارد کنید.');return;}
+  const div=n(document.getElementById('is_div').value)/100;const margin=n(document.getElementById('is_margin').value)/100;const p=n(document.getElementById('is_p').value);const SF=getSafety('is');
+  const cap=connected*div*(1+margin)*SF;const q=cap*539;
+  document.getElementById('is_results').innerHTML=`
+  ${g('بار متصل',fmt(connected),'kg/hr','')}
+  ${g('بار تنوع‌یافته',fmt(connected*div),'kg/hr','ضریب '+(div*100).toFixed(0)+'٪')}
+  ${g('ظرفیت پیشنهادی (SF='+SF+')',fmt(cap),'kg/hr',massFlow(cap))}
+  ${g('بار حرارتی',fmt(q),'kcal/hr',heatUnits(q))}
+  ${burnerBlock(q,88,'gas',0,20,200,15,'(صنعتی)')}
+  ${formulaBlock('بخار صنعتی',[...lines,`Connected = ${fmt(connected)} kg/hr`,`Design = ${fmt(cap)} kg/hr`],'Spirax Sarco Steam Engineering')}`;
+  addPDFToolbar('is_results','بخار صنعتی');
+}
+
+/* ==================== TANKS ==================== */
+function waterExpandK(tC){const t=[{t:10,k:0.0003},{t:20,k:0.0018},{t:30,k:0.0043},{t:40,k:0.0078},{t:50,k:0.0121},{t:60,k:0.0171},{t:70,k:0.0227},{t:80,k:0.0290},{t:90,k:0.0359},{t:100,k:0.0434}];return interp(t,tC,'t','k');}
+function calcOpenExp(){
+  const vs=n(document.getElementById('oe_vs').value);const th=n(document.getElementById('oe_t').value);const tc=n(document.getElementById('oe_tmin').value);const SF=getSafety('oe');
+  const v2=1+waterExpandK(th);const v1=1+waterExpandK(tc);const dT=th-tc;const exp=(v2/v1)-1-3*11.7e-6*dT;const Vt=2*vs*exp*SF;const model=pick(OPEN_EXP,'cap',Vt);
+  document.getElementById('oe_results').innerHTML=`${g('حجم موردنیاز',fmt(Vt),'L','ASHRAE × ۲ × SF='+SF)}${g('مدل',model.model,'','ظرفیت '+model.cap+' L')}${g('ضریب انبساط',(exp*100).toFixed(2),'٪','ΔT='+dT+'°C')}${formulaBlock('منبع انبساط باز',[`e = ${exp.toFixed(5)}`,`Vt = 2 × ${vs} × e × ${SF} = ${fmt(Vt)} L`],'ASHRAE Ch.13')}`;
+  addPDFToolbar('oe_results','منبع انبساط باز');
+}
+function calcClosedExp(){
+  const vs=n(document.getElementById('ce_vs').value);const th=n(document.getElementById('ce_t').value);const tc=n(document.getElementById('ce_tmin').value);const p1=n(document.getElementById('ce_p1').value)+1.013;const p2=n(document.getElementById('ce_p2').value)+1.013;const SF=getSafety('ce');
+  const v2=1+waterExpandK(th);const v1=1+waterExpandK(tc);const exp=(v2/v1)-1-3*11.7e-6*(th-tc);const Vt=vs*exp/(1-(p1/p2))*SF;const model=pick(CLOSED_EXP,'cap',Vt);
+  document.getElementById('ce_results').innerHTML=`${g('حجم موردنیاز',fmt(Vt),'L','ASHRAE × SF='+SF)}${g('مدل',model.model,'',`قطر ${model.d} mm — ارتفاع ${model.h} mm`)}${g('ضریب انبساط',(exp*100).toFixed(2),'٪','ΔT='+(th-tc)+'°C')}${formulaBlock('منبع انبساط بسته',[`e = ${exp.toFixed(5)}`,`Vt = Vs·e/(1-P1/P2) × ${SF} = ${fmt(Vt)} L`],'ASHRAE Ch.13')}`;
+  addPDFToolbar('ce_results','منبع انبساط بسته');
+}
+function calcCondTank(){
+  const flow=n(document.getElementById('ct_flow').value);const hold=n(document.getElementById('ct_hold').value);const pin=n(document.getElementById('ct_pin').value);const ptank=n(document.getElementById('ct_ptank').value);
+  const inP=satP(pin+1.013);const tkP=satP(ptank+1.013);
+  const flashPct=Math.max(0,(inP.hf-tkP.hf)/tkP.hfg*100);const flash=flow*flashPct/100;const liquid=flow-flash;const Vtank=(liquid/60)*hold*1.4;
+  document.getElementById('ct_results').innerHTML=`${g('درصد فلش',fmt(flashPct,1),'٪',`T_in=${fmt(inP.t,0)}°C، T_tank=${fmt(tkP.t,0)}°C`)}${g('بخار فلش',fmt(flash),'kg/hr','')}${g('حجم مخزن (هولدآپ)',fmt(Vtank),'L',hold+' دقیقه + ۴۰٪ فضای آزاد')}${g('حجم کاتالوگ',fmt(liquid),'L','ظرفیت ۱ ساعت')}${formulaBlock('مخزن کندانس',[`Flash% = ${fmt(flashPct,1)}%`,`Flash = ${fmt(flash)} kg/hr`,`V_tank = ${fmt(Vtank)} L`],'Spirax Sarco')}`;
+  addPDFToolbar('ct_results','مخزن کندانس');
+}
+function calcCoilU(){
+  const vol=n(document.getElementById('cu_vol').value);const th=n(document.getElementById('cu_th').value);const tc=n(document.getElementById('cu_tc').value);const q=n(document.getElementById('cu_q').value);
+  const model=pick(COIL_U,'cap',vol);
+  document.getElementById('cu_results').innerHTML=`${g('مدل','SG-HE-C-'+model.cap,'L',`سطح ${model.surf} ft² — قطر ${model.d} mm`)}${g('ظرفیت کویل',fmt(q/(th-tc)),'L/hr','ΔT='+(th-tc)+'°C')}${g('بار حرارتی',fmt(q),'kcal/hr',heatUnits(q))}${formulaBlock('منبع کویلی U-Type',[`Coil = Q/ΔT = ${fmt(q/(th-tc))} L/hr`,`Model = SG-HE-C-${model.cap}`],'ASHRAE / ASME')}`;
+  addPDFToolbar('cu_results','منبع کویلی');
+}
+function calcCoilSpiral(){
+  const vol=n(document.getElementById('cs_vol').value);const th=n(document.getElementById('cs_th').value);const tc=n(document.getElementById('cs_tc').value);const q=n(document.getElementById('cs_q').value);
+  const model=pick(COIL_SPIRAL,'cap',vol);
+  document.getElementById('cs_result').innerHTML=`${g('مدل','SG-HE-SC-'+model.cap,'L',`سطح ${model.surf} ft² — قطر ${model.d} mm`)}${g('ظرفیت کویل',fmt(q/(th-tc)),'L/hr','ΔT='+(th-tc)+'°C')}${g('بار حرارتی',fmt(q),'kcal/hr',heatUnits(q))}${formulaBlock('منبع اسپیرال',[`Coil = ${fmt(q/(th-tc))} L/hr`,`Model = SG-HE-SC-${model.cap}`],'Caspian Spiral Coil')}`;
+  addPDFToolbar('cs_result','منبع اسپیرال');
+}
+function calcFluidTank(){
+  const vol=n(document.getElementById('fs_vol').value);const p=n(document.getElementById('fs_p').value);const type=document.getElementById('fs_fluid').value;
+  if(vol<0.5||vol>50){document.getElementById('fs_results').innerHTML=warn('حجم بین ۰.۵ و ۵۰ m³.');return;}
+  if(p<6||p>40){document.getElementById('fs_results').innerHTML=warn('فشار بین ۶ و ۴۰ bar.');return;}
+  const dens={water:1000,oil:900,chemical:1100,fuel:850}[type];const mass=vol*dens;const D=Math.pow(vol*4/(Math.PI*2),1/3);
+  document.getElementById('fs_results').innerHTML=`${g('حجم',fmt(vol,2),'m³','')}${g('جرم سیال',fmt(mass),'kg','چگالی '+dens+' kg/m³')}${g('ابعاد تقریبی',`Ø${fmt(D*1000)} × ${fmt(D*2000)}`,'mm','L/D=2')}${formulaBlock('مخزن ذخیره مایعات',[`V = ${vol} m³`,`Mass = ${fmt(mass)} kg`,`D = ${fmt(D*1000)} mm`],'ASME VIII')}`;
+  addPDFToolbar('fs_results','مخزن ذخیره مایعات');
+}
+
+/* ==================== TREATMENT ==================== */
+function calcSoftener(){
+  const flow=n(document.getElementById('sf_flow').value);const hard=n(document.getElementById('sf_hard').value);const days=n(document.getElementById('sf_days').value);const duplex=document.getElementById('sf_duplex').checked;const SF=getSafety('sfs');
+  const dailyGal=flow*1000*24/3.785;const dailyGrains=dailyGal*(hard/17.1);const reqGrains=dailyGrains*days*1.3*SF;const model=pick(SOFTENER,'grain',reqGrains);const resinFt3=reqGrains/30000;const saltKg=resinFt3*15*0.4536;
+  document.getElementById('sf_results').innerHTML=`${g('ظرفیت رزین',fmt(reqGrains),'گرین','SF='+SF)}${g('حجم رزین',fmt(resinFt3,2),'ft³',fmt(resinFt3*28.317,0)+' L')}${g('مدل',model.model,'',`قطر ${model.d} mm — رزین ${model.resin} L`)}${g('نمک هر احیا',fmt(saltKg,1),'kg','')}${duplex?'<div class="notice">حالت Duplex فعال</div>':''}${formulaBlock('سختی‌گیر (WQA)',[`سختی (GPG) = ${(hard/17.1).toFixed(2)}`,`گرین روزانه = ${fmt(dailyGrains)}`,`گرین طراحی = ${fmt(reqGrains)}`,`رزین = ${fmt(resinFt3,2)} ft³`],'WQA')}`;
+  addPDFToolbar('sf_results','سختی‌گیر');
+}
+function calcSandFilter(){
+  const flow=n(document.getElementById('sf2_flow').value);const rate=n(document.getElementById('sf2_rate').value);const type=document.getElementById('sf2_type').value;
+  const gpm=flow*4.403;const areaFt2=gpm/rate;const areaM2=areaFt2*0.0929;const D=Math.sqrt(4*areaM2/Math.PI);const model=pick(SAND_FILTER,'m3h',flow);
+  document.getElementById('sf2_results').innerHTML=`${g('دبی',fmt(gpm,0),'GPM',fmt(flow,1)+' m³/h')}${g('مساحت فیلتر',fmt(areaFt2,2),'ft²','قطر '+fmt(D*1000,0)+' mm')}${g('مدل',model.model,'','قطر '+model.d+' mm')}${g('دبی شستشوی معکوس',fmt(flow*1.5,1),'m³/h','۱.۵ برابر')}${formulaBlock('فیلتر شنی',[`Loading Rate = ${rate} GPM/ft²`,`A = ${fmt(areaFt2,2)} ft²`,`D = ${fmt(D*1000,0)} mm`],'ASHRAE')}`;
+  addPDFToolbar('sf2_results','فیلتر شنی');
+}
+function calcDeaerator(){
+  const cap=n(document.getElementById('de_cap').value);const blow=n(document.getElementById('de_blow').value)/100;const type=document.getElementById('de_type').value;const margin=n(document.getElementById('de_margin').value)/100;const SF=getSafety('de');
+  const feedwater=cap*(1+blow);const deCap=feedwater*(1+margin)*SF;const model=pick(DEAERATOR_PRESS,'kgHr',deCap);const storage=(model.kgHr/60)*20;
+  document.getElementById('de_results').innerHTML=`${g('ظرفیت دی‌اریتور',fmt(deCap),'kg/hr','SF='+SF)}${g('مدل',model.model,'',`ظرفیت ${fmt(model.kgHr)} kg/hr — بویلر ${model.boiler} تن`)}${g('حجم مخزن',fmt(storage),'L','۲۰ دقیقه')}${g('اکسیژن باقیمانده','< 7','ppb','')}${formulaBlock('دی‌اریتور (HEI)',[`Feed = ${fmt(feedwater)} kg/hr`,`Dea = ${fmt(deCap)} kg/hr`,`Model = ${model.model}`],'ASME / HEI')}`;
+  addPDFToolbar('de_results','دی‌اریتور');
+}
+
+/* ==================== ACCESSORIES ==================== */
+function calcHydraulic(){
+  const q=n(document.getElementById('hs_q').value);const tin=n(document.getElementById('hs_tin').value);const tout=n(document.getElementById('hs_tout').value);const v=n(document.getElementById('hs_v').value);
+  const kW=q*1.163/1000;const flowM3h=q/((tin-tout)*1000);const area=(flowM3h/3600)/v;const D=Math.sqrt(4*area/Math.PI);const model=pick(HYDRAULIC,'kw',kW);
+  document.getElementById('hs_results').innerHTML=`${g('بار حرارتی',fmt(q),'kcal/hr',fmt(kW)+' kW')}${g('دبی',fmt(flowM3h,1),'m³/h','ΔT='+(tin-tout)+'°C')}${g('قطر',fmt(D*1000,0),'mm','سرعت '+v+' m/s')}${g('مدل',model.model,'',model.kw+' kW')}`;
+  addPDFToolbar('hs_results','هیدرولیک سپراتور');
+}
+function calcAirSep(){
+  const gpm=Math.max(n(document.getElementById('as_flow').value),n(document.getElementById('as_flow_m3').value)*4.403);const model=pick(AIR_SEP,'gpm',gpm);
+  document.getElementById('as_results').innerHTML=`${g('دبی',fmt(gpm,0),'GPM','')}${g('مدل',model.model,'',`قطر ${model.d} mm — ارتفاع ${model.h} mm`)}`;
+  addPDFToolbar('as_results','ایر سپراتور');
+}
+function calcSuperheater(){
+  const flow=n(document.getElementById('sh_flow').value);const tsat=n(document.getElementById('sh_tsat').value);const tout=n(document.getElementById('sh_tout').value);const src=document.getElementById('sh_source').value;const eff=n(document.getElementById('sh_eff').value)/100;
+  const q=flow*0.5*(tout-tsat);const fire=q/eff;
+  document.getElementById('sh_results').innerHTML=`${g('بار حرارتی',fmt(q),'kcal/hr',heatUnits(q))}${g('ΔT',tsat+' → '+tout,'°C',(tout-tsat)+'°C')}${src==='burner'?g('سوخت مشعل',fmt(fire/8250,2),'m³/hr','گاز طبیعی'):g('منبع','گازهای داغ','','')}`;
+  addPDFToolbar('sh_results','سوپر هیتر');
+}
+function onHxTypeChange(){document.getElementById('hx_u').value=document.getElementById('hx_type').value==='plate'?'4000':'2000';}
+function calcHX(){
+  const q=n(document.getElementById('hx_q').value);const thin=n(document.getElementById('hx_thin').value),thout=n(document.getElementById('hx_thout').value);
+  const tcin=n(document.getElementById('hx_tcin').value),tcout=n(document.getElementById('hx_tcout').value);const U=n(document.getElementById('hx_u').value);
+  const dT1=thin-tcout,dT2=thout-tcin;if(dT1<=0||dT2<=0){document.getElementById('hx_results').innerHTML=warn('دماها را بررسی کنید.');return;}
+  const lmtd=Math.abs(dT1-dT2)<0.01?dT1:(dT1-dT2)/Math.log(dT1/dT2);const area=(q*1.163)/(U*lmtd);
+  document.getElementById('hx_results').innerHTML=`${g('LMTD',fmt(lmtd,1),'°C','')}${g('سطح',fmt(area,2),'m²','U='+U+' W/m²K')}${formulaBlock('مبدل حرارتی',[`ΔT₁ = ${dT1}°C، ΔT₂ = ${dT2}°C`,`LMTD = ${fmt(lmtd,1)}°C`,`A = ${fmt(area,2)} m²`],'TEMA / ASME VIII')}`;
+  addPDFToolbar('hx_results','مبدل حرارتی');
+}
+
+/* ==================== CATALOG TABLES ==================== */
+const STEAM_HORIZONTAL={min:100,max:15000,minP:3,maxP:20};
+const STEAM_FIREBOX={min:300,max:8000,minP:6,maxP:16};
+const STEAM_VERTICAL={min:60,max:500,minP:3,maxP:10};
+const HW_THREEPASS={min:80000,max:6000000,minP:3,maxP:20};
+const HW_REVERSE={min:80000,max:6000000,minP:3,maxP:20};
+const HW_FIREBOX={min:85000,max:1250000,minP:3,maxP:10};
+const HW_AZARAN={min:60000,max:2000000,minP:3,maxP:10};
+const HW_PACKAGE=[{model:'Cb.pH-45',min:17000,max:45000,gas:'1.8-4.78'},{model:'Cb.pH-85',min:45000,max:75000,gas:'4.78-7.97'},{model:'Cb.pH-100',min:75000,max:100000,gas:'7.97-10.63'}];
+const HOT_OIL=[{model:'S.G.OH-100',kcal:100000},{model:'S.G.OH-150',kcal:150000},{model:'S.G.OH-200',kcal:200000},{model:'S.G.OH-250',kcal:250000},{model:'S.G.OH-300',kcal:300000},{model:'S.G.OH-400',kcal:400000},{model:'S.G.OH-500',kcal:500000},{model:'S.G.OH-600',kcal:600000},{model:'S.G.OH-800',kcal:800000},{model:'S.G.OH-1000',kcal:1000000},{model:'S.G.OH-1250',kcal:1250000},{model:'S.G.OH-1500',kcal:1500000},{model:'S.G.OH-2000',kcal:2000000},{model:'S.G.OH-2500',kcal:2500000},{model:'S.G.OH-3000',kcal:3000000}];
+const SOFTENER=[{model:'SG-S-30',grain:30000,d:320,resin:25,salt:40},{model:'SG-S-45',grain:45000,d:320,resin:25,salt:40},{model:'SG-S-60',grain:60000,d:320,resin:50,salt:40},{model:'SG-S-100',grain:100000,d:470,resin:75,salt:60},{model:'SG-S-150',grain:150000,d:550,resin:125,salt:100},{model:'SG-S-200',grain:200000,d:600,resin:175,salt:100},{model:'SG-S-250',grain:250000,d:650,resin:200,salt:200},{model:'SG-S-300',grain:300000,d:650,resin:250,salt:200},{model:'SG-S-400',grain:400000,d:700,resin:350,salt:300},{model:'SG-S-500',grain:500000,d:800,resin:425,salt:400},{model:'SG-S-600',grain:600000,d:850,resin:500,salt:400},{model:'SG-S-750',grain:750000,d:900,resin:625,salt:500},{model:'SG-S-1000',grain:1000000,d:1000,resin:825,salt:500}];
+const SAND_FILTER=[{model:'SG-F-2.5',m3h:2.5,d:300},{model:'SG-F-5',m3h:5,d:400},{model:'SG-F-7.5',m3h:7.5,d:500},{model:'SG-F-10',m3h:10,d:600},{model:'SG-F-15',m3h:15,d:700},{model:'SG-F-20',m3h:20,d:800},{model:'SG-F-25',m3h:25,d:900},{model:'SG-F-30',m3h:30,d:1000},{model:'SG-F-40',m3h:40,d:1100},{model:'SG-F-50',m3h:50,d:1200},{model:'SG-F-60',m3h:60,d:1300},{model:'SG-F-80',m3h:80,d:1400},{model:'SG-F-100',m3h:100,d:1600}];
+const DEAERATOR_PRESS=[{model:'SG-DE-1',boiler:1,kgHr:1360},{model:'SG-DE-2',boiler:2,kgHr:2268},{model:'SG-DE-3',boiler:3,kgHr:3629},{model:'SG-DE-4',boiler:4,kgHr:4536},{model:'SG-DE-5',boiler:5,kgHr:5443},{model:'SG-DE-6',boiler:6,kgHr:6350},{model:'SG-DE-7',boiler:7,kgHr:7257},{model:'SG-DE-8',boiler:8,kgHr:8391},{model:'SG-DE-10',boiler:10,kgHr:10205},{model:'SG-DE-12',boiler:12,kgHr:12247},{model:'SG-DE-15',boiler:15,kgHr:15422},{model:'SG-DE-20',boiler:20,kgHr:20865}];
+const OPEN_EXP=[{model:'SG-OE-100',cap:100},{model:'SG-OE-200',cap:200},{model:'SG-OE-300',cap:300},{model:'SG-OE-400',cap:400},{model:'SG-OE-500',cap:500},{model:'SG-OE-600',cap:600},{model:'SG-OE-800',cap:800},{model:'SG-OE-1000',cap:1000},{model:'SG-OE-1500',cap:1500},{model:'SG-OE-2000',cap:2000},{model:'SG-OE-2500',cap:2500},{model:'SG-OE-3000',cap:3000},{model:'SG-OE-4000',cap:4000},{model:'SG-OE-5000',cap:5000}];
+const CLOSED_EXP=[{model:'SG-CE-100',cap:100,d:470,h:1000},{model:'SG-CE-200',cap:200,d:500,h:1000},{model:'SG-CE-300',cap:300,d:500,h:1500},{model:'SG-CE-400',cap:400,d:580,h:1500},{model:'SG-CE-500',cap:500,d:640,h:1500},{model:'SG-CE-600',cap:600,d:700,h:1500},{model:'SG-CE-800',cap:800,d:760,h:1500},{model:'SG-CE-1000',cap:1000,d:820,h:1500},{model:'SG-CE-1500',cap:1500,d:920,h:1500},{model:'SG-CE-2000',cap:2000,d:960,h:2000},{model:'SG-CE-2500',cap:2500,d:1120,h:2000},{model:'SG-CE-3000',cap:3000,d:1120,h:2000},{model:'SG-CE-4000',cap:4000,d:1260,h:2500}];
+const COIL_U=[{cap:300,surf:8,d:570},{cap:400,surf:10,d:650},{cap:500,surf:15,d:700},{cap:600,surf:18,d:700},{cap:800,surf:23,d:820},{cap:1000,surf:27,d:920},{cap:1200,surf:29,d:960},{cap:1500,surf:38,d:1120},{cap:2000,surf:60,d:1120},{cap:2500,surf:70,d:1250},{cap:3000,surf:83,d:1400},{cap:4000,surf:91,d:1400},{cap:5000,surf:110,d:1450}];
+const COIL_SPIRAL=[{cap:75,surf:8,d:335},{cap:100,surf:10,d:335},{cap:150,surf:15,d:405},{cap:200,surf:18,d:405},{cap:250,surf:20,d:472},{cap:300,surf:23,d:570},{cap:400,surf:25,d:650},{cap:500,surf:35,d:700},{cap:600,surf:45,d:700},{cap:750,surf:55,d:820},{cap:1000,surf:70,d:920},{cap:1250,surf:90,d:960},{cap:1500,surf:100,d:1120},{cap:2000,surf:130,d:1120}];
+const HYDRAULIC=[{model:'SG-L-70',kw:70},{model:'SG-L-100',kw:100},{model:'SG-L-125',kw:125},{model:'SG-L-155',kw:155},{model:'SG-L-190',kw:190},{model:'SG-L-200',kw:200},{model:'SG-L-270',kw:270},{model:'SG-L-340',kw:340},{model:'SG-L-410',kw:410},{model:'SG-L-480',kw:480},{model:'SG-L-550',kw:550},{model:'SG-L-770',kw:770},{model:'SG-L-820',kw:820},{model:'SG-L-960',kw:960},{model:'SG-L-1100',kw:1100}];
+const AIR_SEP=[{model:'SG-AS-56',gpm:56,d:170,h:410},{model:'SG-AS-90',gpm:90,d:220,h:440},{model:'SG-AS-190',gpm:190,d:280,h:650},{model:'SG-AS-300',gpm:300,d:320,h:790},{model:'SG-AS-500',gpm:500,d:410,h:920},{model:'SG-AS-700',gpm:700,d:460,h:1090},{model:'SG-AS-1300',gpm:1300,d:610,h:1370},{model:'SG-AS-2000',gpm:2000,d:770,h:1650},{model:'SG-AS-2750',gpm:2750,d:920,h:1960},{model:'SG-AS-3400',gpm:3400,d:1070,h:2270},{model:'SG-AS-4400',gpm:4400,d:1220,h:2600},{model:'SG-AS-5200',gpm:5200,d:1380,h:3130},{model:'SG-AS-6300',gpm:6300,d:1530,h:3440}];
+const STEAM_SAT=[{p:0.3,hf:289.3,hfg:2336.1,t:69.1,vg:5.229},{p:0.5,hf:340.6,hfg:2305.4,t:81.3,vg:3.24},{p:1.0,hf:417.5,hfg:2258.0,t:99.6,vg:1.694},{p:2.0,hf:504.7,hfg:2201.9,t:120.2,vg:0.8857},{p:3.0,hf:561.4,hfg:2163.8,t:133.5,vg:0.6058},{p:4.0,hf:604.7,hfg:2133.8,t:143.6,vg:0.4625},{p:5.0,hf:640.1,hfg:2108.0,t:151.8,vg:0.3749},{p:6.0,hf:670.4,hfg:2085.0,t:158.8,vg:0.3157},{p:7.0,hf:697.1,hfg:2064.0,t:165.0,vg:0.2729},{p:8.0,hf:720.9,hfg:2046.5,t:170.4,vg:0.2404},{p:10.0,hf:762.6,hfg:2013.6,t:179.9,vg:0.1943},{p:12.0,hf:798.3,hfg:1984.3,t:187.9,vg:0.1632},{p:16.0,hf:858.6,hfg:1933.2,t:201.4,vg:0.1238},{p:20.0,hf:908.6,hfg:1888.6,t:212.4,vg:0.0995}];
+function interp(t,x,xk,yk){if(x<=t[0][xk])return t[0][yk];if(x>=t[t.length-1][xk])return t[t.length-1][yk];for(let i=0;i<t.length-1;i++){const a=t[i],b=t[i+1];if(x>=a[xk]&&x<=b[xk]){const r=(x-a[xk])/(b[xk]-a[xk]);return a[yk]+r*(b[yk]-a[yk]);}}return t[t.length-1][yk];}
+function satP(p){return{t:interp(STEAM_SAT,p,'p','t'),hf:interp(STEAM_SAT,p,'p','hf'),hfg:interp(STEAM_SAT,p,'p','hfg'),vg:interp(STEAM_SAT,p,'p','vg')};}
+function pick(arr,key,val){for(const x of arr){if(x[key]>=val)return x;}return arr[arr.length-1];}
+
+/* ==================== UNIT CONVERTER ==================== */
+const CONVERSIONS={
+heat:{units:{'kcal_hr':{label:'kcal/hr',factor:1},'kW':{label:'kW',factor:860.42},'BTU_hr':{label:'BTU/hr',factor:0.252},'BHP':{label:'BHP',factor:8434.5},'ton_ref':{label:'تن تبرید',factor:3024.84},'HP':{label:'HP',factor:641.19},'MJ_hr':{label:'MJ/hr',factor:238.85},'W':{label:'W',factor:0.86042},'TR':{label:'TR',factor:3024.84},'MW':{label:'MW',factor:860421}},base:'kcal_hr'},
+steam:{units:{'kg_hr':{label:'kg/hr',factor:1},'lb_hr':{label:'lb/hr',factor:0.4536},'ton_hr':{label:'ton/hr',factor:1000},'BHP_steam':{label:'BHP',factor:15.65},'kg_s':{label:'kg/s',factor:3600},'g_s':{label:'g/s',factor:3.6}},base:'kg_hr'},
+pressure:{units:{'bar':{label:'bar',factor:1},'psi':{label:'psi',factor:0.0689476},'kPa':{label:'kPa',factor:0.01},'MPa':{label:'MPa',factor:10},'kg_cm2':{label:'kg/cm²',factor:0.980665},'atm':{label:'atm',factor:1.01325},'mmHg':{label:'mmHg',factor:0.00133322},'mbar':{label:'mbar',factor:0.001},'inHg':{label:'inHg',factor:0.0338639},'mH2O':{label:'mH₂O',factor:0.0980665}},base:'bar'},
+volume:{units:{'L':{label:'لیتر',factor:1},'m3':{label:'m³',factor:1000},'cm3':{label:'cm³',factor:0.001},'ft3':{label:'ft³',factor:28.3168},'in3':{label:'in³',factor:0.0163871},'US_gal':{label:'گالن US',factor:3.78541},'UK_gal':{label:'گالن UK',factor:4.54609},'barrel_oil':{label:'بشکه نفت',factor:158.987},'US_qt':{label:'کوارت',factor:0.946353},'US_pt':{label:'پاینت',factor:0.473176}},base:'L'},
+vflow:{units:{'m3_hr':{label:'m³/hr',factor:1},'L_min':{label:'L/min',factor:0.06},'L_s':{label:'L/s',factor:3.6},'GPM_US':{label:'GPM US',factor:0.227125},'GPM_UK':{label:'GPM UK',factor:0.272765},'CFM':{label:'CFM',factor:1.699},'m3_s':{label:'m³/s',factor:3600},'ft3_hr':{label:'ft³/hr',factor:0.0283168},'M3_min':{label:'m³/min',factor:60}},base:'m3_hr'},
+mflow:{units:{'kg_hr':{label:'kg/hr',factor:1},'kg_s':{label:'kg/s',factor:3600},'g_s':{label:'g/s',factor:3.6},'lb_hr':{label:'lb/hr',factor:0.4536},'ton_hr':{label:'ton/hr',factor:1000},'lb_min':{label:'lb/min',factor:27.2155},'ton_day':{label:'ton/day',factor:41.6667}},base:'kg_hr'},
+temp:{units:{'C':{label:'°C'},'F':{label:'°F'},'K':{label:'K'}},base:'C'},
+length:{units:{'m':{label:'متر',factor:1},'mm':{label:'mm',factor:0.001},'cm':{label:'cm',factor:0.01},'km':{label:'km',factor:1000},'in':{label:'اینچ',factor:0.0254},'ft':{label:'فوت',factor:0.3048},'yard':{label:'یارد',factor:0.9144},'mile':{label:'مایل',factor:1609.34}},base:'m'},
+area:{units:{'m2':{label:'m²',factor:1},'cm2':{label:'cm²',factor:0.0001},'mm2':{label:'mm²',factor:1e-6},'ft2':{label:'ft²',factor:0.092903},'in2':{label:'in²',factor:0.00064516},'hectare':{label:'هکتار',factor:10000}},base:'m2'},
+mass:{units:{'kg':{label:'کیلوگرم',factor:1},'g':{label:'گرم',factor:0.001},'mg':{label:'میلی‌گرم',factor:1e-6},'lb':{label:'پوند',factor:0.453592},'oz':{label:'اونس',factor:0.0283495},'ton_metric':{label:'تن متریک',factor:1000},'ton_US':{label:'تن US',factor:907.185},'ton_UK':{label:'تن UK',factor:1016.05}},base:'kg'},
+velocity:{units:{'m_s':{label:'m/s',factor:1},'km_hr':{label:'km/h',factor:0.277778},'ft_s':{label:'ft/s',factor:0.3048},'mph':{label:'mph',factor:0.44704},'knot':{label:'knot',factor:0.514444}},base:'m_s'},
+softness:{units:{'ppm_CaCO3':{label:'ppm CaCO₃',factor:1},'mg_L':{label:'mg/L',factor:1},'grain_gal_US':{label:'grain/gal US',factor:17.1},'grain_gal_UK':{label:'grain/gal UK',factor:14.3},'french_deg':{label:'°f',factor:10},'german_deg':{label:'°dH',factor:17.85},'mmol_L':{label:'mmol/L',factor:100.09},'mEq_L':{label:'mEq/L',factor:50.045}},base:'ppm_CaCO3'},
+energy:{units:{'kcal':{label:'kcal',factor:1},'kJ':{label:'kJ',factor:0.239006},'kWh':{label:'kWh',factor:860.421},'BTU':{label:'BTU',factor:0.252},'MJ':{label:'MJ',factor:239.006},'therm':{label:'therm',factor:25210.4},'J':{label:'J',factor:0.000239006}},base:'kcal'},
+specific:{units:{'kcal_kg':{label:'kcal/kg',factor:1},'kJ_kg':{label:'kJ/kg',factor:0.239006},'BTU_lb':{label:'BTU/lb',factor:0.5556},'kWh_kg':{label:'kWh/kg',factor:860.421}},base:'kcal_kg'},
+density:{units:{'kg_m3':{label:'kg/m³',factor:1},'g_cm3':{label:'g/cm³',factor:1000},'kg_L':{label:'kg/L',factor:1000},'lb_ft3':{label:'lb/ft³',factor:16.0185},'lb_gal':{label:'lb/gal',factor:119.826}},base:'kg_m3'},
+area_heat:{units:{'W_m2K':{label:'W/m²K',factor:1},'W_m2C':{label:'W/m²°C',factor:1},'kcal_hr_m2C':{label:'kcal/(hr·m²·°C)',factor:1.163},'BTU_hr_ft2F':{label:'BTU/(hr·ft²·°F)',factor:5.67826},'kW_m2K':{label:'kW/m²K',factor:1000}},base:'W_m2K'},
+holding:{units:{'gpm':{label:'GPM',special:'holding'},'m3h':{label:'m³/hr',special:'holding'},'lpm':{label:'L/min',special:'holding'}},base:'gpm'}
+};
+function onCalcCategoryChange(){
+  const cat=document.getElementById('calc_category').value;
+  const cfg=CONVERSIONS[cat];
+  const fromSel=document.getElementById('calc_from');
+  fromSel.innerHTML='';
+  Object.keys(cfg.units).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=cfg.units[k].label;fromSel.appendChild(o);});
+  runCalc();
+}
+function convertTemp(value,from,to){let c;if(from==='C')c=value;else if(from==='F')c=(value-32)*5/9;else c=value-273.15;if(to==='C')return c;else if(to==='F')return c*9/5+32;else return c+273.15;}
+function runCalc(){
+  const cat=document.getElementById('calc_category').value;
+  const cfg=CONVERSIONS[cat];
+  const value=n(document.getElementById('calc_value').value);
+  const from=document.getElementById('calc_from').value;if(!from)return;
+  const resultEl=document.getElementById('calc_result');const labelEl=document.getElementById('calc_result_label');const convEl=document.getElementById('calc_conversions');
+  if(cat==='temp'){
+    const c=convertTemp(value,from,'C');const f=convertTemp(value,from,'F');const k=convertTemp(value,from,'K');
+    resultEl.textContent=c.toFixed(2);labelEl.textContent='°C';
+    convEl.innerHTML=`<div class="conv-item"><span class="ck">سلسیوس</span><span class="cv">${c.toFixed(2)} °C</span></div><div class="conv-item"><span class="ck">فارنهایت</span><span class="cv">${f.toFixed(2)} °F</span></div><div class="conv-item"><span class="ck">کلوین</span><span class="cv">${k.toFixed(2)} K</span></div>`;
+    return;
+  }
+  if(cat==='holding'){
+    const time=10;
+    let gpm=0;
+    if(from==='gpm')gpm=value;
+    else if(from==='m3h')gpm=value*4.403;
+    else if(from==='lpm')gpm=value*0.264172;
+    const gal=gpm*time;const liters=gal*3.78541;const m3=liters/1000;
+    resultEl.textContent=Math.round(gal);labelEl.textContent='گالن (Holding ۱۰ دقیقه)';
+    convEl.innerHTML=`<div class="conv-item"><span class="ck">گالن</span><span class="cv">${Math.round(gal)}</span></div><div class="conv-item"><span class="ck">لیتر</span><span class="cv">${Math.round(liters)}</span></div><div class="conv-item"><span class="ck">متر مکعب</span><span class="cv">${m3.toFixed(2)}</span></div><div class="conv-item"><span class="ck">GPM</span><span class="cv">${gpm.toFixed(1)}</span></div>`;
+    return;
+  }
+  const fromUnit=cfg.units[from];
+  const baseValue=value*fromUnit.factor;
+  const baseUnit=cfg.units[cfg.base];
+  resultEl.textContent=(baseValue/baseUnit.factor).toLocaleString('en-US',{maximumFractionDigits:4});
+  labelEl.textContent=baseUnit.label;
+  let html='';
+  Object.keys(cfg.units).forEach(k=>{if(k===cfg.base)return;const u=cfg.units[k];const v=baseValue/u.factor;html+=`<div class="conv-item"><span class="ck">${u.label}</span><span class="cv">${v.toLocaleString('en-US',{maximumFractionDigits:4})}</span></div>`;});
+  convEl.innerHTML=html;
+}
+function swapUnits(){toast('همه واحدها هم‌زمان نمایش داده می‌شوند');}
+onCalcCategoryChange();
+
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./service-worker.js').catch(err=>console.warn('SW:',err));});}
+</script>
+</body>
+</html>
