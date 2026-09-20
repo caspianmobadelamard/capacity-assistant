@@ -5,288 +5,362 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#1B2744" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Capacity Assistant v8 — Caspian Mobaddel Amard</title>
+<title>Capacity Assistant v9 — Caspian Mobaddel Amard</title>
 <link rel="manifest" href="./manifest.json" />
 <link rel="icon" href="./icon-192.png" />
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-:root{--navy:#1B2744;--navy-2:#243158;--navy-3:#2E3D66;--cream:#FBF8F3;--cream-2:#F5EFE3;--cream-3:#EFE6D3;--gold:#C8A45C;--gold-2:#D4B678;--gold-3:#8B6F35;--terra:#B8542E;--terra-2:#D46A44;--forest:#4A7C59;--text:#2D2A26;--text-soft:#7A6F5F;--text-mute:#A89B85;--warn:#D97706;--danger:#B91C1C;--radius:14px;--radius-sm:10px;--shadow-sm:0 2px 4px rgba(27,39,68,.06);--shadow-md:0 4px 12px rgba(27,39,68,.10);--shadow-lg:0 12px 32px rgba(27,39,68,.15);--shadow-gold:0 12px 32px rgba(200,164,92,.30);--neon-gold:0 0 20px rgba(200,164,92,.7),0 0 40px rgba(200,164,92,.4),inset 0 0 8px rgba(200,164,92,.2);}
+:root{--navy:#1B2744;--navy-2:#243158;--navy-3:#2E3D66;--cream:#FBF8F3;--cream-2:#F5EFE3;--cream-3:#EFE6D3;--gold:#C8A45C;--gold-2:#D4B678;--gold-3:#8B6F35;--terra:#B8542E;--terra-2:#D46A44;--forest:#4A7C59;--text:#2D2A26;--text-soft:#7A6F5F;--text-mute:#A89B85;--warn:#D97706;--danger:#B91C1C;--radius:12px;--radius-sm:8px;--shadow-sm:0 2px 4px rgba(27,39,68,.06);--shadow-md:0 4px 12px rgba(27,39,68,.10);--shadow-lg:0 12px 32px rgba(27,39,68,.15);--neon-gold:0 0 20px rgba(200,164,92,.7),0 0 40px rgba(200,164,92,.4);}
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--navy);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.75;min-height:100vh;}
+html,body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--navy);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh;}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 600px at 85% -10%,rgba(200,164,92,.10),transparent 60%),radial-gradient(1000px 500px at -10% 20%,rgba(184,84,46,.08),transparent 60%);pointer-events:none;z-index:0;}
-.app{max-width:1180px;margin:0 auto;position:relative;z-index:1;padding:16px 14px 80px;}
-.sticky-shell{position:sticky;top:0;z-index:100;padding:10px 0 8px;background:linear-gradient(180deg,var(--navy) 60%,rgba(27,39,68,.85) 100%);backdrop-filter:blur(8px);}
-.header{position:relative;overflow:hidden;border-radius:20px;background:linear-gradient(135deg,#141F3D,#1B2744 25%,#243158 50%,#2E3D66 75%,#1B2744);background-size:300% 300%;animation:headerShift 14s ease infinite;color:var(--cream);padding:22px 26px;box-shadow:var(--shadow-lg);border:1px solid rgba(200,164,92,.20);margin-bottom:12px;}
-@keyframes headerShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-.header::before{content:"";position:absolute;top:-40%;right:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,164,92,.25),transparent 65%);animation:floatA 16s ease-in-out infinite;pointer-events:none;}
-.header::after{content:"";position:absolute;bottom:-50%;left:-10%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(184,84,46,.20),transparent 65%);animation:floatA 20s ease-in-out infinite reverse;pointer-events:none;}
-@keyframes floatA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-24px,18px) scale(1.06);}}
-.header-inner{position:relative;z-index:2;display:flex;align-items:center;gap:18px;}
-.logo-wrap{width:70px;height:70px;flex:0 0 70px;border-radius:20px;background:linear-gradient(145deg,rgba(200,164,92,.18),rgba(200,164,92,.04));border:1px solid rgba(200,164,92,.35);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.logo-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(200,164,92,.35) 50%,transparent 70%);transform:translateX(-100%);animation:shine 4.5s ease-in-out infinite;}
-@keyframes shine{0%{transform:translateX(-100%);}45%,100%{transform:translateX(100%);}}
-.logo-svg{width:56px;height:56px;position:relative;z-index:1;}
-.flame{transform-origin:20px 14px;animation:flameSway 1.4s ease-in-out infinite;}
-@keyframes flameSway{0%,100%{transform:scale(1,1);}50%{transform:scale(1.08,.92);}}
-.steam-1{animation:steamRise 2.6s ease-in-out infinite;}
-.steam-2{animation:steamRise 3.2s ease-in-out infinite .5s;}
-.steam-3{animation:steamRise 2.9s ease-in-out infinite 1s;}
-@keyframes steamRise{0%{transform:translateY(0);opacity:0;}20%{opacity:.9;}100%{transform:translateY(-10px);opacity:0;}}
-.water-drop{animation:waterDrip 2.4s ease-in-out infinite;}
-@keyframes waterDrip{0%,100%{transform:translateY(0);}50%{transform:translateY(2px);}}
-.header-text{flex:1;min-width:0;}
-.header-text .title{font-size:1.25rem;font-weight:800;color:var(--cream);}
-.header-text .subtitle{font-size:.82rem;color:var(--gold-2);margin-top:3px;}
-.header-badge{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:700;background:rgba(200,164,92,.15);border:1px solid rgba(200,164,92,.35);color:var(--gold-2);padding:4px 12px;border-radius:99px;margin-top:8px;}
-.header-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:pulseDot 2s ease-in-out infinite;}
-@keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:.4;}}
-.header-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:16px;}
-.header-btn{padding:10px 14px;background:linear-gradient(135deg,var(--navy-2),var(--navy-3));color:var(--cream-2);border:1.5px solid rgba(200,164,92,.25);border-radius:10px;font-family:inherit;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:6px;}
-.header-btn:hover{border-color:var(--gold);color:var(--gold-2);transform:translateY(-2px);box-shadow:0 6px 16px rgba(200,164,92,.25);}
-.header-btn .icon{font-size:.95rem;}
-.tabs-sticky{position:sticky;top:106px;z-index:99;background:rgba(27,39,68,.94);backdrop-filter:blur(8px);padding:8px 0 6px;margin-bottom:8px;}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 12px;}
-.tabs::-webkit-scrollbar{height:4px;}
-.tabs::-webkit-scrollbar-thumb{background:var(--gold-3);border-radius:4px;}
-.tabs button{padding:11px 20px;border:1.5px solid rgba(200,164,92,.25);background:linear-gradient(135deg,var(--navy-2),var(--navy-3));border-radius:99px;font-family:inherit;font-size:.82rem;font-weight:700;color:var(--cream-2);cursor:pointer;white-space:nowrap;transition:all .25s;box-shadow:var(--shadow-sm);}
-.tabs button.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);border-color:var(--gold);box-shadow:var(--shadow-gold);transform:translateY(-1px);}
-.tabs button:hover:not(.active){border-color:var(--gold);color:var(--gold-2);}
-.subtabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
-.subtabs button{padding:7px 14px;border:1px solid rgba(200,164,92,.20);background:rgba(251,248,243,.08);border-radius:99px;font-family:inherit;font-size:.76rem;font-weight:600;color:var(--cream-2);cursor:pointer;transition:all .2s;}
-.subtabs button.active{background:linear-gradient(135deg,var(--terra),var(--terra-2));color:var(--cream);border-color:var(--terra);box-shadow:0 4px 12px rgba(184,84,46,.35);}
-.subtabs button:hover:not(.active){border-color:var(--gold-2);color:var(--gold-2);}
-.card{position:relative;background:var(--cream);border:1px solid rgba(200,164,92,.25);border-radius:var(--radius);padding:24px;margin-bottom:18px;box-shadow:var(--shadow-md);overflow:hidden;}
-.card::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--terra),var(--gold));}
-.card h2{font-size:1.15rem;font-weight:800;color:var(--navy);margin-bottom:6px;padding-left:44px;}
-.card .hint{font-size:.82rem;color:var(--text-soft);margin-bottom:18px;line-height:1.7;}
-.card-reset{position:absolute;top:14px;left:14px;width:32px;height:32px;border-radius:50%;background:rgba(184,84,46,.10);border:1.5px solid rgba(184,84,46,.35);color:var(--terra);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .25s;z-index:5;}
-.card-reset:hover{background:var(--terra);color:#FFF;transform:rotate(-180deg);}
-.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(200,164,92,.20),rgba(184,84,46,.15));color:var(--gold-3);font-size:.72rem;font-weight:800;padding:5px 14px;border-radius:99px;border:1px solid rgba(200,164,92,.35);margin-bottom:14px;}
-.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--terra);box-shadow:0 0 6px var(--terra);}
+.app{max-width:1180px;margin:0 auto;position:relative;z-index:1;padding:8px 8px 60px;}
 
-/* ============ ضریب اطمینان فشرده ============ */
-.sf-compact{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(200,164,92,.10),rgba(200,164,92,.04));border:1.5px solid rgba(200,164,92,.45);border-radius:10px;padding:8px 12px;margin-bottom:16px;flex-wrap:wrap;}
-.sf-compact .sf-lbl{font-size:.72rem;font-weight:800;color:var(--gold-3);white-space:nowrap;}
-.sf-chips{display:flex;gap:4px;flex:1;flex-wrap:wrap;}
-.sf-chip{padding:5px 12px;border:1.5px solid rgba(200,164,92,.35);background:#FFF;border-radius:99px;font-size:.74rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .25s;font-family:inherit;}
+/* ==================== هدر فشرده ==================== */
+.compact-header{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,#141F3D,#1B2744);border:1px solid rgba(200,164,92,.20);border-radius:10px;padding:8px 12px;margin-bottom:6px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+.compact-header .logo-mini{width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:linear-gradient(145deg,rgba(200,164,92,.18),rgba(200,164,92,.04));border:1px solid rgba(200,164,92,.35);display:flex;align-items:center;justify-content:center;font-size:16px;position:relative;overflow:hidden;}
+.compact-header .logo-mini::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(200,164,92,.35) 50%,transparent 70%);transform:translateX(-100%);animation:shine 4.5s ease-in-out infinite;}
+@keyframes shine{0%{transform:translateX(-100%);}45%,100%{transform:translateX(100%);}}
+.compact-header .title-block{flex:1;min-width:0;}
+.compact-header .t{font-size:.86rem;font-weight:800;color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.compact-header .s{font-size:.6rem;color:var(--gold-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
+.compact-header .tools{display:flex;gap:3px;flex-shrink:0;}
+.compact-header .tools button{width:30px;height:30px;border-radius:7px;background:rgba(200,164,92,.12);border:1px solid rgba(200,164,92,.25);color:var(--gold-2);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit;}
+.compact-header .tools button:hover{background:rgba(200,164,92,.25);transform:scale(1.08);}
+
+/* ==================== تب‌های فشرده ==================== */
+.compact-tabs{position:sticky;top:52px;z-index:99;display:flex;gap:3px;overflow-x:auto;padding:5px 3px;margin-bottom:8px;background:rgba(27,39,68,.94);backdrop-filter:blur(8px);border-radius:9px;scrollbar-width:none;}
+.compact-tabs::-webkit-scrollbar{display:none;}
+.compact-tabs button{padding:7px 11px;border:1px solid rgba(200,164,92,.20);background:rgba(36,49,88,.6);border-radius:7px;font-family:inherit;font-size:.68rem;font-weight:700;color:var(--cream-2);cursor:pointer;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:3px;}
+.compact-tabs button .ic{font-size:.85rem;}
+.compact-tabs button.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);border-color:var(--gold);box-shadow:0 3px 10px rgba(200,164,92,.35);}
+@media(max-width:520px){.compact-tabs button{padding:6px 9px;font-size:.64rem;}.compact-tabs button .lbl{display:none;}.compact-tabs button .ic{font-size:1rem;}}
+
+.card{background:var(--cream);border:1px solid rgba(200,164,92,.25);border-radius:var(--radius);padding:14px;margin-bottom:12px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--terra),var(--gold));}
+.card h2{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:4px;padding-left:38px;}
+.card .hint{font-size:.72rem;color:var(--text-soft);margin-bottom:12px;line-height:1.5;}
+.card-reset{position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:50%;background:rgba(184,84,46,.10);border:1.5px solid rgba(184,84,46,.35);color:var(--terra);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .25s;z-index:5;font-family:inherit;}
+.card-reset:hover{background:var(--terra);color:#FFF;transform:rotate(-180deg);}
+.badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,rgba(200,164,92,.20),rgba(184,84,46,.15));color:var(--gold-3);font-size:.66rem;font-weight:800;padding:3px 10px;border-radius:99px;border:1px solid rgba(200,164,92,.35);margin-bottom:10px;}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--terra);box-shadow:0 0 6px var(--terra);}
+
+/* ==================== فشرده‌سازی فرم‌ها ==================== */
+.sf-compact{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(200,164,92,.10),rgba(200,164,92,.04));border:1.5px solid rgba(200,164,92,.45);border-radius:9px;padding:6px 10px;margin-bottom:12px;flex-wrap:wrap;}
+.sf-compact .sf-lbl{font-size:.68rem;font-weight:800;color:var(--gold-3);white-space:nowrap;}
+.sf-chips{display:flex;gap:3px;flex:1;flex-wrap:wrap;}
+.sf-chip{padding:4px 9px;border:1.5px solid rgba(200,164,92,.35);background:#FFF;border-radius:99px;font-size:.68rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .25s;font-family:inherit;}
 .sf-chip:hover{border-color:var(--gold);color:var(--gold-3);}
 .sf-chip.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);border-color:var(--gold);box-shadow:var(--neon-gold);}
-.sf-manual{display:flex;align-items:center;gap:4px;padding:0 6px;background:#FFF;border:1.5px solid rgba(200,164,92,.35);border-radius:99px;height:30px;}
-.sf-manual input{width:56px;padding:4px 6px;border:none;background:transparent;font-family:inherit;font-size:.78rem;font-weight:800;color:var(--navy);text-align:center;}
+.sf-manual{display:flex;align-items:center;gap:2px;padding:0 5px;background:#FFF;border:1.5px solid rgba(200,164,92,.35);border-radius:99px;height:26px;}
+.sf-manual input{width:46px;padding:3px 5px;border:none;background:transparent;font-family:inherit;font-size:.72rem;font-weight:800;color:var(--navy);text-align:center;}
 .sf-manual input:focus{outline:none;}
-.sf-manual .sf-u{font-size:.7rem;color:var(--text-mute);padding-left:4px;}
+.sf-manual .sf-u{font-size:.62rem;color:var(--text-mute);padding-left:3px;}
 
-/* ============ فرم ============ */
-.field{margin-bottom:14px;position:relative;}
-.field label{display:block;font-size:.78rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
-.field .unit{color:var(--text-mute);font-weight:500;font-size:.7rem;margin-right:4px;}
-input,select{width:100%;padding:12px 14px;border:1.5px solid var(--cream-3);border-radius:var(--radius-sm);font-family:inherit;font-size:.9rem;background:#FFFFFF;color:var(--text);transition:all .2s;appearance:none;}
+.field{margin-bottom:10px;position:relative;}
+.field label{display:block;font-size:.72rem;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.field .unit{color:var(--text-mute);font-weight:500;font-size:.64rem;margin-right:3px;}
+input,select{width:100%;padding:9px 11px;border:1.5px solid var(--cream-3);border-radius:var(--radius-sm);font-family:inherit;font-size:.82rem;background:#FFFFFF;color:var(--text);transition:all .2s;appearance:none;}
 input:hover,select:hover{border-color:var(--gold-2);}
-input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(200,164,92,.15);}
+input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,164,92,.15);}
 input[type=checkbox]{width:auto;accent-color:var(--gold-3);}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
-.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;}
 @media(max-width:640px){.row3,.row4{grid-template-columns:1fr 1fr;}}
 @media(max-width:400px){.row3,.row4{grid-template-columns:1fr;}}
+
+/* Custom Select */
 .cs-wrap{position:relative;width:100%;}
-.cs-trigger{width:100%;padding:12px 14px;padding-left:42px;border:1.5px solid var(--cream-3);border-radius:var(--radius-sm);font-family:inherit;font-size:.9rem;background:linear-gradient(135deg,#FFFFFF 0%,#FBF8F3 100%);color:var(--text);cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:space-between;user-select:none;position:relative;box-shadow:inset 0 1px 2px rgba(27,39,68,.04);min-height:46px;}
-.cs-trigger:hover{border-color:var(--gold-2);background:linear-gradient(135deg,#FFFFFF 0%,#F5EFE3 100%);}
-.cs-trigger.open{border-color:var(--gold);box-shadow:0 0 0 4px rgba(200,164,92,.15);background:linear-gradient(135deg,#FFFFFF 0%,#FAF4E6 100%);}
+.cs-trigger{width:100%;padding:9px 11px;padding-left:36px;border:1.5px solid var(--cream-3);border-radius:var(--radius-sm);font-family:inherit;font-size:.82rem;background:linear-gradient(135deg,#FFFFFF,#FBF8F3);color:var(--text);cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:space-between;user-select:none;position:relative;min-height:38px;}
+.cs-trigger:hover{border-color:var(--gold-2);}
+.cs-trigger.open{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,164,92,.15);}
 .cs-trigger .cs-label{flex:1;text-align:right;color:var(--text);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.cs-trigger .cs-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;display:flex;align-items:center;justify-content:center;transition:transform .3s;color:var(--gold-3);}
+.cs-trigger .cs-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:16px;height:16px;display:flex;align-items:center;justify-content:center;transition:transform .3s;color:var(--gold-3);}
 .cs-trigger.open .cs-icon{transform:translateY(-50%) rotate(180deg);}
-.cs-trigger .cs-icon svg{width:12px;height:12px;}
-.cs-menu{position:absolute;top:calc(100% + 6px);right:0;left:0;background:linear-gradient(180deg,#FBF8F3 0%,#F5EFE3 100%);border:1.5px solid rgba(200,164,92,.45);border-radius:var(--radius-sm);box-shadow:0 20px 50px rgba(27,39,68,.25);max-height:280px;overflow-y:auto;z-index:1000;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .22s;padding:6px;}
+.cs-trigger .cs-icon svg{width:10px;height:10px;}
+.cs-menu{position:absolute;top:calc(100% + 5px);right:0;left:0;background:linear-gradient(180deg,#FBF8F3,#F5EFE3);border:1.5px solid rgba(200,164,92,.45);border-radius:var(--radius-sm);box-shadow:0 20px 50px rgba(27,39,68,.25);max-height:260px;overflow-y:auto;z-index:1000;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .22s;padding:5px;}
 .cs-menu.open{opacity:1;visibility:visible;transform:translateY(0);}
-.cs-menu::-webkit-scrollbar{width:6px;}
+.cs-menu::-webkit-scrollbar{width:5px;}
 .cs-menu::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),var(--gold-2));border-radius:3px;}
-.cs-opt{padding:11px 14px;border-radius:8px;cursor:pointer;font-size:.88rem;color:var(--text);transition:all .2s;display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;overflow:hidden;margin-bottom:2px;}
-.cs-opt::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(200,164,92,.15),rgba(184,84,46,.10));opacity:0;transition:opacity .25s;border-radius:8px;}
-.cs-opt:hover{color:var(--navy);transform:translateX(-4px);}
-.cs-opt:hover::before{opacity:1;}
-.cs-opt .cs-opt-txt{position:relative;z-index:1;font-weight:500;}
-.cs-opt .cs-check{position:relative;z-index:1;color:var(--terra);font-weight:800;opacity:0;transform:scale(.5);transition:all .25s;}
+.cs-opt{padding:9px 11px;border-radius:6px;cursor:pointer;font-size:.8rem;color:var(--text);transition:all .2s;display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:1px;}
+.cs-opt:hover{color:var(--navy);transform:translateX(-3px);background:linear-gradient(90deg,rgba(200,164,92,.15),rgba(184,84,46,.08));}
+.cs-opt .cs-opt-txt{font-weight:500;}
+.cs-opt .cs-check{color:var(--terra);font-weight:800;opacity:0;transform:scale(.5);transition:all .25s;}
 .cs-opt.selected{background:linear-gradient(135deg,rgba(200,164,92,.30),rgba(184,84,46,.20));color:var(--navy);font-weight:700;border:1px solid rgba(200,164,92,.50);box-shadow:var(--neon-gold);}
 .cs-opt.selected .cs-check{opacity:1;transform:scale(1);}
-.cs-opt.highlighted{background:linear-gradient(135deg,rgba(200,164,92,.40),rgba(184,84,46,.28));color:var(--navy);box-shadow:var(--neon-gold);border:1px solid var(--gold);transform:translateX(-4px);font-weight:800;}
+.cs-opt.highlighted{background:linear-gradient(135deg,rgba(200,164,92,.40),rgba(184,84,46,.28));box-shadow:var(--neon-gold);border:1px solid var(--gold);transform:translateX(-3px);font-weight:800;}
 
-/* ============ Live Preview ============ */
-.live-preview{background:linear-gradient(135deg,#E0E4EE,#C9D0E0);border:1px solid rgba(27,39,68,.15);border-right:4px solid var(--navy);border-radius:10px;padding:12px 16px;margin:14px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-.live-preview .lp-lbl{font-size:.75rem;color:var(--text-soft);font-weight:700;}
-.live-preview .lp-val{font-size:1.15rem;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;}
-.live-preview .lp-val small{font-size:.68rem;color:var(--text-soft);margin-right:4px;}
+/* ==================== مشاوره سریع قوی ==================== */
+.qc-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:4px;margin-bottom:10px;}
+.qc-chip{padding:6px 4px;border:1.5px solid var(--cream-3);background:#FFF;border-radius:7px;font-family:inherit;font-size:.62rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .2s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.2;}
+.qc-chip .ic{font-size:.95rem;}
+.qc-chip:hover{border-color:var(--gold-2);transform:translateY(-1px);}
+.qc-chip.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);border-color:var(--gold);box-shadow:var(--neon-gold);}
 
-/* ============ نمودار ============ */
-.chart{background:#FFF;border:1px solid var(--cream-3);border-radius:10px;padding:14px;margin-top:12px;}
-.chart-title{font-size:.78rem;font-weight:800;color:var(--navy);margin-bottom:10px;}
-.chart svg{width:100%;height:auto;}
+.qc-input-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0;}
+.qc-input-row .field{margin-bottom:0;}
+.qc-input-row label{font-size:.66rem;font-weight:700;color:var(--navy);margin-bottom:3px;display:block;}
+.qc-input-row input,.qc-input-row select{width:100%;padding:8px 10px;border:1.5px solid var(--cream-3);border-radius:7px;font-family:inherit;font-size:.78rem;background:#FFF;color:var(--text);}
+@media(max-width:520px){.qc-input-row{grid-template-columns:1fr 1fr;}}
 
-/* ============ Unit Toggle ============ */
-.unit-toggle{display:inline-flex;background:linear-gradient(135deg,var(--cream-2),var(--cream-3));border:1.5px solid rgba(200,164,92,.35);border-radius:99px;padding:3px;margin-bottom:8px;gap:2px;}
-.unit-toggle button{padding:6px 16px;border:none;background:transparent;border-radius:99px;font-family:inherit;font-size:.75rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .25s;}
-.unit-toggle button.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);box-shadow:0 3px 10px rgba(200,164,92,.35);}
+.qc-live{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:10px;padding:12px 14px;margin-top:10px;color:var(--cream);position:relative;overflow:hidden;}
+.qc-live::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--terra));}
+.qc-live-title{font-size:.68rem;color:var(--gold-2);font-weight:700;margin-bottom:6px;}
+.qc-live-main{font-size:1.4rem;font-weight:800;color:var(--cream);font-variant-numeric:tabular-nums;line-height:1.2;}
+.qc-live-main small{font-size:.7rem;color:var(--gold-2);margin-right:5px;}
+.qc-live-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(200,164,92,.20);}
+.qc-live-item .k{font-size:.6rem;color:var(--text-mute);margin-bottom:2px;}
+.qc-live-item .v{font-size:.85rem;font-weight:800;color:var(--gold-2);font-variant-numeric:tabular-nums;}
 
-/* ============ Fixture Row ============ */
-.fx-header{display:grid;grid-template-columns:1fr 70px 110px 90px;gap:10px;padding:0 14px;margin-bottom:8px;font-size:.72rem;color:var(--text-soft);font-weight:700;}
-.fx-header>*{text-align:center;}
-.fx-header>*:first-child{text-align:right;}
-.fx-row{display:grid;grid-template-columns:1fr 70px 110px 90px;gap:10px;align-items:center;padding:10px 14px;background:linear-gradient(135deg,#FFFFFF,#FAF4E6);border:1px solid var(--cream-3);border-radius:10px;margin-bottom:8px;transition:all .2s;}
-.fx-row:hover{border-color:var(--gold-2);box-shadow:0 4px 12px rgba(200,164,92,.10);}
-.fx-row .fx-name{font-weight:700;color:var(--navy);font-size:.82rem;}
-.fx-row .fx-def{font-size:.72rem;color:var(--text-mute);background:var(--cream-3);padding:2px 8px;border-radius:99px;font-weight:600;text-align:center;}
-.fx-row input{padding:8px;font-size:.82rem;text-align:center;font-weight:700;color:var(--navy);}
-.fx-row .fx-u{font-size:.72rem;color:var(--text-soft);font-weight:600;text-align:center;}
+.qc-ref{margin-top:10px;background:#FFF;border-radius:7px;border:1px solid var(--cream-3);overflow:hidden;}
+.qc-ref-header{background:linear-gradient(135deg,var(--navy-2),var(--navy-3));color:var(--cream);padding:6px 10px;font-size:.68rem;font-weight:700;display:flex;justify-content:space-between;}
+.qc-ref-row{display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:5px 10px;border-bottom:1px solid var(--cream-3);font-size:.66rem;}
+.qc-ref-row:last-child{border-bottom:none;}
+.qc-ref-row:nth-child(even){background:var(--cream-2);}
+.qc-ref-row.hl{background:linear-gradient(90deg,rgba(200,164,92,.20),rgba(184,84,46,.12));font-weight:800;color:var(--navy);}
 
-/* ============ Buttons ============ */
-.calc-settings{border:1.5px solid rgba(200,164,92,.45);background:linear-gradient(135deg,rgba(200,164,92,.10),rgba(200,164,92,.04));border-radius:var(--radius-sm);padding:14px 16px;margin:0 0 16px;}
-.calc-settings legend{font-size:.78rem;font-weight:800;color:var(--gold-3);padding:0 10px;background:var(--cream);border-radius:6px;border:1px solid rgba(200,164,92,.35);}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .25s;width:100%;box-shadow:0 4px 14px rgba(200,164,92,.35);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 20px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);border:none;border-radius:9px;font-family:inherit;font-size:.85rem;font-weight:800;cursor:pointer;transition:all .25s;width:100%;box-shadow:0 4px 14px rgba(200,164,92,.35);}
 .btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(200,164,92,.5);}
 .btn.secondary{background:transparent;color:var(--navy);border:1.5px solid var(--navy-3);box-shadow:none;}
 
-/* ============ Results ============ */
-.gauge{background:linear-gradient(135deg,#FAF4E6,#F5EBD4);border:1px solid rgba(200,164,92,.35);border-right:5px solid var(--gold);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;box-shadow:var(--shadow-sm);}
-.gauge .k{font-size:.76rem;color:var(--text-soft);font-weight:700;margin-bottom:3px;}
-.gauge .v{font-size:1.4rem;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;}
-.gauge .v small{font-size:.7rem;font-weight:600;color:var(--text-soft);margin-right:5px;}
-.gauge .note{font-size:.73rem;color:var(--text-soft);margin-top:4px;}
+.calc-settings{border:1.5px solid rgba(200,164,92,.45);background:linear-gradient(135deg,rgba(200,164,92,.10),rgba(200,164,92,.04));border-radius:var(--radius-sm);padding:10px 12px;margin:0 0 12px;}
+.calc-settings legend{font-size:.72rem;font-weight:800;color:var(--gold-3);padding:0 8px;background:var(--cream);border-radius:5px;border:1px solid rgba(200,164,92,.35);}
+
+.gauge{background:linear-gradient(135deg,#FAF4E6,#F5EBD4);border:1px solid rgba(200,164,92,.35);border-right:4px solid var(--gold);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;}
+.gauge .k{font-size:.7rem;color:var(--text-soft);font-weight:700;margin-bottom:2px;}
+.gauge .v{font-size:1.2rem;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;}
+.gauge .v small{font-size:.65rem;font-weight:600;color:var(--text-soft);margin-right:4px;}
+.gauge .note{font-size:.68rem;color:var(--text-soft);margin-top:3px;}
 .gauge.gold{background:linear-gradient(135deg,#F5E8C8,#EEDCB0);}
 .gauge.terra{background:linear-gradient(135deg,#F8E5DA,#F0D0BD);border-color:rgba(184,84,46,.35);border-right-color:var(--terra);}
 .gauge.forest{background:linear-gradient(135deg,#E2EDE4,#C9DDCE);border-color:rgba(74,124,89,.35);border-right-color:var(--forest);}
 .gauge.navy{background:linear-gradient(135deg,#E0E4EE,#C9D0E0);border-color:rgba(27,39,68,.25);border-right-color:var(--navy);}
 .gauge.err{background:linear-gradient(135deg,#FEE2E2,#FECACA);border-color:rgba(185,28,28,.35);border-right-color:var(--danger);}
-.formula{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:var(--radius-sm);padding:16px 18px;margin-top:14px;font-size:.76rem;direction:ltr;text-align:left;font-family:Consolas,monospace;color:var(--gold-2);overflow-x:auto;line-height:1.9;position:relative;border:1px solid rgba(200,164,92,.20);}
+
+.formula{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:var(--radius-sm);padding:12px 14px;margin-top:10px;font-size:.7rem;direction:ltr;text-align:left;font-family:Consolas,monospace;color:var(--gold-2);overflow-x:auto;line-height:1.7;position:relative;border:1px solid rgba(200,164,92,.20);}
 .formula::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--terra),var(--gold));}
-.formula .ft{color:var(--gold);font-weight:800;font-size:.74rem;margin-bottom:10px;direction:rtl;text-align:right;font-family:Vazirmatn,sans-serif;}
+.formula .ft{color:var(--gold);font-weight:800;font-size:.7rem;margin-bottom:8px;direction:rtl;text-align:right;font-family:Vazirmatn,sans-serif;}
 .formula .fl{margin:2px 0;}
 .formula .hl{color:var(--terra-2);font-weight:700;}
-.formula .ref{color:var(--cream-3);font-size:.68rem;margin-top:10px;direction:rtl;text-align:right;font-family:Vazirmatn,sans-serif;font-style:italic;border-top:1px dashed rgba(200,164,92,.25);padding-top:8px;}
-.notice{background:linear-gradient(135deg,#FFF4E0,#F5E5CC);border:1px solid rgba(217,119,6,.35);border-right:4px solid var(--warn);border-radius:var(--radius-sm);padding:12px 16px;font-size:.8rem;color:#7C4A02;margin-bottom:14px;display:flex;gap:10px;}
-.notice::before{content:"💡";font-size:1.1rem;}
-.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px;}
-.tier-card{border-radius:var(--radius-sm);padding:16px;border:2px solid;transition:transform .2s;}
+.formula .ref{color:var(--cream-3);font-size:.62rem;margin-top:8px;direction:rtl;text-align:right;font-family:Vazirmatn,sans-serif;font-style:italic;border-top:1px dashed rgba(200,164,92,.25);padding-top:6px;}
+
+.notice{background:linear-gradient(135deg,#FFF4E0,#F5E5CC);border:1px solid rgba(217,119,6,.35);border-right:4px solid var(--warn);border-radius:var(--radius-sm);padding:9px 12px;font-size:.72rem;color:#7C4A02;margin-bottom:10px;display:flex;gap:8px;}
+.notice::before{content:"💡";font-size:1rem;}
+
+.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px;}
+.tier-card{border-radius:var(--radius-sm);padding:12px;border:2px solid;transition:transform .2s;}
 .tier-card:hover{transform:translateY(-3px);}
 .tier-card.bronze{background:linear-gradient(135deg,#F8E5DA,#F0CFB8);border-color:#B87333;}
 .tier-card.silver{background:linear-gradient(135deg,#E8E8E8,#D0D0D0);border-color:#808080;}
 .tier-card.gold{background:linear-gradient(135deg,#FAF0D4,#F0DDA8);border-color:var(--gold);}
-.tier-card h3{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:8px;}
-.tier-card .price{font-size:1.35rem;font-weight:800;color:var(--navy);margin:8px 0;}
-.tier-card ul{list-style:none;padding:0;font-size:.74rem;line-height:1.9;color:var(--text-soft);}
+.tier-card h3{font-size:.82rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.tier-card .price{font-size:1.1rem;font-weight:800;color:var(--navy);margin:6px 0;}
+.tier-card ul{list-style:none;padding:0;font-size:.68rem;line-height:1.7;color:var(--text-soft);}
 .tier-card ul li::before{content:"✓ ";color:var(--forest);font-weight:800;}
-.trim-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:12px;}
-.trim-item{background:linear-gradient(135deg,#FBF8F3,#F5EFE3);border:1px solid var(--cream-3);border-right:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:.82rem;}
-.trim-item .name{font-weight:800;color:var(--navy);margin-bottom:4px;}
-.trim-item .spec{color:var(--text-soft);font-size:.76rem;line-height:1.6;}
-table.std{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:8px;border-radius:var(--radius-sm);overflow:hidden;}
-table.std th,table.std td{border:1px solid var(--cream-3);padding:9px 11px;text-align:center;}
+
+.trim-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px;}
+.trim-item{background:linear-gradient(135deg,#FBF8F3,#F5EFE3);border:1px solid var(--cream-3);border-right:4px solid var(--gold);border-radius:7px;padding:9px 11px;font-size:.76rem;}
+.trim-item .name{font-weight:800;color:var(--navy);margin-bottom:3px;}
+.trim-item .spec{color:var(--text-soft);font-size:.7rem;line-height:1.5;}
+
+table.std{width:100%;border-collapse:collapse;font-size:.72rem;margin-top:6px;border-radius:var(--radius-sm);overflow:hidden;}
+table.std th,table.std td{border:1px solid var(--cream-3);padding:7px 9px;text-align:center;}
 table.std th{background:linear-gradient(135deg,var(--navy-2),var(--navy-3));color:var(--cream);font-weight:700;}
 table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:var(--cream);padding:12px 24px;border-radius:99px;font-size:.85rem;opacity:0;pointer-events:none;transition:all .3s;z-index:2000;border:1px solid var(--gold);}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:var(--cream);padding:10px 20px;border-radius:99px;font-size:.78rem;opacity:0;pointer-events:none;transition:all .3s;z-index:2000;border:1px solid var(--gold);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.summary-box{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:var(--cream);border-radius:var(--radius-sm);padding:14px 16px;font-size:.82rem;line-height:1.9;white-space:pre-wrap;font-family:Consolas,monospace;border:none;width:100%;resize:vertical;min-height:140px;direction:ltr;text-align:left;}
-.png-toolbar{display:flex;gap:10px;margin-top:16px;padding-top:16px;border-top:2px dashed var(--cream-3);flex-wrap:wrap;}
-.png-toolbar .btn-png{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;background:linear-gradient(135deg,var(--terra),var(--terra-2));color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:.88rem;font-weight:800;cursor:pointer;flex:1;min-width:140px;box-shadow:0 4px 12px rgba(184,84,46,.3);}
-.png-toolbar .btn-print-local{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;background:var(--cream);color:var(--navy);border:1.5px solid var(--navy-3);border-radius:var(--radius-sm);font-family:inherit;font-size:.88rem;font-weight:800;cursor:pointer;flex:1;min-width:140px;}
+
+.summary-box{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:var(--cream);border-radius:var(--radius-sm);padding:12px 14px;font-size:.75rem;line-height:1.7;white-space:pre-wrap;font-family:Consolas,monospace;border:none;width:100%;resize:vertical;min-height:120px;direction:ltr;text-align:left;}
+
+.png-toolbar{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:2px dashed var(--cream-3);flex-wrap:wrap;}
+.png-toolbar .btn-png{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;background:linear-gradient(135deg,var(--terra),var(--terra-2));color:#fff;border:none;border-radius:9px;font-family:inherit;font-size:.8rem;font-weight:800;cursor:pointer;flex:1;min-width:120px;box-shadow:0 4px 12px rgba(184,84,46,.3);}
+.png-toolbar .btn-print-local{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;background:var(--cream);color:var(--navy);border:1.5px solid var(--navy-3);border-radius:9px;font-family:inherit;font-size:.8rem;font-weight:800;cursor:pointer;flex:1;min-width:120px;}
+
 .panel,.subpanel{display:none;}
 .panel.active,.subpanel.active{display:block;animation:fade .22s ease;}
 @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 
-/* ============ Modal ============ */
-.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:1500;padding:20px;}
+.subtabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
+.subtabs button{padding:5px 10px;border:1px solid rgba(200,164,92,.20);background:rgba(251,248,243,.08);border-radius:99px;font-family:inherit;font-size:.7rem;font-weight:600;color:var(--cream-2);cursor:pointer;transition:all .2s;}
+.subtabs button.active{background:linear-gradient(135deg,var(--terra),var(--terra-2));color:var(--cream);border-color:var(--terra);}
+.subtabs button:hover:not(.active){border-color:var(--gold-2);color:var(--gold-2);}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:1500;padding:16px;}
 .modal-overlay.show{display:flex;}
-.modal{background:var(--cream);border:1.5px solid rgba(200,164,92,.45);border-radius:16px;max-width:800px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 25px 60px rgba(0,0,0,.5);position:relative;}
-.modal::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--terra));border-radius:16px 16px 0 0;}
-.modal-header{padding:18px 22px;border-bottom:1.5px solid rgba(200,164,92,.25);display:flex;justify-content:space-between;align-items:center;}
-.modal-header h3{font-size:1.05rem;font-weight:800;color:var(--navy);}
-.modal-close{width:32px;height:32px;border-radius:50%;background:rgba(184,84,46,.10);border:1.5px solid rgba(184,84,46,.35);color:var(--terra);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
-.modal-body{padding:20px 22px;}
-.hist-item{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#FFF;border:1px solid var(--cream-3);border-right:4px solid var(--gold);border-radius:10px;margin-bottom:8px;}
-.hist-item:hover{border-color:var(--gold);box-shadow:0 4px 12px rgba(200,164,92,.15);}
-.hist-info .h-title{font-weight:800;color:var(--navy);font-size:.85rem;}
-.hist-info .h-date{font-size:.7rem;color:var(--text-mute);margin-top:2px;}
-.hist-actions{display:flex;gap:6px;}
-.hist-btn{padding:6px 12px;border:1px solid var(--cream-3);background:#FFF;border-radius:8px;font-family:inherit;font-size:.72rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .2s;}
+.modal{background:var(--cream);border:1.5px solid rgba(200,164,92,.45);border-radius:14px;max-width:760px;width:100%;max-height:85vh;overflow-y:auto;position:relative;}
+.modal::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--terra));border-radius:14px 14px 0 0;}
+.modal-header{padding:14px 18px;border-bottom:1.5px solid rgba(200,164,92,.25);display:flex;justify-content:space-between;align-items:center;}
+.modal-header h3{font-size:.95rem;font-weight:800;color:var(--navy);}
+.modal-close{width:28px;height:28px;border-radius:50%;background:rgba(184,84,46,.10);border:1.5px solid rgba(184,84,46,.35);color:var(--terra);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;font-family:inherit;}
+.modal-body{padding:16px 18px;}
+
+.hist-item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#FFF;border:1px solid var(--cream-3);border-right:4px solid var(--gold);border-radius:8px;margin-bottom:6px;}
+.hist-info .h-title{font-weight:800;color:var(--navy);font-size:.8rem;}
+.hist-info .h-date{font-size:.66rem;color:var(--text-mute);margin-top:1px;}
+.hist-actions{display:flex;gap:4px;}
+.hist-btn{padding:5px 10px;border:1px solid var(--cream-3);background:#FFF;border-radius:7px;font-family:inherit;font-size:.68rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .2s;}
 .hist-btn:hover{border-color:var(--gold);color:var(--gold-3);}
-.bom-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:8px;}
-.bom-table th{background:linear-gradient(135deg,var(--navy-2),var(--navy-3));color:var(--cream);padding:8px;font-weight:700;font-size:.74rem;}
-.bom-table td{border:1px solid var(--cream-3);padding:8px;text-align:center;background:#FFF;}
+
+.bom-table{width:100%;border-collapse:collapse;font-size:.72rem;margin-top:6px;}
+.bom-table th{background:linear-gradient(135deg,var(--navy-2),var(--navy-3));color:var(--cream);padding:6px;font-weight:700;font-size:.68rem;}
+.bom-table td{border:1px solid var(--cream-3);padding:6px;text-align:center;background:#FFF;}
 .bom-table tr:nth-child(even) td{background:var(--cream-2);}
-.cmp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
-@media(max-width:640px){.cmp-grid{grid-template-columns:1fr;}}
-.cmp-col{border-radius:10px;border:2px solid;padding:14px;text-align:center;}
-.cmp-col.bronze{background:linear-gradient(135deg,#F8E5DA,#F0CFB8);border-color:#B87333;}
-.cmp-col.silver{background:linear-gradient(135deg,#E8E8E8,#D0D0D0);border-color:#808080;}
-.cmp-col.gold{background:linear-gradient(135deg,#FAF0D4,#F0DDA8);border-color:var(--gold);}
-.cmp-col h4{font-size:.85rem;font-weight:800;color:var(--navy);margin-bottom:8px;}
-.cmp-col .num{font-size:1.3rem;font-weight:800;color:var(--navy);}
-.cmp-col .num small{font-size:.65rem;color:var(--text-soft);}
-.cmp-col ul{list-style:none;font-size:.7rem;line-height:1.7;color:var(--text-soft);margin-top:8px;text-align:right;}
-.cmp-col ul li::before{content:"✓ ";color:var(--forest);font-weight:800;}
-.disclaimer{text-align:center;font-size:.73rem;color:rgba(251,248,243,.5);padding:24px 16px;border-top:1px solid rgba(200,164,92,.20);margin-top:24px;}
-.disclaimer strong{color:var(--gold-2);}
-.autosave-badge{position:fixed;bottom:20px;right:20px;background:rgba(74,124,89,.9);color:#FFF;padding:6px 14px;border-radius:99px;font-size:.72rem;font-weight:700;opacity:0;transition:opacity .3s;z-index:500;}
+
+.disclaimer{text-align:center;font-size:.68rem;color:rgba(251,248,243,.5);padding:18px 12px;border-top:1px solid rgba(200,164,92,.20);margin-top:18px;}
+
+.autosave-badge{position:fixed;bottom:16px;right:16px;background:rgba(74,124,89,.9);color:#FFF;padding:5px 12px;border-radius:99px;font-size:.68rem;font-weight:700;opacity:0;transition:opacity .3s;z-index:500;}
 .autosave-badge.show{opacity:1;}
+
+.chart{background:#FFF;border:1px solid var(--cream-3);border-radius:8px;padding:10px;margin-top:10px;}
+.chart-title{font-size:.72rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.chart svg{width:100%;height:auto;}
+
+.unit-toggle{display:inline-flex;background:linear-gradient(135deg,var(--cream-2),var(--cream-3));border:1.5px solid rgba(200,164,92,.35);border-radius:99px;padding:2px;margin-bottom:6px;gap:2px;}
+.unit-toggle button{padding:5px 12px;border:none;background:transparent;border-radius:99px;font-family:inherit;font-size:.7rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .25s;}
+.unit-toggle button.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);}
+
+.fx-header{display:grid;grid-template-columns:1fr 60px 90px 70px;gap:8px;padding:0 10px;margin-bottom:6px;font-size:.66rem;color:var(--text-soft);font-weight:700;}
+.fx-header>*{text-align:center;}
+.fx-header>*:first-child{text-align:right;}
+.fx-row{display:grid;grid-template-columns:1fr 60px 90px 70px;gap:8px;align-items:center;padding:8px 10px;background:linear-gradient(135deg,#FFFFFF,#FAF4E6);border:1px solid var(--cream-3);border-radius:8px;margin-bottom:6px;transition:all .2s;}
+.fx-row:hover{border-color:var(--gold-2);}
+.fx-row .fx-name{font-weight:700;color:var(--navy);font-size:.76rem;}
+.fx-row .fx-def{font-size:.66rem;color:var(--text-mute);background:var(--cream-3);padding:2px 6px;border-radius:99px;font-weight:600;text-align:center;}
+.fx-row input{padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);}
+.fx-row .fx-u{font-size:.66rem;color:var(--text-soft);font-weight:600;text-align:center;}
+@media(max-width:520px){.fx-header,.fx-row{grid-template-columns:1fr 50px 80px 55px;gap:5px;padding:6px;font-size:.7rem;}}
 </style>
 </head>
 <body>
 <div class="app">
 
-<div class="sticky-shell">
-<header class="header">
-<div class="header-inner">
-<div class="logo-wrap">
-<svg class="logo-svg" viewBox="0 0 60 60" fill="none">
-<path class="flame" d="M20 12 C18 15,17 18,19 21 C20 23,22 23,22 21 C23 19,22 16,20 12 Z" fill="#D4B678"/>
-<path d="M20 14 C19 16,19 18,20 20 C21 21,21.5 20,21 19 C20.5 17,20.5 16,20 14 Z" fill="#B8542E"/>
-<g stroke="#D4B678" stroke-width="1.4" stroke-linecap="round" fill="none">
-<path class="steam-1" d="M34 16 q2 -3 4 0 q2 3 4 0"/>
-<path class="steam-2" d="M36 12 q2 -3 4 0 q2 3 4 0"/>
-<path class="steam-3" d="M38 18 q2 -3 4 0 q2 3 4 0"/>
-</g>
-<rect x="8" y="28" width="32" height="18" rx="3" fill="#243158" stroke="#C8A45C" stroke-width="1.2"/>
-<rect x="12" y="24" width="6" height="4" rx="1" fill="#D4B678"/>
-<rect x="30" y="24" width="6" height="4" rx="1" fill="#D4B678"/>
-<rect x="14" y="18" width="4" height="8" fill="#8B6F35"/>
-<rect x="44" y="24" width="10" height="22" rx="2" fill="#243158" stroke="#B8542E" stroke-width="1.2"/>
-<path class="water-drop" d="M49 32 C47 35,47 38,49 38 C51 38,51 35,49 32 Z" fill="#D46A44"/>
-</svg>
+<!-- ==================== هدر فشرده ==================== -->
+<div class="compact-header">
+<div class="logo-mini">⚙️</div>
+<div class="title-block">
+<div class="t">Capacity Assistant v9</div>
+<div class="s">کاسپین مبدل آمارد — ASHRAE / Fulton / Spirax</div>
 </div>
-<div class="header-text">
-<div class="title">Capacity Assistant v8</div>
-<div class="subtitle">کاسپین مبدل آمارد — دستیار مهندسی تعیین ظرفیت</div>
-<span class="header-badge"><span class="dot"></span> ASHRAE / Fulton / Spirax / Mabhas 19</span>
+<div class="tools">
+<button onclick="openHistoryModal()" title="تاریخچه">📜</button>
+<button onclick="openCatalogModal()" title="کاتالوگ کاسپین">📖</button>
+<button onclick="openCompetitorModal()" title="مقایسه رقبا">🔍</button>
 </div>
-</div>
-</header>
-
-<div class="header-tools">
-<button class="header-btn" onclick="openCompareModal()"><span class="icon">📊</span> مقایسه ۳ گزینه</button>
-<button class="header-btn" onclick="openHistoryModal()"><span class="icon">📜</span> تاریخچه</button>
-<button class="header-btn" onclick="openCatalogModal()"><span class="icon">📖</span> جدول ظرفیت کاسپین</button>
-<button class="header-btn" onclick="openCompetitorModal()"><span class="icon">🔍</span> مقایسه با رقبا</button>
 </div>
 
-<div class="tabs-sticky">
-<nav class="tabs">
-<button class="tab-btn active" data-panel="boilers">🔥 دیگ بخار</button>
-<button class="tab-btn" data-panel="hwboilers">💧 دیگ آبگرم</button>
-<button class="tab-btn" data-panel="quick">⚡ مشاوره سریع</button>
-<button class="tab-btn" data-panel="applications">📐 محاسبات کاربردی</button>
-<button class="tab-btn" data-panel="tanks">🛢 مخازن</button>
-<button class="tab-btn" data-panel="treatment">🧪 تصفیه آب</button>
-<button class="tab-btn" data-panel="accessories">⚙️ تجهیزات جانبی</button>
-<button class="tab-btn" data-panel="calculator">🧮 ماشین‌حساب</button>
+<!-- ==================== تب‌های فشرده ==================== -->
+<nav class="compact-tabs">
+<button class="tab-btn active" data-panel="quick"><span class="ic">⚡</span><span class="lbl">مشاوره سریع</span></button>
+<button class="tab-btn" data-panel="boilers"><span class="ic">🔥</span><span class="lbl">دیگ بخار</span></button>
+<button class="tab-btn" data-panel="hwboilers"><span class="ic">💧</span><span class="lbl">آبگرم</span></button>
+<button class="tab-btn" data-panel="applications"><span class="ic">📐</span><span class="lbl">کاربردی</span></button>
+<button class="tab-btn" data-panel="tanks"><span class="ic">🛢</span><span class="lbl">مخازن</span></button>
+<button class="tab-btn" data-panel="treatment"><span class="ic">🧪</span><span class="lbl">تصفیه</span></button>
+<button class="tab-btn" data-panel="accessories"><span class="ic">⚙️</span><span class="lbl">جانبی</span></button>
+<button class="tab-btn" data-panel="calculator"><span class="ic">🧮</span><span class="lbl">ماشین‌حساب</span></button>
 </nav>
-</div>
-</div>
 
 <main>
 
-<!-- BOILERS -->
-<section id="panel-boilers" class="panel active">
+<!-- ==================== QUICK CONSULTATION (Enhanced) ==================== -->
+<section id="panel-quick" class="panel active">
+<div class="card">
+<span class="badge">Quick Consultation — Enhanced</span>
+<h2>⚡ مشاوره سریع هوشمند</h2>
+<p class="hint">نوع کاربری + متراژ + تعداد طبقات + تعداد واحد → ظرفیت دقیق در کمتر از ۳ ثانیه</p>
+
+<div class="field">
+<label>1️⃣ نوع کاربری</label>
+<div class="qc-selector" id="qc_selector"></div>
+</div>
+
+<div class="qc-input-row">
+<div class="field">
+<label>متراژ کل <span style="color:var(--text-mute);">(m²)</span></label>
+<input type="number" id="qc_area" value="1000" oninput="liveQC()">
+</div>
+<div class="field">
+<label>تعداد طبقات</label>
+<input type="number" id="qc_floors" value="3" min="1" oninput="liveQC()">
+</div>
+<div class="field">
+<label>تعداد واحد</label>
+<input type="number" id="qc_units" value="10" min="1" oninput="liveQC()">
+</div>
+</div>
+
+<div class="qc-input-row">
+<div class="field">
+<label>اقلیم</label>
+<select id="qc_climate" onchange="liveQC()">
+<option value="0.9">گرم (بندرعباس، اهواز)</option>
+<option value="1.0" selected>معتدل (تهران، اصفهان)</option>
+<option value="1.15">سرد (تبریز، همدان)</option>
+<option value="1.25">بسیار سرد (اردبیل، شهرکرد)</option>
+</select>
+</div>
+<div class="field">
+<label>سطح عایق‌بندی</label>
+<select id="qc_insulation" onchange="liveQC()">
+<option value="1.15">ضعیف</option>
+<option value="1.0" selected>استاندارد</option>
+<option value="0.85">خوب</option>
+<option value="0.7">کم‌مصرف</option>
+</select>
+</div>
+<div class="field">
+<label>ضریب همزمانی</label>
+<select id="qc_diversity" onchange="liveQC()">
+<option value="1.0" selected>بدون ضریب (محافظه‌کارانه)</option>
+<option value="0.9">۰.۹ (۴-۶ مصرف)</option>
+<option value="0.8">۰.۸ (۷-۱۰)</option>
+<option value="0.7">۰.۷ (۱۱-۲۰)</option>
+<option value="0.6">۰.۶ (۲۱-۵۰)</option>
+<option value="0.5">۰.۵ (بیش از ۵۰)</option>
+</select>
+</div>
+</div>
+
+<div class="qc-live">
+<div class="qc-live-title">📊 نتیجه زنده — به‌روزرسانی خودکار</div>
+<div class="qc-live-main" id="qc_main">— <small>kcal/hr</small></div>
+<div class="qc-live-row">
+<div class="qc-live-item">
+<div class="k">معادل کیلووات</div>
+<div class="v" id="qc_kw">—</div>
+</div>
+<div class="qc-live-item">
+<div class="k">معادل بخار</div>
+<div class="v" id="qc_steam">—</div>
+</div>
+<div class="qc-live-item">
+<div class="k">مدل پیشنهادی</div>
+<div class="v" id="qc_model">—</div>
+</div>
+</div>
+</div>
+
+<div class="qc-ref">
+<div class="qc-ref-header">
+<span>کاربری</span>
+<span>kcal/hr·m²</span>
+<span>ضریب U</span>
+</div>
+<div id="qc_ref_body"></div>
+</div>
+
+<button class="btn" style="margin-top:12px;" onclick="calcQuickFull()">📥 دانلود گزارش PNG</button>
+<div class="results" id="qc_results"></div>
+</div>
+</section>
+
+<!-- ==================== BOILERS ==================== -->
+<section id="panel-boilers" class="panel">
 <nav class="subtabs" data-parent="boilers">
 <button class="subtab-btn active" data-subpanel="steam-horizontal">افقی سه‌پاس</button>
 <button class="subtab-btn" data-subpanel="steam-firebox">فایرباکس</button>
@@ -319,20 +393,20 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="field"><label>فشار <span class="unit">bar</span></label><input type="number" id="hwb_p" value="10" oninput="liveSteam('hwb')"></div>
 </div>
 <div class="row4">
-<div class="field"><label>دمای تغذیه <span class="unit">°C</span></label><input type="number" id="hwb_tfeed" value="105"></div>
-<div class="field"><label>کندانس <span class="unit">٪</span></label><input type="number" id="hwb_cond" value="60"></div>
-<div class="field"><label>راندمان <span class="unit">٪</span></label><input type="number" id="hwb_eff" value="88"></div>
+<div class="field"><label>دمای تغذیه °C</label><input type="number" id="hwb_tfeed" value="105"></div>
+<div class="field"><label>کندانس ٪</label><input type="number" id="hwb_cond" value="60"></div>
+<div class="field"><label>راندمان ٪</label><input type="number" id="hwb_eff" value="88"></div>
 <div class="field"><label>سوخت</label><div class="cs-wrap"><select id="hwb_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div></div>
 </div>
 <div class="row4">
-<div class="field"><label>سختی <span class="unit">ppm</span></label><input type="number" id="hwb_hard" value="300"></div>
-<div class="field"><label>TDS <span class="unit">ppm</span></label><input type="number" id="hwb_tdsb" value="3500"></div>
+<div class="field"><label>سختی ppm</label><input type="number" id="hwb_hard" value="300"></div>
+<div class="field"><label>TDS ppm</label><input type="number" id="hwb_tdsb" value="3500"></div>
 <div class="field"><label>دمای دودکش °C</label><input type="number" id="hwb_stack" value="200"></div>
 <div class="field"><label>ارتفاع m</label><input type="number" id="hwb_alt" value="0"></div>
 </div>
-<div class="live-preview" id="hwb_live">
-<span class="lp-lbl">🔥 بار طراحی زنده:</span>
-<span class="lp-val" id="hwb_live_val">— <small>kcal/hr</small></span>
+<div class="qc-live" style="margin-top:10px;">
+<div class="qc-live-title">🔥 بار طراحی زنده:</div>
+<div class="qc-live-main" id="hwb_live_val">— <small>kcal/hr</small></div>
 </div>
 <fieldset class="calc-settings">
 <legend>⚙️ تنظیمات تکمیلی</legend>
@@ -379,18 +453,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="field"><label>دمای دودکش °C</label><input type="number" id="fb_stack" value="200"></div>
 <div class="field"><label>ارتفاع m</label><input type="number" id="fb_alt" value="0"></div>
 </div>
-<div class="live-preview" id="fb_live">
-<span class="lp-lbl">🔥 بار طراحی زنده:</span>
-<span class="lp-val" id="fb_live_val">— <small>kcal/hr</small></span>
-</div>
-<fieldset class="calc-settings">
-<legend>⚙️ تنظیمات</legend>
-<div class="row3">
-<div class="field"><label>بلودان</label><div class="cs-wrap"><select id="fb_blow" data-cs><option value="1" selected>فعال</option><option value="0">غیرفعال</option></select></div></div>
-<div class="field"><label>اکونومایزر</label><div class="cs-wrap"><select id="fb_eco" data-cs><option value="0">غیرفعال</option><option value="1">فعال</option></select></div></div>
-<div class="field"><label>همزمانی</label><div class="cs-wrap"><select id="fb_div" data-cs><option value="1.0">۱.۰</option><option value="0.8" selected>۰.۸</option><option value="0.7">۰.۷</option></select></div></div>
-</div>
-</fieldset>
 <button class="btn" onclick="calcSteam('fb','فایرباکس')">⚡ محاسبه کامل</button>
 <div class="results" id="fb_results"></div>
 </div>
@@ -433,13 +495,11 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <h2>🌡️ سایزینگ تله بخار</h2>
 <p class="hint">محاسبه ظرفیت تله بر اساس دبی کندانس، ΔP و نوع تله</p>
 <div class="row3">
-<div class="field"><label>دبی کندانس <span class="unit">kg/hr</span></label><input type="number" id="st_flow" value="1500"></div>
-<div class="field"><label>ΔP (اختلاف فشار) <span class="unit">bar</span></label><input type="number" id="st_dp" value="6"></div>
+<div class="field"><label>دبی کندانس kg/hr</label><input type="number" id="st_flow" value="1500"></div>
+<div class="field"><label>ΔP bar</label><input type="number" id="st_dp" value="6"></div>
 <div class="field"><label>نوع تله</label><div class="cs-wrap"><select id="st_type" data-cs><option value="thermo">ترمودینامیکی (×1.2)</option><option value="thermo2">ترموستاتیک (×1.3)</option><option value="mech">مکانیکی (×1.5)</option></select></div></div>
 </div>
-<div class="field"><label>ضریب اطمینان اضافی</label>
-<div class="cs-wrap"><select id="st_margin" data-cs><option value="1.2" selected>۱.۲ (استاندارد)</option><option value="1.3">۱.۳</option><option value="1.5">۱.۵</option></select></div>
-</div>
+<div class="field"><label>ضریب اطمینان</label><div class="cs-wrap"><select id="st_margin" data-cs><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option><option value="1.5">۱.۵</option></select></div></div>
 <button class="btn" onclick="calcTrap()">⚡ محاسبه</button>
 <div class="results" id="st_results"></div>
 </div>
@@ -447,10 +507,8 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 
 <div id="subpanel-steam-clean" class="subpanel">
 <div class="card">
-<button class="card-reset" onclick="resetCard('cs')">↺</button>
 <span class="badge">Clean Steam</span>
 <h2>💧 مولد بخار تمیز</h2>
-<p class="hint">EN285 / HTM2031</p>
 <div class="sf-compact" data-sf-group="cs">
 <span class="sf-lbl">⚖️ ضریب:</span>
 <div class="sf-chips">
@@ -510,7 +568,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 </section>
 
-<!-- HW BOILERS -->
+<!-- ==================== HW BOILERS ==================== -->
 <section id="panel-hwboilers" class="panel">
 <nav class="subtabs" data-parent="hwboilers">
 <button class="subtab-btn active" data-subpanel="hw-tp">سه‌پاس</button>
@@ -580,7 +638,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="field"><label>راندمان ٪</label><input type="number" id="rf_eff" value="85"></div>
 <div class="field"><label>سوخت</label><div class="cs-wrap"><select id="rf_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div>
 </div>
-<div class="field" style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="rf_trim" checked><label style="margin:0;font-weight:500;">Trim Kit</label></div>
 <button class="btn" onclick="calcHW('rf','شعله برگشتی')">⚡ محاسبه</button>
 <div class="results" id="rf_results"></div>
 </div>
@@ -650,7 +707,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 
 <div id="subpanel-hw-cond" class="subpanel">
 <div class="card">
-<button class="card-reset" onclick="resetCond()">↺</button>
 <span class="badge">Condensing Boiler</span>
 <h2>💧 دیگ آبگرم چگالشی</h2>
 <p class="hint">راندمان ۹۵-۱۰۸٪ با بازیافت حرارت نهان</p>
@@ -666,7 +722,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <input type="hidden" id="cond_sf" value="1.2">
 <div class="row">
-<div class="field"><label>بار طراحی kcal/hr</label><input type="number" id="cond_q" value="500000"></div>
+<div class="field"><label>بار kcal/hr</label><input type="number" id="cond_q" value="500000"></div>
 <div class="field"><label>فشار bar</label><input type="number" id="cond_p" value="6"></div>
 </div>
 <div class="row4">
@@ -687,7 +743,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 
 <div id="subpanel-hw-dual" class="subpanel">
 <div class="card">
-<button class="card-reset" onclick="resetDual()">↺</button>
 <span class="badge">Dual Boiler</span>
 <h2>💧 دیگ دوگانه (آبگرم + آب‌داغ)</h2>
 <p class="hint">تولید همزمان آبگرم مصرفی و آب گرمایش</p>
@@ -751,39 +806,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 </section>
 
-<!-- QUICK -->
-<section id="panel-quick" class="panel">
-<div class="card">
-<span class="badge">Quick Consultation</span>
-<h2>⚡ مشاوره سریع (سرانگشتی)</h2>
-<p class="hint">Rule of Thumb + Look-up Table — پاسخ ۵ ثانیه‌ای</p>
-<div class="row3">
-<div class="field"><label>نوع کاربری</label>
-<div class="cs-wrap"><select id="qk_type" data-cs>
-<option value="residential">ساختمان مسکونی</option><option value="office">اداری</option>
-<option value="hotel">هتل</option><option value="hospital">بیمارستان</option>
-<option value="school">مدرسه</option><option value="restaurant">رستوران</option>
-<option value="industrial">کارخانه</option><option value="pool">استخر</option>
-<option value="greenhouse">گلخانه</option>
-</select></div>
-</div>
-<div class="field"><label>متراژ کل m²</label><input type="number" id="qk_area" value="1000"></div>
-<div class="field"><label>روش</label>
-<div class="cs-wrap"><select id="qk_method" data-cs><option value="thumb">Rule of Thumb</option><option value="lookup">Look-up</option></select></div>
-</div>
-</div>
-<div class="field"><label>ضریب اقلیمی</label>
-<div class="cs-wrap"><select id="qk_climate" data-cs>
-<option value="1.0">معتدل</option><option value="1.2">سرد</option>
-<option value="0.9">گرم</option><option value="1.1">کوهستانی</option>
-</select></div>
-</div>
-<button class="btn" onclick="calcQuick()">⚡ محاسبه سریع</button>
-<div class="results" id="qk_results"></div>
-</div>
-</section>
-
-<!-- APPLICATIONS -->
+<!-- ==================== APPLICATIONS ==================== -->
 <section id="panel-applications" class="panel">
 <nav class="subtabs" data-parent="applications">
 <button class="subtab-btn active" data-subpanel="app-dhw">🚿 آبگرم مصرفی</button>
@@ -836,7 +859,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div class="fx-header"><span>وسیله</span><span>پیش‌فرض</span><span>مقدار</span><span>واحد</span></div>
 <div id="dhw_fix"></div>
-<div class="row3" style="margin-top:14px;">
+<div class="row3" style="margin-top:10px;">
 <div class="field"><label>ضریب تقاضا</label><input type="number" id="dhw_div" value="0.3" step="0.05"></div>
 <div class="field"><label>الگوی مصرف</label><div class="cs-wrap"><select id="dhw_pat" data-cs><option value="continuous">پیوسته</option><option value="peak">پیک‌دار</option></select></div></div>
 <div class="field"><label>دمای ورودی °C</label><input type="number" id="dhw_tin" value="10"></div>
@@ -995,7 +1018,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 </section>
 
-<!-- TANKS -->
+<!-- ==================== TANKS ==================== -->
 <section id="panel-tanks" class="panel">
 <nav class="subtabs" data-parent="tanks">
 <button class="subtab-btn active" data-subpanel="tk-open">انبساط باز</button>
@@ -1007,7 +1030,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </nav>
 <div id="subpanel-tk-open" class="subpanel active">
 <div class="card">
-<span class="badge">Open Expansion</span>
 <h2>🛢 منبع انبساط باز</h2>
 <div class="row3">
 <div class="field"><label>حجم آب L</label><input type="number" id="oe_vs" value="2000"></div>
@@ -1020,7 +1042,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-tk-close" class="subpanel">
 <div class="card">
-<span class="badge">Closed Expansion</span>
 <h2>🛢 منبع انبساط بسته</h2>
 <div class="row3">
 <div class="field"><label>حجم آب L</label><input type="number" id="ce_vs" value="2000"></div>
@@ -1037,7 +1058,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-tk-cond" class="subpanel">
 <div class="card">
-<span class="badge">Condensate</span>
 <h2>🛢 مخزن کندانس</h2>
 <div class="row3">
 <div class="field"><label>دبی kg/hr</label><input type="number" id="ct_flow" value="1500"></div>
@@ -1050,7 +1070,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-tk-cu" class="subpanel">
 <div class="card">
-<span class="badge">U Coil</span>
 <h2>🛢 منبع کویلی U</h2>
 <div class="row3">
 <div class="field"><label>حجم L</label><input type="number" id="cu_vol" value="2000"></div>
@@ -1063,7 +1082,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-tk-sp" class="subpanel">
 <div class="card">
-<span class="badge">Spiral Coil</span>
 <h2>🛢 منبع اسپیرال</h2>
 <div class="row3">
 <div class="field"><label>حجم L</label><input type="number" id="cs_vol" value="1500"></div>
@@ -1076,9 +1094,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-tk-dw" class="subpanel">
 <div class="card">
-<span class="badge">Double-Wall</span>
 <h2>🛢 منبع دوجداره</h2>
-<p class="hint">مخزن با جداره دوگانه برای آبگرم بهداشتی (بدون اختلاط با سیستم گرمایش)</p>
 <div class="row3">
 <div class="field"><label>حجم L</label><input type="number" id="dw_vol" value="1500"></div>
 <div class="field"><label>دمای هدف °C</label><input type="number" id="dw_th" value="60"></div>
@@ -1095,7 +1111,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 </section>
 
-<!-- TREATMENT -->
+<!-- ==================== TREATMENT ==================== -->
 <section id="panel-treatment" class="panel">
 <nav class="subtabs" data-parent="treatment">
 <button class="subtab-btn active" data-subpanel="tr-sf">سختی‌گیر</button>
@@ -1104,7 +1120,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </nav>
 <div id="subpanel-tr-sf" class="subpanel active">
 <div class="card">
-<span class="badge">Softener</span>
 <h2>🧪 سختی‌گیر</h2>
 <div class="row3">
 <div class="field"><label>دبی m³/h</label><input type="number" id="sf_flow" value="5"></div>
@@ -1117,7 +1132,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-tr-sand" class="subpanel">
 <div class="card">
-<span class="badge">Sand Filter</span>
 <h2>🧪 فیلتر شنی</h2>
 <div class="row3">
 <div class="field"><label>دبی m³/h</label><input type="number" id="sf2_flow" value="10"></div>
@@ -1130,7 +1144,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-tr-de" class="subpanel">
 <div class="card">
-<span class="badge">Deaerator</span>
 <h2>🧪 دی‌اریتور</h2>
 <div class="row3">
 <div class="field"><label>ظرفیت دیگ kg/hr</label><input type="number" id="de_cap" value="3000"></div>
@@ -1143,17 +1156,16 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 </section>
 
-<!-- ACCESSORIES -->
+<!-- ==================== ACCESSORIES ==================== -->
 <section id="panel-accessories" class="panel">
 <nav class="subtabs" data-parent="accessories">
 <button class="subtab-btn active" data-subpanel="ac-hy">هیدرولیک</button>
 <button class="subtab-btn" data-subpanel="ac-air">ایر سپراتور</button>
 <button class="subtab-btn" data-subpanel="ac-hx">مبدل</button>
-<button class="subtab-btn" data-subpanel="ac-rad">رادیاتور و پنل</button>
+<button class="subtab-btn" data-subpanel="ac-rad">رادیاتور</button>
 </nav>
 <div id="subpanel-ac-hy" class="subpanel active">
 <div class="card">
-<span class="badge">Hydraulic Separator</span>
 <h2>⚙️ هیدرولیک سپراتور</h2>
 <div class="row4">
 <div class="field"><label>بار kcal/hr</label><input type="number" id="hs_q" value="300000"></div>
@@ -1167,7 +1179,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-ac-air" class="subpanel">
 <div class="card">
-<span class="badge">Air Separator</span>
 <h2>⚙️ ایر سپراتور</h2>
 <div class="row3">
 <div class="field"><label>دبی GPM</label><input type="number" id="as_flow" value="200"></div>
@@ -1180,7 +1191,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-ac-hx" class="subpanel">
 <div class="card">
-<span class="badge">Heat Exchanger</span>
 <h2>⚙️ مبدل حرارتی</h2>
 <div class="row">
 <div class="field"><label>بار kcal/hr</label><input type="number" id="hx_q" value="150000"></div>
@@ -1199,26 +1209,16 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div id="subpanel-ac-rad" class="subpanel">
 <div class="card">
-<span class="badge">Radiator / Panel</span>
 <h2>🔥 رادیاتور و پنل</h2>
-<p class="hint">محاسبه تعداد پره رادیاتور بر اساس بار حرارتی</p>
 <div class="row3">
 <div class="field"><label>بار اتاق kcal/hr</label><input type="number" id="rad_q" value="2000"></div>
-<div class="field"><label>نوع رادیاتور</label>
-<div class="cs-wrap"><select id="rad_type" data-cs>
-<option value="150">آلومینیومی (150 kcal/pore)</option>
-<option value="120">فولادی (120)</option>
-<option value="100">چدنی (100)</option>
-</select></div>
-</div>
+<div class="field"><label>نوع رادیاتور</label><div class="cs-wrap"><select id="rad_type" data-cs><option value="150">آلومینیومی (150 kcal/pore)</option><option value="120">فولادی (120)</option><option value="100">چدنی (100)</option></select></div></div>
 <div class="field"><label>ضریب تصحیح</label><input type="number" id="rad_f" value="1.1" step="0.05"></div>
 </div>
 <div class="row3">
 <div class="field"><label>دمای آب رفت °C</label><input type="number" id="rad_tin" value="80"></div>
 <div class="field"><label>دمای محیط °C</label><input type="number" id="rad_tamb" value="20"></div>
-<div class="field"><label>نوع نصب</label>
-<div class="cs-wrap"><select id="rad_install" data-cs><option value="1.0">زیر پنجره</option><option value="1.05">دیوار داخلی</option><option value="0.95">دیوار خارجی</option></select></div>
-</div>
+<div class="field"><label>نوع نصب</label><div class="cs-wrap"><select id="rad_install" data-cs><option value="1.0">زیر پنجره</option><option value="1.05">دیوار داخلی</option><option value="0.95">دیوار خارجی</option></select></div></div>
 </div>
 <button class="btn" onclick="calcRadiator()">⚡ محاسبه</button>
 <div class="results" id="rad_results"></div>
@@ -1226,10 +1226,9 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 </section>
 
-<!-- CALCULATOR -->
+<!-- ==================== CALCULATOR ==================== -->
 <section id="panel-calculator" class="panel">
 <div class="card">
-<span class="badge">Unit Converter</span>
 <h2>🧮 ماشین‌حساب تبدیل واحدها</h2>
 <div class="field"><label>دسته</label>
 <div class="cs-wrap"><select id="calc_cat" data-cs onchange="onCalcCat()">
@@ -1248,17 +1247,17 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="field"><label>مبدأ</label><div class="cs-wrap"><select id="calc_from" data-cs onchange="runCalc()"></select></div></div>
 <div class="field"><label>مقصد</label><div class="cs-wrap"><select id="calc_to" data-cs onchange="runCalc()"></select></div></div>
 </div>
-<div class="gauge gold" style="text-align:center;padding:20px;">
+<div class="gauge gold" style="text-align:center;padding:16px;">
 <div class="k">نتیجه</div>
-<div class="v" style="font-size:2rem;" id="calc_num">1</div>
+<div class="v" style="font-size:1.8rem;" id="calc_num">1</div>
 <div class="note" id="calc_lbl">واحد</div>
 </div>
-<div id="calc_conv" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:12px;"></div>
+<div id="calc_conv" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px;"></div>
 </div>
 </section>
 
 </main>
-<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v8<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
+<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v9<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
 </div>
 <div class="toast" id="toast"></div>
 <div class="autosave-badge" id="autosave">✓ ذخیره شد</div>
@@ -1267,11 +1266,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="modal-overlay" id="modal-history">
 <div class="modal"><div class="modal-header"><h3>📜 تاریخچه محاسبات</h3><button class="modal-close" onclick="closeModal('modal-history')">✕</button></div>
 <div class="modal-body" id="history-body"></div></div>
-</div>
-
-<div class="modal-overlay" id="modal-compare">
-<div class="modal"><div class="modal-header"><h3>📊 مقایسه ۳ گزینه</h3><button class="modal-close" onclick="closeModal('modal-compare')">✕</button></div>
-<div class="modal-body" id="compare-body"></div></div>
 </div>
 
 <div class="modal-overlay" id="modal-catalog">
@@ -1290,20 +1284,20 @@ const n=v=>{v=parseFloat(v);return isNaN(v)?0:v;};
 const fmt=(v,d=0)=>Number(v).toLocaleString('en-US',{maximumFractionDigits:d});
 const $=id=>document.getElementById(id);
 const g=(k,v,u,note)=>`<div class="gauge"><div class="k">${k}</div><div class="v">${v}<small>${u}</small></div>${note?`<div class="note">${note}</div>`:''}</div>`;
-const warn=m=>`<div class="gauge err"><div class="k">خطا</div><div class="v" style="font-size:.9rem;">${m}</div></div>`;
+const warn=m=>`<div class="gauge err"><div class="k">خطا</div><div class="v" style="font-size:.85rem;">${m}</div></div>`;
 const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);};
 const hu=k=>`${fmt(k*1.163/1000)} kW · ${fmt(k*3.968)} BTU/hr`;
-const mf=kg=>`${fmt(kg)} kg/hr · ${fmt(kg/1000,2)} ton/hr · ${fmt(kg*2.2046)} lb/hr`;
+const mf=kg=>`${fmt(kg)} kg/hr · ${fmt(kg/1000,2)} ton/hr`;
 const getSF=p=>{const el=$(p+'_sf');return el?(n(el.value)||1.2):1.2;};
 const fb=(t,lines,ref)=>`<div class="formula"><div class="ft">📐 ${t}</div>${lines.filter(Boolean).map(l=>`<div class="fl">${l}</div>`).join('')}<div class="ref">📚 ${ref}</div></div>`;
-const chart=(label,data)=>`<div class="chart"><div class="chart-title">📈 ${label}</div><svg viewBox="0 0 400 100" preserveAspectRatio="none"><defs><linearGradient id="cg${Date.now()}" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#C8A45C" stop-opacity=".5"/><stop offset="100%" stop-color="#C8A45C" stop-opacity="0"/></linearGradient></defs><path d="M0,90 Q100,40 200,30 T400,20" fill="none" stroke="#B8542E" stroke-width="2.5"/><path d="M0,90 Q100,40 200,30 T400,20 L400,100 L0,100 Z" fill="url(#cg${Date.now()})"/><text x="10" y="98" font-size="9" fill="#7A6F5F">25%</text><text x="120" y="98" font-size="9" fill="#7A6F5F">50%</text><text x="240" y="98" font-size="9" fill="#7A6F5F">75%</text><text x="350" y="98" font-size="9" fill="#7A6F5F">100%</text></svg></div>`;
+const chart=(label)=>`<div class="chart"><div class="chart-title">📈 ${label}</div><svg viewBox="0 0 400 100" preserveAspectRatio="none"><defs><linearGradient id="cg${Date.now()}" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#C8A45C" stop-opacity=".5"/><stop offset="100%" stop-color="#C8A45C" stop-opacity="0"/></linearGradient></defs><path d="M0,90 Q100,40 200,30 T400,20" fill="none" stroke="#B8542E" stroke-width="2.5"/><path d="M0,90 Q100,40 200,30 T400,20 L400,100 L0,100 Z" fill="url(#cg${Date.now()})"/><text x="10" y="98" font-size="9" fill="#7A6F5F">25%</text><text x="120" y="98" font-size="9" fill="#7A6F5F">50%</text><text x="240" y="98" font-size="9" fill="#7A6F5F">75%</text><text x="350" y="98" font-size="9" fill="#7A6F5F">100%</text></svg></div>`;
 
 /* ==================== SF Management ==================== */
 function setSF(el, group, val){
   el.parentElement.querySelectorAll('.sf-chip').forEach(x=>x.classList.remove('active'));
   el.classList.add('active');
   $(group+'_sf').value = val;
-  $(group+'_sf_manual').value = val;
+  const m = $(group+'_sf_manual'); if(m) m.value = val;
 }
 function onManualSF(group){
   const v = n($(group+'_sf_manual').value);
@@ -1317,7 +1311,6 @@ function resetCard(prefix){
   if(!card) return;
   card.querySelectorAll('input[type="number"]').forEach(inp=>{ if(inp.defaultValue) inp.value = inp.defaultValue; });
   toast('✓ کارت بازنشانی شد');
-  saveToHistory('reset-'+prefix);
 }
 
 /* ==================== AutoSave ==================== */
@@ -1328,7 +1321,6 @@ function scheduleAutosave(){
     const badge = $('autosave');
     badge.classList.add('show');
     setTimeout(()=>badge.classList.remove('show'),1200);
-    // ذخیره فرم فعلی
     const data = {};
     document.querySelectorAll('input[type=number]').forEach(inp=>{ if(inp.id) data[inp.id] = inp.value; });
     document.querySelectorAll('select[data-cs]').forEach(sel=>{ if(sel.id) data[sel.id] = sel.value; });
@@ -1339,10 +1331,10 @@ document.addEventListener('input', scheduleAutosave);
 document.addEventListener('change', scheduleAutosave);
 
 /* ==================== History ==================== */
-function saveToHistory(type, data){
+function saveToHistory(type){
   try{
     let hist = JSON.parse(localStorage.getItem('caspian_history') || '[]');
-    hist.unshift({type, data, date: new Date().toLocaleString('fa-IR')});
+    hist.unshift({type, date: new Date().toLocaleString('fa-IR')});
     hist = hist.slice(0, 30);
     localStorage.setItem('caspian_history', JSON.stringify(hist));
   }catch(e){}
@@ -1373,20 +1365,6 @@ function deleteHist(i){
 }
 function closeModal(id){ $(id).classList.remove('show'); }
 
-/* ==================== Compare ==================== */
-function openCompareModal(){
-  $('compare-body').innerHTML = `
-    <div class="cmp-grid">
-      <div class="cmp-col bronze"><h4>🥉 اقتصادی</h4><div class="num">2,100 <small>kcal/hr</small></div>
-      <ul><li>مشعل استاندارد</li><li>بدون اکونومایزر</li><li>راندمان ۸۵٪</li><li>بازیافت ساده</li></ul></div>
-      <div class="cmp-col silver"><h4>🥈 استاندارد</h4><div class="num">2,350 <small>kcal/hr</small></div>
-      <ul><li>مشعل راندمان بالا</li><li>اکونومایزر فعال</li><li>راندمان ۹۰٪</li><li>بازیافت کامل</li></ul></div>
-      <div class="cmp-col gold"><h4>🥇 لوکس</h4><div class="num">2,500 <small>kcal/hr</small></div>
-      <ul><li>مشعل Modulating</li><li>اکونومایزر + سوپرهیتر</li><li>راندمان ۹۵٪</li><li>O₂ Trim + بازیافت کامل</li></ul></div>
-    </div>`;
-  $('modal-compare').classList.add('show');
-}
-
 /* ==================== Catalog ==================== */
 const CATALOG_STEAM = [
   {m:'افقی سه‌پاس', c:'100-15000 kg/hr', p:'3-20 bar', eff:'85-88٪'},
@@ -1404,20 +1382,18 @@ const CATALOG_HW = [
 ];
 function openCatalogModal(){
   $('catalog-body').innerHTML = `
-    <h3 style="font-size:.95rem;color:var(--navy);margin-bottom:10px;">🔥 دیگ بخار</h3>
+    <h3 style="font-size:.88rem;color:var(--navy);margin-bottom:8px;">🔥 دیگ بخار</h3>
     <table class="bom-table">
       <tr><th>مدل</th><th>ظرفیت</th><th>فشار</th><th>راندمان</th></tr>
       ${CATALOG_STEAM.map(x=>`<tr><td>${x.m}</td><td>${x.c}</td><td>${x.p}</td><td>${x.eff}</td></tr>`).join('')}
     </table>
-    <h3 style="font-size:.95rem;color:var(--navy);margin:20px 0 10px;">💧 دیگ آبگرم</h3>
+    <h3 style="font-size:.88rem;color:var(--navy);margin:16px 0 8px;">💧 دیگ آبگرم</h3>
     <table class="bom-table">
       <tr><th>مدل</th><th>ظرفیت</th><th>فشار</th><th>راندمان</th></tr>
       ${CATALOG_HW.map(x=>`<tr><td>${x.m}</td><td>${x.c}</td><td>${x.p}</td><td>${x.eff}</td></tr>`).join('')}
     </table>`;
   $('modal-catalog').classList.add('show');
 }
-
-/* ==================== Competitor ==================== */
 function openCompetitorModal(){
   $('competitor-body').innerHTML = `
     <table class="bom-table">
@@ -1512,6 +1488,151 @@ document.querySelectorAll('.subtabs').forEach(nav=>{
   });
 });
 
+/* ==================== Quick Consultation Enhanced ==================== */
+const QC_DATA = {
+  residential:{ic:'🏠',label:'مسکونی',lo:80,hi:120,U:0.8},
+  office:{ic:'🏢',label:'اداری',lo:100,hi:150,U:0.8},
+  hotel:{ic:'🏨',label:'هتل',lo:120,hi:180,U:1.0},
+  apartment_hotel:{ic:'🏩',label:'هتل آپارتمان',lo:110,hi:160,U:1.0},
+  hospital:{ic:'🏥',label:'بیمارستان',lo:150,hi:220,U:1.0},
+  clinic:{ic:'🩺',label:'درمانگاه',lo:130,hi:180,U:1.0},
+  school:{ic:'🎓',label:'مدرسه',lo:90,hi:130,U:1.2},
+  university:{ic:'🏛️',label:'دانشگاه',lo:100,hi:150,U:1.1},
+  restaurant:{ic:'🍽️',label:'رستوران',lo:150,hi:200,U:1.2},
+  cafe:{ic:'☕',label:'کافه',lo:120,hi:170,U:1.2},
+  industrial:{ic:'🏭',label:'کارخانه',lo:80,hi:150,U:1.2},
+  workshop:{ic:'🔧',label:'کارگاه',lo:70,hi:120,U:1.3},
+  pool:{ic:'🏊',label:'استخر',lo:200,hi:350,U:1.5},
+  sauna:{ic:'🧖',label:'سونا',lo:250,hi:400,U:1.5},
+  greenhouse:{ic:'🌿',label:'گلخانه',lo:150,hi:250,U:4.5},
+  stadium:{ic:'🏟️',label:'ورزشگاه',lo:120,hi:200,U:1.3},
+  gym:{ic:'💪',label:'سالن ورزشی',lo:100,hi:160,U:1.3},
+  cinema:{ic:'🎬',label:'سینما',lo:130,hi:180,U:1.3},
+  theater:{ic:'🎭',label:'تئاتر',lo:130,hi:180,U:1.3},
+  mall:{ic:'🛒',label:'پاساژ',lo:110,hi:160,U:1.2},
+  supermarket:{ic:'🏪',label:'سوپرمارکت',lo:120,hi:170,U:1.2},
+  mosque:{ic:'🕌',label:'مسجد',lo:100,hi:150,U:1.2},
+  kindergarten:{ic:'🧸',label:'مهدکودک',lo:100,hi:140,U:1.2},
+  nursing:{ic:'👴',label:'خانه سالمندان',lo:120,hi:170,U:1.0},
+  dorm:{ic:'🛏️',label:'خوابگاه',lo:90,hi:140,U:1.0},
+  prison:{ic:'🔒',label:'زندان',lo:80,hi:120,U:1.0},
+  laundry:{ic:'🧺',label:'رختشویخانه',lo:200,hi:300,U:1.5},
+  bakery:{ic:'🥖',label:'نانوایی',lo:180,hi:250,U:1.4},
+  cold:{ic:'❄️',label:'سردخانه',lo:60,hi:100,U:0.6},
+  warehouse:{ic:'📦',label:'انبار',lo:50,hi:90,U:0.9},
+  lab:{ic:'🔬',label:'آزمایشگاه',lo:140,hi:200,U:1.1},
+  pharma:{ic:'💊',label:'داروسازی',lo:150,hi:220,U:1.1},
+  food_factory:{ic:'🥫',label:'صنایع غذایی',lo:130,hi:200,U:1.3},
+  data_center:{ic:'💻',label:'دیتاسنتر',lo:200,hi:350,U:1.0}
+};
+
+let qcType = 'residential';
+
+function initQuickConsult(){
+  const sel = $('qc_selector');
+  if(!sel) return;
+  sel.innerHTML = Object.keys(QC_DATA).map(k => {
+    const d = QC_DATA[k];
+    return `<button class="qc-chip${k===qcType?' active':''}" onclick="pickQC(this,'${k}')"><span class="ic">${d.ic}</span>${d.label}</button>`;
+  }).join('');
+
+  const ref = $('qc_ref_body');
+  if(ref){
+    ref.innerHTML = Object.keys(QC_DATA).map(k => {
+      const d = QC_DATA[k];
+      return `<div class="qc-ref-row${k===qcType?' hl':''}" id="qcr_${k}"><span>${d.ic} ${d.label}</span><span>${d.lo}-${d.hi}</span><span>${d.U}</span></div>`;
+    }).join('');
+  }
+  liveQC();
+}
+
+function pickQC(el,type){
+  document.querySelectorAll('.qc-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  qcType = type;
+  document.querySelectorAll('.qc-ref-row').forEach(r=>r.classList.remove('hl'));
+  const ref = document.getElementById('qcr_'+type);
+  if(ref) ref.classList.add('hl');
+  liveQC();
+}
+
+function liveQC(){
+  const area = parseFloat($('qc_area').value) || 0;
+  const floors = parseFloat($('qc_floors').value) || 1;
+  const units = parseFloat($('qc_units').value) || 1;
+  const climate = parseFloat($('qc_climate').value) || 1;
+  const insulation = parseFloat($('qc_insulation').value) || 1;
+  const diversity = parseFloat($('qc_diversity').value) || 1;
+  const d = QC_DATA[qcType];
+  if(!d) return;
+
+  const avg = (d.lo + d.hi) / 2;
+  const floorFactor = 1 + (floors - 1) * 0.03;
+  const unitFactor = 1 + (units - 1) * 0.01;
+  const qKcal = area * avg * climate * insulation * diversity * floorFactor * unitFactor;
+  const qKw = qKcal * 1.163 / 1000;
+  const qSteam = qKcal / 539;
+
+  let model = '—';
+  if (qKcal > 0) {
+    if (qcType === 'industrial' || qcType === 'food_factory' || qSteam > 1000) {
+      const tons = (qSteam / 1000).toFixed(2);
+      model = `بخار ${tons} تن`;
+    } else {
+      const stdCaps = [17000,45000,75000,80000,100000,150000,200000,300000,400000,500000,600000,800000,1000000,1250000,1500000,2000000,3000000];
+      let chosen = stdCaps.find(c => c >= qKcal) || stdCaps[stdCaps.length-1];
+      if(chosen >= 1000000) model = `آبگرم ${(chosen/1000000).toFixed(2)}M`;
+      else if(chosen >= 1000) model = `آبگرم ${(chosen/1000).toFixed(0)}K`;
+      else model = `پکیج ${chosen}`;
+    }
+  }
+
+  const mainEl = $('qc_main');
+  const kwEl = $('qc_kw');
+  const steamEl = $('qc_steam');
+  const modelEl = $('qc_model');
+  if(mainEl) mainEl.innerHTML = Math.round(qKcal).toLocaleString('en-US') + ' <small>kcal/hr</small>';
+  if(kwEl) kwEl.textContent = Math.round(qKw) + ' kW';
+  if(steamEl) steamEl.textContent = Math.round(qSteam) + ' kg/hr';
+  if(modelEl) modelEl.textContent = model;
+}
+
+function calcQuickFull(){
+  const area = n($('qc_area').value);
+  const floors = n($('qc_floors').value);
+  const units = n($('qc_units').value);
+  const climate = n($('qc_climate').value);
+  const insulation = n($('qc_insulation').value);
+  const diversity = n($('qc_diversity').value);
+  const d = QC_DATA[qcType];
+  const avg = (d.lo + d.hi) / 2;
+  const floorFactor = 1 + (floors - 1) * 0.03;
+  const unitFactor = 1 + (units - 1) * 0.01;
+  const qKcal = area * avg * climate * insulation * diversity * floorFactor * unitFactor;
+  const qKw = qKcal * 1.163 / 1000;
+  const qSteam = qKcal / 539;
+  const qFuel = qKcal / 8500;
+
+  $('qc_results').innerHTML = `
+    ${g('نوع کاربری', d.ic + ' ' + d.label, '', 'ضریب U: '+d.U)}
+    ${g('متراژ کل', fmt(area), 'm²', `تعداد طبقات: ${floors} — تعداد واحد: ${units}`)}
+    ${g('🔥 ظرفیت حرارتی', fmt(qKcal), 'kcal/hr', hu(qKcal))}
+    ${g('توان معادل', fmt(qKw,1), 'kW', '')}
+    ${g('بخار معادل', fmt(qSteam,0), 'kg/hr', '')}
+    ${g('مصرف گاز تقریبی', fmt(qFuel,1), 'm³/hr', 'راندمان ۱۰۰٪')}
+    ${g('ضریب اقلیمی', climate, '×', '')}
+    ${g('ضریب عایق‌بندی', insulation, '×', '')}
+    ${g('ضریب همزمانی', diversity, '×', '')}
+    ${g('ضریب طبقات', floorFactor.toFixed(3), '×', '')}
+    ${fb('مشاوره سریع — Rule of Thumb', [
+      `Q = A × q_specific × K_climate × K_insul × K_div × K_floor`,
+      `Q = ${area} × ${avg} × ${climate} × ${insulation} × ${diversity} × ${floorFactor.toFixed(3)}`,
+      `Q = ${fmt(qKcal)} kcal/hr`
+    ], 'ASHRAE / Rule of Thumb / Mabhas 19')}`;
+  addPNG('qc_results', 'مشاوره سریع');
+  saveToHistory('مشاوره سریع — ' + d.label);
+}
+
 /* ==================== Live Preview ==================== */
 function liveSteam(prefix){
   const cap = n($(prefix+'_cap').value);
@@ -1552,15 +1673,14 @@ function calcBurner(q,eff,fuel,alt,tamb,stack,excess){
 }
 function burnerBlock(q,eff,fuel,alt,tamb,stack,excess,label){
   const b=calcBurner(q,eff,fuel,alt,tamb,stack,excess);
-  return `<div class="card" style="border-right:5px solid var(--gold);background:linear-gradient(135deg,#FAF4E6,#F5EBD4);">
-  <h3 style="font-size:.92rem;margin-bottom:10px;color:var(--navy);">🔥 مشعل و دودکش ${label||''}</h3>
+  return `<div class="card" style="border-right:4px solid var(--gold);background:linear-gradient(135deg,#FAF4E6,#F5EBD4);">
+  <h3 style="font-size:.85rem;margin-bottom:8px;color:var(--navy);">🔥 مشعل و دودکش ${label||''}</h3>
   ${g('ظرفیت ورودی مشعل',fmt(b.qB),'kcal/hr',hu(b.qB))}
   ${g('ضریب اصلاح',b.dr.toFixed(3),'×','ارتفاع '+alt+' m')}
   ${g('ظرفیت نهایی مشعل',fmt(b.qI),'kcal/hr',hu(b.qI))}
   ${g('مصرف سوخت',fmt(b.rate,2),b.unit,b.fuel)}
   ${g('دبی هوا',fmt(b.air,1),'m³/hr',excess+'٪')}
-  ${g('قطر دودکش',b.ch,'mm','محاسبه: '+b.dia.toFixed(0)+' mm')}
-  ${fb('مشعل',[`Q_input = ${fmt(q)} / ${(eff/100).toFixed(2)} = ${fmt(b.qB)} kcal/hr`,`Derating = ${b.dr.toFixed(3)}`],'EN 676')}</div>`;
+  ${g('قطر دودکش',b.ch,'mm','محاسبه: '+b.dia.toFixed(0)+' mm')}</div>`;
 }
 function trimSteam(cap,p){
   const rq=cap*.75;const pA=p+1.013;const A=rq/(51.45*.975*pA);
@@ -1578,12 +1698,12 @@ function trimSteam(cap,p){
     {n:'کنترلر سطح + لیمیت',s:'قطع مشعل'},
     {n:'کنترلر فشار + لیمیت',s:`${p} / ${(p*1.1).toFixed(1)} bar`}
   ];
-  return `<div style="margin-top:16px;"><span class="badge">🔧 Trim Kit</span><div class="trim-list">${items.map(t=>`<div class="trim-item"><div class="name">✓ ${t.n}</div><div class="spec">${t.s}</div></div>`).join('')}</div></div>`;
+  return `<div style="margin-top:12px;"><span class="badge">🔧 Trim Kit</span><div class="trim-list">${items.map(t=>`<div class="trim-item"><div class="name">✓ ${t.n}</div><div class="spec">${t.s}</div></div>`).join('')}</div></div>`;
 }
 function trimHW(cap,p){
   const items=[
     {n:'شیر اطمینان',s:`برابر دیگ — ${p} bar`},
-    {n:'شیر قطع کن رفت',s:`قطر نازل`},
+    {n:'شیر قطع کن رفت',s:'قطر نازل'},
     {n:'شیر تغذیه + چک والو',s:'DN 20-32'},
     {n:'شیر تخلیه',s:'NPS 3/4'},
     {n:'شیر هواگیری خودکار',s:'Auto Air Vent'},
@@ -1591,10 +1711,10 @@ function trimHW(cap,p){
     {n:'دماسنج + ول',s:'۰-۱۲۰°C'},
     {n:'کنترلر دما + لیمیت',s:'۸۵ / ۹۵°C'}
   ];
-  return `<div style="margin-top:16px;"><span class="badge">🔧 Trim Kit</span><div class="trim-list">${items.map(t=>`<div class="trim-item"><div class="name">✓ ${t.n}</div><div class="spec">${t.s}</div></div>`).join('')}</div></div>`;
+  return `<div style="margin-top:12px;"><span class="badge">🔧 Trim Kit</span><div class="trim-list">${items.map(t=>`<div class="trim-item"><div class="name">✓ ${t.n}</div><div class="spec">${t.s}</div></div>`).join('')}</div></div>`;
 }
 function tiers(base){
-  return `<div style="margin-top:20px;"><h3 style="color:var(--navy);margin-bottom:10px;">🎯 پیشنهاد ۳ گزینه</h3><div class="tier-grid">
+  return `<div style="margin-top:16px;"><h3 style="color:var(--navy);margin-bottom:8px;font-size:.85rem;">🎯 پیشنهاد ۳ گزینه</h3><div class="tier-grid">
   <div class="tier-card bronze"><h3>🥉 اقتصادی</h3><div class="price">${fmt(base)} <small>kcal/hr</small></div><ul><li>مشعل استاندارد</li><li>بدون اکونومایزر</li><li>راندمان ۸۵٪</li></ul></div>
   <div class="tier-card silver"><h3>🥈 استاندارد</h3><div class="price">${fmt(base*1.08)} <small>kcal/hr</small></div><ul><li>مشعل راندمان بالا</li><li>اکونومایزر</li><li>راندمان ۹۰٪</li></ul></div>
   <div class="tier-card gold"><h3>🥇 لوکس</h3><div class="price">${fmt(base*1.15)} <small>kcal/hr</small></div><ul><li>مشعل Modulating</li><li>اکونومایزر + سوپرهیتر</li><li>راندمان ۹۵٪</li></ul></div>
@@ -1629,7 +1749,7 @@ function calcSteam(prefix,label){
     ${g('بلودان',fmt(blowPct,2),'٪',fmt(cap*blowPct/100,1)+' kg/hr')}
     ${burnerBlock(q,eff,fuel,alt,20,stack,15,`(${label})`)}
     ${trimSteam(cap,p)}
-    <div style="margin-top:16px;"><span class="badge">⚙️ تجهیزات جانبی سیستم</span>
+    <div style="margin-top:12px;"><span class="badge">⚙️ تجهیزات جانبی</span>
     ${g('آب جبرانی',fmt(makeupM3,3),'m³/h',mf(makeupKg))}
     ${g('سختی‌گیر',soft.m,'',`رزین ${soft.r} L`)}
     ${g('دی‌اریتور',deM.m,'',`${fmt(deM.k)} kg/hr`)}
@@ -1638,7 +1758,7 @@ function calcSteam(prefix,label){
     ${g('بازیافت بلودان',fmt(recov),'kcal/hr','ΔT=65°C')}
     ${g('پمپ تغذیه',fmt(pumpF),'kg/hr',`Head: ${fmt(pumpH,1)} m`)}
     </div>
-    ${chart('نمودار بار در بارهای مختلف')}
+    ${chart('نمودار بار')}
     ${tiers(q)}
     ${fb('محاسبه دیگ بخار (Fulton)',[
       `h_steam = ${fmt(hS,1)} kJ/kg`,
@@ -1646,13 +1766,12 @@ function calcSteam(prefix,label){
       `Q_boiler = ${cap} × (${fmt(hS,1)} - ${fmt(hF,1)}) = ${fmt(qB)} kcal/hr`,
       `Q_design = ${fmt(qB)} × ${SF} × ${div} = ${fmt(q)} kcal/hr`
     ],'Fulton / ASME PTC 4')}
-    <div class="card" style="margin-top:14px;background:var(--navy);color:var(--cream);">
-    <h3 style="font-size:.92rem;color:var(--gold-2);margin-bottom:8px;">📄 خلاصه</h3>
+    <div class="card" style="margin-top:10px;background:var(--navy);color:var(--cream);">
+    <h3 style="font-size:.85rem;color:var(--gold-2);margin-bottom:6px;">📄 خلاصه</h3>
     <textarea class="summary-box" readonly>${label}: ${fmt(cap)} kg/hr @ ${p} bar
 Q_design: ${fmt(q)} kcal/hr (SF=${SF})
 بلودان: ${fmt(blowPct,1)}٪ | کندانس: ${fmt(condFlow)} kg/hr
-سختی‌گیر: ${soft.m} | دی‌اریتور: ${deM.m}
-پمپ: ${fmt(pumpF)} kg/hr @ ${fmt(pumpH,1)} m</textarea></div>`;
+سختی‌گیر: ${soft.m} | دی‌اریتور: ${deM.m}</textarea></div>`;
   addPNG(prefix+'_results','دیگ بخار '+label);
   saveToHistory('دیگ بخار '+label+' — '+fmt(cap)+' kg/hr');
 }
@@ -1724,9 +1843,6 @@ function calcDual(){
   saveToHistory('دیگ دوگانه');
 }
 
-function resetCond(){ ['cond_q','cond_p','cond_tin','cond_tout','cond_eff','cond_recov'].forEach(id=>{ const el=$(id); if(el) el.value = el.defaultValue; }); toast('✓ بازنشانی'); }
-function resetDual(){ ['dual_qh','dual_qd','dual_p','dual_th1','dual_th2','dual_td','dual_eff'].forEach(id=>{ const el=$(id); if(el) el.value = el.defaultValue; }); toast('✓ بازنشانی'); }
-
 function calcPackage(){
   const units=n($('pk_units').value);const area=n($('pk_area').value);
   const tout=n($('pk_tout').value);const tin=n($('pk_tin').value);
@@ -1742,20 +1858,6 @@ function calcPackage(){
     ${g('بار طراحی',fmt(qD),'kcal/hr','SF='+SF)}
     ${g('مدل',md?md.m:'خارج از محدوده','','')}`;
   addPNG('pk_results','پکیج');
-}
-
-/* ==================== Quick ==================== */
-const QK={residential:[80,120],office:[100,150],hotel:[120,180],hospital:[150,220],school:[90,130],restaurant:[150,200],industrial:[80,150],pool:[200,350],greenhouse:[150,250]};
-function calcQuick(){
-  const t=$('qk_type').value;const a=n($('qk_area').value);const cl=n($('qk_climate').value);
-  const r=QK[t];const lo=a*r[0]*cl;const hi=a*r[1]*cl;const avg=(lo+hi)/2;
-  $('qk_results').innerHTML=`
-    ${g('کمینه',fmt(lo),'kcal/hr',hu(lo))}
-    ${g('میانگین',fmt(avg),'kcal/hr',hu(avg))}
-    ${g('بیشینه',fmt(hi),'kcal/hr',hu(hi))}
-    ${g('توان',fmt(avg*1.163/1000,1),'kW','')}
-    ${g('بخار',fmt(avg/539,0),'kg/hr','')}`;
-  addPNG('qk_results','مشاوره سریع');
 }
 
 /* ==================== DHW ==================== */
@@ -1795,7 +1897,6 @@ function setDHWUnit(u){
 }
 function updateFxUnit(input){
   const row=input.closest('.fx-row');
-  const def=parseFloat(row.dataset.gph);
   if(dhwUnit==='gpm'){
     const gpm=parseFloat(input.value);
     if(!isNaN(gpm)) row.dataset.gph=(gpm*60).toFixed(2);
@@ -1805,12 +1906,12 @@ function calcDHW(){
   const m=$('dhw_method').value;const SF=getSF('dhw');
   const pf=$('dhw_pat').value==='peak'?1.5:1.0;
   const units=n($('dhw_units').value)||1;
-  let gphBase=0,lines=[];
+  let gphBase=0;
   if(m==='fixture'){
     const d=DHW_FIX[$('dhw_bldg').value];const div=n($('dhw_div').value);
     document.querySelectorAll('#dhw_fix .fx-row').forEach(row=>{
       const gph=parseFloat(row.dataset.gph);
-      if(gph>0) { gphBase+=gph; lines.push(gph+' GPH'); }
+      if(gph>0) gphBase+=gph;
     });
     gphBase*=units;
     const hourly=gphBase*div*pf*SF;
@@ -1930,7 +2031,7 @@ function calcTrap(){
     ${g('دبی کندانس',fmt(flow),'kg/hr','')}
     ${g('ΔP',dp,'bar','')}
     ${g('ضریب نوع',typeFactor,'×','')}
-    ${g('ظرفیت تله پیشنهادی',fmt(cap),'kg/hr','با ضریب اطمینان '+margin)}
+    ${g('ظرفیت تله پیشنهادی',fmt(cap),'kg/hr','با ضریب '+margin)}
     ${g('قطر اتصال',dn,'mm','DN '+dn)}
     ${fb('سایزینگ تله بخار',[
       `Q_trap = ${flow} × ${typeFactor} × ${margin} = ${fmt(cap)} kg/hr`,
@@ -1952,7 +2053,6 @@ function calcRadiator(){
     ${g('بار اتاق',fmt(q),'kcal/hr','')}
     ${g('ظرفیت هر پره',perPore,'kcal/pore','')}
     ${g('ضریب تصحیح',f,'×','')}
-    ${g('نوع نصب',install,'×','')}
     ${g('ΔT',dT,'°C','')}
     ${g('تعداد پره پیشنهادی',pores,'پره','+۵٪ اضافه')}
     ${g('دبی آب',fmt(waterFlow,3),'m³/hr','')}
@@ -2008,8 +2108,8 @@ function calcDoubleWall(){
   const q = vol * 1.16 * (th - tc) / (t * eff / 100);
   const surface = q / 15000;
   $('dw_results').innerHTML=`
-    ${g('بار حرارتی موردنیاز',fmt(q),'kcal/hr',hu(q))}
-    ${g('سطح تبادل تخمینی',fmt(surface,2),'m²','')}
+    ${g('بار حرارتی',fmt(q),'kcal/hr',hu(q))}
+    ${g('سطح تبادل',fmt(surface,2),'m²','')}
     ${g('زمان گرمایش',t,'h','')}
     ${g('فشار کاری',p,'bar','')}
     ${fb('منبع دوجداره',[
@@ -2127,7 +2227,7 @@ function runCalc(){
 }
 
 /* ==================== Resets ==================== */
-function resetDHW(){ const sel=$('dhw_bldg'); sel.value=sel.defaultValue||'apartment'; onDhwBldg(); toast('✓'); }
+function resetDHW(){ const sel=$('dhw_bldg'); sel.value='apartment'; onDhwBldg(); toast('✓'); }
 function resetHeating(){ $('ht_area').value=500;$('ht_h').value=3;$('ht_tout').value=-5; onHtBldg(); toast('✓'); }
 function resetPool(){ ['pl_l','pl_w','pl_d','pl_tt','pl_tin','pl_ta','pl_rh','pl_wind','pl_showers'].forEach(id=>{const el=$(id);if(el)el.value=el.defaultValue;}); toast('✓'); }
 function resetGH(){ ['gh_l','gh_w','gh_h','gh_tin','gh_tout'].forEach(id=>{const el=$(id);if(el)el.value=el.defaultValue;}); toast('✓'); }
@@ -2138,10 +2238,11 @@ enhanceSelects();
 onCalcCat();
 onDhwMethod();
 onHtBldg();
+initQuickConsult();
 document.querySelectorAll('.cs-menu').forEach(m=>m.classList.remove('open'));
 document.querySelectorAll('.cs-trigger').forEach(t=>t.classList.remove('open'));
 
-console.log('✓ Capacity Assistant v8 loaded');
+console.log('✓ Capacity Assistant v9 loaded — 34 user types in Quick Consult');
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));}
 </script>
 </body>
