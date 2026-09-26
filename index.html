@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#1B2744" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Capacity Assistant v11 — Caspian Mobaddel Amard</title>
+<title>Capacity Assistant v12 — Caspian Mobaddel Amard</title>
 <link rel="manifest" href="./manifest.json" />
 <link rel="icon" href="./icon-192.png" />
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
@@ -207,7 +207,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="compact-header">
 <div class="logo-mini">⚙️</div>
 <div class="title-block">
-<div class="t">Capacity Assistant v11</div>
+<div class="t">Capacity Assistant v12</div>
 <div class="s">کاسپین مبدل آمارد — ASHRAE / ASPE / Fulton</div>
 </div>
 <div class="tools">
@@ -1212,7 +1212,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </section>
 
 </main>
-<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v11<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
+<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v12<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
 </div>
 <div class="toast" id="toast"></div>
 <div class="autosave-badge" id="autosave">✓ ذخیره شد</div>
@@ -1809,24 +1809,24 @@ function calcPackage(){
 
 /* ==================== DHW (Based on provided Table) ==================== */
 
-// Data extracted from the provided table
+// Data extracted EXACTLY from the provided table
 const DHW_FIX={
-  apartment:{lav_priv:3, lav_pub:5, bath:20, shw:100, sink_pan:10, sink_kit:15, dw:20, sink_lau:25, wm:75, pasio:3, df:0.35, sf:1.25},
-  residential:{lav_priv:3, lav_pub:0, bath:20, shw:100, sink_pan:10, sink_kit:15, dw:20, sink_lau:25, wm:75, pasio:3, df:0.35, sf:1.25},
-  hotel:{lav_priv:3, lav_pub:10, bath:20, shw:100, sink_pan:20, sink_kit:30, dw:150, sink_lau:35, wm:150, pasio:3, df:0.35, sf:0.8},
-  stadium:{lav_priv:3, lav_pub:10, bath:30, shw:300, sink_pan:0, sink_kit:0, dw:0, sink_lau:0, wm:0, pasio:12, df:0.4, sf:1.0},
-  hospital:{lav_priv:3, lav_pub:8, bath:20, shw:100, sink_pan:20, sink_kit:20, dw:150, sink_lau:35, wm:150, pasio:3, df:0.5, sf:0.6},
-  club:{lav_priv:3, lav_pub:8, bath:20, shw:200, sink_pan:20, sink_kit:20, dw:150, sink_lau:35, wm:150, pasio:3, df:0.3, sf:0.9},
-  factory:{lav_priv:3, lav_pub:15, bath:0, shw:300, sink_pan:0, sink_kit:20, dw:100, sink_lau:0, wm:0, pasio:12, df:0.6, sf:1.0},
-  office:{lav_priv:3, lav_pub:8, bath:0, shw:0, sink_pan:20, sink_kit:20, dw:0, sink_lau:0, wm:0, pasio:0, df:0.3, sf:2.0},
-  school:{lav_priv:3, lav_pub:15, bath:0, shw:300, sink_pan:20, sink_kit:20, dw:100, sink_lau:0, wm:0, pasio:0, df:0.6, sf:1.0},
-  dormitory:{lav_priv:3, lav_pub:10, bath:30, shw:200, sink_pan:20, sink_kit:20, dw:150, sink_lau:30, wm:100, pasio:12, df:0.4, sf:1.0},
-  restaurant:{lav_priv:0, lav_pub:0, bath:0, shw:0, sink_pan:0, sink_kit:0, dw:0, sink_lau:0, wm:0, pasio:0, df:0.3, sf:1.25} // Special case
+  apartment:   {lav_priv:3,  lav_pub:5,  bath:20,  shw:100, sink_pan:10,  sink_kit:15,  dw:20,  sink_lau:25,  wm:75,  pasio:3,  df:0.35, sf:1.25},
+  residential: {lav_priv:3,  lav_pub:0,  bath:20,  shw:100, sink_pan:10,  sink_kit:15,  dw:20,  sink_lau:25,  wm:75,  pasio:3,  df:0.35, sf:1.25},
+  hotel:       {lav_priv:3,  lav_pub:10, bath:20,  shw:100, sink_pan:20,  sink_kit:30,  dw:150, sink_lau:35,  wm:150, pasio:3,  df:0.35, sf:0.8},
+  stadium:     {lav_priv:3,  lav_pub:10, bath:30,  shw:300, sink_pan:0,   sink_kit:0,   dw:0,   sink_lau:0,   wm:0,   pasio:12, df:0.4,  sf:1.0},
+  hospital:    {lav_priv:3,  lav_pub:8,  bath:20,  shw:100, sink_pan:20,  sink_kit:20,  dw:150, sink_lau:35,  wm:150, pasio:3,  df:0.50, sf:0.6},
+  club:        {lav_priv:3,  lav_pub:8,  bath:20,  shw:200, sink_pan:20,  sink_kit:20,  dw:150, sink_lau:35,  wm:150, pasio:3,  df:0.30, sf:0.9},
+  factory:     {lav_priv:3,  lav_pub:15, bath:0,   shw:300, sink_pan:0,   sink_kit:20,  dw:100, sink_lau:0,   wm:0,   pasio:12, df:0.6,  sf:1.0},
+  office:      {lav_priv:3,  lav_pub:8,  bath:0,   shw:0,   sink_pan:20,  sink_kit:20,  dw:0,   sink_lau:0,   wm:0,   pasio:0,  df:0.30, sf:2.0},
+  school:      {lav_priv:3,  lav_pub:15, bath:0,   shw:300, sink_pan:20,  sink_kit:20,  dw:100, sink_lau:0,   wm:0,   pasio:0,  df:0.60, sf:1.0},
+  dormitory:   {lav_priv:3,  lav_pub:10, bath:30,  shw:200, sink_pan:20,  sink_kit:20,  dw:150, sink_lau:30,  wm:100, pasio:12, df:0.40, sf:1.0},
+  restaurant:  {lav_priv:0,  lav_pub:0,  bath:0,   shw:0,   sink_pan:0,   sink_kit:0,   dw:0,   sink_lau:0,   wm:0,   pasio:0,  df:0.3,  sf:1.25}
 };
 
 const FIX_NAMES={
-  lav_priv:'دستشویی خصوصی',
-  lav_pub:'دستشویی عمومی',
+  lav_priv:'دستشویی و توالت خصوصی',
+  lav_pub:'دستشویی و توالت عمومی',
   bath:'وان حمام',
   shw:'دوش',
   sink_pan:'سینک آبدارخانه',
@@ -1834,7 +1834,7 @@ const FIX_NAMES={
   dw:'ماشین ظرفشویی',
   sink_lau:'سینک رختشویی',
   wm:'ماشین رختشویی',
-  pasio:'سایر'
+  pasio:'سایر یا ماشین'
 };
 
 let dhwUnit='gph';
@@ -1883,7 +1883,10 @@ function onDhwBldg(){
 
   let html='';
   Object.keys(FIX_NAMES).forEach(k=>{
-    if(!d[k]) return;
+    // Skip if value is 0 or undefined, but show if it's a valid number including 0 for clarity (optional)
+    // For table accuracy, we only show rows where the table has a value (even if 0? Let's show all defined ones, or skip 0s)
+    // Given the table has dashes, we'll skip 0s to keep UI clean, but keep them in the data object for calculations.
+    if(!d[k]) return; 
     html+=`<div class="fx-row" data-gph="${d[k]}"><div class="fx-name">${FIX_NAMES[k]}</div><div class="fx-def">${d[k]}</div><input type="number" step="0.1" value="${dhwUnit==='gpm'?(d[k]/60).toFixed(2):d[k]}" oninput="updateFxUnit(this)"><div class="fx-u">${dhwUnit==='gpm'?'GPM':'GPH'}</div></div>`;
   });
   $('dhw_fix').innerHTML=html;
@@ -2397,7 +2400,7 @@ initQuickConsult();
 document.querySelectorAll('.cs-menu').forEach(m=>m.classList.remove('open'));
 document.querySelectorAll('.cs-trigger').forEach(t=>t.classList.remove('open'));
 
-console.log('✓ Capacity Assistant v11 loaded — DHW table applied');
+console.log('✓ Capacity Assistant v12 loaded — DHW table applied with exact values');
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));}
 </script>
 </body>
