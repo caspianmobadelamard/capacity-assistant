@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#1B2744" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Capacity Assistant v10 — Caspian Mobaddel Amard</title>
+<title>Capacity Assistant v11 — Caspian Mobaddel Amard</title>
 <link rel="manifest" href="./manifest.json" />
 <link rel="icon" href="./icon-192.png" />
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
@@ -207,7 +207,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="compact-header">
 <div class="logo-mini">⚙️</div>
 <div class="title-block">
-<div class="t">Capacity Assistant v10</div>
+<div class="t">Capacity Assistant v11</div>
 <div class="s">کاسپین مبدل آمارد — ASHRAE / ASPE / Fulton</div>
 </div>
 <div class="tools">
@@ -765,21 +765,26 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="row3">
 <div class="field"><label>روش محاسبه</label>
 <div class="cs-wrap"><select id="dhw_method" data-cs onchange="onDhwMethod()">
-<option value="fixture">فیکسچر (ASHRAE)</option>
-<option value="pyaco">ASPE / pyaco.ir (توصیه شده)</option>
+<option value="fixture">فیکسچر (جدول مرجع)</option>
 <option value="percapita">سرانه (Per Capita)</option>
 </select></div>
 </div>
 <div class="field"><label>نوع ساختمان</label>
 <div class="cs-wrap"><select id="dhw_bldg" data-cs onchange="onDhwBldg()">
-<option value="apartment">آپارتمان</option><option value="hotel">هتل</option>
-<option value="hospital">بیمارستان</option><option value="dormitory">خوابگاه</option>
-<option value="nursing">خانه سالمندان</option><option value="school">مدرسه</option>
-<option value="prison">زندان</option><option value="laundry">رختشویخانه</option>
-<option value="restaurant">رستوران</option>
+<option value="apartment">آپارتمان</option>
+<option value="residential">منازل مسکونی</option>
+<option value="hotel">هتل</option>
+<option value="stadium">ورزشگاه</option>
+<option value="hospital">بیمارستان</option>
+<option value="club">کلوب</option>
+<option value="factory">کارخانجات</option>
+<option value="office">ادارات</option>
+<option value="school">مدارس</option>
+<option value="dormitory">خوابگاه دانشجویی</option>
+<option value="restaurant">رستوران (بر اساس پرس غذا)</option>
 </select></div>
 </div>
-<div class="field"><label>تعداد واحد/اتاق</label><input type="number" id="dhw_units" value="1"></div>
+<div class="field"><label id="dhw_units_label">تعداد واحد/اتاق</label><input type="number" id="dhw_units" value="1"></div>
 </div>
 
 <div class="row3">
@@ -789,7 +794,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 
 <div class="method-info" id="dhw_method_info">
-<strong>روش ASPE / pyaco.ir:</strong> ضریب تقاضا + ضریب ذخیره منبع اعمال می‌شود. مناسب برای محاسبات دقیق آبگرم مصرفی.
+<strong>روش جدول مرجع:</strong> ضریب تقاضا + ضریب ذخیره منبع طبق جدول اعمال می‌شود.
 </div>
 
 <div class="field">
@@ -807,8 +812,8 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 
 <div class="row3" style="margin-top:10px;">
-<div class="field"><label>ضریب تقاضا</label><input type="number" id="dhw_div" value="0.3" step="0.05"></div>
-<div class="field"><label>ضریب ذخیره منبع</label><input type="number" id="dhw_stor" value="1.0" step="0.1"></div>
+<div class="field"><label>ضریب تقاضا</label><input type="number" id="dhw_div" value="0.35" step="0.05"></div>
+<div class="field"><label>ضریب ذخیره منبع</label><input type="number" id="dhw_stor" value="1.25" step="0.05"></div>
 <div class="field"><label>الگوی مصرف</label><div class="cs-wrap"><select id="dhw_pat" data-cs><option value="continuous">پیوسته</option><option value="peak">پیک‌دار</option></select></div></div>
 </div>
 
@@ -1207,7 +1212,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </section>
 
 </main>
-<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v10<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
+<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v11<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
 </div>
 <div class="toast" id="toast"></div>
 <div class="autosave-badge" id="autosave">✓ ذخیره شد</div>
@@ -1256,7 +1261,6 @@ function onManualSF(group){
     document.querySelectorAll(`[data-sf-group="${group}"] .sf-chip`).forEach(x=>x.classList.remove('active'));
   }
 }
-/* FIX: resetCard now receives event + prefix, and only resets inputs with defaultValue */
 function resetCard(evt,prefix){
   const card = evt.target.closest('.card');
   if(!card) return;
@@ -1803,35 +1807,36 @@ function calcPackage(){
   addPNG('pk_results','پکیج');
 }
 
-/* ==================== DHW (REWRITTEN with pyaco method) ==================== */
+/* ==================== DHW (Based on provided Table) ==================== */
 
-// Fixture GPH (at 140°F) — ASHRAE/ASPE standard
+// Data extracted from the provided table
 const DHW_FIX={
-  apartment:{lav:2,bath:20,shw:30,kit:10,dw:15,wm:30,df:.30,sf:1.0},
-  hotel:{lav:2,bath:20,shw:30,kit:10,dw:15,wm:30,df:.25,sf:0.8},
-  hospital:{lav:2,bath:20,shw:30,kit:10,dw:15,wm:30,df:.25,sf:0.6},
-  dormitory:{lav:2,bath:20,shw:30,kit:10,dw:15,wm:30,df:.25,sf:1.0},
-  nursing:{lav:2,bath:20,shw:30,kit:10,dw:15,wm:30,df:.25,sf:0.6},
-  school:{lav:2,bath:0,shw:30,kit:10,dw:15,wm:30,df:.40,sf:0.4},
-  prison:{lav:2,bath:20,shw:30,kit:10,dw:15,wm:30,df:.30,sf:0.8},
-  laundry:{lav:2,bath:0,shw:30,kit:10,dw:15,wm:50,df:.30,sf:0.6},
-  restaurant:{lav:2,bath:0,shw:30,kit:10,dw:15,wm:30,df:.30,sf:0.6}
+  apartment:{lav_priv:3, lav_pub:5, bath:20, shw:100, sink_pan:10, sink_kit:15, dw:20, sink_lau:25, wm:75, pasio:3, df:0.35, sf:1.25},
+  residential:{lav_priv:3, lav_pub:0, bath:20, shw:100, sink_pan:10, sink_kit:15, dw:20, sink_lau:25, wm:75, pasio:3, df:0.35, sf:1.25},
+  hotel:{lav_priv:3, lav_pub:10, bath:20, shw:100, sink_pan:20, sink_kit:30, dw:150, sink_lau:35, wm:150, pasio:3, df:0.35, sf:0.8},
+  stadium:{lav_priv:3, lav_pub:10, bath:30, shw:300, sink_pan:0, sink_kit:0, dw:0, sink_lau:0, wm:0, pasio:12, df:0.4, sf:1.0},
+  hospital:{lav_priv:3, lav_pub:8, bath:20, shw:100, sink_pan:20, sink_kit:20, dw:150, sink_lau:35, wm:150, pasio:3, df:0.5, sf:0.6},
+  club:{lav_priv:3, lav_pub:8, bath:20, shw:200, sink_pan:20, sink_kit:20, dw:150, sink_lau:35, wm:150, pasio:3, df:0.3, sf:0.9},
+  factory:{lav_priv:3, lav_pub:15, bath:0, shw:300, sink_pan:0, sink_kit:20, dw:100, sink_lau:0, wm:0, pasio:12, df:0.6, sf:1.0},
+  office:{lav_priv:3, lav_pub:8, bath:0, shw:0, sink_pan:20, sink_kit:20, dw:0, sink_lau:0, wm:0, pasio:0, df:0.3, sf:2.0},
+  school:{lav_priv:3, lav_pub:15, bath:0, shw:300, sink_pan:20, sink_kit:20, dw:100, sink_lau:0, wm:0, pasio:0, df:0.6, sf:1.0},
+  dormitory:{lav_priv:3, lav_pub:10, bath:30, shw:200, sink_pan:20, sink_kit:20, dw:150, sink_lau:30, wm:100, pasio:12, df:0.4, sf:1.0},
+  restaurant:{lav_priv:0, lav_pub:0, bath:0, shw:0, sink_pan:0, sink_kit:0, dw:0, sink_lau:0, wm:0, pasio:0, df:0.3, sf:1.25} // Special case
 };
 
-// Per-capita consumption (liters per person per day at 60°C)
-const DHW_PERCAPITA={
-  apartment:{lpd:60,label:'آپارتمان'},
-  hotel:{lpd:150,label:'هتل'},
-  hospital:{lpd:100,label:'بیمارستان'},
-  dormitory:{lpd:80,label:'خوابگاه'},
-  nursing:{lpd:100,label:'خانه سالمندان'},
-  school:{lpd:15,label:'مدرسه'},
-  prison:{lpd:60,label:'زندان'},
-  laundry:{lpd:0,label:'رختشویخانه'},
-  restaurant:{lpd:30,label:'رستوران'}
+const FIX_NAMES={
+  lav_priv:'دستشویی خصوصی',
+  lav_pub:'دستشویی عمومی',
+  bath:'وان حمام',
+  shw:'دوش',
+  sink_pan:'سینک آبدارخانه',
+  sink_kit:'سینک ظرفشویی',
+  dw:'ماشین ظرفشویی',
+  sink_lau:'سینک رختشویی',
+  wm:'ماشین رختشویی',
+  pasio:'سایر'
 };
 
-const FIX_NAMES={lav:'🚿 دستشویی',bath:'🛁 وان',shw:'🚿 دوش',kit:'🍽️ آشپزخانه',dw:'🍽️ ظرفشویی',wm:'👕 لباسشویی'};
 let dhwUnit='gph';
 
 function onDhwMethod(){
@@ -1839,23 +1844,16 @@ function onDhwMethod(){
   const fixBlock=$('dhw_fixture_block');
   const info=$('dhw_method_info');
 
-  // Show/hide fixture block
   if(fixBlock) fixBlock.style.display=(m==='percapita')?'none':'block';
 
-  // Method info + default demand factor + storage factor
   const b=$('dhw_bldg').value;
   const d=DHW_FIX[b]||DHW_FIX.apartment;
-  if(m==='pyaco'){
-    info.innerHTML=`<strong>روش ASPE / pyaco.ir:</strong> ضریب تقاضا + ضریب ذخیره منبع اعمال می‌شود. مناسب برای محاسبات دقیق آبگرم مصرفی.`;
+  
+  if(m==='fixture'){
+    info.innerHTML=`<strong>روش جدول مرجع:</strong> محاسبه دقیق بر اساس تعداد فیکسچرها، ضریب تقاضا و ضریب ذخیره منبع.`;
     info.style.display='block';
     if($('dhw_div')) $('dhw_div').value=d.df;
     if($('dhw_stor')) $('dhw_stor').value=d.sf;
-    if($('dhw_thot')) $('dhw_thot').value=60;
-  } else if(m==='fixture'){
-    info.innerHTML=`<strong>روش ASHRAE فیکسچر:</strong> فقط ضریب تقاضا اعمال می‌شود. ضریب ذخیره = 1.0`;
-    info.style.display='block';
-    if($('dhw_div')) $('dhw_div').value=d.df;
-    if($('dhw_stor')) $('dhw_stor').value=1.0;
   } else {
     info.innerHTML=`<strong>روش سرانه (Per Capita):</strong> مصرف بر اساس لیتر بر نفر در روز محاسبه می‌شود.`;
     info.style.display='block';
@@ -1863,31 +1861,42 @@ function onDhwMethod(){
 
   if(m!=='percapita') onDhwBldg();
 }
+
 function onDhwBldg(){
   const b=$('dhw_bldg').value;
   const d=DHW_FIX[b]||DHW_FIX.apartment;
   const m=$('dhw_method').value;
-  if(m==='pyaco'){
-    if($('dhw_div')) $('dhw_div').value=d.df;
-    if($('dhw_stor')) $('dhw_stor').value=d.sf;
-  } else if(m==='fixture'){
-    if($('dhw_div')) $('dhw_div').value=d.df;
+  
+  // Update Demand/Storage factors automatically based on table
+  if($('dhw_div')) $('dhw_div').value=d.df;
+  if($('dhw_stor')) $('dhw_stor').value=d.sf;
+
+  // Handle Restaurant special case
+  if(b==='restaurant'){
+    $('dhw_units_label').textContent='تعداد پرس غذا در روز';
+    $('dhw_fixture_block').style.display='none';
+    return;
+  } else {
+    $('dhw_units_label').textContent='تعداد واحد/اتاق';
+    if(m!=='percapita') $('dhw_fixture_block').style.display='block';
   }
+
   let html='';
   Object.keys(FIX_NAMES).forEach(k=>{
-    if(!d[k])return;
+    if(!d[k]) return;
     html+=`<div class="fx-row" data-gph="${d[k]}"><div class="fx-name">${FIX_NAMES[k]}</div><div class="fx-def">${d[k]}</div><input type="number" step="0.1" value="${dhwUnit==='gpm'?(d[k]/60).toFixed(2):d[k]}" oninput="updateFxUnit(this)"><div class="fx-u">${dhwUnit==='gpm'?'GPM':'GPH'}</div></div>`;
   });
   $('dhw_fix').innerHTML=html;
 }
-/* FIX: setDHWUnit uses data-unit attribute, not textContent */
+
 function setDHWUnit(u){
   dhwUnit=u;
   document.querySelectorAll('[data-unit-toggle="dhw"] button').forEach(b=>{
     b.classList.toggle('active', b.dataset.unit===u);
   });
-  if($('dhw_method').value!=='percapita') onDhwBldg();
+  if($('dhw_method').value!=='percapita' && $('dhw_bldg').value!=='restaurant') onDhwBldg();
 }
+
 function updateFxUnit(input){
   const row=input.closest('.fx-row');
   if(dhwUnit==='gpm'){
@@ -1903,10 +1912,10 @@ function calcDHW(){
   const thot=n($('dhw_thot').value)||60;
   const tin=n($('dhw_tin').value)||10;
   const dT=thot-tin;
+  const b=$('dhw_bldg').value;
 
   // ============ PER CAPITA METHOD ============
   if(m==='percapita'){
-    const b=$('dhw_bldg').value;
     const pc=DHW_PERCAPITA[b]||DHW_PERCAPITA.apartment;
     const occupants=units*(n($('dhw_cap').value)||1);
     if(pc.lpd===0){
@@ -1914,9 +1923,7 @@ function calcDHW(){
       return;
     }
     const L_per_day = pc.lpd * occupants;
-    // Q = m × Cp × ΔT = (L/day) × 1 (kg/L) × 1 (kcal/kg·K) × ΔT
     const q_day = L_per_day * dT;
-    // peak hourly (assume 2-hour peak draws the daily amount in peak hours)
     const peakHrs = n($('dhw_peak_hr').value)||2;
     const q_hr = q_day / peakHrs;
     const L_per_hr = L_per_day / peakHrs;
@@ -1940,8 +1947,36 @@ function calcDHW(){
     return;
   }
 
-  // ============ FIXTURE OR PYACO METHOD ============
-  const b=$('dhw_bldg').value;
+  // ============ RESTAURANT SPECIAL CASE ============
+  if(b==='restaurant'){
+    const meals = units; // Number of meals per day
+    const gph_peak = meals * (1.5 + 2.5) * pf * SF; // 1.5 for hand wash + 2.5 for dishwasher
+    const storage_gal = gph_peak * 1.25;
+    const storage_L = storage_gal * 3.78541;
+    const dT_F = dT * 9/5;
+    const qBTU = gph_peak * 8.33 * dT_F;
+    const qKcal = qBTU * 0.252;
+    const gpm = gph_peak / 60;
+
+    $('dhw_results').innerHTML=`
+      <div class="method-info"><strong>روش جدول مرجع — رستوران</strong> (بر اساس پرس غذا)</div>
+      ${g('تعداد پرس غذا',meals,'پرس','')}
+      ${g('GPH اصلاح‌شده (پیک)',fmt(gph_peak,1),'GPH',`${fmt(gph_peak*3.785,1)} L/hr`)}
+      ${g('GPM معادل',fmt(gpm,2),'GPM',`${fmt(gpm*3.785,1)} L/min`)}
+      ${g('حجم مخزن',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}
+      ${g('🌡️ بار کویل/دیگ',fmt(qKcal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
+      ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
+      ${fb('محاسبه رستوران',[
+        `GPH_peak = ${meals} × (1.5 + 2.5) × ${pf} × ${SF} = ${fmt(gph_peak,1)} GPH`,
+        `Storage = ${fmt(gph_peak,1)} × 1.25 = ${fmt(storage_gal,1)} gal`,
+        `Q = ${fmt(gph_peak,1)} × 8.33 × ${dT_F.toFixed(1)} = ${fmt(qBTU,0)} BTU/hr = ${fmt(qKcal,0)} kcal/hr`
+      ],'جدول مرجع — رستوران')}`;
+    addPNG('dhw_results','آبگرم مصرفی — رستوران');
+    saveToHistory('آبگرم رستوران — '+meals+' پرس');
+    return;
+  }
+
+  // ============ FIXTURE METHOD ============
   const bldg=DHW_FIX[b]||DHW_FIX.apartment;
   let gphBase=0;
   document.querySelectorAll('#dhw_fix .fx-row').forEach(row=>{
@@ -1954,73 +1989,37 @@ function calcDHW(){
   }
   gphBase *= units;
   const demandF=n($('dhw_div').value)||bldg.df;
-  const storageF=n($('dhw_stor').value)||1.0;
+  const storageF=n($('dhw_stor').value)||bldg.sf;
 
-  if(m==='pyaco'){
-    // ============ ASPE / pyaco.ir method ============
-    // 1. Total GPH (all fixtures)
-    // 2. Apply demand factor → peak hourly demand (GPH_peak)
-    // 3. Storage = GPH_peak × storage factor (in gallons)
-    // 4. Coil/Boiler capacity: Q = GPH_peak × 8.33 × ΔT (BTU/hr at 140°F) → convert to kcal/hr
-    const gph_peak = gphBase * demandF;              // corrected hourly (peak) demand
-    const gph_peak_hr = gph_peak * pf;               // apply peak pattern multiplier
-    const storage_gal = gph_peak_hr * storageF;      // storage volume in gallons
-    const storage_L = storage_gal * 3.78541;
+  const gph_peak = gphBase * demandF * pf;
+  const storage_gal = gph_peak * storageF;
+  const storage_L = storage_gal * 3.78541;
+  const dT_F = dT * 9/5;
+  const qBTU = gph_peak * 8.33 * dT_F;
+  const qKcal = qBTU * 0.252;
+  const qFinal = qKcal * SF;
+  const gpm = gph_peak / 60;
 
-    // ΔT in °F (standard ASPE: 140°F - 40°F = 100°F)
-    const dT_F = dT * 9/5;
-    // Q = GPH × 8.33 × ΔT_F  → BTU/hr
-    const qBTU = gph_peak_hr * 8.33 * dT_F;
-    // Convert BTU/hr → kcal/hr (1 BTU = 0.252 kcal)
-    const qKcal = qBTU * 0.252;
-    const qFinal = qKcal * SF;
-    const gpm = gph_peak_hr / 60;
-
-    $('dhw_results').innerHTML=`
-      <div class="method-info"><strong>روش ASPE / pyaco.ir</strong> — با ضرایب تقاضا و ذخیره منبع</div>
-      ${g('مجموع GPH اولیه',fmt(gphBase,1),'GPH',`${units} واحد`)}
-      ${g('ضریب تقاضا',demandF,'×',`نوع: ${b}`)}
-      ${g('GPH اصلاح‌شده (پیک)',fmt(gph_peak_hr,1),'GPH',`${fmt(gph_peak_hr*3.785,1)} L/hr`)}
-      ${g('GPM معادل',fmt(gpm,2),'GPM',`${fmt(gpm*3.785,1)} L/min`)}
-      ${g('ضریب ذخیره منبع',storageF,'×','Storage Factor')}
-      ${g('حجم مخزن',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}
-      ${g('🌡️ بار کویل/دیگ',fmt(qFinal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
-      ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
-      ${fb('روش ASPE / pyaco.ir',[
-        `GPH_total = Σ(fixture GPH) = ${fmt(gphBase,1)} GPH`,
-        `GPH_peak = ${fmt(gphBase,1)} × ${demandF} × ${pf} = ${fmt(gph_peak_hr,1)} GPH`,
-        `Storage = ${fmt(gph_peak_hr,1)} × ${storageF} = ${fmt(storage_gal,1)} gal = ${fmt(storage_L,0)} L`,
-        `Q = ${fmt(gph_peak_hr,1)} × 8.33 × ${dT_F.toFixed(1)} = ${fmt(qBTU,0)} BTU/hr`,
-        `Q = ${fmt(qBTU,0)} × 0.252 = ${fmt(qKcal,0)} kcal/hr`,
-        `Q_design = ${fmt(qKcal,0)} × ${SF} = ${fmt(qFinal,0)} kcal/hr`
-      ],'ASPE Data Book Vol.4 / pyaco.ir')}`;
-    addPNG('dhw_results','آبگرم مصرفی ASPE');
-    saveToHistory('آبگرم ASPE — '+b);
-  } else {
-    // ============ Original fixture method ============
-    const hourly=gphBase*demandF*pf*SF;
-    const gpm=hourly/60;
-    const storage=hourly*3.785;
-    // coil capacity: hourly draw minus continuous recovery
-    const coil=Math.max((hourly - hourly*0.75)/1, 0);
-    const q=coil*45;
-    const cm=pick(COILU,'cap',storage);
-    $('dhw_results').innerHTML=`
-      ${g('GPH (پیک ساعتی)',fmt(hourly,1),'گالن/ساعت',`${fmt(hourly*3.785,0)} L/hr`)}
-      ${g('GPM (پیک دقیقی)',fmt(gpm,2),'گالن/دقیقه',`${fmt(gpm*3.785,1)} L/min`)}
-      ${g('حجم مخزن',fmt(storage,0),'L','')}
-      ${g('ظرفیت کویل',fmt(coil,0),'L/hr','')}
-      ${g('بار حرارتی',fmt(q),'kcal/hr',hu(q))}
-      ${g('منبع کویلی',cm.m,'',`${cm.surf} ft²`)}
-      ${fb('آبگرم مصرفی (ASHRAE Fixture)',[
-        `GPH_total = ${fmt(gphBase,1)} × ${units} = ${fmt(gphBase*units,1)}`,
-        `GPH_peak = ${fmt(gphBase*units,1)} × ${demandF} × ${pf} = ${fmt(hourly,1)}`,
-        `Storage = ${fmt(storage,0)} L`,
-        `Q_coil = ${fmt(q)} kcal/hr`
-      ],'ASHRAE Ch.51')}`;
-    addPNG('dhw_results','آبگرم مصرفی');
-    saveToHistory('آبگرم مصرفی — '+b);
-  }
+  $('dhw_results').innerHTML=`
+    <div class="method-info"><strong>روش جدول مرجع</strong> — با ضرایب تقاضا و ذخیره منبع طبق جدول</div>
+    ${g('مجموع GPH اولیه',fmt(gphBase,1),'GPH',`${units} واحد`)}
+    ${g('ضریب تقاضا',demandF,'×',`نوع: ${b}`)}
+    ${g('GPH اصلاح‌شده (پیک)',fmt(gph_peak,1),'GPH',`${fmt(gph_peak*3.785,1)} L/hr`)}
+    ${g('GPM معادل',fmt(gpm,2),'GPM',`${fmt(gpm*3.785,1)} L/min`)}
+    ${g('ضریب ذخیره منبع',storageF,'×','Storage Factor')}
+    ${g('حجم مخزن',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}
+    ${g('🌡️ بار کویل/دیگ',fmt(qFinal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
+    ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
+    ${fb('روش جدول مرجع',[
+      `GPH_total = Σ(fixture GPH) = ${fmt(gphBase,1)} GPH`,
+      `GPH_peak = ${fmt(gphBase,1)} × ${demandF} × ${pf} = ${fmt(gph_peak,1)} GPH`,
+      `Storage = ${fmt(gph_peak,1)} × ${storageF} = ${fmt(storage_gal,1)} gal = ${fmt(storage_L,0)} L`,
+      `Q = ${fmt(gph_peak,1)} × 8.33 × ${dT_F.toFixed(1)} = ${fmt(qBTU,0)} BTU/hr`,
+      `Q = ${fmt(qBTU,0)} × 0.252 = ${fmt(qKcal,0)} kcal/hr`,
+      `Q_design = ${fmt(qKcal,0)} × ${SF} = ${fmt(qFinal,0)} kcal/hr`
+    ],'جدول مرجع آبگرم مصرفی')}`;
+  addPNG('dhw_results','آبگرم مصرفی');
+  saveToHistory('آبگرم مصرفی — '+b);
 }
 
 /* ==================== Heating (FIXED unit consistency) ==================== */
@@ -2035,21 +2034,14 @@ function calcHeating(){
   if(err){$('ht_results').innerHTML=warn(err);return;}
   const dT=cfg.t-tout;const vol=area*H;
 
-  // === FIX: All units in W, then convert to kcal/hr at the end ===
-  // Conduction/Transmission: Q_cond = U × A × ΔT  [W]  (U in W/m²·K)
   const qCond_W = U * area * dT;
-
-  // Infiltration/Ventilation: Q_inf = ρ × Cp × V × ACH × ΔT
-  // ρ×Cp for air ≈ 1.2 kg/m³ × 1005 J/kg·K = 1206 J/m³·K ≈ 0.34 Wh/m³·K
-  // So Q_inf [W] = 0.34 × V × ACH × ΔT
   const qInf_W = 0.34 * vol * ach * dT;
 
   let qB_W = 0;
   if(method==='detailed') qB_W = qCond_W + qInf_W;
   else if(method==='simple') qB_W = qCond_W;
-  else qB_W = area * 116; // Rule of thumb: ~100 kcal/m²·hr = 116 W/m²
+  else qB_W = area * 116; // Rule of thumb
 
-  // Convert W → kcal/hr (1 W = 0.86 kcal/hr)
   const qB_kcal = qB_W * 0.86;
   const qD_W = qB_W * cfg.i * SF;
   const qD_kcal = qD_W * 0.86;
@@ -2083,40 +2075,27 @@ function calcPool(){
   if(err){$('pl_results').innerHTML=warn(err);return;}
   const A=L*W;const V=L*W*D;const dT=tt-tin;
 
-  // === FIX: Preheat load (kW) ===
-  // Q = m × Cp × ΔT / t
-  // m = V × 1000 kg, Cp = 4.186 kJ/kg·K
-  const qHU_kJ = V*1000*4.186*dT;  // kJ
+  const qHU_kJ = V*1000*4.186*dT;
   const qHU_kW = qHU_kJ/(preheat*3600);
 
-  // === FIX: ASHRAE standard evaporation formula ===
-  // W_evap = A × (0.089 + 0.0782 × V_wind) × (Pw - Pa) / 3.6  [kg/hr]
-  // where Pw and Pa are vapor pressures in kPa
-  const pvW = 0.6108*Math.exp(17.27*tt/(tt+237.3));      // kPa
-  const pvA = 0.6108*Math.exp(17.27*ta/(ta+237.3))*rh;   // kPa
-  const evap = A*(0.089+0.0782*wind)*(pvW-pvA)/3.6;      // kg/hr
-  const qE_kW = evap*2454/3600;                          // kW (hfg = 2454 kJ/kg)
+  const pvW = 0.6108*Math.exp(17.27*tt/(tt+237.3));
+  const pvA = 0.6108*Math.exp(17.27*ta/(ta+237.3))*rh;
+  const evap = A*(0.089+0.0782*wind)*(pvW-pvA)/3.6;
+  const qE_kW = evap*2454/3600;
 
-  // Convection (kW): h_c = 3 × wind + 1.5 [W/m²·K]
   const hC = 3*wind + 1.5;
   const qC_kW = hC*A*(tt-ta)/1000;
 
-  // Radiation (kW)
   const qR_kW = 0.95*5.67e-8*A*(Math.pow(tt+273.15,4)-Math.pow(ta+273.15,4))/1000;
 
-  // Makeup water heating (kW)
   const qMu_kW = evap*4.186*dT/3600;
 
-  // === FIX: Shower load — realistic 3.5 kW per shower (not 11.6 kW) ===
   const qSh_kW = showers*3.5;
 
-  // Apply cover factor to evaporation
   const qEvapCov = qE_kW*cov;
 
-  // Maintenance total
   const qM_kW = qEvapCov + qC_kW + qR_kW + qMu_kW + qSh_kW;
 
-  // Grand total
   const qT_kW = (qHU_kW + qM_kW)*SF*useF;
   const qT_kcal = qT_kW*860;
 
@@ -2150,18 +2129,13 @@ function calcGH(){
   if(err){$('gh_results').innerHTML=warn(err);return;}
   const A=L*W;
   const wallA=2*(L+W)*H;
-  const roofA=A*1.15; // sloped roof approx
+  const roofA=A*1.15;
   const totA=wallA+roofA;
   const dT=tin-tout;
 
-  // === FIX: U is in W/m²·K, result converted to W then to kcal/hr ===
-  // Conduction: Q_cond [W] = U × A × ΔT
   const qC_W = U*totA*dT;
-
-  // Infiltration: Q_inf [W] = 0.34 × V × ACH × ΔT
   const vol = A*H;
   const qI_W = 0.34*vol*infil*dT;
-
   const qB_W = qC_W + qI_W;
   const qB_kcal = qB_W * 0.86;
   const qT_kcal = qB_kcal * SF;
@@ -2367,7 +2341,6 @@ const CONV={
 function onCalcCat(){
   const c=CONV[$('calc_cat').value];
   const f=$('calc_from');const t=$('calc_to');
-  // Clear existing enhanced wraps
   const wf=f.parentElement.querySelector('.cs-wrap');
   const wt=t.parentElement.querySelector('.cs-wrap');
   if(wf) wf.remove();
@@ -2424,7 +2397,7 @@ initQuickConsult();
 document.querySelectorAll('.cs-menu').forEach(m=>m.classList.remove('open'));
 document.querySelectorAll('.cs-trigger').forEach(t=>t.classList.remove('open'));
 
-console.log('✓ Capacity Assistant v10 loaded');
+console.log('✓ Capacity Assistant v11 loaded — DHW table applied');
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));}
 </script>
 </body>
