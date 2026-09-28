@@ -826,6 +826,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <div class="fx-header"><span>نوع فیکسچر</span><span>GPH واحد</span><span>تعداد</span><span>GPH کل</span></div>
 <div id="dhw_site_fix"></div>
+<button class="btn" style="margin-top:10px; background:linear-gradient(135deg,var(--navy-2),var(--navy-3));" onclick="autoFillSiteDefaults()">✨ اعمال خودکار تعداد ۱ برای همه فیکسچرها</button>
 <div class="row3" style="margin-top:10px;">
 <div class="field"><label>ضریب تقاضا (DF)</label><input type="number" id="site_df" value="0.35" step="0.05"></div>
 <div class="field"><label>ضریب ذخیره منبع (SF)</label><input type="number" id="site_sf" value="1.25" step="0.05"></div>
@@ -2056,16 +2057,27 @@ function renderSiteFixtures(){
   let html = '';
   Object.keys(SITE_FIXTURE_GPH).forEach(k => {
     const gph = SITE_FIXTURE_GPH[k];
+    // تغییر: مقدار پیش‌فرض تعداد به 1 تغییر کرد تا اعداد GPH بلافاصله نمایش داده شوند
     html += `<div class="fx-row" data-unit-gph="${gph}" data-key="${k}">
       <div class="fx-name">${FIX_NAMES[k]}</div>
       <div class="fx-def">${gph}</div>
       <input type="number" min="0" value="1" oninput="updateSiteTotal(this)">
-      <div class="fx-u" data-total="${gph}">${gph}</div>
+      <div class="fx-u" data-total="0">0</div>
     </div>`;
   });
   container.innerHTML = html;
-  // Ensure totals are updated initially
+  
+  // به‌روزرسانی اجباری تمام مقادیر کل بر اساس مقدار پیش‌فرض 1
   container.querySelectorAll('input').forEach(inp => updateSiteTotal(inp));
+}
+
+function autoFillSiteDefaults() {
+    document.querySelectorAll('#dhw_site_fix .fx-row').forEach(row => {
+        const input = row.querySelector('input');
+        input.value = 1;
+        updateSiteTotal(input);
+    });
+    toast('✓ مقادیر پیش‌فرض اعمال شد');
 }
 
 function updateSiteTotal(input){
