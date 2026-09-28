@@ -1279,6 +1279,54 @@ const fb=(t,lines,ref)=>`<div class="formula"><div class="ft">📐 ${t}</div>${l
 const chart=(label)=>`<div class="chart"><div class="chart-title">📈 ${label}</div><svg viewBox="0 0 400 100" preserveAspectRatio="none"><defs><linearGradient id="cg${Date.now()}" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#C8A45C" stop-opacity=".5"/><stop offset="100%" stop-color="#C8A45C" stop-opacity="0"/></linearGradient></defs><path d="M0,90 Q100,40 200,30 T400,20" fill="none" stroke="#B8542E" stroke-width="2.5"/><path d="M0,90 Q100,40 200,30 T400,20 L400,100 L0,100 Z" fill="url(#cg${Date.now()})"/></svg></div>`;
 const validate=(checks)=>{for(const [k,v] of Object.entries(checks)){if(!v)return `مقدار نامعتبر: ${k}`;}return null;};
 
+/* ==================== NEW: Boiler Suggestion & Smart Transfer ==================== */
+function suggestBoilerCap(qKcal) {
+    const stdCaps = [17000, 45000, 75000, 80000, 100000, 150000, 200000, 300000, 400000, 500000, 600000, 800000, 1000000, 1250000, 1500000, 2000000, 3000000];
+    let chosen = stdCaps.find(c => c >= qKcal) || stdCaps[stdCaps.length - 1];
+    let model = "";
+    if (chosen >= 1000000) model = `آبگرم ${(chosen / 1000000).toFixed(2)}M`;
+    else if (chosen >= 1000) model = `آبگرم ${(chosen / 1000).toFixed(0)}K`;
+    else model = `پکیج ${chosen}`;
+    return { chosen, model };
+}
+
+function boilerSuggestionHTML(qLoad, type = 'hw') {
+    const suggested = suggestBoilerCap(qLoad);
+    return `
+    <div class="card" style="margin-top:10px; border-right:4px solid var(--forest); background:linear-gradient(135deg,#E2EDE4,#C9DDCE);">
+        <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:6px;">🎯 دیگ پیشنهادی</h3>
+        <div class="v" style="font-size:1.2rem;font-weight:800;color:var(--navy);">${suggested.model}</div>
+        <div class="note" style="font-size:.68rem;color:var(--text-soft);margin-top:4px;">نزدیک‌ترین ظرفیت استاندارد بالاتر</div>
+        <button class="btn" style="margin-top:10px;background:linear-gradient(135deg,var(--terra),var(--terra-2));" onclick="transferToBoiler(${qLoad}, '${type}')">⚡ انتقال به محاسبه دقیق دیگ</button>
+    </div>
+    `;
+}
+
+function transferToBoiler(qLoad, type) {
+    if (type === 'hw') {
+        const tabBtn = document.querySelector('.tab-btn[data-panel="hwboilers"]');
+        if (tabBtn) tabBtn.click();
+        const subTab = document.querySelector('.subtab-btn[data-subpanel="hw-tp"]');
+        if (subTab) subTab.click();
+        if ($('tp_q')) {
+            $('tp_q').value = Math.round(qLoad);
+            calcHW('tp', 'سه‌پاس');
+        }
+        toast('✓ بار محاسبه شده در بخش دیگ آبگرم اعمال شد');
+    } else if (type === 'steam') {
+        const tabBtn = document.querySelector('.tab-btn[data-panel="boilers"]');
+        if (tabBtn) tabBtn.click();
+        const subTab = document.querySelector('.subtab-btn[data-subpanel="steam-horizontal"]');
+        if (subTab) subTab.click();
+        const steamKg = Math.round(qLoad / 539);
+        if ($('hwb_cap')) {
+            $('hwb_cap').value = steamKg;
+            calcSteam('hwb', 'افقی سه‌پاس');
+        }
+        toast('✓ بار محاسبه شده در بخش دیگ بخار اعمال شد');
+    }
+}
+
 /* ==================== SF Management ==================== */
 function setSF(el, group, val){
   el.parentElement.querySelectorAll('.sf-chip').forEach(x=>x.classList.remove('active'));
@@ -1971,11 +2019,25 @@ function onDhwBldg(){
 }
 
 function setDHWUnit(u){
-  dhwUnit=u;
-  document.querySelectorAll('[data-unit-toggle="dhw"] button').forEach(b=>{
-    b.classList.toggle('active', b.dataset.unit===u);
-  });
-  if($('dhw_method').value==='fixture' && $('dhw_bldg').value!=='restaurant') onDhwBldg();
+    const oldUnit = dhwUnit;
+    dhwUnit = u;
+    document.querySelectorAll('[data-unit-toggle="dhw"] button').forEach(b=>{
+        b.classList.toggle('active', b.dataset.unit===u);
+    });
+    if($('dhw_method').value==='fixture' && $('dhw_bldg').value!=='restaurant') {
+        document.querySelectorAll('#dhw_fix .fx-row').forEach(row => {
+            const input = row.querySelector('input');
+            let currentVal = parseFloat(input.value) || 0;
+            
+            if (oldUnit === 'gph' && u === 'gpm') {
+                input.value = (currentVal / 60).toFixed(2);
+                row.querySelector('.fx-u').textContent = 'GPM';
+            } else if (oldUnit === 'gpm' && u === 'gph') {
+                input.value = (currentVal * 60).toFixed(2);
+                row.querySelector('.fx-u').textContent = 'GPH';
+            }
+        });
+    }
 }
 
 function updateFxUnit(input){
@@ -1997,11 +2059,13 @@ function renderSiteFixtures(){
     html += `<div class="fx-row" data-unit-gph="${gph}" data-key="${k}">
       <div class="fx-name">${FIX_NAMES[k]}</div>
       <div class="fx-def">${gph}</div>
-      <input type="number" min="0" value="0" oninput="updateSiteTotal(this)">
-      <div class="fx-u" data-total="0">0</div>
+      <input type="number" min="0" value="1" oninput="updateSiteTotal(this)">
+      <div class="fx-u" data-total="${gph}">${gph}</div>
     </div>`;
   });
   container.innerHTML = html;
+  // Ensure totals are updated initially
+  container.querySelectorAll('input').forEach(inp => updateSiteTotal(inp));
 }
 
 function updateSiteTotal(input){
@@ -2064,6 +2128,7 @@ function calcDHWSite(){
     ${g('🌡️ ΔT', dT_C.toFixed(1), '°C', `${dT_F.toFixed(1)}°F`)}
     ${g('🔥 بار کویل/دیگ', fmt(qFinal, 0), 'kcal/hr', `${fmt(qBTU, 0)} BTU/hr — ${hu(qFinal)}`)}
     ${g('ظرفیت ورودی دیگ', fmt(qBoiler, 0), 'kcal/hr', `با راندمان ${eff}٪`)}
+    ${boilerSuggestionHTML(qFinal, 'hw')}
     ${fb('روش سایت pyaco.ir — گام‌به‌گام', [
       `Step 1 — مجموع GPH = Σ(count × GPH_unit) = ${fmt(gphTotal, 0)} GPH`,
       `Step 2 — Demand = ${fmt(gphTotal, 0)} × ${DF} = ${fmt(gphDemand, 1)} GPH`,
@@ -2115,6 +2180,7 @@ function calcDHW(){
       ${g('مصرف پیک ساعتی',fmt(L_per_hr,0),'L/hr',`${peakHrs} ساعت پیک`)}
       ${g('بار طراحی پیک',fmt(qD,0),'kcal/hr',`SF=${SF}`)}
       ${g('حجم مخزن پیشنهادی',fmt(storage_L,0),'L','۶۰٪ مصرف روزانه')}
+      ${boilerSuggestionHTML(qD, 'hw')}
       ${fb('روش سرانه',[
         `V_day = ${pc.lpd} × ${occupants} = ${fmt(L_per_day,0)} L/day`,
         `Q_day = ${fmt(L_per_day,0)} × 1 × ${dT} = ${fmt(q_day,0)} kcal/day`,
@@ -2145,6 +2211,7 @@ function calcDHW(){
       ${g('حجم مخزن',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}
       ${g('🌡️ بار کویل/دیگ',fmt(qKcal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
       ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
+      ${boilerSuggestionHTML(qKcal, 'hw')}
       ${fb('محاسبه رستوران',[
         `GPH_peak = ${meals} × (1.5 + 2.5) × ${pf} × ${SF} = ${fmt(gph_peak,1)} GPH`,
         `Storage = ${fmt(gph_peak,1)} × 1.25 = ${fmt(storage_gal,1)} gal`,
@@ -2189,6 +2256,7 @@ function calcDHW(){
     ${g('حجم مخزن',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}
     ${g('🌡️ بار کویل/دیگ',fmt(qFinal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
     ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
+    ${boilerSuggestionHTML(qFinal, 'hw')}
     ${fb('روش جدول مرجع',[
       `GPH_total = Σ(fixture GPH) = ${fmt(gphBase,1)} GPH`,
       `GPH_peak = ${fmt(gphBase,1)} × ${demandF} × ${pf} = ${fmt(gph_peak,1)} GPH`,
@@ -2232,6 +2300,7 @@ function calcHeating(){
     ${method==='detailed'?g('بار نفوذ هوا',fmt(qInf_W),'W',`ACH=${ach}`):''}
     ${g('بار خالص',fmt(qB_kcal),'kcal/hr',`${fmt(qB_W)} W`)}
     ${g('بار طراحی',fmt(qD_kcal),'kcal/hr',`${fmt(qD_W)} W — ${hu(qD_kcal)}`)}
+    ${boilerSuggestionHTML(qD_kcal, 'hw')}
     ${chart('نمودار بار گرمایش')}
     ${fb('بار گرمایش (واحد یکپارچه W)',[
       `Q_cond = U × A × ΔT = ${U} × ${area} × ${dT} = ${fmt(qCond_W)} W`,
@@ -2283,6 +2352,7 @@ function calcPool(){
     ${showers>0?g(`دوش‌ها (${showers})`,fmt(qSh_kW,2),'kW',`۳.۵ kW per shower`):''}
     ${g('بار نگهداری',fmt(qM_kW,2),'kW','')}
     ${g('🔥 بار کل',fmt(qT_kW,2),'kW',hu(qT_kcal))}
+    ${boilerSuggestionHTML(qT_kcal, 'hw')}
     ${fb('بار استخر (ASHRAE Ch.6)',[
       `Q_preheat = ${fmt(qHU_kW,2)} kW`,
       `W_evap = ${fmt(evap,1)} kg/hr → Q_evap = ${fmt(qE_kW,2)} kW`,
@@ -2319,6 +2389,7 @@ function calcGH(){
     ${g('بار هدایتی',fmt(qC_W),'W',`${fmt(qC_W*0.86)} kcal/hr`)}
     ${g('بار نفوذ',fmt(qI_W),'W',`${fmt(qI_W*0.86)} kcal/hr`)}
     ${g('بار طراحی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
+    ${boilerSuggestionHTML(qT_kcal, 'hw')}
     ${fb('بار گلخانه',[
       `Q_cond = U × A × ΔT = ${U} × ${fmt(totA,1)} × ${dT} = ${fmt(qC_W)} W`,
       `Q_inf = 0.34 × V × ACH × ΔT = ${fmt(qI_W)} W`,
@@ -2338,7 +2409,8 @@ function calcSauna(){
   $('sa_results').innerHTML=`
     ${g('حجم اتاق',V.toFixed(2),'m³','')}
     ${g('توان',kw.toFixed(2),'kW','')}
-    ${g('بخار',steam.toFixed(2),'kg/hr','')}`;
+    ${g('بخار',steam.toFixed(2),'kg/hr','')}
+    ${boilerSuggestionHTML(kw * 860, 'hw')}`;
   addPNG('sa_results','سونا');
 }
 
@@ -2568,8 +2640,8 @@ initQuickConsult();
 document.querySelectorAll('.cs-menu').forEach(m=>m.classList.remove('open'));
 document.querySelectorAll('.cs-trigger').forEach(t=>t.classList.remove('open'));
 
-console.log('✓ Capacity Assistant v13 loaded — 3 independent DHW methods');
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));}
+console.log('✓ Capacity Assistant v13 loaded — 3 independent DHW methods + Smart Boiler Transfer');
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script>
 </body>
 </html>
