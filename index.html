@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#1B2744" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Capacity Assistant v14 — Caspian Mobaddel Amard</title>
+<title>Capacity Assistant v15 — Caspian Mobaddel Amard</title>
 <link rel="manifest" href="./manifest.json" />
 <link rel="icon" href="./icon-192.png" />
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
@@ -216,7 +216,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="compact-header">
 <div class="logo-mini">⚙️</div>
 <div class="title-block">
-<div class="t">Capacity Assistant v14</div>
+<div class="t">Capacity Assistant v15</div>
 <div class="s">کاسپین مبدل آمارد — ASHRAE / ASPE / Fulton</div>
 </div>
 <div class="tools">
@@ -865,6 +865,19 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="field"><label>ساعت پیک</label><input type="number" id="dhw_peak_hr" value="2"></div>
 </div>
 
+<!-- حالت ترکیبی -->
+<div class="field" style="display:flex;align-items:center;gap:8px;margin-top:8px; padding:8px; background:linear-gradient(135deg,rgba(200,164,92,.10),rgba(184,84,46,.06)); border-radius:8px; border:1.5px solid rgba(200,164,92,.35);">
+    <input type="checkbox" id="dhw_combined" onchange="toggleCombinedMode()">
+    <label style="margin:0;font-weight:800;color:var(--navy);font-size:.78rem;">🔗 محاسبه همزمان آبگرم مصرفی و شوفاژ</label>
+</div>
+<div id="dhw_combined_inputs" style="display:none; margin-top:8px; padding:10px; background:#F5EFE3; border-radius:8px; border:1px solid var(--cream-3);">
+    <div class="field" style="margin-bottom:0;">
+        <label>بار گرمایش (شوفاژ) <span class="unit">kcal/hr</span></label>
+        <input type="number" id="dhw_heating_load" value="200000" placeholder="بار گرمایش را وارد کنید">
+    </div>
+    <div class="note" style="font-size:.68rem;color:var(--text-soft);margin-top:6px;">💡 ضریب همزمانی ۱.۱۵ برای محاسبه بار کل دیگ اعمال می‌شود.</div>
+</div>
+
 <button class="btn" onclick="calcDHW()">⚡ محاسبه + پیشنهاد</button>
 <div class="results" id="dhw_results"></div>
 </div>
@@ -1258,7 +1271,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </section>
 
 </main>
-<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v14<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
+<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v15<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
 </div>
 <div class="toast" id="toast"></div>
 <div class="autosave-badge" id="autosave">✓ ذخیره شد</div>
@@ -1379,32 +1392,29 @@ function nPlusOneHTML(totalQ, unit = 'kcal/hr') {
 
 /* ==================== NEW: Pipe Sizing & Safety Valve ==================== */
 function pipeSizingSteamHTML(cap, p) {
-    // Steam pipe sizing
     const P_abs = p + 1.013;
     const sp = satP(P_abs);
     const T_sat = sp.t;
-    const rho = (P_abs * 100000) / (461.5 * (T_sat + 273.15)); // kg/m3
-    const V_steam = 30; // m/s
-    const Q_steam = cap / 3600; // kg/s
-    const A_steam = Q_steam / (V_steam * rho); // m2
+    const rho = (P_abs * 100000) / (461.5 * (T_sat + 273.15));
+    const V_steam = 30;
+    const Q_steam = cap / 3600;
+    const A_steam = Q_steam / (V_steam * rho);
     const D_steam_mm = Math.sqrt(4 * A_steam / Math.PI) * 1000;
     const stdDN = [15, 20, 25, 32, 40, 50, 65, 80, 100, 125, 150, 200, 250, 300];
     let DN_steam = stdDN[stdDN.length - 1];
     for (const d of stdDN) { if (d >= D_steam_mm * 1.1) { DN_steam = d; break; } }
 
-    // Feed water pipe sizing
-    const V_fw = 1.5; // m/s
-    const Q_fw = cap / 3600; // kg/s
-    const rho_fw = 950; // kg/m3 approx at 105°C
+    const V_fw = 1.5;
+    const Q_fw = cap / 3600;
+    const rho_fw = 950;
     const A_fw = Q_fw / (V_fw * rho_fw);
     const D_fw_mm = Math.sqrt(4 * A_fw / Math.PI) * 1000;
     let DN_fw = stdDN[stdDN.length - 1];
     for (const d of stdDN) { if (d >= D_fw_mm * 1.1) { DN_fw = d; break; } }
 
-    // Safety valve sizing (ASME Section I)
     const C = 51.45;
     const K = 0.975;
-    const A_valve = cap / (C * K * P_abs); // mm2
+    const A_valve = cap / (C * K * P_abs);
     const orf = [
         {L:'D', a:71}, {L:'E', a:127}, {L:'F', a:198}, {L:'G', a:324},
         {L:'H', a:506}, {L:'J', a:830}, {L:'K', a:1190}, {L:'L', a:1640}
@@ -1433,19 +1443,18 @@ function pipeSizingSteamHTML(cap, p) {
 }
 
 function pipeSizingHWHTML(q, p) {
-    const dT = 20; // °C assumed
-    const m_dot = q / (dT * 3600); // kg/s
-    const V = 1.5; // m/s
-    const rho = 970; // kg/m3
+    const dT = 20;
+    const m_dot = q / (dT * 3600);
+    const V = 1.5;
+    const rho = 970;
     const A = m_dot / (V * rho);
     const D_mm = Math.sqrt(4 * A / Math.PI) * 1000;
     const stdDN = [15, 20, 25, 32, 40, 50, 65, 80, 100, 125, 150, 200, 250, 300];
     let DN = stdDN[stdDN.length - 1];
     for (const d of stdDN) { if (d >= D_mm * 1.1) { DN = d; break; } }
 
-    // Safety valve for HW (approximate)
     const P_abs = p + 1.013;
-    const A_valve = q / (0.000005 * Math.sqrt(P_abs) * 3600); // mm2
+    const A_valve = q / (0.000005 * Math.sqrt(P_abs) * 3600);
     const orf = [
         {L:'D', a:71}, {L:'E', a:127}, {L:'F', a:198}, {L:'G', a:324},
         {L:'H', a:506}, {L:'J', a:830}, {L:'K', a:1190}, {L:'L', a:1640}
@@ -1470,21 +1479,21 @@ function pipeSizingHWHTML(q, p) {
 
 /* ==================== NEW: Pump Head & NPSH ==================== */
 function pumpHeadHTML(cap, p) {
-    const P_boiler = p; // bar
-    const H_pressure = P_boiler * 10.2; // m
-    const H_friction = H_pressure * 0.15; // 15% friction
-    const H_elevation = 2; // m
-    const H_margin = H_pressure * 0.10; // 10% margin
+    const P_boiler = p;
+    const H_pressure = P_boiler * 10.2;
+    const H_friction = H_pressure * 0.15;
+    const H_elevation = 2;
+    const H_margin = H_pressure * 0.10;
     const H_total = H_pressure + H_friction + H_elevation + H_margin;
 
-    const P_atm = 1.013; // bar
-    const H_atm = P_atm * 10.2; // m
-    const H_static = 2; // m (deaerator height)
-    const H_friction_npsh = 0.5; // m
-    const P_vapor = 1.2; // bar at 105°C
-    const H_vapor = P_vapor * 10.2; // m
+    const P_atm = 1.013;
+    const H_atm = P_atm * 10.2;
+    const H_static = 2;
+    const H_friction_npsh = 0.5;
+    const P_vapor = 1.2;
+    const H_vapor = P_vapor * 10.2;
     const NPSHa = H_atm + H_static - H_friction_npsh - H_vapor;
-    const NPSHr = 3; // m assumed
+    const NPSHr = 3;
     const npshStatus = NPSHa > NPSHr ? '✅ مناسب' : '⚠️ خطر کاویتاسیون';
 
     return `
@@ -1500,6 +1509,54 @@ function pumpHeadHTML(cap, p) {
         ], 'Hydraulic Institute Standards / ASME')}
     </div>
     `;
+}
+
+/* ==================== NEW: Coil Tank & Spiral Tank Calculation ==================== */
+function coilTankHTML(storageL, qDesign, thot, tin) {
+    // LMTD calculation (counter-flow assumption)
+    // Hot side: boiler water 80°C in -> 70°C out (assumed)
+    const T_hot_in = 80;
+    const T_hot_out = 70;
+    const dT1 = T_hot_in - thot;  // 80 - 60 = 20
+    const dT2 = T_hot_out - tin;  // 70 - 10 = 60
+    let lmtd;
+    if (Math.abs(dT1 - dT2) < 0.01) {
+        lmtd = dT1;
+    } else {
+        lmtd = (dT1 - dT2) / Math.log(dT1 / dT2);
+    }
+    
+    // U value for copper/steel coil in water tank
+    const U_coil = 600; // kcal/hr·m²·°C
+    
+    // Required coil surface area
+    const A_coil = qDesign / (U_coil * lmtd);
+    
+    // Spiral tank has ~20% higher efficiency
+    const A_spiral = A_coil / 1.2;
+    
+    return `
+    <div class="card" style="margin-top:10px; border-right:4px solid var(--forest); background:linear-gradient(135deg,#E2EDE4,#C9DDCE);">
+        <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">🛢 منبع کویلی / اسپیرال پیشنهادی</h3>
+        ${g('حجم منبع ذخیره', fmt(storageL, 0), 'L', 'بر اساس محاسبات بالا')}
+        ${g('ظرفیت حرارتی کویل', fmt(qDesign, 0), 'kcal/hr', 'حداقل ظرفیت کویل مورد نیاز')}
+        ${g('سطح تبادل کویل (LMTD)', fmt(A_coil, 2), 'm²', `U=${U_coil} kcal/hr·m²·°C — LMTD=${lmtd.toFixed(1)}°C`)}
+        ${g('سطح تبادل اسپیرال', fmt(A_spiral, 2), 'm²', 'بازدهی ۲۰٪ بالاتر از کویل معمولی')}
+        <div class="note" style="font-size:.68rem;color:var(--text-soft);margin-top:4px;">💡 برای انتخاب دقیق، از جداول سازنده استفاده کنید. این محاسبات تخمینی است.</div>
+        ${fb('فرمول‌های محاسبه کویل/اسپیرال', [
+            `Q_coil = U × A × LMTD`,
+            `LMTD = (ΔT1 - ΔT2) / ln(ΔT1/ΔT2) = (${dT1} - ${dT2}) / ln(${dT1}/${dT2}) = ${lmtd.toFixed(1)}°C`,
+            `A_coil = Q / (U × LMTD) = ${fmt(qDesign, 0)} / (${U_coil} × ${lmtd.toFixed(1)}) = ${A_coil.toFixed(2)} m²`,
+            `A_spiral = A_coil / 1.2 = ${A_spiral.toFixed(2)} m²`
+        ], 'ASPE / ASHRAE / DIN 4708')}
+    </div>
+    `;
+}
+
+/* ==================== NEW: Combined Mode Toggle ==================== */
+function toggleCombinedMode() {
+    const checked = $('dhw_combined').checked;
+    $('dhw_combined_inputs').style.display = checked ? 'block' : 'none';
 }
 
 /* ==================== SF Management ==================== */
@@ -2300,13 +2357,6 @@ function updateSiteGrandTotal(){
   return grand;
 }
 
-function calculateDynamicDF(totalFixtures) {
-    if (totalFixtures <= 0) return 0.35;
-    // Hunter's Curve approximation
-    let df = 1.0 - 0.3 * Math.log10(totalFixtures);
-    return Math.max(0.15, Math.min(0.8, df));
-}
-
 function calcDHWSite(){
   const SF = getSF('dhw');
   const gphTotal = updateSiteGrandTotal();
@@ -2315,14 +2365,7 @@ function calcDHWSite(){
     return;
   }
   
-  // Dynamic DF
-  let totalFixtures = 0;
-  document.querySelectorAll('#dhw_site_fix .fx-row').forEach(row => {
-      totalFixtures += parseFloat(row.querySelector('.fx-count-input').value) || 0;
-  });
-  const autoDF = calculateDynamicDF(totalFixtures);
-  const DF = n($('site_df').value) || autoDF;
-  
+  const DF = n($('site_df').value) || 0.35;
   const SF_storage = n($('site_sf').value) || 1.25;
   const PF = n($('site_pf').value) || 1.0;
   const thot = n($('site_thot').value) || 60;
@@ -2331,43 +2374,72 @@ function calcDHWSite(){
   const dT_C = thot - tin;
   const dT_F = dT_C * 9/5;
   
-  const gphDemand = gphTotal * DF;
-  const gphPeak = gphDemand * PF;
-  const storage_gal = gphPeak * SF_storage;
+  // ============ فرمول صحیح pyaco.ir ============
+  // گام ۱: حداکثر مصرف
+  const gphMax = gphTotal;
+  
+  // گام ۲: مقدار واقعی مصرف = حداکثر مصرف × ضریب تقاضا
+  const gphActual = gphMax * DF;
+  
+  // گام ۳: حجم منبع = حداکثر مصرف × ضریب تقاضا × ضریب ذخیره منبع
+  const storage_gal = gphMax * DF * SF_storage;
   const storage_L = storage_gal * 3.78541;
-  const qBTU = gphPeak * 8.33 * dT_F;
+  
+  // گام ۴: بار حرارتی (BTU/hr)
+  const qBTU = gphActual * 8.33 * dT_F;
   const qKcal = qBTU * 0.252;
+  
+  // گام ۵: اعمال ضریب اطمینان نهایی
   const qFinal = qKcal * SF;
   const qBoiler = qFinal / (eff/100);
-  const gpm = gphPeak / 60;
+  const gpm = gphActual / 60;
+  
+  // ============ حالت ترکیبی ============
+  const combined = $('dhw_combined') && $('dhw_combined').checked;
+  let qTotalBoiler = qBoiler;
+  let combinedInfo = '';
+  if (combined) {
+      const qHeating = n($('dhw_heating_load').value) || 0;
+      qTotalBoiler = Math.max(qBoiler, qHeating) * 1.15 * SF;
+      combinedInfo = `
+        <div class="card" style="margin-top:10px; border-right:4px solid var(--terra); background:linear-gradient(135deg,#F8E5DA,#F0D0BD);">
+            <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:6px;">🔗 حالت ترکیبی (آبگرم + شوفاژ)</h3>
+            ${g('بار آبگرم مصرفی', fmt(qBoiler), 'kcal/hr', '')}
+            ${g('بار گرمایش (شوفاژ)', fmt(qHeating), 'kcal/hr', '')}
+            ${g('🔥 بار کل دیگ', fmt(qTotalBoiler), 'kcal/hr', `max(${fmt(qBoiler)}, ${fmt(qHeating)}) × ۱.۱۵ × ${SF}`)}
+            ${fb('فرمول حالت ترکیبی', [
+              `Q_total = max(Q_DHW, Q_Heating) × 1.15 × SF`,
+              `Q_total = max(${fmt(qBoiler)}, ${fmt(qHeating)}) × 1.15 × ${SF} = ${fmt(qTotalBoiler)} kcal/hr`,
+              `ضریب ۱.۱۵ برای همزمانی جزئی در نظر گرفته شده است.`
+            ], 'ASHRAE / Navien Combi-Boiler Sizing')}
+        </div>`;
+  }
   
   $('dhw_results').innerHTML = `
-    <div class="method-info"><strong>روش سایت pyaco.ir</strong> — محاسبه بر اساس تعداد دقیق فیکسچرها</div>
-    ${g('مجموع GPH فیکسچرها', fmt(gphTotal, 0), 'GPH', 'قبل از ضرایب')}
-    ${g('ضریب تقاضا (DF)', DF.toFixed(3), '×', `محاسبه خودکار: ${autoDF.toFixed(3)} (بر اساس ${totalFixtures} فیکسچر)`)}
-    ${g('مصرف ساعتی (Demand)', fmt(gphDemand, 1), 'GPH', `${fmt(gphDemand*3.785, 1)} L/hr`)}
-    ${g('ضریب پیک', PF, '×', 'Peak Factor')}
-    ${g('🔥 مصرف پیک (Peak)', fmt(gphPeak, 1), 'GPH', `${fmt(gphPeak*3.785, 1)} L/hr`)}
-    ${g('ضریب ذخیره منبع (SF)', SF_storage, '×', 'Storage Factor')}
+    <div class="method-info"><strong>روش سایت pyaco.ir</strong> — محاسبه بر اساس جدول مرجع</div>
+    ${g('حداکثر مصرف (GPH)', fmt(gphMax, 0), 'GPH', 'مجموع فیکسچرها')}
+    ${g('ضریب تقاضا (DF)', DF, '×', 'از جدول')}
+    ${g('مقدار واقعی مصرف', fmt(gphActual, 1), 'GPH', `${fmt(gphActual*3.785, 1)} L/hr`)}
+    ${g('ضریب ذخیره منبع (SF)', SF_storage, '×', 'از جدول')}
     ${g('حجم منبع', fmt(storage_L, 0), 'L', `${fmt(storage_gal, 1)} گالن`)}
-    ${g('GPM معادل', fmt(gpm, 2), 'GPM', `${fmt(gpm*3.785, 1)} L/min`)}
     ${g('🌡️ ΔT', dT_C.toFixed(1), '°C', `${dT_F.toFixed(1)}°F`)}
     ${g('🔥 بار کویل/دیگ', fmt(qFinal, 0), 'kcal/hr', `${fmt(qBTU, 0)} BTU/hr — ${hu(qFinal)}`)}
     ${g('ظرفیت ورودی دیگ', fmt(qBoiler, 0), 'kcal/hr', `با راندمان ${eff}٪`)}
-    ${boilerSuggestionHTML(qFinal, 'hw')}
-    ${nPlusOneHTML(qFinal, 'kcal/hr')}
+    ${combined ? combinedInfo : ''}
+    ${coilTankHTML(storage_L, qFinal, thot, tin)}
+    ${boilerSuggestionHTML(qTotalBoiler, 'hw')}
+    ${nPlusOneHTML(qTotalBoiler, 'kcal/hr')}
     ${fb('روش سایت pyaco.ir — گام‌به‌گام', [
-      `Step 1 — مجموع GPH = Σ(count × GPH_unit) = ${fmt(gphTotal, 0)} GPH`,
-      `Step 2 — Demand = ${fmt(gphTotal, 0)} × ${DF.toFixed(3)} = ${fmt(gphDemand, 1)} GPH`,
-      `Step 3 — Peak = ${fmt(gphDemand, 1)} × ${PF} = ${fmt(gphPeak, 1)} GPH`,
-      `Step 4 — Storage = ${fmt(gphPeak, 1)} × ${SF_storage} × 3.785 = ${fmt(storage_L, 0)} L`,
-      `Step 5 — Q = ${fmt(gphPeak, 1)} × 8.33 × ${dT_F.toFixed(1)} = ${fmt(qBTU, 0)} BTU/hr`,
-      `Step 6 — Q_kcal = ${fmt(qBTU, 0)} × 0.252 = ${fmt(qKcal, 0)} kcal/hr`,
-      `Step 7 — Q_design = ${fmt(qKcal, 0)} × ${SF} = ${fmt(qFinal, 0)} kcal/hr`,
-      `Step 8 — Q_boiler = ${fmt(qFinal, 0)} / ${eff/100} = ${fmt(qBoiler, 0)} kcal/hr`
+      `Step 1 — حداکثر مصرف = ${fmt(gphMax, 0)} GPH`,
+      `Step 2 — مقدار واقعی = ${fmt(gphMax, 0)} × ${DF} = ${fmt(gphActual, 1)} GPH`,
+      `Step 3 — حجم منبع = ${fmt(gphMax, 0)} × ${DF} × ${SF_storage} = ${fmt(storage_L, 0)} L`,
+      `Step 4 — Q = ${fmt(gphActual, 1)} × 8.33 × ${dT_F.toFixed(1)} = ${fmt(qBTU, 0)} BTU/hr`,
+      `Step 5 — Q_kcal = ${fmt(qBTU, 0)} × 0.252 = ${fmt(qKcal, 0)} kcal/hr`,
+      `Step 6 — Q_design = ${fmt(qKcal, 0)} × ${SF} = ${fmt(qFinal, 0)} kcal/hr`,
+      `Step 7 — Q_boiler = ${fmt(qFinal, 0)} / ${eff/100} = ${fmt(qBoiler, 0)} kcal/hr`
     ], 'ASPE Data Book Vol.4 / pyaco.ir')}`;
   addPNG('dhw_results', 'آبگرم مصرفی — روش سایت');
-  saveToHistory('آبگرم روش سایت — ' + fmt(gphTotal, 0) + ' GPH');
+  saveToHistory('آبگرم روش سایت — ' + fmt(gphMax, 0) + ' GPH');
 }
 
 function calcDHW(){
@@ -2399,6 +2471,7 @@ function calcDHW(){
       ${g('مصرف پیک ساعتی',fmt(L_per_hr,0),'L/hr',`${peakHrs} ساعت پیک`)}
       ${g('بار طراحی پیک',fmt(qD,0),'kcal/hr',`SF=${SF}`)}
       ${g('حجم مخزن پیشنهادی',fmt(storage_L,0),'L','۶۰٪ مصرف روزانه')}
+      ${coilTankHTML(storage_L, qD, thot, tin)}
       ${boilerSuggestionHTML(qD, 'hw')}
       ${nPlusOneHTML(qD, 'kcal/hr')}
       ${fb('روش سرانه',[
@@ -2430,6 +2503,7 @@ function calcDHW(){
       ${g('حجم مخزن',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}
       ${g('🌡️ بار کویل/دیگ',fmt(qKcal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
       ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
+      ${coilTankHTML(storage_L, qKcal, thot, tin)}
       ${boilerSuggestionHTML(qKcal, 'hw')}
       ${nPlusOneHTML(qKcal, 'kcal/hr')}
       ${fb('محاسبه رستوران',[
@@ -2472,6 +2546,7 @@ function calcDHW(){
     ${g('حجم مخزن',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}
     ${g('🌡️ بار کویل/دیگ',fmt(qFinal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
     ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
+    ${coilTankHTML(storage_L, qFinal, thot, tin)}
     ${boilerSuggestionHTML(qFinal, 'hw')}
     ${nPlusOneHTML(qFinal, 'kcal/hr')}
     ${fb('روش جدول مرجع',[
@@ -2861,7 +2936,7 @@ initQuickConsult();
 document.querySelectorAll('.cs-menu').forEach(m=>m.classList.remove('open'));
 document.querySelectorAll('.cs-trigger').forEach(t=>t.classList.remove('open'));
 
-console.log('✓ Capacity Assistant v14 loaded — Smart Estimation + N+1 + Pipe Sizing');
+console.log('✓ Capacity Assistant v15 loaded — Pyaco.ir correct formula + Coil Tank + Combined Mode');
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script>
 </body>
