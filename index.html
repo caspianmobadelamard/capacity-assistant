@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#1B2744" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Capacity Assistant v13 — Caspian Mobaddel Amard</title>
+<title>Capacity Assistant v14 — Caspian Mobaddel Amard</title>
 <link rel="manifest" href="./manifest.json" />
 <link rel="icon" href="./icon-192.png" />
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
@@ -196,9 +196,18 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 .fx-row .fx-def{font-size:.66rem;color:var(--text-mute);background:var(--cream-3);padding:2px 6px;border-radius:99px;font-weight:600;text-align:center;}
 .fx-row input{padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);}
 .fx-row .fx-u{font-size:.66rem;color:var(--text-soft);font-weight:600;text-align:center;}
+.fx-row.editable input.fx-gph-input { background: #E0F2FE; border-color: #0284c7; color: #0C4A6E; font-weight: 800; }
+.fx-row.editable input.fx-gph-input:focus { box-shadow: 0 0 0 3px rgba(2,132,199,.25); }
+.custom-fx-row { background: linear-gradient(135deg, #FFF4E0, #F5E5CC); border-color: rgba(217,119,6,.35); }
+.custom-fx-row input { border-color: rgba(217,119,6,.35); }
 @media(max-width:520px){.fx-header,.fx-row{grid-template-columns:1fr 50px 80px 55px;gap:5px;padding:6px;font-size:.7rem;}}
 .method-info{background:linear-gradient(135deg,#E0F2FE,#BAE6FD);border:1px solid rgba(2,132,199,.35);border-right:4px solid #0284c7;border-radius:var(--radius-sm);padding:8px 12px;font-size:.7rem;color:#075985;margin-bottom:10px;line-height:1.6;}
 .method-info strong{color:#0C4A6E;}
+.nplus1-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
+.nplus1-item { background: #FFF; border: 1px solid var(--cream-3); border-right: 4px solid var(--navy-3); border-radius: 7px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: .75rem; }
+.nplus1-item .n-title { font-weight: 800; color: var(--navy); }
+.nplus1-item .n-spec { color: var(--text-soft); font-size: .7rem; }
+.nplus1-item .n-badge { background: var(--gold-2); color: var(--navy); padding: 2px 8px; border-radius: 99px; font-weight: 800; font-size: .65rem; }
 </style>
 </head>
 <body>
@@ -207,7 +216,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="compact-header">
 <div class="logo-mini">⚙️</div>
 <div class="title-block">
-<div class="t">Capacity Assistant v13</div>
+<div class="t">Capacity Assistant v14</div>
 <div class="s">کاسپین مبدل آمارد — ASHRAE / ASPE / Fulton</div>
 </div>
 <div class="tools">
@@ -822,11 +831,15 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <!-- بلوک روش سایت (تعداد فیکسچر) -->
 <div id="dhw_site_block" style="display:none;">
 <div class="method-info" style="margin-top:10px;">
-<strong>روش سایت pyaco.ir:</strong> تعداد دقیق هر فیکسچر را وارد کنید. برنامه GPH کل، مصرف پیک، حجم منبع و بار حرارتی را گام‌به‌گام محاسبه می‌کند.
+<strong>روش سایت pyaco.ir:</strong> تعداد دقیق هر فیکسچر را وارد کنید. برنامه GPH کل، مصرف پیک، حجم منبع و بار حرارتی را گام‌به‌گام محاسبه می‌کند. <br>
+<strong>✨ قابلیت جدید:</strong> ستون GPH واحد قابل ویرایش است. اگر فیکسچر خاصی دارید، آن را در انتهای جدول به صورت دلخواه اضافه کنید.
 </div>
 <div class="fx-header"><span>نوع فیکسچر</span><span>GPH واحد</span><span>تعداد</span><span>GPH کل</span></div>
 <div id="dhw_site_fix"></div>
-<button class="btn" style="margin-top:10px; background:linear-gradient(135deg,var(--navy-2),var(--navy-3));" onclick="autoFillSiteDefaults()">✨ اعمال خودکار تعداد ۱ برای همه فیکسچرها</button>
+<div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+  <button class="btn" style="background:linear-gradient(135deg,var(--navy-2),var(--navy-3)); flex:1; min-width:150px;" onclick="addCustomFixture()">➕ افزودن فیکسچر دلخواه</button>
+  <button class="btn" style="background:linear-gradient(135deg,var(--gold),var(--gold-2)); flex:1; min-width:150px;" onclick="estimateSiteFixtures()">✨ تخمین هوشمند فیکسچرها</button>
+</div>
 <div class="row3" style="margin-top:10px;">
 <div class="field"><label>ضریب تقاضا (DF)</label><input type="number" id="site_df" value="0.35" step="0.05"></div>
 <div class="field"><label>ضریب ذخیره منبع (SF)</label><input type="number" id="site_sf" value="1.25" step="0.05"></div>
@@ -1245,7 +1258,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </section>
 
 </main>
-<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v13<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
+<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v14<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
 </div>
 <div class="toast" id="toast"></div>
 <div class="autosave-badge" id="autosave">✓ ذخیره شد</div>
@@ -1326,6 +1339,167 @@ function transferToBoiler(qLoad, type) {
         }
         toast('✓ بار محاسبه شده در بخش دیگ بخار اعمال شد');
     }
+}
+
+/* ==================== NEW: N+1 Modular Boiler Selection ==================== */
+function nPlusOneHTML(totalQ, unit = 'kcal/hr') {
+    const stdCaps = [17000, 45000, 75000, 80000, 100000, 150000, 200000, 300000, 400000, 500000, 600000, 800000, 1000000, 1250000, 1500000, 2000000, 3000000];
+    const findClosest = (q) => {
+        let c = stdCaps.find(x => x >= q);
+        return c ? c : stdCaps[stdCaps.length - 1];
+    };
+    const opt1 = findClosest(totalQ);
+    const opt2 = findClosest(totalQ / 2);
+    const opt3 = findClosest(totalQ / 3);
+    const opt4 = findClosest(totalQ / 4);
+
+    const renderItem = (count, cap, label, desc) => `
+        <div class="nplus1-item">
+            <div>
+                <div class="n-title">${count} × ${fmt(cap)} ${unit}</div>
+                <div class="n-spec">${desc}</div>
+            </div>
+            <div class="n-badge">${label}</div>
+        </div>
+    `;
+
+    return `
+    <div class="card" style="margin-top:10px; border-right:4px solid var(--navy-3); background:linear-gradient(135deg,#E0E4EE,#C9D0E0);">
+        <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:6px;">🏭 پیشنهاد سیستم N+1 (چند دیگ موازی)</h3>
+        <div class="nplus1-grid">
+            ${renderItem(1, opt1, '۱۰۰٪', 'بدون افزونگی — مناسب برای بارهای پایدار')}
+            ${renderItem(2, opt2, '۵۰٪ + ۵۰٪', 'افزونگی ۵۰٪ — بهترین تعادل بین هزینه و راندمان')}
+            ${renderItem(3, opt3, '۳۳٪ + ۳۳٪ + ۳۳٪', 'افزونگی ۶۶٪ — مناسب برای بارهای متغیر و پیک‌دار')}
+            ${renderItem(4, opt4, '۲۵٪ × ۴', 'افزونگی ۷۵٪ — برای پروژه‌های بزرگ و حساس')}
+        </div>
+        <div class="note" style="font-size:.68rem;color:var(--text-soft);margin-top:8px;">💡 در سیستم‌های N+1، در صورت خرابی یک دیگ، بقیه دیگ‌ها می‌توانند بار را پوشش دهند. همچنین در فصول گرم سال، می‌توان فقط یک دیگ را روشن کرد و راندمان را بالا برد.</div>
+    </div>
+    `;
+}
+
+/* ==================== NEW: Pipe Sizing & Safety Valve ==================== */
+function pipeSizingSteamHTML(cap, p) {
+    // Steam pipe sizing
+    const P_abs = p + 1.013;
+    const sp = satP(P_abs);
+    const T_sat = sp.t;
+    const rho = (P_abs * 100000) / (461.5 * (T_sat + 273.15)); // kg/m3
+    const V_steam = 30; // m/s
+    const Q_steam = cap / 3600; // kg/s
+    const A_steam = Q_steam / (V_steam * rho); // m2
+    const D_steam_mm = Math.sqrt(4 * A_steam / Math.PI) * 1000;
+    const stdDN = [15, 20, 25, 32, 40, 50, 65, 80, 100, 125, 150, 200, 250, 300];
+    let DN_steam = stdDN[stdDN.length - 1];
+    for (const d of stdDN) { if (d >= D_steam_mm * 1.1) { DN_steam = d; break; } }
+
+    // Feed water pipe sizing
+    const V_fw = 1.5; // m/s
+    const Q_fw = cap / 3600; // kg/s
+    const rho_fw = 950; // kg/m3 approx at 105°C
+    const A_fw = Q_fw / (V_fw * rho_fw);
+    const D_fw_mm = Math.sqrt(4 * A_fw / Math.PI) * 1000;
+    let DN_fw = stdDN[stdDN.length - 1];
+    for (const d of stdDN) { if (d >= D_fw_mm * 1.1) { DN_fw = d; break; } }
+
+    // Safety valve sizing (ASME Section I)
+    const C = 51.45;
+    const K = 0.975;
+    const A_valve = cap / (C * K * P_abs); // mm2
+    const orf = [
+        {L:'D', a:71}, {L:'E', a:127}, {L:'F', a:198}, {L:'G', a:324},
+        {L:'H', a:506}, {L:'J', a:830}, {L:'K', a:1190}, {L:'L', a:1640}
+    ];
+    let chosenOrf = orf[orf.length - 1];
+    for (const o of orf) { if (o.a >= A_valve * 1.1) { chosenOrf = o; break; } }
+
+    return `
+    <div class="card" style="margin-top:10px; border-right:4px solid var(--terra); background:linear-gradient(135deg,#F8E5DA,#F0D0BD);">
+        <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">📏 سایزینگ لوله و شیر اطمینان (دیگ بخار)</h3>
+        ${g('قطر لوله بخار خروجی', DN_steam, 'mm', `محاسبه: ${D_steam_mm.toFixed(1)} mm — سرعت ${V_steam} m/s`)}
+        ${g('قطر لوله آب تغذیه', DN_fw, 'mm', `محاسبه: ${D_fw_mm.toFixed(1)} mm — سرعت ${V_fw} m/s`)}
+        ${g('سایز اورفیس شیر اطمینان', chosenOrf.L, 'ASME', `سطح: ${A_valve.toFixed(1)} mm² — مدل ${chosenOrf.L} (${chosenOrf.a} mm²)`)}
+        ${fb('فرمول‌های سایزینگ (دیگ بخار)', [
+            `Steam Pipe: D = sqrt(4 * Q / (pi * V * rho))`,
+            `Q = ${cap} kg/hr = ${Q_steam.toFixed(3)} kg/s`,
+            `rho = P_abs * 100000 / (461.5 * T_sat) = ${rho.toFixed(2)} kg/m³`,
+            `D_steam = sqrt(4 * ${Q_steam.toFixed(3)} / (pi * ${V_steam} * ${rho.toFixed(2)})) = ${D_steam_mm.toFixed(1)} mm`,
+            `Feed Water: D = sqrt(4 * Q / (pi * V * rho))`,
+            `D_fw = sqrt(4 * ${Q_fw.toFixed(3)} / (pi * ${V_fw} * ${rho_fw})) = ${D_fw_mm.toFixed(1)} mm`,
+            `Safety Valve: A = Q / (C * K * P_abs)`,
+            `A = ${cap} / (${C} * ${K} * ${P_abs.toFixed(3)}) = ${A_valve.toFixed(1)} mm²`
+        ], 'ASME Section I / EN 12953')}
+    </div>
+    `;
+}
+
+function pipeSizingHWHTML(q, p) {
+    const dT = 20; // °C assumed
+    const m_dot = q / (dT * 3600); // kg/s
+    const V = 1.5; // m/s
+    const rho = 970; // kg/m3
+    const A = m_dot / (V * rho);
+    const D_mm = Math.sqrt(4 * A / Math.PI) * 1000;
+    const stdDN = [15, 20, 25, 32, 40, 50, 65, 80, 100, 125, 150, 200, 250, 300];
+    let DN = stdDN[stdDN.length - 1];
+    for (const d of stdDN) { if (d >= D_mm * 1.1) { DN = d; break; } }
+
+    // Safety valve for HW (approximate)
+    const P_abs = p + 1.013;
+    const A_valve = q / (0.000005 * Math.sqrt(P_abs) * 3600); // mm2
+    const orf = [
+        {L:'D', a:71}, {L:'E', a:127}, {L:'F', a:198}, {L:'G', a:324},
+        {L:'H', a:506}, {L:'J', a:830}, {L:'K', a:1190}, {L:'L', a:1640}
+    ];
+    let chosenOrf = orf[orf.length - 1];
+    for (const o of orf) { if (o.a >= A_valve * 1.1) { chosenOrf = o; break; } }
+
+    return `
+    <div class="card" style="margin-top:10px; border-right:4px solid var(--terra); background:linear-gradient(135deg,#F8E5DA,#F0D0BD);">
+        <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">📏 سایزینگ لوله و شیر اطمینان (دیگ آبگرم)</h3>
+        ${g('قطر لوله رفت/برگشت', DN, 'mm', `محاسبه: ${D_mm.toFixed(1)} mm — سرعت ${V} m/s`)}
+        ${g('سایز اورفیس شیر اطمینان', chosenOrf.L, 'ASME', `سطح: ${A_valve.toFixed(1)} mm² — مدل ${chosenOrf.L}`)}
+        ${fb('فرمول‌های سایزینگ (دیگ آبگرم)', [
+            `m_dot = Q / (Cp * dT) = ${q} / (1 * 20 * 3600) = ${m_dot.toFixed(3)} kg/s`,
+            `D = sqrt(4 * m_dot / (pi * V * rho))`,
+            `D = sqrt(4 * ${m_dot.toFixed(3)} / (pi * ${V} * ${rho})) = ${D_mm.toFixed(1)} mm`,
+            `Safety Valve: A = Q / (0.000005 * sqrt(P_abs) * 3600) = ${A_valve.toFixed(1)} mm²`
+        ], 'ASHRAE / ASME Section IV')}
+    </div>
+    `;
+}
+
+/* ==================== NEW: Pump Head & NPSH ==================== */
+function pumpHeadHTML(cap, p) {
+    const P_boiler = p; // bar
+    const H_pressure = P_boiler * 10.2; // m
+    const H_friction = H_pressure * 0.15; // 15% friction
+    const H_elevation = 2; // m
+    const H_margin = H_pressure * 0.10; // 10% margin
+    const H_total = H_pressure + H_friction + H_elevation + H_margin;
+
+    const P_atm = 1.013; // bar
+    const H_atm = P_atm * 10.2; // m
+    const H_static = 2; // m (deaerator height)
+    const H_friction_npsh = 0.5; // m
+    const P_vapor = 1.2; // bar at 105°C
+    const H_vapor = P_vapor * 10.2; // m
+    const NPSHa = H_atm + H_static - H_friction_npsh - H_vapor;
+    const NPSHr = 3; // m assumed
+    const npshStatus = NPSHa > NPSHr ? '✅ مناسب' : '⚠️ خطر کاویتاسیون';
+
+    return `
+    <div class="card" style="margin-top:10px; border-right:4px solid var(--forest); background:linear-gradient(135deg,#E2EDE4,#C9DDCE);">
+        <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">⚙️ پمپ تغذیه دیگ بخار (ارتفاع و NPSH)</h3>
+        ${g('ارتفاع کل پمپ (Head)', H_total.toFixed(1), 'm', `فشار: ${H_pressure.toFixed(1)} + اصطکاک: ${H_friction.toFixed(1)} + ارتفاع: ${H_elevation} + حاشیه: ${H_margin.toFixed(1)}`)}
+        ${g('NPSH موجود (NPSHa)', NPSHa.toFixed(1), 'm', `NPSHr تقریبی: ${NPSHr} m — ${npshStatus}`)}
+        ${fb('فرمول‌های پمپ و NPSH', [
+            `H_total = P_boiler * 10.2 + 0.15 * P_boiler * 10.2 + 2 + 0.10 * P_boiler * 10.2`,
+            `H_total = ${P_boiler} * 10.2 + ${H_friction.toFixed(1)} + 2 + ${H_margin.toFixed(1)} = ${H_total.toFixed(1)} m`,
+            `NPSHa = P_atm * 10.2 + H_static - H_friction - P_vapor * 10.2`,
+            `NPSHa = ${H_atm.toFixed(1)} + ${H_static} - ${H_friction_npsh} - ${H_vapor.toFixed(1)} = ${NPSHa.toFixed(1)} m`
+        ], 'Hydraulic Institute Standards / ASME')}
+    </div>
+    `;
 }
 
 /* ==================== SF Management ==================== */
@@ -1765,6 +1939,7 @@ function calcSteam(prefix,label){
   const deaCap=cap*1.15*SF;const deM=pick(DEA,'k',deaCap);
   const conT=(condFlow/500)*10*1.4;
   const pumpF=cap*(1+blowPct/100)*1.15;const pumpH=(p-.3)*10.2+2+((p-.3)*10.2*.15);
+  
   $(prefix+'_results').innerHTML=`
     ${g('ظرفیت تاییدشده',fmt(cap),'kg/hr',mf(cap))}
     ${g('دمای اشباع',fmt(sp.t,1),'°C',`${fmt(p+1.013,2)} bar`)}
@@ -1785,6 +1960,9 @@ function calcSteam(prefix,label){
     </div>
     ${chart('نمودار بار')}
     ${tiers(q)}
+    ${nPlusOneHTML(q, 'kcal/hr')}
+    ${pipeSizingSteamHTML(cap, p)}
+    ${pumpHeadHTML(cap, p)}
     ${fb('محاسبه دیگ بخار (Fulton)',[
       `h_steam = ${fmt(hS,1)} kJ/kg`,
       `h_feed = ${fmt(hF,1)}`,
@@ -1810,6 +1988,7 @@ function calcHW(prefix,label){
   const err=validate({q:q>=50000,eff:eff>0});
   if(err){$(prefix+'_results').innerHTML=warn(err);return;}
   const qD=q*SF;const flow=qD/((tin-tout)*1000);
+  
   $(prefix+'_results').innerHTML=`
     ${g('بار طراحی',fmt(qD),'kcal/hr',hu(qD))}
     ${g('دبی آب گرم',fmt(flow,2),'m³/h',`ΔT=${tin-tout}°C`)}
@@ -1817,6 +1996,8 @@ function calcHW(prefix,label){
     ${showTrim?trimHW(qD,p):''}
     ${chart('نمودار ظرفیت')}
     ${tiers(qD)}
+    ${nPlusOneHTML(qD, 'kcal/hr')}
+    ${pipeSizingHWHTML(qD, p)}
     ${fb('دیگ آبگرم',[`Q_design = ${fmt(q)} × ${SF} = ${fmt(qD)} kcal/hr`,`Flow = ${fmt(flow,2)} m³/h`],'ASHRAE')}`;
   addPNG(prefix+'_results','دیگ آبگرم '+label);
   saveToHistory('دیگ آبگرم '+label);
@@ -1840,6 +2021,8 @@ function calcCondensing(){
     ${g('ظرفیت حرارتی ورودی',fmt(qFuel),'kcal/hr','')}
     ${burnerBlock(qD,eff,fuel,0,20,60,10,'(چگالشی)')}
     ${tiers(qD)}
+    ${nPlusOneHTML(qD, 'kcal/hr')}
+    ${pipeSizingHWHTML(qD, p)}
     ${fb('محاسبه دیگ چگالشی',[
       `Q_design = ${fmt(qD)} kcal/hr`,
       `Q_input = ${fmt(qD)} / ${(eff/100).toFixed(3)} = ${fmt(qFuel)} kcal/hr`,
@@ -1863,6 +2046,8 @@ function calcDual(){
     ${g('دبی آب گرمایش',fmt(fh,2),'m³/hr',`ΔT=${th1-th2}°C`)}
     ${g('دبی DHW',fmt(fd,2),'m³/hr',`ΔT=${td-10}°C`)}
     ${burnerBlock(qTotal,eff,'gas',0,20,200,15,'(دوگانه)')}
+    ${tiers(qTotal)}
+    ${nPlusOneHTML(qTotal, 'kcal/hr')}
     ${fb('دیگ دوگانه',[
       `Q_total = max(${fmt(qh)}, ${fmt(qd)}) × 1.15 × ${SF}`,
       `Q_total = ${fmt(qTotal)} kcal/hr`
@@ -1884,12 +2069,12 @@ function calcPackage(){
     ${dhw?g('بار DHW',fmt(qDHW),'kcal/hr',''):''}
     ${g('بار حداکثر',fmt(qMax),'kcal/hr','')}
     ${g('بار طراحی',fmt(qD),'kcal/hr','SF='+SF)}
-    ${g('مدل',md?md.m:'خارج از محدوده','','')}`;
+    ${g('مدل',md?md.m:'خارج از محدوده','','')}
+    ${nPlusOneHTML(qD, 'kcal/hr')}`;
   addPNG('pk_results','پکیج');
 }
 
 /* ==================== DHW ==================== */
-// جدول مرجع — مقادیر دقیقاً طبق تصویر ارسالی
 const DHW_FIX={
   apartment:   {lav_priv:3,  lav_pub:5,  bath:20,  shw:100, sink_pan:10,  sink_kit:15,  dw:20,  sink_lau:25,  wm:75,  pasio:3,  df:0.35, sf:1.25},
   residential: {lav_priv:3,  lav_pub:0,  bath:20,  shw:100, sink_pan:10,  sink_kit:15,  dw:20,  sink_lau:25,  wm:75,  pasio:3,  df:0.35, sf:1.25},
@@ -1904,46 +2089,30 @@ const DHW_FIX={
   restaurant:  {lav_priv:0,  lav_pub:0,  bath:0,   shw:0,   sink_pan:0,   sink_kit:0,   dw:0,   sink_lau:0,   wm:0,   pasio:0,  df:0.3,  sf:1.25}
 };
 
-// GPH استاندارد فیکسچرها برای روش سایت (طبق جدول)
 const SITE_FIXTURE_GPH = {
-  lav_priv: 3,
-  lav_pub:  5,
-  bath:     20,
-  shw:      100,
-  sink_pan: 10,
-  sink_kit: 15,
-  dw:       20,
-  sink_lau: 25,
-  wm:       75,
-  pasio:    3
+  lav_priv: 3, lav_pub: 5, bath: 20, shw: 100, sink_pan: 10, sink_kit: 15, dw: 20, sink_lau: 25, wm: 75, pasio: 3
 };
 
 const FIX_NAMES={
-  lav_priv:'دستشویی/توالت خصوصی',
-  lav_pub:'دستشویی/توالت عمومی',
-  bath:'وان حمام',
-  shw:'دوش',
-  sink_pan:'سینک آبدارخانه',
-  sink_kit:'سینک ظرفشویی',
-  dw:'ماشین ظرفشویی',
-  sink_lau:'سینک رختشویی',
-  wm:'ماشین رختشویی',
-  pasio:'سایر / پیسوار'
+  lav_priv:'دستشویی/توالت خصوصی', lav_pub:'دستشویی/توالت عمومی', bath:'وان حمام', shw:'دوش', sink_pan:'سینک آبدارخانه', sink_kit:'سینک ظرفشویی', dw:'ماشین ظرفشویی', sink_lau:'سینک رختشویی', wm:'ماشین رختشویی', pasio:'سایر / پیسوار'
 };
 
-// مصرف سرانه (L/day/person در 60°C)
 const DHW_PERCAPITA={
-  apartment:{lpd:60,label:'آپارتمان'},
-  residential:{lpd:60,label:'منازل مسکونی'},
-  hotel:{lpd:150,label:'هتل'},
-  stadium:{lpd:10,label:'ورزشگاه'},
-  hospital:{lpd:100,label:'بیمارستان'},
-  club:{lpd:40,label:'کلوب'},
-  factory:{lpd:30,label:'کارخانجات'},
-  office:{lpd:15,label:'ادارات'},
-  school:{lpd:15,label:'مدارس'},
-  dormitory:{lpd:80,label:'خوابگاه دانشجویی'},
-  restaurant:{lpd:30,label:'رستوران'}
+  apartment:{lpd:60,label:'آپارتمان'}, residential:{lpd:60,label:'منازل مسکونی'}, hotel:{lpd:150,label:'هتل'}, stadium:{lpd:10,label:'ورزشگاه'}, hospital:{lpd:100,label:'بیمارستان'}, club:{lpd:40,label:'کلوب'}, factory:{lpd:30,label:'کارخانجات'}, office:{lpd:15,label:'ادارات'}, school:{lpd:15,label:'مدارس'}, dormitory:{lpd:80,label:'خوابگاه دانشجویی'}, restaurant:{lpd:30,label:'رستوران'}
+};
+
+const ESTIMATION_PROFILES = {
+  apartment: {shw: 1, lav_priv: 1, sink_kit: 1, wm: 0.2},
+  residential: {shw: 1, lav_priv: 1, sink_kit: 1, wm: 0.2},
+  hotel: {shw: 1, lav_priv: 1, sink_kit: 0.1, wm: 0.05, dw: 0.1},
+  hospital: {shw: 0.5, lav_priv: 1, sink_kit: 0.2, wm: 0.1, dw: 0.2},
+  dormitory: {shw: 1, lav_priv: 1, sink_kit: 0.1, wm: 0.1},
+  office: {lav_priv: 1, sink_kit: 0.2, pasio: 0.1},
+  school: {lav_priv: 1, sink_kit: 0.1, pasio: 0.1},
+  factory: {shw: 1, lav_priv: 1, sink_kit: 0.1, pasio: 0.2},
+  club: {shw: 1, lav_priv: 1, sink_kit: 0.1, pasio: 0.1},
+  stadium: {shw: 1, lav_priv: 1, pasio: 0.2},
+  restaurant: {sink_kit: 1, dw: 0.5, wm: 0.2, sink_pan: 0.5}
 };
 
 let dhwUnit='gph';
@@ -1955,7 +2124,6 @@ function onDhwMethod(){
   const fixFactors=$('dhw_fixture_factors');
   const info=$('dhw_method_info');
 
-  // نمایش/مخفی کردن بلوک‌ها
   if(fixBlock) fixBlock.style.display=(m==='fixture')?'block':'none';
   if(siteBlock) siteBlock.style.display=(m==='site')?'block':'none';
   if(fixFactors) fixFactors.style.display=(m==='fixture')?'grid':'none';
@@ -1993,7 +2161,6 @@ function onDhwBldg(){
     if($('site_sf')) $('site_sf').value=d.sf;
   }
 
-  // رستوران حالت خاص
   if(b==='restaurant'){
     $('dhw_units_label').textContent='تعداد پرس غذا در روز';
     if($('dhw_fixture_block')) $('dhw_fixture_block').style.display='none';
@@ -2008,7 +2175,6 @@ function onDhwBldg(){
     if(m==='site') $('dhw_site_block').style.display='block';
   }
 
-  // رندر فیکسچرها برای روش جدول مرجع
   if(m==='fixture'){
     let html='';
     Object.keys(FIX_NAMES).forEach(k=>{
@@ -2057,33 +2223,68 @@ function renderSiteFixtures(){
   let html = '';
   Object.keys(SITE_FIXTURE_GPH).forEach(k => {
     const gph = SITE_FIXTURE_GPH[k];
-    // تغییر: مقدار پیش‌فرض تعداد به 1 تغییر کرد تا اعداد GPH بلافاصله نمایش داده شوند
-    html += `<div class="fx-row" data-unit-gph="${gph}" data-key="${k}">
+    html += `<div class="fx-row editable" data-unit-gph="${gph}" data-key="${k}">
       <div class="fx-name">${FIX_NAMES[k]}</div>
-      <div class="fx-def">${gph}</div>
-      <input type="number" min="0" value="1" oninput="updateSiteTotal(this)">
+      <input type="number" class="fx-gph-input" value="${gph}" oninput="updateSiteTotal(this)">
+      <input type="number" class="fx-count-input" min="0" value="1" oninput="updateSiteTotal(this)">
       <div class="fx-u" data-total="0">0</div>
     </div>`;
   });
   container.innerHTML = html;
-  
-  // به‌روزرسانی اجباری تمام مقادیر کل بر اساس مقدار پیش‌فرض 1
-  container.querySelectorAll('input').forEach(inp => updateSiteTotal(inp));
+  container.querySelectorAll('.fx-row').forEach(row => updateSiteTotal(row.querySelector('.fx-count-input')));
+}
+
+function addCustomFixture() {
+    const container = $('dhw_site_fix');
+    if (!container) return;
+    const newRow = document.createElement('div');
+    newRow.className = 'fx-row custom-fx-row';
+    newRow.innerHTML = `
+        <input type="text" class="fx-name-input" placeholder="نام فیکسچر" style="padding:6px; font-size:.76rem; font-weight:700; color:var(--navy); border:1px solid var(--cream-3); border-radius:4px;">
+        <input type="number" class="fx-gph-input" value="0" oninput="updateSiteTotal(this)" style="padding:6px; font-size:.76rem; text-align:center; font-weight:700; color:var(--navy);">
+        <input type="number" class="fx-count-input" min="0" value="1" oninput="updateSiteTotal(this)" style="padding:6px; font-size:.76rem; text-align:center; font-weight:700; color:var(--navy);">
+        <div class="fx-u" data-total="0">0</div>
+    `;
+    container.appendChild(newRow);
+    updateSiteTotal(newRow.querySelector('.fx-count-input'));
+    toast('✓ فیکسچر دلخواه اضافه شد');
+}
+
+function estimateSiteFixtures() {
+    const b = $('dhw_bldg').value;
+    const units = n($('dhw_units').value) || 1;
+    const profile = ESTIMATION_PROFILES[b] || ESTIMATION_PROFILES.apartment;
+    
+    document.querySelectorAll('#dhw_site_fix .fx-row').forEach(row => {
+        const key = row.dataset.key;
+        if (key && profile[key] !== undefined) {
+            const countInput = row.querySelector('.fx-count-input');
+            if (countInput) {
+                countInput.value = Math.max(0, Math.round(profile[key] * units));
+                updateSiteTotal(countInput);
+            }
+        }
+    });
+    toast('✓ فیکسچرها بر اساس نوع ساختمان تخمین زده شدند');
 }
 
 function autoFillSiteDefaults() {
     document.querySelectorAll('#dhw_site_fix .fx-row').forEach(row => {
-        const input = row.querySelector('input');
-        input.value = 1;
-        updateSiteTotal(input);
+        const countInput = row.querySelector('.fx-count-input');
+        if (countInput) {
+            countInput.value = 1;
+            updateSiteTotal(countInput);
+        }
     });
     toast('✓ مقادیر پیش‌فرض اعمال شد');
 }
 
 function updateSiteTotal(input){
   const row = input.closest('.fx-row');
-  const count = parseFloat(input.value) || 0;
-  const unitGph = parseFloat(row.dataset.unitGph) || 0;
+  const gphInput = row.querySelector('.fx-gph-input');
+  const countInput = row.querySelector('.fx-count-input');
+  const unitGph = parseFloat(gphInput.value) || 0;
+  const count = parseFloat(countInput.value) || 0;
   const total = count * unitGph;
   const totalEl = row.querySelector('[data-total]');
   if(totalEl) totalEl.textContent = fmt(total, 0);
@@ -2092,11 +2293,18 @@ function updateSiteTotal(input){
 function updateSiteGrandTotal(){
   let grand = 0;
   document.querySelectorAll('#dhw_site_fix .fx-row').forEach(row => {
-    const count = parseFloat(row.querySelector('input').value) || 0;
-    const unitGph = parseFloat(row.dataset.unitGph) || 0;
+    const count = parseFloat(row.querySelector('.fx-count-input').value) || 0;
+    const unitGph = parseFloat(row.querySelector('.fx-gph-input').value) || 0;
     grand += count * unitGph;
   });
   return grand;
+}
+
+function calculateDynamicDF(totalFixtures) {
+    if (totalFixtures <= 0) return 0.35;
+    // Hunter's Curve approximation
+    let df = 1.0 - 0.3 * Math.log10(totalFixtures);
+    return Math.max(0.15, Math.min(0.8, df));
 }
 
 function calcDHWSite(){
@@ -2107,7 +2315,14 @@ function calcDHWSite(){
     return;
   }
   
-  const DF = n($('site_df').value) || 0.35;
+  // Dynamic DF
+  let totalFixtures = 0;
+  document.querySelectorAll('#dhw_site_fix .fx-row').forEach(row => {
+      totalFixtures += parseFloat(row.querySelector('.fx-count-input').value) || 0;
+  });
+  const autoDF = calculateDynamicDF(totalFixtures);
+  const DF = n($('site_df').value) || autoDF;
+  
   const SF_storage = n($('site_sf').value) || 1.25;
   const PF = n($('site_pf').value) || 1.0;
   const thot = n($('site_thot').value) || 60;
@@ -2116,7 +2331,6 @@ function calcDHWSite(){
   const dT_C = thot - tin;
   const dT_F = dT_C * 9/5;
   
-  // گام ۱ تا ۸
   const gphDemand = gphTotal * DF;
   const gphPeak = gphDemand * PF;
   const storage_gal = gphPeak * SF_storage;
@@ -2130,7 +2344,7 @@ function calcDHWSite(){
   $('dhw_results').innerHTML = `
     <div class="method-info"><strong>روش سایت pyaco.ir</strong> — محاسبه بر اساس تعداد دقیق فیکسچرها</div>
     ${g('مجموع GPH فیکسچرها', fmt(gphTotal, 0), 'GPH', 'قبل از ضرایب')}
-    ${g('ضریب تقاضا (DF)', DF, '×', 'Demand Factor')}
+    ${g('ضریب تقاضا (DF)', DF.toFixed(3), '×', `محاسبه خودکار: ${autoDF.toFixed(3)} (بر اساس ${totalFixtures} فیکسچر)`)}
     ${g('مصرف ساعتی (Demand)', fmt(gphDemand, 1), 'GPH', `${fmt(gphDemand*3.785, 1)} L/hr`)}
     ${g('ضریب پیک', PF, '×', 'Peak Factor')}
     ${g('🔥 مصرف پیک (Peak)', fmt(gphPeak, 1), 'GPH', `${fmt(gphPeak*3.785, 1)} L/hr`)}
@@ -2141,9 +2355,10 @@ function calcDHWSite(){
     ${g('🔥 بار کویل/دیگ', fmt(qFinal, 0), 'kcal/hr', `${fmt(qBTU, 0)} BTU/hr — ${hu(qFinal)}`)}
     ${g('ظرفیت ورودی دیگ', fmt(qBoiler, 0), 'kcal/hr', `با راندمان ${eff}٪`)}
     ${boilerSuggestionHTML(qFinal, 'hw')}
+    ${nPlusOneHTML(qFinal, 'kcal/hr')}
     ${fb('روش سایت pyaco.ir — گام‌به‌گام', [
       `Step 1 — مجموع GPH = Σ(count × GPH_unit) = ${fmt(gphTotal, 0)} GPH`,
-      `Step 2 — Demand = ${fmt(gphTotal, 0)} × ${DF} = ${fmt(gphDemand, 1)} GPH`,
+      `Step 2 — Demand = ${fmt(gphTotal, 0)} × ${DF.toFixed(3)} = ${fmt(gphDemand, 1)} GPH`,
       `Step 3 — Peak = ${fmt(gphDemand, 1)} × ${PF} = ${fmt(gphPeak, 1)} GPH`,
       `Step 4 — Storage = ${fmt(gphPeak, 1)} × ${SF_storage} × 3.785 = ${fmt(storage_L, 0)} L`,
       `Step 5 — Q = ${fmt(gphPeak, 1)} × 8.33 × ${dT_F.toFixed(1)} = ${fmt(qBTU, 0)} BTU/hr`,
@@ -2164,20 +2379,12 @@ function calcDHW(){
   const dT=thot-tin;
   const b=$('dhw_bldg').value;
 
-  // ============ SITE METHOD ============
-  if(m==='site'){
-    calcDHWSite();
-    return;
-  }
+  if(m==='site'){ calcDHWSite(); return; }
 
-  // ============ PER CAPITA ============
   if(m==='percapita'){
     const pc=DHW_PERCAPITA[b]||DHW_PERCAPITA.apartment;
     const occupants=units;
-    if(pc.lpd===0){
-      $('dhw_results').innerHTML=warn('برای این کاربری، روش سرانه توصیه نمی‌شود.');
-      return;
-    }
+    if(pc.lpd===0){ $('dhw_results').innerHTML=warn('برای این کاربری، روش سرانه توصیه نمی‌شود.'); return; }
     const L_per_day = pc.lpd * occupants;
     const q_day = L_per_day * dT;
     const peakHrs = n($('dhw_peak_hr').value)||2;
@@ -2193,6 +2400,7 @@ function calcDHW(){
       ${g('بار طراحی پیک',fmt(qD,0),'kcal/hr',`SF=${SF}`)}
       ${g('حجم مخزن پیشنهادی',fmt(storage_L,0),'L','۶۰٪ مصرف روزانه')}
       ${boilerSuggestionHTML(qD, 'hw')}
+      ${nPlusOneHTML(qD, 'kcal/hr')}
       ${fb('روش سرانه',[
         `V_day = ${pc.lpd} × ${occupants} = ${fmt(L_per_day,0)} L/day`,
         `Q_day = ${fmt(L_per_day,0)} × 1 × ${dT} = ${fmt(q_day,0)} kcal/day`,
@@ -2204,7 +2412,6 @@ function calcDHW(){
     return;
   }
 
-  // ============ RESTAURANT SPECIAL ============
   if(b==='restaurant'){
     const meals = units;
     const gph_peak = meals * (1.5 + 2.5) * pf * SF;
@@ -2224,6 +2431,7 @@ function calcDHW(){
       ${g('🌡️ بار کویل/دیگ',fmt(qKcal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
       ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
       ${boilerSuggestionHTML(qKcal, 'hw')}
+      ${nPlusOneHTML(qKcal, 'kcal/hr')}
       ${fb('محاسبه رستوران',[
         `GPH_peak = ${meals} × (1.5 + 2.5) × ${pf} × ${SF} = ${fmt(gph_peak,1)} GPH`,
         `Storage = ${fmt(gph_peak,1)} × 1.25 = ${fmt(storage_gal,1)} gal`,
@@ -2234,17 +2442,13 @@ function calcDHW(){
     return;
   }
 
-  // ============ FIXTURE (per-unit) ============
   const bldg=DHW_FIX[b]||DHW_FIX.apartment;
   let gphBase=0;
   document.querySelectorAll('#dhw_fix .fx-row').forEach(row=>{
     const gph=parseFloat(row.dataset.gph);
     if(gph>0) gphBase+=gph;
   });
-  if(gphBase<=0){
-    $('dhw_results').innerHTML=warn('هیچ فیکسچری انتخاب نشده است.');
-    return;
-  }
+  if(gphBase<=0){ $('dhw_results').innerHTML=warn('هیچ فیکسچری انتخاب نشده است.'); return; }
   gphBase *= units;
   const demandF=n($('dhw_div').value)||bldg.df;
   const storageF=n($('dhw_stor').value)||bldg.sf;
@@ -2269,6 +2473,7 @@ function calcDHW(){
     ${g('🌡️ بار کویل/دیگ',fmt(qFinal,0),'kcal/hr',`${fmt(qBTU,0)} BTU/hr`)}
     ${g('ΔT',dT_F.toFixed(1),'°F',`${dT.toFixed(1)}°C`)}
     ${boilerSuggestionHTML(qFinal, 'hw')}
+    ${nPlusOneHTML(qFinal, 'kcal/hr')}
     ${fb('روش جدول مرجع',[
       `GPH_total = Σ(fixture GPH) = ${fmt(gphBase,1)} GPH`,
       `GPH_peak = ${fmt(gphBase,1)} × ${demandF} × ${pf} = ${fmt(gph_peak,1)} GPH`,
@@ -2313,6 +2518,7 @@ function calcHeating(){
     ${g('بار خالص',fmt(qB_kcal),'kcal/hr',`${fmt(qB_W)} W`)}
     ${g('بار طراحی',fmt(qD_kcal),'kcal/hr',`${fmt(qD_W)} W — ${hu(qD_kcal)}`)}
     ${boilerSuggestionHTML(qD_kcal, 'hw')}
+    ${nPlusOneHTML(qD_kcal, 'kcal/hr')}
     ${chart('نمودار بار گرمایش')}
     ${fb('بار گرمایش (واحد یکپارچه W)',[
       `Q_cond = U × A × ΔT = ${U} × ${area} × ${dT} = ${fmt(qCond_W)} W`,
@@ -2365,6 +2571,7 @@ function calcPool(){
     ${g('بار نگهداری',fmt(qM_kW,2),'kW','')}
     ${g('🔥 بار کل',fmt(qT_kW,2),'kW',hu(qT_kcal))}
     ${boilerSuggestionHTML(qT_kcal, 'hw')}
+    ${nPlusOneHTML(qT_kcal, 'kcal/hr')}
     ${fb('بار استخر (ASHRAE Ch.6)',[
       `Q_preheat = ${fmt(qHU_kW,2)} kW`,
       `W_evap = ${fmt(evap,1)} kg/hr → Q_evap = ${fmt(qE_kW,2)} kW`,
@@ -2402,6 +2609,7 @@ function calcGH(){
     ${g('بار نفوذ',fmt(qI_W),'W',`${fmt(qI_W*0.86)} kcal/hr`)}
     ${g('بار طراحی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
     ${boilerSuggestionHTML(qT_kcal, 'hw')}
+    ${nPlusOneHTML(qT_kcal, 'kcal/hr')}
     ${fb('بار گلخانه',[
       `Q_cond = U × A × ΔT = ${U} × ${fmt(totA,1)} × ${dT} = ${fmt(qC_W)} W`,
       `Q_inf = 0.34 × V × ACH × ΔT = ${fmt(qI_W)} W`,
@@ -2422,7 +2630,8 @@ function calcSauna(){
     ${g('حجم اتاق',V.toFixed(2),'m³','')}
     ${g('توان',kw.toFixed(2),'kW','')}
     ${g('بخار',steam.toFixed(2),'kg/hr','')}
-    ${boilerSuggestionHTML(kw * 860, 'hw')}`;
+    ${boilerSuggestionHTML(kw * 860, 'hw')}
+    ${nPlusOneHTML(kw * 860, 'kcal/hr')}`;
   addPNG('sa_results','سونا');
 }
 
@@ -2652,7 +2861,7 @@ initQuickConsult();
 document.querySelectorAll('.cs-menu').forEach(m=>m.classList.remove('open'));
 document.querySelectorAll('.cs-trigger').forEach(t=>t.classList.remove('open'));
 
-console.log('✓ Capacity Assistant v13 loaded — 3 independent DHW methods + Smart Boiler Transfer');
+console.log('✓ Capacity Assistant v14 loaded — Smart Estimation + N+1 + Pipe Sizing');
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script>
 </body>
