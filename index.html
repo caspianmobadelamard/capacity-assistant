@@ -28,8 +28,9 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px
 .compact-tabs button{padding:8px 12px;border:1px solid #334155;background:var(--bg-dark-2);border-radius:8px;font-family:inherit;font-size:.72rem;font-weight:700;color:#CBD5E1;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;}
 .compact-tabs button.active{background:var(--green);color:#FFF;border-color:var(--green);}
 @media(max-width:520px){.compact-tabs button{padding:7px 10px;font-size:.68rem;}.compact-tabs button .lbl{display:none;}.compact-tabs button .ic{font-size:1.05rem;}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;}
-.card::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--green),var(--orange),var(--green));}
+/* ✅ اصلاح: overflow حذف شد تا منوی سلکت‌های سفارشی بیرون نزنه */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow-md);position:relative;}
+.card::before{content:"";position:absolute;top:-1px;left:-1px;right:-1px;height:3px;background:linear-gradient(90deg,var(--green),var(--orange),var(--green));border-radius:16px 16px 0 0;pointer-events:none;z-index:1;}
 .card h2{font-size:.98rem;font-weight:800;color:var(--text);margin-bottom:6px;padding-left:42px;}
 .card .hint{font-size:.72rem;color:var(--text-soft);margin-bottom:14px;}
 .card-reset{position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;background:var(--rose-light);border:1.5px solid rgba(225,29,72,.3);color:var(--rose);cursor:pointer;font-size:14px;font-family:inherit;z-index:5;}
@@ -58,24 +59,22 @@ input[readonly]{background:var(--card-2);}
 @media(max-width:640px){.row3,.row4{grid-template-columns:1fr 1fr;}}
 @media(max-width:400px){.row3,.row4{grid-template-columns:1fr;}}
 .cs-wrap{position:relative;width:100%;}
-.cs-trigger{width:100%;padding:11px 13px;padding-left:38px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:.85rem;background:#FFF;cursor:pointer;display:flex;align-items:center;justify-content:space-between;position:relative;min-height:42px;}
+.cs-trigger{width:100%;padding:11px 13px;padding-left:38px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:.85rem;background:#FFF;cursor:pointer;display:flex;align-items:center;justify-content:space-between;position:relative;min-height:42px;transition:border-color .15s;}
+.cs-trigger:hover{border-color:var(--green);}
+.cs-trigger.open{border-color:var(--green);box-shadow:0 0 0 3px rgba(16,185,129,.15);}
 .cs-trigger .cs-label{flex:1;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.cs-trigger .cs-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--green);}
-.cs-menu{position:absolute;top:calc(100% + 5px);right:0;left:0;background:#FFF;border:1.5px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);max-height:320px;overflow-y:auto;z-index:1000;display:none;padding:6px;}
+.cs-trigger .cs-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--green);transition:transform .2s;}
+.cs-trigger.open .cs-icon{transform:translateY(-50%) rotate(180deg);}
+.cs-menu{position:absolute;top:calc(100% + 5px);right:0;left:0;background:#FFF;border:1.5px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);max-height:320px;overflow-y:auto;z-index:9999;display:none;padding:6px;min-width:100%;}
 .cs-menu.open{display:block;}
-.cs-opt{padding:10px 12px;border-radius:6px;cursor:pointer;font-size:.82rem;color:var(--text);}
+.cs-opt{padding:10px 12px;border-radius:6px;cursor:pointer;font-size:.82rem;color:var(--text);transition:background .1s;}
 .cs-opt:hover{background:var(--card-2);}
 .cs-opt.selected{background:var(--green-light);color:var(--green-dark);font-weight:700;}
-.qc-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:5px;margin-bottom:12px;}
-.qc-chip{padding:8px 6px;border:1.5px solid var(--border);background:#FFF;border-radius:8px;font-family:inherit;font-size:.66rem;font-weight:700;color:var(--text-soft);cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;}
-.qc-chip.active{background:var(--green);color:#FFF;border-color:var(--green);}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;background:var(--green);color:#FFF;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:.88rem;font-weight:800;cursor:pointer;width:100%;}
 .btn:hover{background:var(--green-dark);}
 .btn.orange{background:var(--orange);}
 .btn.orange:hover{background:var(--orange-dark);}
 .btn.outline{background:transparent;border:1.5px solid var(--border);color:var(--text);}
-.calc-settings{border:1.5px solid var(--border);background:var(--card-2);border-radius:var(--radius-sm);padding:12px 14px;margin:0 0 14px;}
-.calc-settings legend{font-size:.74rem;font-weight:800;color:var(--green-dark);padding:0 10px;background:var(--card);border-radius:5px;}
 .gauge{background:var(--card-2);border:1px solid var(--border);border-right:4px solid var(--green);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:10px;}
 .gauge .k{font-size:.72rem;color:var(--text-soft);font-weight:700;margin-bottom:3px;}
 .gauge .v{font-size:1.25rem;font-weight:800;color:var(--text);}
@@ -138,9 +137,6 @@ input[readonly]{background:var(--card-2);}
 .mode-btn{padding:12px 14px;border:2px solid var(--border);background:#FFF;border-radius:var(--radius-sm);font-family:inherit;font-size:.78rem;font-weight:700;color:var(--text-soft);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;}
 .mode-btn .ic{font-size:1.3rem;}
 .mode-btn.active{background:var(--green);color:#FFF;border-color:var(--green);}
-.combined-box{background:var(--orange-light);border:1.5px solid rgba(249,115,22,.4);border-radius:var(--radius-sm);padding:14px;margin-top:12px;}
-.combined-box label.combined-lbl{display:flex;align-items:center;gap:10px;font-size:.84rem;font-weight:800;color:var(--orange-dark);cursor:pointer;}
-.combined-box input[type="checkbox"]{width:18px;height:18px;accent-color:var(--orange);}
 .warn-box{background:var(--rose-light);border:1px solid rgba(225,29,72,.35);border-right:4px solid var(--rose);border-radius:var(--radius-sm);padding:12px 14px;font-size:.76rem;color:#881337;margin-top:10px;}
 .warn-box::before{content:"⚠️ ";}
 .nplus1-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px;}
@@ -148,27 +144,16 @@ input[readonly]{background:var(--card-2);}
 .nplus1-item .n-title{font-weight:800;}
 .nplus1-item .n-spec{color:var(--text-soft);font-size:.72rem;}
 .nplus1-item .n-badge{background:var(--amber);color:#FFF;padding:3px 10px;border-radius:99px;font-weight:800;font-size:.66rem;}
-/* Fixture table */
 .fx-table{background:#FFF;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-top:10px;}
 .fx-thead{display:grid;grid-template-columns:1.4fr 1fr 1fr 0.7fr 1fr 0.8fr 0.6fr;gap:6px;padding:10px 12px;background:var(--bg-dark-2);color:#FFF;font-size:.68rem;font-weight:700;text-align:center;}
 .fx-thead>*:first-child{text-align:right;}
-.fx-body-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 0.7fr 1fr 0.8fr 0.6fr;gap:6px;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;text-align:center;transition:background .2s;}
+.fx-body-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 0.7fr 1fr 0.8fr 0.6fr;gap:6px;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;text-align:center;}
 .fx-body-row:last-child{border-bottom:none;}
-.fx-body-row.manual{background:linear-gradient(90deg,rgba(249,115,22,.06),rgba(249,115,22,.02));}
 .fx-body-row .fx-name-cell{text-align:right;font-weight:700;font-size:.76rem;color:var(--text);}
 .fx-body-row input{padding:6px 8px;font-size:.76rem;text-align:center;font-weight:700;border-radius:6px;border:1.5px solid var(--border);}
 .fx-body-row input.default-gph,.fx-body-row input.default-gpm{background:var(--blue-light);border-color:rgba(2,132,199,.4);color:#075985;}
-.fx-body-row input.manual-gph,.fx-body-row input.manual-gpm{background:var(--orange-light);border-color:var(--orange);color:var(--orange-dark);}
-.fx-body-row input.count-input{background:#FFF;border-color:var(--border);}
 .fx-body-row .fx-total{font-weight:800;color:var(--green-dark);font-size:.78rem;}
-.fx-body-row .fx-status{font-size:.62rem;font-weight:800;padding:3px 6px;border-radius:99px;}
-.fx-body-row .fx-status.default{background:var(--blue-light);color:#075985;}
-.fx-body-row .fx-status.manual{background:var(--orange-light);color:var(--orange-dark);}
-.fx-body-row .fx-actions{display:flex;gap:3px;justify-content:center;}
-.fx-body-row .fx-actions button{padding:3px 5px;font-size:.62rem;border-radius:5px;border:1px solid var(--border);background:#FFF;cursor:pointer;font-family:inherit;}
-.fx-body-row .fx-actions button:hover{background:var(--card-2);}
-@media(max-width:640px){.fx-thead,.fx-body-row{grid-template-columns:1.4fr 0.9fr 0.9fr 0.6fr 0.9fr 0.7fr 0.5fr;font-size:.64rem;padding:6px 8px;gap:4px;}.fx-body-row input{padding:4px 6px;font-size:.7rem;}}
-@media(max-width:480px){.fx-thead,.fx-body-row{grid-template-columns:1.2fr 0.7fr 0.7fr 0.5fr 0.7fr;font-size:.6rem;}.fx-body-row .fx-actions,.fx-body-row .fx-status{display:none;}}
+.fx-body-row .fx-status{font-size:.62rem;font-weight:800;padding:3px 6px;border-radius:99px;background:var(--blue-light);color:#075985;}
 .fx-toolbar{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
 .fx-toolbar button{flex:1;min-width:130px;padding:10px 14px;border-radius:8px;font-family:inherit;font-size:.78rem;font-weight:800;cursor:pointer;border:none;}
 .fx-toolbar .btn-reset{background:var(--blue);color:#FFF;}
@@ -180,7 +165,6 @@ input[readonly]{background:var(--card-2);}
 .gpm-gph-row .field{margin-bottom:0;}
 .gpm-gph-row label{font-size:.66rem;color:#075985;}
 .gpm-gph-row input{background:#FFF;border-color:rgba(2,132,199,.4);font-weight:800;text-align:center;}
-/* v23 additions */
 .consumer-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 0.6fr;gap:6px;padding:8px 12px;border-bottom:1px solid var(--border);align-items:center;}
 .consumer-row:last-child{border-bottom:none;}
 .consumer-row .c-name{font-weight:700;font-size:.76rem;}
@@ -197,11 +181,6 @@ input[readonly]{background:var(--card-2);}
 .model-card.dryback{background:var(--blue-light);border-color:var(--blue);}
 .model-card.wetback{background:var(--green-light);border-color:var(--green);}
 .model-card.firebox{background:var(--amber-light);border-color:var(--amber);}
-.pressure-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.74rem;}
-.pressure-table th{background:var(--bg-dark-2);color:#FFF;padding:8px 10px;text-align:right;}
-.pressure-table td{padding:8px 10px;border-bottom:1px solid var(--border);}
-.pressure-table tr:nth-child(even){background:var(--card-2);}
-.pressure-table .hl{color:var(--green-dark);font-weight:800;}
 .cast-table{width:100%;border-collapse:collapse;font-size:.72rem;margin-top:10px;}
 .cast-table th{background:var(--orange);color:#FFF;padding:7px 8px;text-align:right;}
 .cast-table td{padding:6px 8px;border-bottom:1px solid var(--border);}
@@ -236,7 +215,7 @@ input[readonly]{background:var(--card-2);}
 
 <main>
 
-<!-- ==================== BOILERS ==================== -->
+<!-- BOILERS -->
 <section id="panel-boilers" class="panel active">
 <nav class="subtabs" data-parent="boilers">
 <button class="subtab-btn active" data-subpanel="steam-consumers">🔥 مصرف‌کننده‌ها</button>
@@ -245,7 +224,6 @@ input[readonly]{background:var(--card-2);}
 <button class="subtab-btn" data-subpanel="steam-accessories">تجهیزات جانبی</button>
 </nav>
 
-<!-- steam-consumers -->
 <div id="subpanel-steam-consumers" class="subpanel active">
 <div class="card">
 <span class="badge">Steam Consumers</span>
@@ -317,7 +295,6 @@ input[readonly]{background:var(--card-2);}
 </div>
 </div>
 
-<!-- steam-quick -->
 <div id="subpanel-steam-quick" class="subpanel">
 <div class="card">
 <button class="card-reset" onclick="resetCard(event,'sq')">↺</button>
@@ -350,7 +327,6 @@ input[readonly]{background:var(--card-2);}
 </div>
 </div>
 
-<!-- steam-trap -->
 <div id="subpanel-steam-trap" class="subpanel">
 <div class="card">
 <span class="badge">Steam Trap</span>
@@ -365,7 +341,6 @@ input[readonly]{background:var(--card-2);}
 </div>
 </div>
 
-<!-- steam-accessories -->
 <div id="subpanel-steam-accessories" class="subpanel">
 <div class="card">
 <span class="badge">Steam Accessories</span>
@@ -387,7 +362,7 @@ input[readonly]{background:var(--card-2);}
 </div>
 </section>
 
-<!-- ==================== HW BOILERS ==================== -->
+<!-- HW BOILERS -->
 <section id="panel-hwboilers" class="panel">
 <nav class="subtabs" data-parent="hwboilers">
 <button class="subtab-btn active" data-subpanel="hw-tp">سه‌پاس</button>
@@ -466,7 +441,7 @@ input[readonly]{background:var(--card-2);}
 <option value="S11">اس ۱۱ (S11)</option>
 <option value="B">مدل B</option>
 </select></div></div>
-<div class="field"><label>تعداد پره</label><input type="number" id="cast_sections" value="9" min="4" max="20" oninput="onCastSectionsChange()"></div>
+<div class="field"><label>تعداد پره</label><input type="number" id="cast_sections" value="9" min="4" max="20"></div>
 <div class="field"><label>ظرفیت هر پره kcal/hr</label><input type="number" id="cast_per_section" value="30960"></div>
 </div>
 
@@ -499,7 +474,7 @@ input[readonly]{background:var(--card-2);}
 </div>
 </section>
 
-<!-- ==================== APPLICATIONS ==================== -->
+<!-- APPLICATIONS -->
 <section id="panel-applications" class="panel">
 <nav class="subtabs" data-parent="applications">
 <button class="subtab-btn active" data-subpanel="app-dhw">🚿 آبگرم مصرفی</button>
@@ -509,7 +484,6 @@ input[readonly]{background:var(--card-2);}
 <button class="subtab-btn" data-subpanel="app-sauna">🧖 سونا</button>
 </nav>
 
-<!-- ======== DHW ======== -->
 <div id="subpanel-app-dhw" class="subpanel active">
 <div class="card">
 <button class="card-reset" onclick="resetDHW()">↺</button>
@@ -539,19 +513,18 @@ input[readonly]{background:var(--card-2);}
 <div class="field"><label>ساعت پیک</label><input type="number" id="dhw_peak_hr" value="2"></div>
 </div>
 
-<!-- روش مهندسی (واحد) -->
 <div id="dhw_manual_block">
 <div class="notice blue"><strong>روش مهندسی:</strong> منبع ذخیره بر اساس تعداد واحد + ظرفیت دیگ آبگرم مصرفی.</div>
 
 <div class="row3">
 <div class="field"><label>حجم منبع هر واحد</label>
-<div class="cs-wrap"><select id="dhw_tank_per_unit" data-cs onchange="updateDhwTankHint()">
+<div class="cs-wrap"><select id="dhw_tank_per_unit" data-cs>
 <option value="150">۱۵۰ لیتر (بدون وان)</option>
 <option value="175" selected>۱۷۵ لیتر (بدون وان)</option>
 <option value="200">۲۰۰ لیتر (با وان)</option>
 </select></div></div>
 <div class="field"><label>نوع منبع</label>
-<div class="cs-wrap"><select id="dhw_tank_type" data-cs onchange="updateDhwTankHint()">
+<div class="cs-wrap"><select id="dhw_tank_type" data-cs>
 <option value="coil" selected>کویلی</option>
 <option value="spiral">اسپیرال (۲۰٪ کمتر)</option>
 </select></div></div>
@@ -586,7 +559,6 @@ input[readonly]{background:var(--card-2);}
 </div>
 </div>
 
-<!-- روش ASPE (فیکسچر) -->
 <div id="dhw_site_block" style="display:none;">
 <div class="notice blue"><strong>روش ASPE:</strong> مجموع GPH فیکسچرها × ضریب تقاضا × ضریب ذخیره.</div>
 <div class="fx-table">
@@ -621,7 +593,6 @@ input[readonly]{background:var(--card-2);}
 </div>
 </div>
 
-<!-- ======== HEATING ======== -->
 <div id="subpanel-app-heating" class="subpanel">
 <div class="card">
 <button class="card-reset" onclick="resetHeating()">↺</button>
@@ -674,7 +645,6 @@ input[readonly]{background:var(--card-2);}
 <div class="field"><label>دمای داخل °C</label><input type="number" id="ht_tin" value="22" readonly></div>
 </div>
 
-<!-- ASHRAE-specific inputs -->
 <div id="ht_ashrae_block" style="display:none;">
 <div class="row4">
 <div class="field"><label>ارتفاع m</label><input type="number" id="ht_h" value="3"></div>
@@ -694,7 +664,6 @@ input[readonly]{background:var(--card-2);}
 </div>
 </div>
 
-<!-- ======== POOL ======== -->
 <div id="subpanel-app-pool" class="subpanel">
 <div class="card">
 <button class="card-reset" onclick="resetPool()">↺</button>
@@ -712,7 +681,7 @@ input[readonly]{background:var(--card-2);}
 <div class="field"><label>دمای ورودی آب °C</label><input type="number" id="pl_tin" value="8"></div>
 <div class="field"><label>ΔT پیش‌گرمایش (°C)</label><input type="number" id="pl_dt" value="20"></div>
 <div class="field"><label>زمان پیش‌گرمایش</label>
-<div class="cs-wrap"><select id="pl_preheat" data-cs>
+<div class="cs-wrap"><select id="pl_preheat" data-cs onchange="onPreheatChange()">
 <option value="4">۴ ساعته</option>
 <option value="6">۶ ساعته</option>
 <option value="8" selected>۸ ساعته</option>
@@ -743,7 +712,6 @@ input[readonly]{background:var(--card-2);}
 </div>
 </div>
 
-<!-- ======== GREENHOUSE ======== -->
 <div id="subpanel-app-greenhouse" class="subpanel">
 <div class="card">
 <button class="card-reset" onclick="resetGH()">↺</button>
@@ -776,7 +744,6 @@ input[readonly]{background:var(--card-2);}
 </div>
 </div>
 
-<!-- ======== SAUNA ======== -->
 <div id="subpanel-app-sauna" class="subpanel">
 <div class="card">
 <button class="card-reset" onclick="resetSauna()">↺</button>
@@ -813,7 +780,7 @@ input[readonly]{background:var(--card-2);}
 </div>
 </section>
 
-<!-- ==================== TANKS ==================== -->
+<!-- TANKS -->
 <section id="panel-tanks" class="panel">
 <nav class="subtabs" data-parent="tanks">
 <button class="subtab-btn active" data-subpanel="tk-open">انبساط باز</button>
@@ -858,7 +825,7 @@ input[readonly]{background:var(--card-2);}
 </div>
 </section>
 
-<!-- ==================== TREATMENT ==================== -->
+<!-- TREATMENT -->
 <section id="panel-treatment" class="panel">
 <nav class="subtabs" data-parent="treatment">
 <button class="subtab-btn active" data-subpanel="tr-sf">سختی‌گیر</button>
@@ -890,7 +857,7 @@ input[readonly]{background:var(--card-2);}
 </div>
 </section>
 
-<!-- ==================== ACCESSORIES ==================== -->
+<!-- ACCESSORIES -->
 <section id="panel-accessories" class="panel">
 <nav class="subtabs" data-parent="accessories">
 <button class="subtab-btn active" data-subpanel="ac-hy">هیدرولیک</button>
@@ -928,7 +895,7 @@ input[readonly]{background:var(--card-2);}
 </div>
 </section>
 
-<!-- ==================== CALCULATOR ==================== -->
+<!-- CALCULATOR -->
 <section id="panel-calculator" class="panel">
 <div class="card">
 <h2>🧮 ماشین‌حساب تبدیل</h2>
@@ -953,7 +920,7 @@ input[readonly]{background:var(--card-2);}
 </section>
 
 </main>
-<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — v23</p>
+<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — v23-fix1</p>
 </div>
 <div class="toast" id="toast"></div>
 <div class="modal-overlay" id="modal-history"><div class="modal"><div class="modal-header"><h3>📜 تاریخچه</h3><button class="modal-close" onclick="closeModal('modal-history')">✕</button></div><div class="modal-body" id="history-body"></div></div></div>
@@ -970,20 +937,18 @@ const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('show');setTi
 const hu=k=>`${fmt(k*1.163/1000)} kW · ${fmt(k*3.968)} BTU/hr`;
 const fb=(t,lines,ref)=>`<div class="formula"><div class="ft">📐 ${t}</div>${lines.filter(Boolean).map(l=>`<div class="fl">${l}</div>`).join('')}<div class="ref">📚 ${ref}</div></div>`;
 
-let lastHeatingLoad = 0;
-
-/* ==================== FIXTURES ==================== */
+/* ==================== FIXTURES (ASPE) ==================== */
 const FIXTURES_DEFAULT = [
-    {id:'shw', name:'دوش', def_gph:100, def_gpm:1.67, count:0, gph:100, gpm:1.67, gphManual:false, gpmManual:false},
-    {id:'bath', name:'وان حمام', def_gph:20, def_gpm:0.33, count:0, gph:20, gpm:0.33, gphManual:false, gpmManual:false},
-    {id:'lav_priv', name:'دستشویی خصوصی', def_gph:3, def_gpm:0.05, count:0, gph:3, gpm:0.05, gphManual:false, gpmManual:false},
-    {id:'lav_pub', name:'دستشویی عمومی', def_gph:5, def_gpm:0.08, count:0, gph:5, gpm:0.08, gphManual:false, gpmManual:false},
-    {id:'sink_kit', name:'سینک ظرفشویی', def_gph:15, def_gpm:0.25, count:0, gph:15, gpm:0.25, gphManual:false, gpmManual:false},
-    {id:'sink_pan', name:'سینک آبدارخانه', def_gph:10, def_gpm:0.17, count:0, gph:10, gpm:0.17, gphManual:false, gpmManual:false},
-    {id:'dw', name:'ماشین ظرفشویی', def_gph:20, def_gpm:0.33, count:0, gph:20, gpm:0.33, gphManual:false, gpmManual:false},
-    {id:'sink_lau', name:'سینک رختشویی', def_gph:25, def_gpm:0.42, count:0, gph:25, gpm:0.42, gphManual:false, gpmManual:false},
-    {id:'wm', name:'ماشین رختشویی', def_gph:75, def_gpm:1.25, count:0, gph:75, gpm:1.25, gphManual:false, gpmManual:false},
-    {id:'pasio', name:'سایر / پیسوار', def_gph:3, def_gpm:0.05, count:0, gph:3, gpm:0.05, gphManual:false, gpmManual:false}
+    {id:'shw', name:'دوش', def_gph:100, def_gpm:1.67, count:0, gph:100, gpm:1.67},
+    {id:'bath', name:'وان حمام', def_gph:20, def_gpm:0.33, count:0, gph:20, gpm:0.33},
+    {id:'lav_priv', name:'دستشویی خصوصی', def_gph:3, def_gpm:0.05, count:0, gph:3, gpm:0.05},
+    {id:'lav_pub', name:'دستشویی عمومی', def_gph:5, def_gpm:0.08, count:0, gph:5, gpm:0.08},
+    {id:'sink_kit', name:'سینک ظرفشویی', def_gph:15, def_gpm:0.25, count:0, gph:15, gpm:0.25},
+    {id:'sink_pan', name:'سینک آبدارخانه', def_gph:10, def_gpm:0.17, count:0, gph:10, gpm:0.17},
+    {id:'dw', name:'ماشین ظرفشویی', def_gph:20, def_gpm:0.33, count:0, gph:20, gpm:0.33},
+    {id:'sink_lau', name:'سینک رختشویی', def_gph:25, def_gpm:0.42, count:0, gph:25, gpm:0.42},
+    {id:'wm', name:'ماشین رختشویی', def_gph:75, def_gpm:1.25, count:0, gph:75, gpm:1.25},
+    {id:'pasio', name:'سایر / پیسوار', def_gph:3, def_gpm:0.05, count:0, gph:3, gpm:0.05}
 ];
 let siteFixtures = JSON.parse(JSON.stringify(FIXTURES_DEFAULT));
 
@@ -999,8 +964,8 @@ function renderSiteFixtures(){
             <input type="number" class="default-gpm" value="${f.gpm}" step="0.01" oninput="onSiteGpm(${i}, this.value)">
             <input type="number" class="count-input" min="0" value="${f.count}" oninput="onSiteCount(${i}, this.value)">
             <div class="fx-total">${fmt(total,0)}</div>
-            <div class="fx-status default">ASPE</div>
-            <div class="fx-actions"></div>
+            <div class="fx-status">ASPE</div>
+            <div></div>
         </div>`;
     }).join('');
     updateSiteTotals();
@@ -1011,11 +976,9 @@ function onSiteCount(i,v){ siteFixtures[i].count=n(v); renderSiteFixtures(); }
 function getSiteTotalGph(){ return siteFixtures.reduce((s,f)=>s+f.gph*f.count,0); }
 function updateSiteTotals(){
     const gph = getSiteTotalGph();
-    const gpm = gph/60;
-    const lhr = gph*3.785;
     if($('dhw_total_gph')) $('dhw_total_gph').value = fmt(gph,1);
-    if($('dhw_total_gpm')) $('dhw_total_gpm').value = fmt(gpm,2);
-    if($('dhw_total_lhr')) $('dhw_total_lhr').value = fmt(lhr,0);
+    if($('dhw_total_gpm')) $('dhw_total_gpm').value = fmt(gph/60,2);
+    if($('dhw_total_lhr')) $('dhw_total_lhr').value = fmt(gph*3.785,0);
 }
 function resetDHW(){onDhwMethod();toast('✓');}
 
@@ -1101,46 +1064,35 @@ function addSteamConsumer(){
     steamConsumers.push({name:'مصرف‌کننده جدید', flow:100, hours:8, count:1, id:Date.now()});
     renderSteamConsumers();
 }
-
 function onPressureChange(){
     const p = n($('sc_pressure').value);
     const temps = {6:159, 8:170, 10:180, 13:194, 16:201, 20:212, 25:224};
-    const t = temps[p] || 180;
-    toast(`فشار ${p} bar → دمای اشباع ${t}°C`);
+    toast(`فشار ${p} bar → دمای اشباع ${temps[p] || 180}°C`);
 }
-
+function selectSteamBoilerModel(flow){
+    const result = {dryback:null, wetback:null, firebox:null};
+    if(flow <= 5000) result.firebox = flow;
+    if(flow >= 1000 && flow <= 25000) result.wetback = flow;
+    if(flow > 500 && flow <= 20000) result.dryback = flow;
+    return result;
+}
 function calcSteamConsumers(){
     const sf = n($('sc_sf').value) || 1.2;
     const eff = n($('sc_eff').value) || 88;
     const pressure = n($('sc_pressure').value) || 10;
     const fuel = $('sc_fuel').value;
-
     if(!steamConsumers.length){ $('sc_results').innerHTML = warn('حداقل یک مصرف‌کننده وارد کنید.'); return; }
-
-    // محاسبه مجموع
     let totalFlow = 0;
-    let details = '';
-    steamConsumers.forEach(c => {
-        const flow = c.flow * c.count;
-        totalFlow += flow;
-        details += `  ${c.name}: ${fmt(c.flow,1)} × ${c.count} = ${fmt(flow,1)} kg/h\n`;
-    });
-
-    const designFlow = totalFlow * 1.1 * sf; // ۱۰٪ تلفات توزیع + SF
-    const heatLoad = designFlow * 539; // kcal/hr (تبخیر)
+    steamConsumers.forEach(c => { totalFlow += c.flow * c.count; });
+    const designFlow = totalFlow * 1.1 * sf;
+    const heatLoad = designFlow * 539;
     const burnerInput = heatLoad / (eff/100);
     const fuelRates = {gas: 8500, diesel: 10200, mazut: 9600};
     const fuelRate = burnerInput / fuelRates[fuel];
-
-    // انتخاب مدل دیگ
-    let modelInfo = selectSteamBoilerModel(designFlow, pressure);
-
-    // فشار و دمای اشباع
+    let modelInfo = selectSteamBoilerModel(designFlow);
     const satTemps = {6:159, 8:170, 10:180, 13:194, 16:201, 20:212, 25:224};
     const satT = satTemps[pressure] || 180;
-
-    // تجهیزات جانبی
-    const blowdown = designFlow * 250 / (3500 - 250); // TDS محاسبه
+    const blowdown = designFlow * 250 / (3500 - 250);
     const softenerFlow = designFlow * 1.2;
     const deaeratorCap = designFlow * 1.15;
     const deaeratorTank = designFlow / 3;
@@ -1168,32 +1120,26 @@ function calcSteamConsumers(){
             </div>
         </div>`;
     }
-
     $('sc_results').innerHTML = `
         ${boilerHighlightHTML(heatLoad, 'hw')}
         <div class="notice green"><strong>✓ ظرفیت پیشنهادی دیگ: ${fmt(designFlow)} kg/h بخار</strong></div>
-
         <div class="row3" style="margin-top:12px;">
             ${g('مجموع مصرف', fmt(totalFlow,1), 'kg/h', 'مجموع مصرف‌کننده‌ها')}
             ${g('ظرفیت طراحی', fmt(designFlow), 'kg/h', `× ۱.۱ تلفات × ${sf} SF`)}
             ${g('فشار کاری', pressure, 'bar', `دمای اشباع ${satT}°C`)}
         </div>
-
         <span class="badge" style="margin-top:12px;">🔥 مدل دیگ پیشنهادی</span>
         ${modelsHTML}
-
         <span class="badge" style="margin-top:12px;">🔥 مشعل و سوخت</span>
         ${g('بار حرارتی', fmt(heatLoad), 'kcal/hr', hu(heatLoad))}
         ${g('ورودی مشعل', fmt(burnerInput), 'kcal/hr', `${fmt(burnerKw,1)} kW — راندمان ${eff}%`)}
         ${g('مصرف سوخت', fmt(fuelRate,1), fuel === 'gas' ? 'm³/hr' : 'L/hr', '')}
-
         <span class="badge" style="margin-top:12px;">⚙️ تجهیزات جانبی</span>
         ${g('بلودان', fmt(blowdown,1), 'kg/h', `${fmt(blowdown/designFlow*100,1)}٪`)}
         ${g('سختی‌گیر', fmt(softenerFlow), 'kg/h', '۱.۲ برابر ظرفیت دیگ')}
         ${g('دیاریتور', fmt(deaeratorCap), 'kg/h', deaeratorCap > 6000 ? 'اجباری (≥ ۶ ton/h)' : 'اختیاری')}
         ${g('مخزن دیاریتور', fmt(deaeratorTank), 'kg', '۱/۳ ظرفیت ساعتی')}
         ${g('مخزن کندانس', fmt(condensateTank), 'kg', '۱/۶ ظرفیت ساعتی (۱۰ دقیقه)')}
-
         ${nPlusOneHTML(heatLoad, 'kcal/hr')}
         ${fb('محاسبه دیگ بخار بر اساس مصرف‌کننده', [
             `مجموع مصرف = ${fmt(totalFlow,1)} kg/h`,
@@ -1202,19 +1148,8 @@ function calcSteamConsumers(){
             `ورودی مشعل = ${fmt(heatLoad)} ÷ ${(eff/100).toFixed(2)} = ${fmt(burnerInput)} kcal/hr`,
             `بلودان = ${fmt(designFlow)} × 250 / (3500 - 250) = ${fmt(blowdown,1)} kg/h`
         ], 'ASME / ASHRAE / Fulton')}`;
-
     addPNG('sc_results', 'دیگ بخار');
     saveToHistory('دیگ بخار — ' + $('sc_type').value);
-}
-
-function selectSteamBoilerModel(flow, pressure){
-    // ایستاده: ۱۰۰-۵۰۰ | فایرباکس: ۵۰-۵۰۰۰ | وت‌بک: ۱۰۰۰-۲۵۰۰۰
-    const result = {dryback:null, wetback:null, firebox:null};
-    if(flow <= 500) result.stand = flow;
-    if(flow <= 5000) result.firebox = flow;
-    if(flow >= 1000 && flow <= 25000) result.wetback = flow;
-    if(flow > 500 && flow <= 20000) result.dryback = flow;
-    return result;
 }
 
 /* ==================== STEAM QUICK ==================== */
@@ -1244,13 +1179,11 @@ function calcSteamQuick(){
 /* ==================== STEAM ACCESSORIES ==================== */
 function calcSteamAccessories(){
     const cap = n($('acc_cap').value);
-    const p = n($('acc_p').value);
     const cond = n($('acc_cond').value) / 100;
     const tdsFeed = n($('acc_tds_feed').value);
     const tdsMax = n($('acc_tds_max').value);
     const hardness = n($('acc_hard').value);
-
-    const makeup = cap * (1 - cond) * 1.1; // آب جبرانی
+    const makeup = cap * (1 - cond) * 1.1;
     const blowdown = cap * tdsFeed / (tdsMax - tdsFeed);
     const softenerCap = makeup + blowdown;
     const softenerFlow = softenerCap * 1.2;
@@ -1259,11 +1192,8 @@ function calcSteamAccessories(){
     const condensateTank = cap / 6;
     const burnerInput = cap * 539 / 0.88;
     const burnerKw = burnerInput * 1.163 / 1000;
-
-    // رزین سختی‌گیر
     const dailyWater = softenerFlow * 24;
     const resinVol = (dailyWater * hardness / 17.1) / 30000 * 1.1;
-
     $('acc_results').innerHTML = `
         <div class="notice green"><strong>✓ تجهیزات جانبی برای دیگ ${fmt(cap)} kg/h</strong></div>
         ${g('آب جبرانی', fmt(makeup), 'kg/h', `کندانس ${cond*100}٪`)}
@@ -1293,7 +1223,6 @@ function tankSelectionHTML(storageL, qDesign, thot, tin, type){
     const D = type === 'spiral' ? 0.020 : 0.016;
     const L = A / (Math.PI * D);
     const label = type === 'spiral' ? 'اسپیرال' : 'کویلی';
-
     return `
     <div class="tank-card ${type === 'spiral' ? 'spiral' : 'coil'}" style="margin-top:12px;">
         <h4>🌀 منبع ${label}</h4>
@@ -1340,10 +1269,8 @@ function poolHXHTML(qLoad,thot_pool,thot_boiler,U_hx){
     const dT1=T_hi-T_co,dT2=T_ho-T_ci;
     let lmtd=Math.abs(dT1-dT2)<0.01?dT1:(dT1-dT2)/Math.log(dT1/dT2);
     const A=qLoad/(U_hx*lmtd);
-    // تعداد لوله‌ها
     const D_tube = 0.016, L_tube = 3.0;
     const tubes = Math.ceil(A / (Math.PI * D_tube * L_tube));
-
     return `
     <div class="tank-card hx" style="margin-top:12px;">
         <h4>🔥 مبدل حرارتی پوسته و لوله (کویل مسی)</h4>
@@ -1357,10 +1284,10 @@ function poolHXHTML(qLoad,thot_pool,thot_boiler,U_hx){
     </div>`;
 }
 function poolFilterHTML(volumeM3){
-    const turnover = 4; // ساعت
+    const turnover = 4;
     const baseFlow = volumeM3 / turnover;
     const designFlow = baseFlow * 1.2;
-    const filtRate = 40; // m/h
+    const filtRate = 40;
     const filtArea = designFlow / filtRate;
     const filtDia = Math.sqrt(4 * filtArea / Math.PI);
     return `
@@ -1461,45 +1388,83 @@ function addPNG(id,title){
     el.appendChild(tb);
 }
 
-/* ==================== Custom Select ==================== */
+/* ==================== ✅ CUSTOM SELECT (بازنویسی‌شده) ==================== */
 function enhanceSelects(){
     document.querySelectorAll('select[data-cs]').forEach(sel=>{
-        if(sel.dataset.enhanced)return;
-        sel.dataset.enhanced='1';
-        const wrap=sel.closest('.cs-wrap')||sel.parentElement;
-        sel.style.display='none';
-        const cur=sel.options[sel.selectedIndex]?.text||'—';
-        const csWrap=document.createElement('div');csWrap.className='cs-wrap';
-        csWrap.innerHTML=`<div class="cs-trigger"><span class="cs-label">${cur}</span><span class="cs-icon"><svg viewBox="0 0 12 8" width="10" height="10"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none"/></svg></span></div><div class="cs-menu">${Array.from(sel.options).map(o=>`<div class="cs-opt${o.selected?' selected':''}" data-val="${o.value}">${o.text}</div>`).join('')}</div>`;
-        wrap.appendChild(csWrap);
-        const trigger=csWrap.querySelector('.cs-trigger');
-        const menu=csWrap.querySelector('.cs-menu');
-        const label=trigger.querySelector('.cs-label');
-        trigger.onclick=e=>{
-            e.stopPropagation();
-            const wasOpen=menu.classList.contains('open');
-            document.querySelectorAll('.cs-menu.open').forEach(m=>m.classList.remove('open'));
-            document.querySelectorAll('.cs-trigger.open').forEach(t=>t.classList.remove('open'));
-            if(!wasOpen){trigger.classList.add('open');menu.classList.add('open');}
-        };
-        menu.querySelectorAll('.cs-opt').forEach(opt=>{
-            opt.onclick=e=>{
-                e.stopPropagation();
-                menu.querySelectorAll('.cs-opt').forEach(o=>o.classList.remove('selected'));
-                opt.classList.add('selected');
-                label.textContent=opt.textContent;
-                sel.value=opt.dataset.val;
-                sel.dispatchEvent(new Event('change',{bubbles:true}));
-                trigger.classList.remove('open');menu.classList.remove('open');
-            };
-        });
-    });
-    document.onclick=e=>{
-        if(!e.target.closest('.cs-wrap')){
-            document.querySelectorAll('.cs-menu.open').forEach(m=>m.classList.remove('open'));
-            document.querySelectorAll('.cs-trigger.open').forEach(t=>t.classList.remove('open'));
+        if(sel.dataset.enhanced==='1') return;
+        sel.dataset.enhanced = '1';
+        
+        // پیدا کردن یا ساختن wrapper
+        let wrap = sel.parentElement;
+        if(!wrap || !wrap.classList.contains('cs-wrap')){
+            wrap = document.createElement('div');
+            wrap.className = 'cs-wrap';
+            sel.parentNode.insertBefore(wrap, sel);
+            wrap.appendChild(sel);
         }
-    };
+        
+        sel.style.display = 'none';
+        
+        // حذف UI سفارشی قبلی اگر وجود دارد
+        wrap.querySelectorAll('.cs-trigger, .cs-menu').forEach(x=>x.remove());
+        
+        const cur = sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].text : '—';
+        
+        // Trigger
+        const trigger = document.createElement('div');
+        trigger.className = 'cs-trigger';
+        trigger.innerHTML = '<span class="cs-label">' + cur + '</span><span class="cs-icon"><svg viewBox="0 0 12 8" width="10" height="10"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none"/></svg></span>';
+        
+        // Menu
+        const menu = document.createElement('div');
+        menu.className = 'cs-menu';
+        Array.from(sel.options).forEach(function(o){
+            const opt = document.createElement('div');
+            opt.className = 'cs-opt' + (o.selected ? ' selected' : '');
+            opt.dataset.val = o.value;
+            opt.textContent = o.text;
+            opt.addEventListener('click', function(ev){
+                ev.stopPropagation();
+                ev.preventDefault();
+                sel.value = o.value;
+                trigger.querySelector('.cs-label').textContent = o.text;
+                menu.querySelectorAll('.cs-opt').forEach(function(x){x.classList.remove('selected');});
+                opt.classList.add('selected');
+                menu.classList.remove('open');
+                trigger.classList.remove('open');
+                sel.dispatchEvent(new Event('change', {bubbles:true}));
+            });
+            menu.appendChild(opt);
+        });
+        
+        // Trigger click
+        trigger.addEventListener('click', function(ev){
+            ev.stopPropagation();
+            ev.preventDefault();
+            document.querySelectorAll('.cs-menu.open').forEach(function(m){
+                if(m !== menu) m.classList.remove('open');
+            });
+            document.querySelectorAll('.cs-trigger.open').forEach(function(t){
+                if(t !== trigger) t.classList.remove('open');
+            });
+            menu.classList.toggle('open');
+            trigger.classList.toggle('open');
+        });
+        
+        wrap.appendChild(trigger);
+        wrap.appendChild(menu);
+    });
+}
+
+// Global close handler — فقط یک بار نصب می‌شود
+if(!window._csGlobalClose){
+    window._csGlobalClose = true;
+    document.addEventListener('click', function(e){
+        if(!e.target.closest('.cs-trigger') && !e.target.closest('.cs-menu')){
+            document.querySelectorAll('.cs-menu.open').forEach(function(m){m.classList.remove('open');});
+            document.querySelectorAll('.cs-trigger.open').forEach(function(t){t.classList.remove('open');});
+        }
+    });
 }
 
 /* ==================== TABS ==================== */
@@ -1527,7 +1492,10 @@ function onDhwMethod(){
     $('dhw_site_block').style.display=(m==='site')?'block':'none';
     if(m==='site') renderSiteFixtures();
 }
-function updateDhwTankHint(){}
+function onPreheatChange(){
+    const v = $('pl_preheat').value;
+    $('pl_custom_hours_row').style.display = (v === 'custom') ? 'block' : 'none';
+}
 
 /* ==================== CAST IRON ==================== */
 const CAST_CATALOG = {
@@ -1544,29 +1512,19 @@ function onCastModelChange(){
         $('cast_sections').value = c.sections[0];
     }
 }
-function onCastSectionsChange(){}
 function calcCast(){
     const model = $('cast_model').value;
     const sections = n($('cast_sections').value);
     const perSection = n($('cast_per_section').value);
     const required = n($('cast_required').value);
     const sf = n($('cast_sf').value);
-    const area = n($('cast_area').value);
-    const coeff = n($('cast_coeff').value);
     const units = n($('cast_units').value);
     const bath = $('cast_bath').value === 'yes';
-
     const castCap = sections * perSection;
     const designLoad = required * sf;
-
-    // معادل فولادی
     const stdCaps = [75000,100000,150000,200000,250000,300000,400000,500000,600000,800000,1000000,1250000,1500000,2000000];
     const equivSteel = stdCaps.find(c => c >= castCap) || stdCaps[stdCaps.length-1];
-
-    // تعداد پره مورد نیاز
     const neededSections = Math.ceil(designLoad / perSection);
-
-    // جدول
     const cat = CAST_CATALOG[model];
     let tableHTML = '<table class="cast-table"><tr><th>تعداد پره</th><th>ظرفیت kcal/hr</th><th>معادل فولادی</th></tr>';
     if(cat){
@@ -1578,10 +1536,7 @@ function calcCast(){
         });
     }
     tableHTML += '</table>';
-
-    // منبع و اسپیرال
     const vol = units * (bath ? 200 : 175);
-
     $('cast_results').innerHTML = `
         ${boilerHighlightHTML(designLoad, 'hw')}
         ${g('ظرفیت واقعی چدنی', fmt(castCap), 'kcal/hr', `${sections} پره × ${fmt(perSection)}`)}
@@ -1609,11 +1564,9 @@ function calcDHW(){
     const thot = n($('dhw_thot').value) || 60;
     const tin = n($('dhw_tin').value) || 10;
     const eff = n($('dhw_eff').value) || 90;
-    const peakHr = n($('dhw_peak_hr').value) || 2;
     const dT_C = thot - tin;
 
     if(method === 'manual'){
-        // روش مهندسی (واحد)
         const units = n($('dhw_units').value) || 1;
         const tankPerUnit = n($('dhw_tank_per_unit').value);
         const tankType = $('dhw_tank_type').value;
@@ -1621,13 +1574,11 @@ function calcDHW(){
         const combined = $('dhw_combined_mode').value === 'yes';
         const area = n($('dhw_area').value) || 0;
         const coeff = n($('dhw_coeff').value) || 170;
-
         let tankVol = units * tankPerUnit;
         if(tankType === 'spiral') tankVol *= 0.8;
         const qDHW = units * boilerPerUnit * SF;
         const qHeat = area * coeff;
         const qTotal = combined ? Math.max(qDHW, qHeat) * 1.15 : qDHW;
-
         $('dhw_results').innerHTML = `
             ${boilerHighlightHTML(qTotal, 'hw')}
             <div class="method-info" style="background:var(--blue-light);padding:10px;border-radius:10px;margin-bottom:12px;">🧪 روش مهندسی (واحد)</div>
@@ -1650,23 +1601,18 @@ function calcDHW(){
         return;
     }
 
-    // روش ASPE (فیکسچر)
     const gphTotal = getSiteTotalGph();
     if(gphTotal <= 0){ $('dhw_results').innerHTML = warn('هیچ فیکسچری وارد نشده.'); return; }
     const DF = n($('site_df').value) || 0.35;
     const SFstor = n($('site_sf').value) || 1.25;
     const PF = n($('site_pf').value) || 1.0;
     const dT_F = dT_C * 9/5;
-    const gpmTotal = gphTotal / 60;
-    const lhrTotal = gphTotal * 3.785;
     const gphActual = gphTotal * DF * PF;
-    const storage_gal = gphTotal * DF * PF * SFstor;
-    const storage_L = storage_gal * 3.78541;
+    const storage_L = gphTotal * DF * PF * SFstor * 3.78541;
     const qBTU = gphActual * 8.33 * dT_F;
     const qKcal = qBTU * 0.252;
     const qDesign = qKcal * SF;
     const qBoiler = qDesign / (eff/100);
-
     $('dhw_results').innerHTML = `
         ${boilerHighlightHTML(qBoiler, 'hw')}
         <div class="method-info" style="background:var(--blue-light);padding:10px;border-radius:10px;margin-bottom:12px;">📊 روش ASPE (فیکسچر)</div>
@@ -1682,7 +1628,7 @@ function calcDHW(){
         ${fb('روش ASPE', [
             `GPH = ${fmt(gphTotal,1)} GPH`,
             `GPH_actual = ${fmt(gphTotal,1)} × ${DF} × ${PF} = ${fmt(gphActual,2)}`,
-            `V_storage = ${fmt(gphTotal,1)} × ${DF} × ${PF} × ${SFstor} × 3.785 = ${fmt(storage_L,0)} L`,
+            `V_storage = ${fmt(storage_L,0)} L`,
             `Q = ${fmt(gphActual,2)} × 8.33 × ${dT_F.toFixed(1)} × 0.252 = ${fmt(qKcal,0)} kcal/hr`
         ], 'ASPE Data Book Vol.4')}`;
     addPNG('dhw_results','آبگرم ASPE');
@@ -1693,16 +1639,13 @@ function calcDHW(){
 const HT_B={office:{t:22,i:1.10,l:'اداری'},residential:{t:21,i:1.05,l:'مسکونی'},hospital:{t:24,i:1.00,l:'بیمارستان'},school:{t:20,i:1.15,l:'مدرسه'},hotel:{t:22,i:1.05,l:'هتل'},industrial:{t:18,i:1.10,l:'کارخانه'},gym:{t:22,i:1.15,l:'باشگاه'}};
 function onHtBldg(){const b=$('ht_bldg').value;if(HT_B[b])$('ht_tin').value=HT_B[b].t;}
 function resetHeating(){onHtBldg();toast('✓');}
-
 function calcHeating(){
     const method = $('ht_method').value;
     const area = n($('ht_area').value);
     const sf = n($('ht_sf').value) || 1.2;
     const coeff = n($('ht_coeff').value);
-
     if(method === 'experimental'){
         const q = area * coeff * sf;
-        if(q > 0) lastHeatingLoad = q;
         $('ht_results').innerHTML = `
             ${boilerHighlightHTML(q,'hw')}
             <div class="notice green">✓ ذخیره شد</div>
@@ -1711,15 +1654,11 @@ function calcHeating(){
             ${g('ضریب اطمینان', sf, '×', '')}
             ${g('🔥 بار گرمایش', fmt(q,0), 'kcal/hr', hu(q))}
             ${nPlusOneHTML(q,'kcal/hr')}
-            ${fb('گرمایش تجربی (متراژی)', [
-                `Q = ${area} × ${coeff} × ${sf} = ${fmt(q,0)} kcal/hr`
-            ],'مبحث ۱۹')}`;
+            ${fb('گرمایش تجربی (متراژی)', [`Q = ${area} × ${coeff} × ${sf} = ${fmt(q,0)} kcal/hr`],'مبحث ۱۹')}`;
         addPNG('ht_results','گرمایش تجربی');
         saveToHistory('گرمایش تجربی');
         return;
     }
-
-    // ASHRAE
     const H = n($('ht_h').value);
     const U = n($('ht_u').value);
     const tout = n($('ht_tout').value);
@@ -1732,7 +1671,6 @@ function calcHeating(){
     const qInf = 0.34 * vol * ach * dT;
     const qB = (qCond + qInf) * 0.86;
     const qD = qB * cfg.i * sf;
-
     $('ht_results').innerHTML = `
         ${boilerHighlightHTML(qD,'hw')}
         ${g('ΔT', dT, '°C', `${cfg.t} - (${tout})`)}
@@ -1752,27 +1690,19 @@ function calcHeating(){
 /* ==================== POOL ==================== */
 function calcPool(){
     const L=n($('pl_l').value),W=n($('pl_w').value),D=n($('pl_d').value);
-    const tt=n($('pl_tt').value),tin=n($('pl_tin').value),ta=n($('pl_ta').value);
+    const tt=n($('pl_tt').value);
     const dT = n($('pl_dt').value) || 20;
-    const rh=n($('pl_rh').value)/100,wind=n($('pl_wind').value);
     const preheatSel = $('pl_preheat').value;
     const preheat = preheatSel === 'custom' ? n($('pl_custom_hrs').value) : n(preheatSel);
     const hxThot=n($('pl_hx_thot').value)||80;
     const hxU=n($('pl_hx_u').value)||600;
     const SF=n($('pl_sf').value)||1.2;
     const coeff = n($('pl_coeff').value) || 50;
-
     if(L<=0||W<=0){$('pl_results').innerHTML=warn('ابعاد');return;}
     const A=L*W,V=L*W*D;
-
-    // Q1: پیش‌گرمایش
     const Q1 = V * 1000 * 1 * dT / preheat;
-
-    // Q2: گرمایش محیط
     const Q2 = A * coeff * SF;
-
     const Q_total = Q1 + Q2;
-
     $('pl_results').innerHTML=`
         ${boilerHighlightHTML(Q_total,'hw')}
         ${g('حجم استخر', fmt(V*1000,0), 'L', `${fmt(V,1)} m³`)}
@@ -1792,7 +1722,7 @@ function calcPool(){
 }
 function resetPool(){toast('✓');}
 
-/* ==================== GREENHOUSE (UNTOUCHED) ==================== */
+/* ==================== GREENHOUSE ==================== */
 function calcGH(){
     const L=n($('gh_l').value),W=n($('gh_w').value),H=n($('gh_h').value);
     const tin=n($('gh_tin').value),tout=n($('gh_tout').value);
@@ -1829,14 +1759,13 @@ function calcSauna(){
     const V_adj = V + glass*1.2 + wood*1.5;
     let kw=V_adj*k1*k2*SF;
     if(outdoor) kw += 1;
-
     $('sa_results').innerHTML=`
         ${boilerHighlightHTML(kw*860,'hw')}
         ${g('حجم پایه',V.toFixed(2),'m³','')}
         ${glass>0?g('اصلاح شیشه',`+${(glass*1.2).toFixed(2)}`,'m³',`${glass} m² × ۱.۲`):''}
         ${wood>0?g('اصلاح چوب',`+${(wood*1.5).toFixed(2)}`,'m³',`${wood} m² × ۱.۵`):''}
         ${g('حجم مؤثر',V_adj.toFixed(2),'m³','')}
-        ${outdoor?g('سونای بیرونی','+۱ kW','','')}
+        ${outdoor?g('سونای بیرونی','+۱ kW','',''):''}
         ${g('توان',kw.toFixed(2),'kW','')}
         ${g('بخار',(kw*1.5).toFixed(2),'kg/hr','')}
         ${nPlusOneHTML(kw*860,'kcal/hr')}`;
@@ -1911,6 +1840,56 @@ function calcHydraulic(){
     addPNG('hs_results','هیدرولیک');
 }
 
+/* ==================== HW BOILER (BASIC) ==================== */
+function calcHW(prefix,label){
+    const q=n($(prefix+'_q').value);
+    const tin=n($(prefix+'_tin').value),tout=n($(prefix+'_tout').value);
+    const eff=n($(prefix+'_eff').value)||88;
+    const SF=n($(prefix+'_sf').value)||1.2;
+    const model = $(prefix+'_model') ? $(prefix+'_model').value : 'dryback';
+    const tankType = $(prefix+'_tank_type') ? $(prefix+'_tank_type').value : 'coil';
+    if(q<50000){$(prefix+'_results').innerHTML=warn('حداقل ۵۰,۰۰۰ kcal/hr');return;}
+    const qD=q*SF;
+    const flow=qD/((tin-tout)*1000);
+    const fuelRate=qD/(eff/100)/8500;
+    const burnerInput = qD/(eff/100);
+    const burnerKw = burnerInput * 1.163 / 1000;
+
+    const effMap = {dryback:0.82, wetback:0.87, firebox:0.79};
+    const effModel = effMap[model] || 0.82;
+    const burnerInputModel = qD / effModel;
+    const modelLabel = {dryback:'سه‌پاس Dryback', wetback:'سه‌پاس Wetback', firebox:'فایرباکس'}[model];
+
+    const storageL = qD / 3;
+    const tankHTML = tankSelectionHTML(storageL, qD, tin, tout, tankType);
+    const expHTML = expansionTankHTML(storageL, tin, tout);
+
+    $(prefix+'_results').innerHTML=`
+        ${boilerHighlightHTML(qD,'hw')}
+        ${g('بار طراحی',fmt(qD),'kcal/hr',hu(qD))}
+        ${g('مدل',modelLabel,'',`راندمان ${(effModel*100).toFixed(0)}٪`)}
+        ${g('دبی',fmt(flow,2),'m³/hr',`ΔT=${tin-tout}°C`)}
+        ${g('ظرفیت مشعل',fmt(burnerInputModel),'kcal/hr',`${fmt(burnerInputModel*1.163/1000,1)} kW`)}
+        ${g('مصرف گاز',fmt(burnerInputModel/8500,2),'m³/hr','')}
+        ${tankHTML}
+        ${expHTML}
+        ${nPlusOneHTML(qD,'kcal/hr')}`;
+    addPNG(prefix+'_results','آبگرم '+label);
+    saveToHistory('آبگرم '+label);
+}
+function calcCondensing(){
+    const q=n($('cond_q').value);
+    const eff=n($('cond_eff').value)||105;
+    const qD=q*1.2;
+    const qF=qD/(eff/100);
+    $('cond_results').innerHTML=`
+        ${g('بار طراحی',fmt(qD),'kcal/hr',hu(qD))}
+        ${g('راندمان',eff,'٪','چگالشی')}
+        ${g('ورودی',fmt(qF),'kcal/hr','')}
+        ${nPlusOneHTML(qD,'kcal/hr')}`;
+    addPNG('cond_results','چگالشی');
+}
+
 /* ==================== CALCULATOR ==================== */
 const CONV={
     heat:{u:{kcal_hr:{l:'kcal/hr',f:1},kW:{l:'kW',f:860.42},BTU_hr:{l:'BTU/hr',f:.252}},b:'kcal_hr'},
@@ -1920,12 +1899,17 @@ const CONV={
 function onCalcCat(){
     const c=CONV[$('calc_cat').value];
     const f=$('calc_from'),t=$('calc_to');
-    const wf=f.parentElement.querySelector('.cs-wrap'),wt=t.parentElement.querySelector('.cs-wrap');
-    if(wf) wf.remove();if(wt) wt.remove();
-    f.dataset.enhanced='';t.dataset.enhanced='';
+    // حذف UI سفارشی قبلی
+    const wf=f.parentElement.querySelectorAll('.cs-trigger, .cs-menu');
+    const wt=t.parentElement.querySelectorAll('.cs-trigger, .cs-menu');
+    wf.forEach(x=>x.remove());
+    wt.forEach(x=>x.remove());
+    f.dataset.enhanced='';
+    t.dataset.enhanced='';
     f.innerHTML=Object.keys(c.u).map(k=>`<option value="${k}">${c.u[k].l}</option>`).join('');
     t.innerHTML='<option value="">— همه —</option>'+Object.keys(c.u).map(k=>`<option value="${k}">${c.u[k].l}</option>`).join('');
-    enhanceSelects();runCalc();
+    enhanceSelects();
+    runCalc();
 }
 function runCalc(){
     const cat=$('calc_cat').value,c=CONV[cat];
@@ -1950,14 +1934,6 @@ function runCalc(){
     $('calc_conv').innerHTML=html;
 }
 
-/* ==================== POOL PREHEAT TOGGLE ==================== */
-document.addEventListener('change', function(e){
-    if(e.target.id === 'pl_preheat'){
-        const row = $('pl_custom_hours_row');
-        if(row) row.style.display = e.target.value === 'custom' ? 'block' : 'none';
-    }
-});
-
 /* ==================== INIT ==================== */
 enhanceSelects();
 onCalcCat();
@@ -1965,13 +1941,14 @@ onDhwMethod();
 onHtBldg();
 onHeatingMethod();
 onCastModelChange();
+onPreheatChange();
 renderSiteFixtures();
 loadSteamPreset();
-onPressureChange();
 onSteamType();
 updateSteamHint();
+if($('sc_pressure')) onPressureChange();
 
-console.log('✓ Capacity Assistant v23 — Full redesign');
+console.log('✓ Capacity Assistant v23-fix1 — Custom select fixed');
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script>
 </body>
