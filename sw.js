@@ -1,4 +1,4 @@
-const CACHE_NAME = 'caspian-v23';
+const CACHE_NAME = 'caspian-v23-fix1';
 const ASSETS = ['./', './index.html', './manifest.json'];
 
 self.addEventListener('install', e => {
