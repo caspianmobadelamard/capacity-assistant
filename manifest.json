@@ -1,7 +1,7 @@
 {
-  "name": "Capacity Assistant v23 — Caspian Mobaddel Amard",
+  "name": "Capacity Assistant v24 — Caspian Mobaddel Amard",
   "short_name": "Capacity",
-  "description": "دستیار تعیین ظرفیت تجهیزات تاسیساتی — ASHRAE، Fulton، WQA — v23",
+  "description": "دستیار تعیین ظرفیت تجهیزات تاسیساتی — ASHRAE، Fulton، WQA — v24",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
