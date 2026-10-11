@@ -6,22 +6,17 @@
 <meta name="theme-color" content="#182139" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Capacity Assistant v20 — Caspian Mobaddel Amard</title>
+<title>Capacity Assistant v20.1 — Caspian Mobaddel Amard</title>
 <link rel="manifest" href="./manifest.json" />
 <link rel="icon" href="./icon-192.png" />
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-/* ============================================================
-   CAPACITY ASSISTANT — BASE STYLES
-   ============================================================ */
 :root{--navy:#182139;--navy-2:#1F2A46;--navy-3:#2A3758;--cream:#FBF8F3;--cream-2:#F5EFE3;--cream-3:#EFE6D3;--gold:#F5C842;--gold-2:#FFD966;--gold-3:#8B6F35;--terra:#FF6B35;--terra-2:#FF8A5C;--forest:#00D68F;--text:#2D2A26;--text-soft:#7A6F5F;--text-mute:#A89B85;--warn:#FF6B35;--danger:#FF3D8E;--neon-gold:#F5C842;--neon-cyan:#00E5FF;--neon-magenta:#FF3D8E;--neon-lime:#39FF14;--neon-orange:#FF6B35;--neon-green:#00D68F;--radius:12px;--radius-sm:8px;--shadow-sm:0 2px 4px rgba(15,23,41,.08);--shadow-md:0 4px 14px rgba(15,23,41,.15);--shadow-lg:0 12px 32px rgba(15,23,41,.25);--neon-glow:0 0 20px rgba(245,200,66,.55),0 0 40px rgba(245,200,66,.28);}
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--navy);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh;}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px 600px at 85% -10%,rgba(0,229,255,.10),transparent 60%),radial-gradient(1000px 500px at -10% 20%,rgba(255,107,53,.09),transparent 60%),radial-gradient(800px 400px at 50% 100%,rgba(245,200,66,.07),transparent 60%);pointer-events:none;z-index:0;}
 .app{max-width:1180px;margin:0 auto;position:relative;z-index:1;padding:8px 8px 60px;}
-
-/* Header */
 .compact-header{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,#111A30,#182139);border:1px solid rgba(245,200,66,.30);border-radius:10px;padding:8px 12px;margin-bottom:6px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,.35),0 0 25px rgba(245,200,66,.18);}
 .compact-header .logo-mini{width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:linear-gradient(145deg,rgba(245,200,66,.22),rgba(245,200,66,.05));border:1px solid rgba(245,200,66,.45);display:flex;align-items:center;justify-content:center;font-size:16px;}
 .compact-header .title-block{flex:1;min-width:0;}
@@ -30,8 +25,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px
 .compact-header .tools{display:flex;gap:3px;flex-shrink:0;}
 .compact-header .tools button{width:30px;height:30px;border-radius:7px;background:rgba(245,200,66,.12);border:1px solid rgba(245,200,66,.30);color:var(--gold-2);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .25s;font-family:inherit;}
 .compact-header .tools button:hover{background:rgba(245,200,66,.28);transform:scale(1.08);}
-
-/* Tabs */
 .compact-tabs{position:sticky;top:52px;z-index:99;display:flex;gap:3px;overflow-x:auto;padding:5px 3px;margin-bottom:8px;background:rgba(24,33,57,.94);backdrop-filter:blur(8px);border-radius:9px;scrollbar-width:none;}
 .compact-tabs::-webkit-scrollbar{display:none;}
 .compact-tabs button{padding:7px 11px;border:1px solid rgba(245,200,66,.22);background:rgba(31,42,70,.65);border-radius:7px;font-family:inherit;font-size:.68rem;font-weight:700;color:var(--cream-2);cursor:pointer;white-space:nowrap;transition:all .25s;display:flex;align-items:center;gap:3px;}
@@ -39,16 +32,12 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px
 .compact-tabs button.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);border-color:var(--gold);box-shadow:0 0 18px rgba(245,200,66,.65);}
 .compact-tabs button:hover:not(.active){border-color:rgba(245,200,66,.5);color:var(--gold-2);}
 @media(max-width:520px){.compact-tabs button{padding:6px 9px;font-size:.64rem;}.compact-tabs button .lbl{display:none;}.compact-tabs button .ic{font-size:1rem;}}
-
-/* Cards */
 .card{background:var(--cream);border:1px solid rgba(245,200,66,.30);border-radius:var(--radius);padding:14px;margin-bottom:12px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;}
 .card h2{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:4px;padding-left:38px;}
 .card .hint{font-size:.72rem;color:var(--text-soft);margin-bottom:12px;line-height:1.5;}
 .card-reset{position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:50%;background:rgba(255,107,53,.12);border:1.5px solid rgba(255,107,53,.40);color:var(--terra);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:5;font-family:inherit;}
 .card-reset:hover{background:var(--terra);color:#FFF;transform:rotate(-180deg);}
 .badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,rgba(245,200,66,.22),rgba(255,107,53,.15));color:var(--gold-3);font-size:.66rem;font-weight:800;padding:3px 10px;border-radius:99px;border:1px solid rgba(245,200,66,.40);margin-bottom:10px;}
-
-/* SF chips */
 .sf-compact{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(245,200,66,.10),rgba(245,200,66,.04));border:1.5px solid rgba(245,200,66,.48);border-radius:9px;padding:6px 10px;margin-bottom:12px;flex-wrap:wrap;}
 .sf-compact .sf-lbl{font-size:.68rem;font-weight:800;color:var(--gold-3);white-space:nowrap;}
 .sf-chips{display:flex;gap:3px;flex:1;flex-wrap:wrap;}
@@ -57,8 +46,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px
 .sf-manual{display:flex;align-items:center;gap:2px;padding:0 5px;background:#FFF;border:1.5px solid rgba(245,200,66,.35);border-radius:99px;height:26px;}
 .sf-manual input{width:46px;padding:3px 5px;border:none;background:transparent;font-family:inherit;font-size:.72rem;font-weight:800;color:var(--navy);text-align:center;}
 .sf-manual .sf-u{font-size:.62rem;color:var(--text-mute);padding-left:3px;}
-
-/* Fields */
 .field{margin-bottom:10px;position:relative;}
 .field label{display:block;font-size:.72rem;font-weight:700;color:var(--navy);margin-bottom:4px;}
 .field .unit{color:var(--text-mute);font-weight:500;font-size:.64rem;margin-right:3px;}
@@ -70,8 +57,6 @@ input[type=checkbox]{width:auto;accent-color:var(--gold-3);}
 .row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;}
 @media(max-width:640px){.row3,.row4{grid-template-columns:1fr 1fr;}}
 @media(max-width:400px){.row3,.row4{grid-template-columns:1fr;}}
-
-/* Custom Select */
 .cs-wrap{position:relative;width:100%;}
 .cs-trigger{width:100%;padding:9px 11px;padding-left:36px;border:1.5px solid var(--cream-3);border-radius:var(--radius-sm);font-family:inherit;font-size:.82rem;background:#FFF;color:var(--text);cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:space-between;user-select:none;position:relative;min-height:38px;}
 .cs-trigger .cs-label{flex:1;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -87,8 +72,6 @@ input[type=checkbox]{width:auto;accent-color:var(--gold-3);}
 .cs-opt .cs-check{color:var(--terra);font-weight:800;opacity:0;transform:scale(.5);transition:all .25s;}
 .cs-opt.selected{background:linear-gradient(135deg,rgba(245,200,66,.32),rgba(255,107,53,.22));color:var(--navy);font-weight:700;border:1px solid rgba(245,200,66,.55);}
 .cs-opt.selected .cs-check{opacity:1;transform:scale(1);}
-
-/* Quick Consult */
 .qc-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:4px;margin-bottom:10px;}
 .qc-chip{padding:6px 4px;border:1.5px solid var(--cream-3);background:#FFF;border-radius:7px;font-family:inherit;font-size:.62rem;font-weight:700;color:var(--text-soft);cursor:pointer;transition:all .25s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.2;}
 .qc-chip .ic{font-size:.95rem;}
@@ -109,13 +92,9 @@ input[type=checkbox]{width:auto;accent-color:var(--gold-3);}
 .qc-ref-header{background:linear-gradient(135deg,var(--navy-2),var(--navy-3));color:var(--cream);padding:6px 10px;font-size:.68rem;font-weight:700;display:flex;justify-content:space-between;}
 .qc-ref-row{display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:5px 10px;border-bottom:1px solid var(--cream-3);font-size:.66rem;}
 .qc-ref-row.hl{background:linear-gradient(90deg,rgba(245,200,66,.22),rgba(255,107,53,.14));font-weight:800;color:var(--navy);box-shadow:inset 4px 0 0 var(--neon-gold);}
-
-/* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 20px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 50%,var(--gold) 100%);color:var(--navy);border:none;border-radius:9px;font-family:inherit;font-size:.85rem;font-weight:800;cursor:pointer;transition:all .3s;width:100%;box-shadow:0 0 20px rgba(245,200,66,.55),0 4px 14px rgba(245,200,66,.35);}
 .btn:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(245,200,66,.75);}
 .btn:active{transform:scale(.97);}
-
-/* Gauges */
 .gauge{background:linear-gradient(135deg,#FAF4E6,#F5EBD4);border:1px solid rgba(245,200,66,.40);border-right:4px solid var(--gold);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;}
 .gauge .k{font-size:.7rem;color:var(--text-soft);font-weight:700;margin-bottom:2px;}
 .gauge .v{font-size:1.2rem;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;}
@@ -124,72 +103,50 @@ input[type=checkbox]{width:auto;accent-color:var(--gold-3);}
 .gauge.cyan{background:linear-gradient(135deg,#D9F5FA,#B8ECF5);border-color:rgba(0,229,255,.40);border-right-color:var(--neon-cyan);}
 .gauge.err{background:linear-gradient(135deg,#FEE2E2,#FECACA);border-color:rgba(255,61,142,.40);border-right-color:var(--danger);}
 .gauge.forest{background:linear-gradient(135deg,#E2EDE4,#C9DDCE);border-color:rgba(0,214,143,.40);border-right-color:var(--forest);}
-
-/* Formula */
 .formula{background:linear-gradient(135deg,#111A30,#182139);border-radius:var(--radius-sm);padding:12px 14px;margin-top:10px;font-size:.7rem;direction:ltr;text-align:left;font-family:Consolas,monospace;color:var(--gold-2);overflow-x:auto;line-height:1.7;border:1px solid rgba(245,200,66,.25);}
 .formula .ft{color:var(--gold);font-weight:800;font-size:.7rem;margin-bottom:8px;direction:rtl;text-align:right;font-family:Vazirmatn,sans-serif;}
 .formula .fl{margin:2px 0;}
 .formula .ref{color:var(--cream-3);font-size:.62rem;margin-top:8px;direction:rtl;text-align:right;font-family:Vazirmatn,sans-serif;font-style:italic;border-top:1px dashed rgba(245,200,66,.25);padding-top:6px;}
-
-/* Notice */
 .notice{background:linear-gradient(135deg,#FFF4E0,#F5E5CC);border:1px solid rgba(255,107,53,.40);border-right:4px solid var(--warn);border-radius:var(--radius-sm);padding:9px 12px;font-size:.72rem;color:#7C4A02;margin-bottom:10px;display:flex;gap:8px;line-height:1.55;}
 .notice::before{content:"💡";font-size:1rem;}
 .notice.blue{background:linear-gradient(135deg,#E0F2FE,#BAE6FD);border-color:rgba(0,229,255,.40);border-right-color:var(--neon-cyan);color:#075985;}
 .notice.blue::before{content:"ℹ️";}
-
-/* Boiler Highlight */
 .boiler-highlight{background:linear-gradient(135deg,#111A30,#1F2A46);border-radius:12px;padding:16px 18px;margin-bottom:12px;color:var(--cream);position:relative;overflow:hidden;border:2px solid var(--gold);box-shadow:0 8px 30px rgba(245,200,66,.40);}
 .boiler-highlight .bh-title{font-size:.72rem;color:var(--gold-2);font-weight:700;margin-bottom:6px;}
 .boiler-highlight .bh-main{font-size:1.6rem;font-weight:800;color:var(--cream);line-height:1.2;text-shadow:0 0 20px rgba(245,200,66,.6);}
 .boiler-highlight .bh-sub{font-size:.72rem;color:var(--gold-2);margin-top:6px;}
 .boiler-highlight .bh-btn{margin-top:10px;padding:8px 14px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);border:none;border-radius:8px;font-family:inherit;font-size:.78rem;font-weight:800;cursor:pointer;width:100%;}
-
-/* Tables */
+.trim-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px;}
+.trim-item{background:linear-gradient(135deg,#FBF8F3,#F5EFE3);border:1px solid var(--cream-3);border-right:4px solid var(--gold);border-radius:7px;padding:9px 11px;font-size:.76rem;}
+.trim-item .name{font-weight:800;color:var(--navy);margin-bottom:3px;}
+.trim-item .spec{color:var(--text-soft);font-size:.7rem;line-height:1.5;}
 table.std{width:100%;border-collapse:collapse;font-size:.72rem;margin-top:6px;}
 table.std th,table.std td{border:1px solid var(--cream-3);padding:7px 9px;text-align:center;}
 table.std th{background:linear-gradient(135deg,var(--navy-2),var(--navy-3));color:var(--cream);font-weight:700;}
 table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
-
-/* Toast */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:linear-gradient(135deg,#1F2A46,#111A30);color:var(--cream);padding:10px 22px;border-radius:99px;font-size:.78rem;opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:2000;border:2px solid var(--gold);box-shadow:0 0 30px rgba(245,200,66,.75);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* PNG Toolbar */
 .png-toolbar{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:2px dashed var(--cream-3);flex-wrap:wrap;}
 .png-toolbar .btn-png{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;background:linear-gradient(135deg,var(--terra),var(--terra-2));color:#fff;border:none;border-radius:9px;font-family:inherit;font-size:.8rem;font-weight:800;cursor:pointer;flex:1;min-width:120px;}
 .png-toolbar .btn-print-local{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;background:var(--cream);color:var(--navy);border:1.5px solid var(--navy-3);border-radius:9px;font-family:inherit;font-size:.8rem;font-weight:800;cursor:pointer;flex:1;min-width:120px;}
-
-/* Panels */
 .panel,.subpanel{display:none;}
 .panel.active,.subpanel.active{display:block;animation:fade .3s ease;}
 @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-
-/* Subtabs */
 .subtabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
 .subtabs button{padding:5px 10px;border:1px solid rgba(245,200,66,.22);background:rgba(251,248,243,.08);border-radius:99px;font-family:inherit;font-size:.7rem;font-weight:600;color:var(--cream-2);cursor:pointer;transition:all .25s;}
 .subtabs button.active{background:linear-gradient(135deg,var(--terra),var(--terra-2));color:var(--cream);border-color:var(--terra);}
-
-/* Method tabs */
 .method-tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;padding:4px;background:rgba(24,33,57,.6);border-radius:9px;border:1px solid rgba(245,200,66,.25);}
 .method-tabs button{flex:1;min-width:90px;padding:8px 10px;border:none;background:transparent;border-radius:6px;font-family:inherit;font-size:.7rem;font-weight:700;color:var(--cream-2);cursor:pointer;transition:all .25s;}
 .method-tabs button.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);}
-
-/* Unit toggle */
 .unit-toggle{display:inline-flex;background:linear-gradient(135deg,var(--cream-2),var(--cream-3));border:1.5px solid rgba(245,200,66,.40);border-radius:99px;padding:2px;margin-bottom:6px;gap:2px;}
 .unit-toggle button{padding:5px 12px;border:none;background:transparent;border-radius:99px;font-family:inherit;font-size:.7rem;font-weight:700;color:var(--text-soft);cursor:pointer;}
 .unit-toggle button.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);}
-
-/* Method Info */
 .method-info{background:linear-gradient(135deg,#E0F2FE,#BAE6FD);border:1px solid rgba(0,229,255,.40);border-right:4px solid var(--neon-cyan);border-radius:var(--radius-sm);padding:8px 12px;font-size:.7rem;color:#075985;margin-bottom:10px;line-height:1.6;}
-
-/* N+1 */
 .nplus1-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px;}
 .nplus1-item{background:#FFF;border:1px solid var(--cream-3);border-right:4px solid var(--navy-3);border-radius:7px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;}
 .nplus1-item .n-title{font-weight:800;color:var(--navy);}
 .nplus1-item .n-spec{color:var(--text-soft);font-size:.7rem;}
 .nplus1-item .n-badge{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);padding:2px 8px;border-radius:99px;font-weight:800;font-size:.65rem;}
-
-/* Tank cards */
 .tank-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
 @media(max-width:640px){.tank-grid{grid-template-columns:1fr;}}
 .tank-card{border-radius:10px;padding:12px;border:2px solid;}
@@ -199,25 +156,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 .tank-card .tank-spec{background:rgba(255,255,255,.7);border-radius:6px;padding:6px 10px;margin-bottom:5px;font-size:.72rem;}
 .tank-card .tank-spec .k{color:var(--text-soft);font-weight:600;}
 .tank-card .tank-spec .v{color:var(--navy);font-weight:800;float:left;}
-
-/* Trim */
-.trim-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px;}
-.trim-item{background:linear-gradient(135deg,#FBF8F3,#F5EFE3);border:1px solid var(--cream-3);border-right:4px solid var(--gold);border-radius:7px;padding:9px 11px;font-size:.76rem;}
-.trim-item .name{font-weight:800;color:var(--navy);margin-bottom:3px;}
-.trim-item .spec{color:var(--text-soft);font-size:.7rem;line-height:1.5;}
-
-/* Tiers */
-.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px;}
-.tier-card{border-radius:var(--radius-sm);padding:12px;border:2px solid;}
-.tier-card.bronze{background:linear-gradient(135deg,#F8E5DA,#F0CFB8);border-color:#B87333;}
-.tier-card.silver{background:linear-gradient(135deg,#E8E8E8,#D0D0D0);border-color:#808080;}
-.tier-card.gold{background:linear-gradient(135deg,#FAF0D4,#F0DDA8);border-color:var(--gold);}
-.tier-card h3{font-size:.82rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
-.tier-card .price{font-size:1.1rem;font-weight:800;color:var(--navy);margin:6px 0;}
-.tier-card ul{list-style:none;padding:0;font-size:.68rem;line-height:1.7;color:var(--text-soft);}
-.tier-card ul li::before{content:"✓ ";color:var(--forest);font-weight:800;}
-
-/* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(10,16,30,.80);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:1500;padding:16px;}
 .modal-overlay.show{display:flex;}
 .modal{background:var(--cream);border:1.5px solid rgba(245,200,66,.5);border-radius:14px;max-width:760px;width:100%;max-height:85vh;overflow-y:auto;}
@@ -232,165 +170,38 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 .bom-table th{background:linear-gradient(135deg,var(--navy-2),var(--navy-3));color:var(--cream);padding:6px;font-weight:700;font-size:.68rem;}
 .bom-table td{border:1px solid var(--cream-3);padding:6px;text-align:center;background:#FFF;}
 .bom-table tr:nth-child(even) td{background:var(--cream-2);}
-
-/* Autosave */
 .autosave-badge{position:fixed;bottom:16px;right:16px;background:linear-gradient(135deg,var(--forest),#00B87C);color:#FFF;padding:5px 12px;border-radius:99px;font-size:.68rem;font-weight:700;opacity:0;transition:all .3s;z-index:500;}
 .autosave-badge.show{opacity:1;}
-
-/* Disclaimer */
+.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px;}
+.tier-card{border-radius:var(--radius-sm);padding:12px;border:2px solid;}
+.tier-card.bronze{background:linear-gradient(135deg,#F8E5DA,#F0CFB8);border-color:#B87333;}
+.tier-card.silver{background:linear-gradient(135deg,#E8E8E8,#D0D0D0);border-color:#808080;}
+.tier-card.gold{background:linear-gradient(135deg,#FAF0D4,#F0DDA8);border-color:var(--gold);}
+.tier-card h3{font-size:.82rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.tier-card .price{font-size:1.1rem;font-weight:800;color:var(--navy);margin:6px 0;}
+.tier-card ul{list-style:none;padding:0;font-size:.68rem;line-height:1.7;color:var(--text-soft);}
+.tier-card ul li::before{content:"✓ ";color:var(--forest);font-weight:800;}
 .disclaimer{text-align:center;font-size:.68rem;color:rgba(251,248,243,.55);padding:18px 12px;border-top:1px solid rgba(245,200,66,.20);margin-top:18px;}
-
-/* ============================================================
-   UNIT CONVERTER — SCOPED TO #uc-root
-   ============================================================ */
-#uc-root{
-  --uc-bg-0:#E8ECF2;--uc-bg-1:#EEF2F7;--uc-card:#FFFFFF;--uc-card-3:#F1F5F9;
-  --uc-line:#D5DCE5;--uc-line-2:#BFC9D6;
-  --uc-text:#0F1B2E;--uc-text-soft:#5A6878;--uc-text-dim:#8A96A8;
-  --uc-cyan:#0A9CB8;--uc-cyan-dark:#087D94;--uc-blue:#2563EB;--uc-indigo:#4F46E5;
-  --uc-violet:#7C3AED;--uc-teal:#0D9488;--uc-emerald:#059669;
-  --uc-amber:#D97706;--uc-orange:#EA580C;--uc-rose:#E11D48;
-  --uc-shadow-sm:0 1px 2px rgba(15,27,46,.05);
-  --uc-shadow-md:0 4px 12px rgba(15,27,46,.07);
-  --uc-radius:14px;
-  background:var(--uc-bg-0);color:var(--uc-text);
-  font-family:"Vazirmatn",Tahoma,sans-serif;
-  padding-top:10px;padding-bottom:40px;border-radius:14px;overflow:hidden;
-}
-#uc-root .app-body{max-width:900px;margin:0 auto;}
-#uc-root .fav-row{display:flex;gap:8px;padding:12px 14px;overflow-x:auto;background:#EEF2F7;border-bottom:1px solid #D5DCE5;}
-#uc-root .fav-row::-webkit-scrollbar{display:none;}
-#uc-root .fav-chip{flex:none;padding:8px 14px;border-radius:99px;background:#FFF;border:1.5px solid #BFC9D6;color:#5A6878;font-family:inherit;font-size:.78rem;font-weight:800;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px;}
-#uc-root .fav-chip .star{color:#D97706;}
-#uc-root .cat-bar{position:sticky;top:90px;z-index:900;background:#FFF;border-bottom:1px solid #D5DCE5;}
-#uc-root .cat-current{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;user-select:none;}
-#uc-root .cat-icon-badge{width:36px;height:36px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0A9CB8,#087D94);color:#fff;font-size:16px;font-weight:900;}
-#uc-root .cat-current-info{flex:1;min-width:0;}
-#uc-root .cat-current-label{font-size:.62rem;color:#8A96A8;font-weight:700;text-transform:uppercase;}
-#uc-root .cat-current-name{font-size:1rem;font-weight:800;color:#0F1B2E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2;margin-top:1px;}
-#uc-root .cat-chevron{width:28px;height:28px;flex:none;color:#0A9CB8;font-size:12px;display:flex;align-items:center;justify-content:center;background:#F1F5F9;border-radius:8px;border:1px solid #D5DCE5;}
-#uc-root .cat-bar.open .cat-chevron{transform:rotate(180deg);background:#E0F2F7;}
-#uc-root .cat-drawer{max-height:0;overflow:hidden;transition:max-height .4s;background:#EEF2F7;}
-#uc-root .cat-bar.open .cat-drawer{max-height:1200px;border-top:1px solid #D5DCE5;overflow-y:auto;}
-#uc-root .cat-drawer-inner{padding:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;max-width:900px;margin:0 auto;}
-#uc-root .cat-chip{padding:11px 12px;border-radius:11px;background:#FFF;border:1.5px solid #D5DCE5;font-family:inherit;font-size:.83rem;font-weight:700;color:#5A6878;cursor:pointer;text-align:right;display:flex;align-items:center;gap:8px;}
-#uc-root .cat-chip.active{color:#fff;background:linear-gradient(135deg,#0A9CB8,#087D94);border-color:transparent;}
-#uc-root .main-section-switch{display:flex;gap:8px;padding:12px 14px;background:#EEF2F7;position:sticky;top:150px;z-index:850;border-bottom:1px solid #D5DCE5;}
-#uc-root .main-section-switch button{flex:1;padding:11px 10px;border-radius:12px;border:1.5px solid #BFC9D6;background:#FFF;font-family:inherit;font-size:.86rem;font-weight:800;color:#5A6878;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;}
-#uc-root .main-section-switch button.active{color:#fff;border-color:transparent;background:linear-gradient(135deg,#0A9CB8,#2563EB);}
-#uc-root .main-section-switch button:nth-child(2).active{background:linear-gradient(135deg,#4F46E5,#7C3AED);}
-#uc-root main{padding:14px;max-width:900px;margin:0 auto;}
-#uc-root .panel{display:none;}
-#uc-root .panel.active{display:block;}
-#uc-root .uc-card{background:#FFF;border-radius:14px;padding:18px 16px;margin-bottom:14px;position:relative;overflow:hidden;border:1px solid #D5DCE5;}
-#uc-root .uc-card::before{content:"";position:absolute;top:0;right:0;bottom:0;width:4px;background:linear-gradient(180deg,#0A9CB8,#2563EB);}
-#uc-root .uc-card.pink::before{background:linear-gradient(180deg,#E11D48,#7C3AED);}
-#uc-root .uc-card.green::before{background:linear-gradient(180deg,#059669,#0D9488);}
-#uc-root .uc-card.orange::before{background:linear-gradient(180deg,#D97706,#EA580C);}
-#uc-root .uc-card.purple::before{background:linear-gradient(180deg,#7C3AED,#4F46E5);}
-#uc-root .uc-card h2{margin:0 0 6px;font-size:1.24rem;font-weight:800;color:#0F1B2E;line-height:1.4;padding-right:14px;}
-#uc-root .uc-card .hint{margin:0 0 16px;color:#5A6878;font-size:.88rem;line-height:1.85;padding-right:14px;}
-#uc-root .uc-badge{display:inline-block;background:linear-gradient(90deg,#D97706,#EA580C);color:#fff;font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:99px;margin-bottom:10px;text-transform:uppercase;}
-#uc-root .uc-badge.cyan{background:linear-gradient(90deg,#0A9CB8,#2563EB);}
-#uc-root .uc-badge.lime{background:linear-gradient(90deg,#059669,#0D9488);}
-#uc-root .uc-badge.rose{background:linear-gradient(90deg,#E11D48,#7C3AED);}
-#uc-root .uc-badge.purple{background:linear-gradient(90deg,#7C3AED,#4F46E5);}
-#uc-root label{display:block;font-size:.85rem;color:#5A6878;margin-bottom:6px;font-weight:700;}
-#uc-root .uc-field{margin-bottom:14px;}
-#uc-root .uc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-#uc-root .uc-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:520px){#uc-root .uc-row3{grid-template-columns:1fr;}}
-#uc-root input[type=number],#uc-root input[type=text],#uc-root select{width:100%;padding:12px 14px;border:1.5px solid #BFC9D6;border-radius:10px;font-family:inherit;font-size:1rem;background:#FFF;color:#0F1B2E;font-weight:700;font-variant-numeric:tabular-nums;}
-#uc-root input:focus,#uc-root select:focus{outline:none;border-color:#0A9CB8;box-shadow:0 0 0 3px rgba(10,156,184,.12);background:#FAFCFE;}
-#uc-root select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%230A9CB8' stroke-width='2' fill='none'/></svg>");background-repeat:no-repeat;background-position:left 14px center;padding-left:34px;}
-#uc-root .result-main{background:linear-gradient(135deg,#ECFDFF,#F0F4FF);border:2px solid rgba(10,156,184,.3);border-radius:14px;padding:22px 16px;text-align:center;margin:14px 0;}
-#uc-root .result-main .num{font-size:2.3rem;font-weight:900;color:#0A9CB8;font-variant-numeric:tabular-nums;word-break:break-all;line-height:1.15;}
-#uc-root .result-main .num small{font-size:.5em;color:#5A6878;font-weight:700;}
-#uc-root .result-main .lbl{font-size:.9rem;color:#5A6878;margin-top:6px;font-weight:700;}
-#uc-root .conv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:9px;margin-top:12px;}
-#uc-root .conv-item{background:linear-gradient(160deg,#FFF,#F8FAFC);border:1px solid #D5DCE5;border-radius:11px;padding:11px 13px;position:relative;overflow:hidden;}
-#uc-root .conv-item::before{content:"";position:absolute;top:0;right:0;bottom:0;width:3px;background:#0A9CB8;}
-#uc-root .conv-item.highlight{background:linear-gradient(160deg,#FFFBEB,#FEF3C7);border-color:#D97706;}
-#uc-root .conv-item .ck{color:#8A96A8;font-size:.73rem;display:block;margin-bottom:3px;font-weight:700;}
-#uc-root .conv-item .cv{font-weight:800;color:#0F1B2E;font-variant-numeric:tabular-nums;font-size:1rem;word-break:break-all;}
-#uc-root .smart-warn{background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border:1.5px solid #FDBA74;border-right:4px solid #EA580C;border-radius:12px;padding:13px 15px;font-size:.88rem;line-height:1.85;margin-top:12px;display:flex;gap:12px;}
-#uc-root .smart-warn .icon{width:30px;height:30px;border-radius:50%;flex:none;background:#EA580C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;}
-#uc-root .smart-info{background:linear-gradient(135deg,#ECFDFF,#E0F7FA);border:1.5px solid #7DD3E0;border-right:4px solid #0A9CB8;border-radius:12px;padding:13px 15px;font-size:.88rem;line-height:1.85;margin-top:12px;display:flex;gap:12px;}
-#uc-root .smart-info .icon{width:30px;height:30px;border-radius:50%;flex:none;background:#0A9CB8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;}
-#uc-root .bom-box{background:linear-gradient(160deg,#ECFDF5,#F0FDFA);border:1.5px solid #6EE7B7;border-radius:14px;padding:16px;margin-top:14px;}
-#uc-root .bom-box h3{margin:0 0 12px;font-size:1rem;font-weight:800;color:#059669;display:flex;align-items:center;gap:8px;}
-#uc-root .bom-item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:10px;background:#FFF;border:1px solid #A7F3D0;margin-bottom:7px;font-size:.85rem;}
-#uc-root .bom-item .label{color:#5A6878;font-weight:700;}
-#uc-root .bom-item .value{color:#059669;font-weight:800;}
-#uc-root .data-table{width:100%;border-collapse:collapse;font-size:.78rem;background:#FFF;border-radius:10px;overflow:hidden;margin-top:10px;}
-#uc-root .data-table th{background:linear-gradient(135deg,#0A9CB8,#087D94);color:#fff;font-weight:800;padding:8px 6px;font-size:.75rem;}
-#uc-root .data-table td{border:1px solid #D5DCE5;padding:6px 5px;text-align:center;font-variant-numeric:tabular-nums;}
-#uc-root .data-table .nps-col{font-weight:800;color:#0A9CB8;background:#ECFDFF !important;}
-#uc-root .data-table-wrap{overflow-x:auto;margin-top:10px;border-radius:10px;}
-#uc-root .class-btn-row{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
-#uc-root .class-btn{padding:8px 14px;border-radius:10px;border:1.5px solid #BFC9D6;background:#FFF;font-family:inherit;font-size:.82rem;font-weight:800;color:#5A6878;cursor:pointer;}
-#uc-root .class-btn.active{background:linear-gradient(135deg,#0A9CB8,#2563EB);color:#fff;border-color:transparent;}
-#uc-root .multi-row-table{width:100%;border-collapse:collapse;font-size:.85rem;background:#FFF;border-radius:10px;overflow:hidden;margin-top:10px;}
-#uc-root .multi-row-table th{background:linear-gradient(135deg,#7C3AED,#4F46E5);color:#fff;font-weight:800;padding:8px 6px;font-size:.76rem;}
-#uc-root .multi-row-table td{border:1px solid #D5DCE5;padding:4px;text-align:center;}
-#uc-root .multi-row-table input{width:100%;padding:7px 6px;border:1px solid #BFC9D6;border-radius:6px;font-family:inherit;font-size:.85rem;font-weight:700;text-align:center;background:#FAFCFE;color:#0F1B2E;}
-#uc-root .multi-row-table .row-num{font-weight:800;color:#7C3AED;background:#FAF5FF;width:36px;}
-#uc-root .multi-row-table .btn-del{width:30px;height:30px;border-radius:8px;border:none;background:#FEE2E2;color:#DC2626;font-weight:900;font-family:inherit;font-size:1.1rem;cursor:pointer;}
-#uc-root .multi-row-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
-#uc-root .btn-add{flex:1;padding:10px 14px;border-radius:10px;background:linear-gradient(135deg,#059669,#0D9488);color:#fff;border:none;font-family:inherit;font-size:.86rem;font-weight:800;cursor:pointer;}
-#uc-root .btn-clear-all{padding:10px 14px;border-radius:10px;background:#FFF;border:1.5px solid #E11D48;color:#E11D48;font-family:inherit;font-size:.86rem;font-weight:800;cursor:pointer;}
-#uc-root .hist-btn{position:fixed;bottom:22px;right:22px;z-index:60;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#fff;border:none;cursor:pointer;font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;}
-#uc-root .hist-panel{position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);background:#FFF;z-index:1900;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;overflow-y:auto;border-left:4px solid #4F46E5;}
-#uc-root .hist-panel.open{transform:translateX(0);}
-#uc-root .hist-panel-header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #D5DCE5;background:#EEF2F7;position:sticky;top:0;z-index:2;}
-#uc-root .hist-panel-header h3{margin:0;font-size:1.1rem;font-weight:800;color:#0F1B2E;}
-#uc-root .hist-close{width:36px;height:36px;border-radius:50%;border:1.5px solid #D5DCE5;background:#FFF;color:#0F1B2E;font-size:1.4rem;cursor:pointer;font-family:inherit;line-height:1;}
-#uc-root .hist-list{padding:14px;flex:1;}
-#uc-root .hist-empty{text-align:center;color:#8A96A8;padding:40px 20px;font-size:.9rem;line-height:1.8;}
-#uc-root .hist-item{padding:12px;border-radius:10px;background:#EEF2F7;border:1px solid #D5DCE5;margin-bottom:8px;font-size:.83rem;}
-#uc-root .hist-item .hi-title{font-weight:800;color:#0F1B2E;margin-bottom:4px;}
-#uc-root .hist-item .hi-val{color:#0A9CB8;font-weight:800;font-size:1.05rem;}
-#uc-root .hist-item .hi-time{color:#8A96A8;font-size:.72rem;margin-top:4px;}
-#uc-root .hist-actions{padding:14px;border-top:1px solid #D5DCE5;background:#EEF2F7;}
-#uc-root .hist-clear{width:100%;padding:11px;border-radius:8px;border:1.5px solid #E11D48;background:#FFF5F9;color:#E11D48;font-family:inherit;font-size:.88rem;font-weight:800;cursor:pointer;}
-#uc-root .font-panel{position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);background:#FFF;z-index:1900;transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column;overflow-y:auto;border-left:4px solid #0A9CB8;}
-#uc-root .font-panel.open{transform:translateX(0);}
-#uc-root .font-panel-header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #D5DCE5;background:#EEF2F7;position:sticky;top:0;z-index:2;}
-#uc-root .font-close{width:36px;height:36px;border-radius:50%;border:1.5px solid #D5DCE5;background:#FFF;color:#0F1B2E;font-size:1.4rem;cursor:pointer;font-family:inherit;line-height:1;}
-#uc-root .font-panel-hint{padding:12px 18px 4px;margin:0;color:#5A6878;font-size:.84rem;line-height:1.7;}
-#uc-root .font-sliders{padding:12px 18px 20px;flex:1;}
-#uc-root .font-slider-row{margin-bottom:16px;}
-#uc-root .font-slider-row .fsr-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-#uc-root .font-slider-row .fsr-label{font-size:.88rem;font-weight:700;color:#0F1B2E;}
-#uc-root .font-slider-row .fsr-value{font-size:.8rem;color:#0A9CB8;font-weight:800;background:#ECFDFF;padding:2px 9px;border-radius:99px;border:1px solid rgba(10,156,184,.25);}
-#uc-root .font-slider-row input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:3px;background:linear-gradient(90deg,#BFC9D6,#0A9CB8);outline:none;cursor:pointer;}
-#uc-root .font-slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#0A9CB8,#2563EB);border:3px solid #FFF;cursor:pointer;}
-#uc-root .font-slider-row .fsr-sample{margin-top:5px;padding:6px 10px;background:#F1F5F9;border-radius:6px;border:1px dashed #D5DCE5;color:#5A6878;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-#uc-root .font-panel-footer{padding:14px 18px;border-top:1px solid #D5DCE5;background:#EEF2F7;}
-#uc-root .font-reset-btn{width:100%;padding:11px;border-radius:8px;border:1.5px solid #E11D48;background:#FFF5F9;color:#E11D48;font-family:inherit;font-size:.88rem;font-weight:800;cursor:pointer;}
-#uc-root .uc-overlay{position:fixed;inset:0;background:rgba(15,27,46,.4);z-index:1800;opacity:0;pointer-events:none;transition:opacity .3s;}
-#uc-root .uc-overlay.show{opacity:1;pointer-events:auto;}
-#uc-root .uc-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0F1B2E;color:#fff;padding:12px 22px;border-radius:99px;font-size:.9rem;opacity:0;pointer-events:none;transition:.3s;z-index:2500;font-weight:700;}
-#uc-root .uc-toast.show{opacity:1;transform:translate(-50%,-6px);}
-#uc-root .fav-toggle{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.9);border:1px solid #D5DCE5;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:#8A96A8;z-index:2;}
-#uc-root .fav-toggle.on{background:linear-gradient(135deg,#D97706,#EA580C);color:#fff;border-color:transparent;}
-@media(max-width:600px){
-  #uc-root .uc-card h2{font-size:1.08rem;}
-  #uc-root .result-main .num{font-size:1.9rem;}
-  #uc-root .cat-drawer-inner{grid-template-columns:repeat(2,1fr);}
-}
+.parallel-box{background:linear-gradient(135deg,#FFF4E0,#F5E5CC);border:2px solid var(--gold);border-radius:12px;padding:14px 16px;margin-top:14px;}
+.parallel-box h3{font-size:.88rem;color:var(--navy);margin-bottom:10px;font-weight:800;}
+.parallel-total{background:linear-gradient(135deg,#1F2A46,#111A30);color:var(--cream);border-radius:10px;padding:12px 14px;margin-bottom:12px;border-left:4px solid var(--gold);}
+.parallel-total .k{font-size:.68rem;color:var(--gold-2);margin-bottom:3px;}
+.parallel-total .v{font-size:1.4rem;font-weight:800;}
+.parallel-total .v small{font-size:.7rem;font-weight:600;color:var(--gold-2);margin-right:4px;}
+.parallel-option{background:#FFF;border:1.5px solid var(--cream-3);border-right:4px solid var(--forest);border-radius:9px;padding:10px 12px;margin-bottom:8px;}
+.parallel-option .po-title{font-weight:800;color:var(--navy);font-size:.82rem;margin-bottom:3px;}
+.parallel-option .po-desc{font-size:.7rem;color:var(--text-soft);margin-bottom:3px;}
+.parallel-option .po-total{font-size:.72rem;color:var(--forest);font-weight:700;}
+.parallel-option .po-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--navy);padding:2px 8px;border-radius:99px;font-weight:800;font-size:.62rem;float:left;}
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
 <div class="compact-header">
 <div class="logo-mini">⚙️</div>
 <div class="title-block">
-<div class="t">Capacity Assistant v20</div>
+<div class="t">Capacity Assistant v20.1</div>
 <div class="s">کاسپین مبدل آمارد — ASHRAE / ASPE / Fulton</div>
 </div>
 <div class="tools">
@@ -400,9 +211,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 </div>
 
-<!-- ============================================================
-     TABS
-     ============================================================ -->
 <nav class="compact-tabs">
 <button type="button" class="tab-btn active" data-panel="quick"><span class="ic">⚡</span><span class="lbl">مشاوره سریع</span></button>
 <button type="button" class="tab-btn" data-panel="boilers"><span class="ic">🔥</span><span class="lbl">دیگ بخار</span></button>
@@ -416,14 +224,11 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 
 <main>
 
-<!-- ============================================================
-     QUICK CONSULTATION
-     ============================================================ -->
 <section id="panel-quick" class="panel active">
 <div class="card">
 <span class="badge">Quick Consultation</span>
 <h2>⚡ مشاوره سریع هوشمند</h2>
-<p class="hint">نوع کاربری + متراژ + تعداد طبقات + تعداد واحد → ظرفیت دقیق در کمتر از ۳ ثانیه</p>
+<p class="hint">نوع کاربری + متراژ + تعداد طبقات + تعداد واحد → ظرفیت دقیق</p>
 <div class="field"><label>1️⃣ نوع کاربری</label><div class="qc-selector" id="qc_selector"></div></div>
 <div class="qc-input-row">
 <div class="field"><label>متراژ کل (m²)</label><input type="number" id="qc_area" value="1000" oninput="liveQC()"></div>
@@ -450,9 +255,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 </section>
 
-<!-- ============================================================
-     STEAM BOILERS
-     ============================================================ -->
 <section id="panel-boilers" class="panel">
 <nav class="subtabs" data-parent="boilers">
 <button type="button" class="subtab-btn active" data-subpanel="steam-horizontal">افقی سه‌پاس</button>
@@ -462,158 +264,59 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <button type="button" class="subtab-btn" data-subpanel="steam-clean">مولد بخار تمیز</button>
 <button type="button" class="subtab-btn" data-subpanel="hot-oil">روغن داغ</button>
 </nav>
-
 <div id="subpanel-steam-horizontal" class="subpanel active"><div class="card">
 <button type="button" class="card-reset" onclick="resetCard(event,'hwb')">↺</button>
-<span class="badge">Steam Boiler — Horizontal</span>
-<h2>🔥 دیگ بخار افقی سه‌پاس وت‌بک</h2>
+<span class="badge">Steam Boiler — Horizontal</span><h2>🔥 دیگ بخار افقی سه‌پاس</h2>
 <div class="sf-compact" data-sf-group="hwb"><span class="sf-lbl">⚖️ ضریب:</span>
-<div class="sf-chips">
-<button type="button" class="sf-chip" onclick="setSF(this,'hwb','1.0')">۱.۰</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'hwb','1.1')">۱.۱</button>
-<button type="button" class="sf-chip active" onclick="setSF(this,'hwb','1.2')">۱.۲</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'hwb','1.3')">۱.۳</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'hwb','1.35')">۱.۳۵</button>
-</div>
+<div class="sf-chips"><button type="button" class="sf-chip" onclick="setSF(this,'hwb','1.0')">۱.۰</button><button type="button" class="sf-chip" onclick="setSF(this,'hwb','1.1')">۱.۱</button><button type="button" class="sf-chip active" onclick="setSF(this,'hwb','1.2')">۱.۲</button><button type="button" class="sf-chip" onclick="setSF(this,'hwb','1.3')">۱.۳</button><button type="button" class="sf-chip" onclick="setSF(this,'hwb','1.35')">۱.۳۵</button></div>
 <div class="sf-manual"><input type="number" id="hwb_sf_manual" step="0.01" value="1.2" oninput="onManualSF('hwb')"><span class="sf-u">×</span></div>
 </div>
 <input type="hidden" id="hwb_sf" value="1.2">
-<div class="row">
-<div class="field"><label>ظرفیت kg/hr</label><input type="number" id="hwb_cap" value="3000" oninput="liveSteam('hwb')"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="hwb_p" value="10" oninput="liveSteam('hwb')"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای تغذیه °C</label><input type="number" id="hwb_tfeed" value="105"></div>
-<div class="field"><label>کندانس ٪</label><input type="number" id="hwb_cond" value="60"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="hwb_eff" value="88"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="hwb_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div></div>
-</div>
-<div class="row4">
-<div class="field"><label>سختی ppm</label><input type="number" id="hwb_hard" value="300"></div>
-<div class="field"><label>TDS ppm</label><input type="number" id="hwb_tdsb" value="3500"></div>
-<div class="field"><label>دمای دودکش °C</label><input type="number" id="hwb_stack" value="200"></div>
-<div class="field"><label>ارتفاع m</label><input type="number" id="hwb_alt" value="0"></div>
-</div>
-<div class="qc-live" style="margin-top:10px;">
-<div class="qc-live-title">🔥 بار طراحی زنده:</div>
-<div class="qc-live-main" id="hwb_live_val">— <small>kcal/hr</small></div>
-</div>
+<div class="row"><div class="field"><label>ظرفیت kg/hr</label><input type="number" id="hwb_cap" value="3000" oninput="liveSteam('hwb')"></div><div class="field"><label>فشار bar</label><input type="number" id="hwb_p" value="10" oninput="liveSteam('hwb')"></div></div>
+<div class="row4"><div class="field"><label>دمای تغذیه °C</label><input type="number" id="hwb_tfeed" value="105"></div><div class="field"><label>کندانس ٪</label><input type="number" id="hwb_cond" value="60"></div><div class="field"><label>راندمان ٪</label><input type="number" id="hwb_eff" value="88"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="hwb_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option><option value="mazut">مازوت</option></select></div></div></div>
+<div class="row4"><div class="field"><label>سختی ppm</label><input type="number" id="hwb_hard" value="300"></div><div class="field"><label>TDS ppm</label><input type="number" id="hwb_tdsb" value="3500"></div><div class="field"><label>دمای دودکش °C</label><input type="number" id="hwb_stack" value="200"></div><div class="field"><label>ارتفاع m</label><input type="number" id="hwb_alt" value="0"></div></div>
+<div class="qc-live" style="margin-top:10px;"><div class="qc-live-title">🔥 بار طراحی زنده:</div><div class="qc-live-main" id="hwb_live_val">— <small>kcal/hr</small></div></div>
 <button type="button" class="btn" onclick="calcSteam('hwb','افقی سه‌پاس')">⚡ محاسبه کامل</button>
 <div id="hwb_results"></div>
 </div></div>
-
 <div id="subpanel-steam-firebox" class="subpanel"><div class="card">
-<span class="badge">Steam Boiler — Firebox</span>
-<h2>🔥 دیگ بخار فایرباکس</h2>
+<span class="badge">Steam Boiler — Firebox</span><h2>🔥 دیگ بخار فایرباکس</h2>
 <div class="sf-compact" data-sf-group="fb"><span class="sf-lbl">⚖️ ضریب:</span>
-<div class="sf-chips">
-<button type="button" class="sf-chip" onclick="setSF(this,'fb','1.0')">۱.۰</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'fb','1.1')">۱.۱</button>
-<button type="button" class="sf-chip active" onclick="setSF(this,'fb','1.2')">۱.۲</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'fb','1.3')">۱.۳</button>
-</div>
+<div class="sf-chips"><button type="button" class="sf-chip" onclick="setSF(this,'fb','1.0')">۱.۰</button><button type="button" class="sf-chip" onclick="setSF(this,'fb','1.1')">۱.۱</button><button type="button" class="sf-chip active" onclick="setSF(this,'fb','1.2')">۱.۲</button><button type="button" class="sf-chip" onclick="setSF(this,'fb','1.3')">۱.۳</button></div>
 <div class="sf-manual"><input type="number" id="fb_sf_manual" step="0.01" value="1.2" oninput="onManualSF('fb')"><span class="sf-u">×</span></div>
 </div>
 <input type="hidden" id="fb_sf" value="1.2">
-<div class="row">
-<div class="field"><label>ظرفیت kg/hr</label><input type="number" id="fb_cap" value="1500"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="fb_p" value="10"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای تغذیه °C</label><input type="number" id="fb_tfeed" value="105"></div>
-<div class="field"><label>کندانس ٪</label><input type="number" id="fb_cond" value="60"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="fb_eff" value="86"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="fb_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div>
-</div>
-<div class="row4">
-<div class="field"><label>سختی ppm</label><input type="number" id="fb_hard" value="300"></div>
-<div class="field"><label>TDS ppm</label><input type="number" id="fb_tdsb" value="3000"></div>
-<div class="field"><label>دمای دودکش °C</label><input type="number" id="fb_stack" value="200"></div>
-<div class="field"><label>ارتفاع m</label><input type="number" id="fb_alt" value="0"></div>
-</div>
-<button type="button" class="btn" onclick="calcSteam('fb','فایرباکس')">⚡ محاسبه کامل</button>
-<div id="fb_results"></div>
+<div class="row"><div class="field"><label>ظرفیت kg/hr</label><input type="number" id="fb_cap" value="1500"></div><div class="field"><label>فشار bar</label><input type="number" id="fb_p" value="10"></div></div>
+<div class="row4"><div class="field"><label>دمای تغذیه °C</label><input type="number" id="fb_tfeed" value="105"></div><div class="field"><label>کندانس ٪</label><input type="number" id="fb_cond" value="60"></div><div class="field"><label>راندمان ٪</label><input type="number" id="fb_eff" value="86"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="fb_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div></div>
+<div class="row4"><div class="field"><label>سختی ppm</label><input type="number" id="fb_hard" value="300"></div><div class="field"><label>TDS ppm</label><input type="number" id="fb_tdsb" value="3000"></div><div class="field"><label>دمای دودکش °C</label><input type="number" id="fb_stack" value="200"></div><div class="field"><label>ارتفاع m</label><input type="number" id="fb_alt" value="0"></div></div>
+<button type="button" class="btn" onclick="calcSteam('fb','فایرباکس')">⚡ محاسبه کامل</button><div id="fb_results"></div>
 </div></div>
-
 <div id="subpanel-steam-vertical" class="subpanel"><div class="card">
-<span class="badge">Steam Boiler — Vertical</span>
-<h2>🔥 دیگ بخار عمودی</h2>
-<div class="sf-compact" data-sf-group="vrt"><span class="sf-lbl">⚖️ ضریب:</span>
-<div class="sf-chips">
-<button type="button" class="sf-chip" onclick="setSF(this,'vrt','1.0')">۱.۰</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'vrt','1.1')">۱.۱</button>
-<button type="button" class="sf-chip active" onclick="setSF(this,'vrt','1.2')">۱.۲</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'vrt','1.3')">۱.۳</button>
-</div>
-<div class="sf-manual"><input type="number" id="vrt_sf_manual" step="0.01" value="1.2" oninput="onManualSF('vrt')"><span class="sf-u">×</span></div>
-</div>
-<input type="hidden" id="vrt_sf" value="1.2">
-<div class="row">
-<div class="field"><label>ظرفیت kg/hr</label><input type="number" id="vrt_cap" value="200"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="vrt_p" value="8"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای تغذیه °C</label><input type="number" id="vrt_tfeed" value="20"></div>
-<div class="field"><label>کندانس ٪</label><input type="number" id="vrt_cond" value="0"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="vrt_eff" value="85"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="vrt_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcSteam('vrt','عمودی')">⚡ محاسبه کامل</button>
-<div id="vrt_results"></div>
+<span class="badge">Steam Boiler — Vertical</span><h2>🔥 دیگ بخار عمودی</h2>
+<div class="row"><div class="field"><label>ظرفیت kg/hr</label><input type="number" id="vrt_cap" value="200"></div><div class="field"><label>فشار bar</label><input type="number" id="vrt_p" value="8"></div></div>
+<div class="row4"><div class="field"><label>دمای تغذیه °C</label><input type="number" id="vrt_tfeed" value="20"></div><div class="field"><label>کندانس ٪</label><input type="number" id="vrt_cond" value="0"></div><div class="field"><label>راندمان ٪</label><input type="number" id="vrt_eff" value="85"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="vrt_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcSteam('vrt','عمودی')">⚡ محاسبه کامل</button><div id="vrt_results"></div>
 </div></div>
-
 <div id="subpanel-steam-trap" class="subpanel"><div class="card">
-<span class="badge">Steam Trap</span>
-<h2>🌡️ سایزینگ تله بخار</h2>
-<div class="row3">
-<div class="field"><label>دبی کندانس kg/hr</label><input type="number" id="st_flow" value="1500"></div>
-<div class="field"><label>ΔP bar</label><input type="number" id="st_dp" value="6"></div>
-<div class="field"><label>نوع تله</label><div class="cs-wrap"><select id="st_type" data-cs><option value="thermo">ترمودینامیکی (×1.2)</option><option value="thermo2">ترموستاتیک (×1.3)</option><option value="mech">مکانیکی (×1.5)</option></select></div></div>
-</div>
-<div class="field"><label>ضریب اطمینان</label><div class="cs-wrap"><select id="st_margin" data-cs><option value="1.2" selected>۱.۲</option><option value="1.3">۱.۳</option><option value="1.5">۱.۵</option></select></div></div>
-<button type="button" class="btn" onclick="calcTrap()">⚡ محاسبه</button>
-<div id="st_results"></div>
+<span class="badge">Steam Trap</span><h2>🌡️ سایزینگ تله بخار</h2>
+<div class="row3"><div class="field"><label>دبی کندانس kg/hr</label><input type="number" id="st_flow" value="1500"></div><div class="field"><label>ΔP bar</label><input type="number" id="st_dp" value="6"></div><div class="field"><label>نوع تله</label><div class="cs-wrap"><select id="st_type" data-cs><option value="thermo">ترمودینامیکی</option><option value="thermo2">ترموستاتیک</option><option value="mech">مکانیکی</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcTrap()">⚡ محاسبه</button><div id="st_results"></div>
 </div></div>
-
 <div id="subpanel-steam-clean" class="subpanel"><div class="card">
-<span class="badge">Clean Steam</span>
-<h2>💧 مولد بخار تمیز</h2>
-<div class="row3">
-<div class="field"><label>تعداد/مقدار</label><input type="number" id="cs_drv" value="100"></div>
-<div class="field"><label>ضریب تنوع ٪</label><input type="number" id="cs_div" value="60"></div>
-<div class="field"><label>مصرف هر تجهیز kg/hr</label><input type="number" id="cs_per" value="80"></div>
-</div>
-<div class="row3">
-<div class="field"><label>فشار bar</label><input type="number" id="cs_p" value="4"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="cs_margin" value="15"></div>
-<div class="field"><label>کاربرد</label><div class="cs-wrap"><select id="cs_app" data-cs><option value="hospital">بیمارستان</option><option value="pharma">داروسازی</option><option value="food">صنایع غذایی</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcCleanSteam()">⚡ محاسبه</button>
-<div id="cs_results"></div>
+<span class="badge">Clean Steam</span><h2>💧 مولد بخار تمیز</h2>
+<div class="row3"><div class="field"><label>تعداد/مقدار</label><input type="number" id="cs_drv" value="100"></div><div class="field"><label>ضریب تنوع ٪</label><input type="number" id="cs_div" value="60"></div><div class="field"><label>مصرف هر تجهیز kg/hr</label><input type="number" id="cs_per" value="80"></div></div>
+<div class="row3"><div class="field"><label>فشار bar</label><input type="number" id="cs_p" value="4"></div><div class="field"><label>حاشیه ٪</label><input type="number" id="cs_margin" value="15"></div><div class="field"><label>کاربرد</label><div class="cs-wrap"><select id="cs_app" data-cs><option value="hospital">بیمارستان</option><option value="pharma">داروسازی</option><option value="food">صنایع غذایی</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcCleanSteam()">⚡ محاسبه</button><div id="cs_results"></div>
 </div></div>
-
 <div id="subpanel-hot-oil" class="subpanel"><div class="card">
 <button type="button" class="card-reset" onclick="resetCard(event,'ho')">↺</button>
-<span class="badge">Hot Oil Boiler</span>
-<h2>🔥 دیگ روغن داغ</h2>
-<div class="row3">
-<div class="field"><label>بار kcal/hr</label><input type="number" id="ho_q" value="500000"></div>
-<div class="field"><label>دمای رفت °C</label><input type="number" id="ho_tin" value="280"></div>
-<div class="field"><label>دمای برگشت °C</label><input type="number" id="ho_tout" value="250"></div>
-</div>
-<div class="row3">
-<div class="field"><label>حاشیه ٪</label><input type="number" id="ho_margin" value="15"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="ho_eff" value="90"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="ho_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcHotOil()">⚡ محاسبه</button>
-<div id="ho_results"></div>
+<span class="badge">Hot Oil Boiler</span><h2>🔥 دیگ روغن داغ</h2>
+<div class="row3"><div class="field"><label>بار kcal/hr</label><input type="number" id="ho_q" value="500000"></div><div class="field"><label>دمای رفت °C</label><input type="number" id="ho_tin" value="280"></div><div class="field"><label>دمای برگشت °C</label><input type="number" id="ho_tout" value="250"></div></div>
+<div class="row3"><div class="field"><label>حاشیه ٪</label><input type="number" id="ho_margin" value="15"></div><div class="field"><label>راندمان ٪</label><input type="number" id="ho_eff" value="90"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="ho_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcHotOil()">⚡ محاسبه</button><div id="ho_results"></div>
 </div></div>
 </section>
 
-<!-- ============================================================
-     HOT WATER BOILERS
-     ============================================================ -->
 <section id="panel-hwboilers" class="panel">
 <nav class="subtabs" data-parent="hwboilers">
 <button type="button" class="subtab-btn active" data-subpanel="hw-tp">سه‌پاس</button>
@@ -624,144 +327,57 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <button type="button" class="subtab-btn" data-subpanel="hw-dual">دوگانه</button>
 <button type="button" class="subtab-btn" data-subpanel="hw-pk">پکیج</button>
 </nav>
-
 <div id="subpanel-hw-tp" class="subpanel active"><div class="card">
 <button type="button" class="card-reset" onclick="resetCard(event,'tp')">↺</button>
-<span class="badge">Hot Water — Three-pass</span>
-<h2>💧 دیگ آبگرم سه‌پاس</h2>
+<span class="badge">Hot Water — Three-pass</span><h2>💧 دیگ آبگرم سه‌پاس</h2>
 <div class="sf-compact" data-sf-group="tp"><span class="sf-lbl">⚖️ ضریب:</span>
-<div class="sf-chips">
-<button type="button" class="sf-chip" onclick="setSF(this,'tp','1.0')">۱.۰</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'tp','1.1')">۱.۱</button>
-<button type="button" class="sf-chip active" onclick="setSF(this,'tp','1.2')">۱.۲</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'tp','1.3')">۱.۳</button>
-</div>
+<div class="sf-chips"><button type="button" class="sf-chip" onclick="setSF(this,'tp','1.0')">۱.۰</button><button type="button" class="sf-chip" onclick="setSF(this,'tp','1.1')">۱.۱</button><button type="button" class="sf-chip active" onclick="setSF(this,'tp','1.2')">۱.۲</button><button type="button" class="sf-chip" onclick="setSF(this,'tp','1.3')">۱.۳</button></div>
 <div class="sf-manual"><input type="number" id="tp_sf_manual" step="0.01" value="1.2" oninput="onManualSF('tp')"><span class="sf-u">×</span></div>
 </div>
 <input type="hidden" id="tp_sf" value="1.2">
-<div class="row">
-<div class="field"><label>بار kcal/hr</label><input type="number" id="tp_q" value="500000"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="tp_p" value="6"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای رفت °C</label><input type="number" id="tp_tin" value="90"></div>
-<div class="field"><label>دمای برگشت °C</label><input type="number" id="tp_tout" value="70"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="tp_eff" value="88"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="tp_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcHW('tp','سه‌پاس')">⚡ محاسبه</button>
-<div id="tp_results"></div>
+<div class="row"><div class="field"><label>بار kcal/hr</label><input type="number" id="tp_q" value="500000"></div><div class="field"><label>فشار bar</label><input type="number" id="tp_p" value="6"></div></div>
+<div class="row4"><div class="field"><label>دمای رفت °C</label><input type="number" id="tp_tin" value="90"></div><div class="field"><label>دمای برگشت °C</label><input type="number" id="tp_tout" value="70"></div><div class="field"><label>راندمان ٪</label><input type="number" id="tp_eff" value="88"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="tp_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcHW('tp','سه‌پاس')">⚡ محاسبه</button><div id="tp_results"></div>
 </div></div>
-
 <div id="subpanel-hw-rf" class="subpanel"><div class="card">
-<span class="badge">Hot Water — Reverse Flame</span>
-<h2>💧 دیگ آبگرم شعله برگشتی</h2>
-<div class="row">
-<div class="field"><label>بار kcal/hr</label><input type="number" id="rf_q" value="400000"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="rf_p" value="6"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای رفت °C</label><input type="number" id="rf_tin" value="90"></div>
-<div class="field"><label>دمای برگشت °C</label><input type="number" id="rf_tout" value="70"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="rf_eff" value="85"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="rf_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcHW('rf','شعله برگشتی')">⚡ محاسبه</button>
-<div id="rf_results"></div>
+<span class="badge">Hot Water — Reverse Flame</span><h2>💧 دیگ آبگرم شعله برگشتی</h2>
+<div class="row"><div class="field"><label>بار kcal/hr</label><input type="number" id="rf_q" value="400000"></div><div class="field"><label>فشار bar</label><input type="number" id="rf_p" value="6"></div></div>
+<div class="row4"><div class="field"><label>دمای رفت °C</label><input type="number" id="rf_tin" value="90"></div><div class="field"><label>دمای برگشت °C</label><input type="number" id="rf_tout" value="70"></div><div class="field"><label>راندمان ٪</label><input type="number" id="rf_eff" value="85"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="rf_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcHW('rf','شعله برگشتی')">⚡ محاسبه</button><div id="rf_results"></div>
 </div></div>
-
 <div id="subpanel-hw-fb" class="subpanel"><div class="card">
-<span class="badge">Hot Water — Firebox</span>
-<h2>💧 دیگ آبگرم فایرباکس</h2>
-<div class="row">
-<div class="field"><label>بار kcal/hr</label><input type="number" id="hfb_q" value="300000"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="hfb_p" value="6"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای رفت °C</label><input type="number" id="hfb_tin" value="90"></div>
-<div class="field"><label>دمای برگشت °C</label><input type="number" id="hfb_tout" value="70"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="hfb_eff" value="86"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="hfb_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcHW('hfb','فایرباکس')">⚡ محاسبه</button>
-<div id="hfb_results"></div>
+<span class="badge">Hot Water — Firebox</span><h2>💧 دیگ آبگرم فایرباکس</h2>
+<div class="row"><div class="field"><label>بار kcal/hr</label><input type="number" id="hfb_q" value="300000"></div><div class="field"><label>فشار bar</label><input type="number" id="hfb_p" value="6"></div></div>
+<div class="row4"><div class="field"><label>دمای رفت °C</label><input type="number" id="hfb_tin" value="90"></div><div class="field"><label>دمای برگشت °C</label><input type="number" id="hfb_tout" value="70"></div><div class="field"><label>راندمان ٪</label><input type="number" id="hfb_eff" value="86"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="hfb_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcHW('hfb','فایرباکس')">⚡ محاسبه</button><div id="hfb_results"></div>
 </div></div>
-
 <div id="subpanel-hw-az" class="subpanel"><div class="card">
-<span class="badge">Hot Water — Azaran</span>
-<h2>💧 دیگ آبگرم آذران</h2>
-<div class="row">
-<div class="field"><label>بار kcal/hr</label><input type="number" id="az_q" value="250000"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="az_p" value="4"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای رفت °C</label><input type="number" id="az_tin" value="85"></div>
-<div class="field"><label>دمای برگشت °C</label><input type="number" id="az_tout" value="70"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="az_eff" value="80"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="az_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcHW('az','آذران')">⚡ محاسبه</button>
-<div id="az_results"></div>
+<span class="badge">Hot Water — Azaran</span><h2>💧 دیگ آبگرم آذران</h2>
+<div class="row"><div class="field"><label>بار kcal/hr</label><input type="number" id="az_q" value="250000"></div><div class="field"><label>فشار bar</label><input type="number" id="az_p" value="4"></div></div>
+<div class="row4"><div class="field"><label>دمای رفت °C</label><input type="number" id="az_tin" value="85"></div><div class="field"><label>دمای برگشت °C</label><input type="number" id="az_tout" value="70"></div><div class="field"><label>راندمان ٪</label><input type="number" id="az_eff" value="80"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="az_fuel" data-cs><option value="gas">گاز</option><option value="diesel">گازوئیل</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcHW('az','آذران')">⚡ محاسبه</button><div id="az_results"></div>
 </div></div>
-
 <div id="subpanel-hw-cond" class="subpanel"><div class="card">
-<span class="badge">Condensing</span>
-<h2>💧 دیگ آبگرم چگالشی</h2>
-<div class="row">
-<div class="field"><label>بار kcal/hr</label><input type="number" id="cond_q" value="500000"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="cond_p" value="6"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای رفت °C</label><input type="number" id="cond_tin" value="70"></div>
-<div class="field"><label>دمای برگشت °C</label><input type="number" id="cond_tout" value="50"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="cond_eff" value="105"></div>
-<div class="field"><label>سوخت</label><div class="cs-wrap"><select id="cond_fuel" data-cs><option value="gas">گاز</option><option value="lpg">LPG</option></select></div></div>
-</div>
+<span class="badge">Condensing</span><h2>💧 دیگ آبگرم چگالشی</h2>
+<div class="row"><div class="field"><label>بار kcal/hr</label><input type="number" id="cond_q" value="500000"></div><div class="field"><label>فشار bar</label><input type="number" id="cond_p" value="6"></div></div>
+<div class="row4"><div class="field"><label>دمای رفت °C</label><input type="number" id="cond_tin" value="70"></div><div class="field"><label>دمای برگشت °C</label><input type="number" id="cond_tout" value="50"></div><div class="field"><label>راندمان ٪</label><input type="number" id="cond_eff" value="105"></div><div class="field"><label>سوخت</label><div class="cs-wrap"><select id="cond_fuel" data-cs><option value="gas">گاز</option><option value="lpg">LPG</option></select></div></div></div>
 <div class="field"><label>ضریب بازیافت ٪</label><input type="number" id="cond_recov" value="12"></div>
-<button type="button" class="btn" onclick="calcCondensing()">⚡ محاسبه</button>
-<div id="cond_results"></div>
+<button type="button" class="btn" onclick="calcCondensing()">⚡ محاسبه</button><div id="cond_results"></div>
 </div></div>
-
 <div id="subpanel-hw-dual" class="subpanel"><div class="card">
-<span class="badge">Dual Boiler</span>
-<h2>💧 دیگ دوگانه</h2>
-<div class="row3">
-<div class="field"><label>بار گرمایش</label><input type="number" id="dual_qh" value="400000"></div>
-<div class="field"><label>بار DHW</label><input type="number" id="dual_qd" value="250000"></div>
-<div class="field"><label>فشار bar</label><input type="number" id="dual_p" value="6"></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای گرمایش رفت °C</label><input type="number" id="dual_th1" value="90"></div>
-<div class="field"><label>دمای گرمایش برگشت °C</label><input type="number" id="dual_th2" value="70"></div>
-<div class="field"><label>دمای DHW °C</label><input type="number" id="dual_td" value="60"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="dual_eff" value="88"></div>
-</div>
-<button type="button" class="btn" onclick="calcDual()">⚡ محاسبه</button>
-<div id="dual_results"></div>
+<span class="badge">Dual Boiler</span><h2>💧 دیگ دوگانه</h2>
+<div class="row3"><div class="field"><label>بار گرمایش</label><input type="number" id="dual_qh" value="400000"></div><div class="field"><label>بار DHW</label><input type="number" id="dual_qd" value="250000"></div><div class="field"><label>فشار bar</label><input type="number" id="dual_p" value="6"></div></div>
+<div class="row4"><div class="field"><label>دمای گرمایش رفت °C</label><input type="number" id="dual_th1" value="90"></div><div class="field"><label>دمای گرمایش برگشت °C</label><input type="number" id="dual_th2" value="70"></div><div class="field"><label>دمای DHW °C</label><input type="number" id="dual_td" value="60"></div><div class="field"><label>راندمان ٪</label><input type="number" id="dual_eff" value="88"></div></div>
+<button type="button" class="btn" onclick="calcDual()">⚡ محاسبه</button><div id="dual_results"></div>
 </div></div>
-
 <div id="subpanel-hw-pk" class="subpanel"><div class="card">
-<span class="badge">Package</span>
-<h2>💧 پکیج موتورخانه</h2>
-<div class="row4">
-<div class="field"><label>تعداد واحد</label><input type="number" id="pk_units" value="6"></div>
-<div class="field"><label>متراژ واحد</label><input type="number" id="pk_area" value="120"></div>
-<div class="field"><label>ارتفاع سقف</label><input type="number" id="pk_h" value="2.8"></div>
-<div class="field"><label>آبگرم</label><div class="cs-wrap"><select id="pk_dhw" data-cs><option value="1" selected>دارد</option><option value="0">ندارد</option></select></div></div>
-</div>
-<div class="row3">
-<div class="field"><label>دمای هدف °C</label><input type="number" id="pk_tin" value="22"></div>
-<div class="field"><label>ضریب U</label><div class="cs-wrap"><select id="pk_u" data-cs><option value="1.2">1.2</option><option value="0.8" selected>0.8</option><option value="0.5">0.5</option></select></div></div>
-<div class="field"><label>دمای طرح °C</label><input type="number" id="pk_tout" value="-5"></div>
-</div>
-<button type="button" class="btn" onclick="calcPackage()">⚡ محاسبه</button>
-<div id="pk_results"></div>
+<span class="badge">Package</span><h2>💧 پکیج موتورخانه</h2>
+<div class="row4"><div class="field"><label>تعداد واحد</label><input type="number" id="pk_units" value="6"></div><div class="field"><label>متراژ واحد</label><input type="number" id="pk_area" value="120"></div><div class="field"><label>ارتفاع سقف</label><input type="number" id="pk_h" value="2.8"></div><div class="field"><label>آبگرم</label><div class="cs-wrap"><select id="pk_dhw" data-cs><option value="1" selected>دارد</option><option value="0">ندارد</option></select></div></div></div>
+<div class="row3"><div class="field"><label>دمای هدف °C</label><input type="number" id="pk_tin" value="22"></div><div class="field"><label>ضریب U</label><div class="cs-wrap"><select id="pk_u" data-cs><option value="1.2">1.2</option><option value="0.8" selected>0.8</option><option value="0.5">0.5</option></select></div></div><div class="field"><label>دمای طرح °C</label><input type="number" id="pk_tout" value="-5"></div></div>
+<button type="button" class="btn" onclick="calcPackage()">⚡ محاسبه</button><div id="pk_results"></div>
 </div></div>
 </section>
 
-<!-- ============================================================
-     APPLICATIONS
-     ============================================================ -->
 <section id="panel-applications" class="panel">
 <nav class="subtabs" data-parent="applications">
 <button type="button" class="subtab-btn active" data-subpanel="app-dhw">🚿 آبگرم مصرفی</button>
@@ -771,24 +387,13 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <button type="button" class="subtab-btn" data-subpanel="app-sauna">🧖 سونا</button>
 </nav>
 
-<!-- DHW -->
 <div id="subpanel-app-dhw" class="subpanel active"><div class="card">
-<span class="badge">Domestic Hot Water</span>
-<h2>🚿 آبگرم مصرفی</h2>
-
-<div class="sf-compact" data-sf-group="dhw">
-<span class="sf-lbl">⚖️ ضریب:</span>
-<div class="sf-chips">
-<button type="button" class="sf-chip" onclick="setSF(this,'dhw','1.0')">۱.۰</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'dhw','1.1')">۱.۱</button>
-<button type="button" class="sf-chip active" onclick="setSF(this,'dhw','1.2')">۱.۲</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'dhw','1.3')">۱.۳</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'dhw','1.35')">۱.۳۵</button>
-</div>
+<span class="badge">Domestic Hot Water</span><h2>🚿 آبگرم مصرفی</h2>
+<div class="sf-compact" data-sf-group="dhw"><span class="sf-lbl">⚖️ ضریب:</span>
+<div class="sf-chips"><button type="button" class="sf-chip" onclick="setSF(this,'dhw','1.0')">۱.۰</button><button type="button" class="sf-chip" onclick="setSF(this,'dhw','1.1')">۱.۱</button><button type="button" class="sf-chip active" onclick="setSF(this,'dhw','1.2')">۱.۲</button><button type="button" class="sf-chip" onclick="setSF(this,'dhw','1.3')">۱.۳</button><button type="button" class="sf-chip" onclick="setSF(this,'dhw','1.35')">۱.۳۵</button></div>
 <div class="sf-manual"><input type="number" id="dhw_sf_manual" step="0.01" value="1.2" oninput="onManualSF('dhw')"><span class="sf-u">×</span></div>
 </div>
 <input type="hidden" id="dhw_sf" value="1.2">
-
 <div class="method-tabs" data-method-tabs="dhw">
 <button type="button" data-method="fixture" class="active" onclick="setDHWMethod('fixture')">📋 جدول مرجع</button>
 <button type="button" data-method="site" onclick="setDHWMethod('site')">🌐 سایت pyaco</button>
@@ -796,43 +401,16 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <button type="button" data-method="experimental" onclick="setDHWMethod('experimental')">📐 تجربی</button>
 </div>
 <input type="hidden" id="dhw_method" value="fixture">
-
-<!-- TOP ROW — 3 fields, "تعداد واحد" is HIDDEN in experimental mode -->
 <div class="row3" id="dhw_top_row">
-<div class="field"><label>نوع ساختمان</label>
-<div class="cs-wrap"><select id="dhw_bldg" data-cs onchange="onDhwBldg()">
-<option value="apartment">آپارتمان</option>
-<option value="residential">منازل مسکونی</option>
-<option value="hotel">هتل</option>
-<option value="stadium">ورزشگاه</option>
-<option value="hospital">بیمارستان</option>
-<option value="club">کلوب</option>
-<option value="factory">کارخانجات</option>
-<option value="office">ادارات</option>
-<option value="school">مدارس</option>
-<option value="dormitory">خوابگاه دانشجویی</option>
-<option value="restaurant">رستوران</option>
-</select></div>
-</div>
+<div class="field"><label>نوع ساختمان</label><div class="cs-wrap"><select id="dhw_bldg" data-cs onchange="onDhwBldg()"><option value="apartment">آپارتمان</option><option value="residential">منازل مسکونی</option><option value="hotel">هتل</option><option value="stadium">ورزشگاه</option><option value="hospital">بیمارستان</option><option value="club">کلوب</option><option value="factory">کارخانجات</option><option value="office">ادارات</option><option value="school">مدارس</option><option value="dormitory">خوابگاه دانشجویی</option><option value="restaurant">رستوران</option></select></div></div>
 <div class="field" id="dhw_units_field"><label id="dhw_units_label">تعداد واحد/اتاق</label><input type="number" id="dhw_units" value="1"></div>
 <div class="field"><label>الگوی مصرف</label><div class="cs-wrap"><select id="dhw_pat" data-cs><option value="continuous">پیوسته</option><option value="peak">پیک‌دار</option></select></div></div>
 </div>
-
 <div class="method-info" id="dhw_method_info"><strong>روش جدول مرجع:</strong> تعداد واحد × GPH استاندارد هر کاربری.</div>
-
-<!-- FIXTURE METHOD -->
 <div id="dhw_fixture_block">
-<div class="field"><label>واحد نمایش</label>
-<div class="unit-toggle" data-unit-toggle="dhw">
-<button type="button" class="active" data-unit="gph" onclick="setDHWUnit('gph')">GPH</button>
-<button type="button" data-unit="gpm" onclick="setDHWUnit('gpm')">GPM</button>
-<button type="button" data-unit="both" onclick="setDHWUnit('both')">هر دو</button>
-</div>
-</div>
+<div class="field"><label>واحد نمایش</label><div class="unit-toggle" data-unit-toggle="dhw"><button type="button" class="active" data-unit="gph" onclick="setDHWUnit('gph')">GPH</button><button type="button" data-unit="gpm" onclick="setDHWUnit('gpm')">GPM</button><button type="button" data-unit="both" onclick="setDHWUnit('both')">هر دو</button></div></div>
 <div id="dhw_fix"></div>
 </div>
-
-<!-- SITE METHOD -->
 <div id="dhw_site_block" style="display:none;">
 <div class="method-info"><strong>روش سایت pyaco.ir:</strong> تعداد دقیق هر فیکسچر — نه نفر.</div>
 <div id="dhw_site_fix"></div>
@@ -851,22 +429,10 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="field"><label>راندمان دیگ ٪</label><input type="number" id="site_eff" value="90"></div>
 </div>
 </div>
-
-<!-- EXPERIMENTAL METHOD -->
 <div id="dhw_experimental_block" style="display:none;">
 <div class="method-info"><strong>📐 روش تجربی (دفتری کاسپین):</strong> بر اساس لیتر بر واحد یا GPH کل.</div>
-<div class="field"><label>نوع واحد</label>
-<div class="unit-toggle" data-bath-toggle="dhw">
-<button type="button" class="active" data-bath="without" onclick="setDHWBath('without')">بدون وان (175 L)</button>
-<button type="button" data-bath="with" onclick="setDHWBath('with')">با وان (200 L)</button>
-</div>
-</div>
-<div class="field"><label>واحد محاسبه</label>
-<div class="unit-toggle" data-exp-unit="dhw">
-<button type="button" class="active" data-eu="liters" onclick="setDHWExpUnit('liters')">لیتر / واحد</button>
-<button type="button" data-eu="gph" onclick="setDHWExpUnit('gph')">GPH کل (دستی)</button>
-</div>
-</div>
+<div class="field"><label>نوع واحد</label><div class="unit-toggle" data-bath-toggle="dhw"><button type="button" class="active" data-bath="without" onclick="setDHWBath('without')">بدون وان (175 L)</button><button type="button" data-bath="with" onclick="setDHWBath('with')">با وان (200 L)</button></div></div>
+<div class="field"><label>واحد محاسبه</label><div class="unit-toggle" data-exp-unit="dhw"><button type="button" class="active" data-eu="liters" onclick="setDHWExpUnit('liters')">لیتر / واحد</button><button type="button" data-eu="gph" onclick="setDHWExpUnit('gph')">GPH کل</button></div></div>
 <div class="row3">
 <div class="field"><label id="dhw_exp_primary_label">لیتر بر واحد</label><input type="number" id="dhw_exp_primary" value="175" step="5" oninput="syncDHWExpConversion()"></div>
 <div class="field"><label>تعداد واحد</label><input type="number" id="dhw_exp_units" value="3" min="1" oninput="syncDHWExpConversion()"></div>
@@ -875,22 +441,19 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div class="gauge cyan" style="margin-top:8px;">
 <div class="k" id="dhw_equivalent_label">معادل GPH کل</div>
 <div class="v" id="dhw_equivalent_value">—</div>
-<div class="note" id="dhw_equivalent_note">محاسبه از روی لیتر/واحد × تعداد واحد ÷ زمان بازیابی</div>
+<div class="note" id="dhw_equivalent_note">لیتر/واحد × تعداد واحد ÷ زمان بازیابی</div>
 </div>
 </div>
-
 <div id="dhw_fixture_factors" class="row3" style="margin-top:10px;">
 <div class="field"><label>ضریب تقاضا</label><input type="number" id="dhw_div" value="0.35" step="0.05"></div>
 <div class="field"><label>ضریب ذخیره</label><input type="number" id="dhw_stor" value="1.25" step="0.05"></div>
 <div class="field"><label>ساعت پیک</label><input type="number" id="dhw_peak_hr" value="2"></div>
 </div>
-
 <div class="row3">
 <div class="field"><label>دمای آب گرم °C</label><input type="number" id="dhw_thot" value="60"></div>
 <div class="field"><label>دمای ورودی °C</label><input type="number" id="dhw_tin" value="10"></div>
-<div class="field"><label>منطقه ایران</label><select id="dhw_region" onchange="onRegionChange('dhw')"><option value="hot">🔥 گرمسیر</option><option value="moderate" selected>🌤 معتدل</option><option value="cold">❄️ سردسیر</option><option value="verycold">🥶 بسیار سرد</option></select></div>
+<div class="field"><label>منطقه ایران</label><select id="dhw_region"><option value="hot">🔥 گرمسیر</option><option value="moderate" selected>🌤 معتدل</option><option value="cold">❄️ سردسیر</option><option value="verycold">🥶 بسیار سرد</option></select></div>
 </div>
-
 <div class="field" style="display:flex;align-items:center;gap:8px;margin-top:8px; padding:10px;background:linear-gradient(135deg,rgba(245,200,66,.15),rgba(255,107,53,.08)); border-radius:9px; border:2px solid rgba(245,200,66,.5);">
 <input type="checkbox" id="dhw_combined" onchange="toggleCombinedMode()" style="width:18px;height:18px;">
 <label for="dhw_combined" style="margin:0;font-weight:800;color:var(--navy);font-size:.82rem;cursor:pointer;">🔗 محاسبه همزمان آبگرم + شوفاژ</label>
@@ -898,7 +461,6 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <div id="dhw_combined_inputs" style="display:none; margin-top:8px; padding:12px;background:linear-gradient(135deg,#FFF4E0,#F5E5CC); border-radius:9px; border:1.5px solid rgba(255,107,53,.40);">
 <div class="field" style="margin-bottom:0;"><label style="color:#7C4A02;">بار گرمایش (شوفاژ) kcal/hr</label><input type="number" id="dhw_heating_load" value="200000"></div>
 </div>
-
 <div class="field" style="display:flex;align-items:center;gap:8px;margin-top:10px; padding:10px;background:linear-gradient(135deg,rgba(0,229,255,.10),rgba(0,214,143,.08)); border-radius:9px; border:2px solid rgba(0,229,255,.4);">
 <input type="checkbox" id="dhw_show_coil" checked style="width:18px;height:18px;">
 <label for="dhw_show_coil" style="margin:0;font-weight:800;color:var(--navy);font-size:.82rem;cursor:pointer;">🛢 نمایش منبع کویلی / اسپیرال</label>
@@ -908,28 +470,16 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <label for="dhw_show_exp" style="margin:0;font-weight:800;color:var(--navy);font-size:.82rem;cursor:pointer;">🛢 محاسبه منبع انبساط</label>
 </div>
 <div id="dhw_exp_params" style="display:none; margin-top:6px; padding:10px;background:linear-gradient(135deg,#E2EDE4,#C9DDCE); border-radius:9px;">
-<div class="row3">
-<div class="field" style="margin-bottom:0;"><label>دمای max °C</label><input type="number" id="dhw_exp_tmax" value="90"></div>
-<div class="field" style="margin-bottom:0;"><label>دمای min °C</label><input type="number" id="dhw_exp_tmin" value="10"></div>
-<div class="field" style="margin-bottom:0;"><label>فشار اولیه bar</label><input type="number" id="dhw_exp_p1" value="1.5"></div>
+<div class="row3"><div class="field" style="margin-bottom:0;"><label>دمای max °C</label><input type="number" id="dhw_exp_tmax" value="90"></div><div class="field" style="margin-bottom:0;"><label>دمای min °C</label><input type="number" id="dhw_exp_tmin" value="10"></div><div class="field" style="margin-bottom:0;"><label>فشار اولیه bar</label><input type="number" id="dhw_exp_p1" value="1.5"></div></div>
 </div>
-</div>
-
 <button type="button" class="btn" onclick="calcDHW()" style="margin-top:12px;">⚡ محاسبه + پیشنهاد</button>
 <div id="dhw_results"></div>
 </div></div>
 
-<!-- HEATING -->
 <div id="subpanel-app-heating" class="subpanel"><div class="card">
-<span class="badge">Space Heating</span>
-<h2>🏢 بار گرمایش (شوفاژ)</h2>
+<span class="badge">Space Heating</span><h2>🏢 بار گرمایش (شوفاژ)</h2>
 <div class="sf-compact" data-sf-group="ht"><span class="sf-lbl">⚖️ ضریب:</span>
-<div class="sf-chips">
-<button type="button" class="sf-chip" onclick="setSF(this,'ht','1.0')">۱.۰</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'ht','1.1')">۱.۱</button>
-<button type="button" class="sf-chip active" onclick="setSF(this,'ht','1.2')">۱.۲</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'ht','1.3')">۱.۳</button>
-</div>
+<div class="sf-chips"><button type="button" class="sf-chip" onclick="setSF(this,'ht','1.0')">۱.۰</button><button type="button" class="sf-chip" onclick="setSF(this,'ht','1.1')">۱.۱</button><button type="button" class="sf-chip active" onclick="setSF(this,'ht','1.2')">۱.۲</button><button type="button" class="sf-chip" onclick="setSF(this,'ht','1.3')">۱.۳</button></div>
 <div class="sf-manual"><input type="number" id="ht_sf_manual" step="0.01" value="1.2" oninput="onManualSF('ht')"><span class="sf-u">×</span></div>
 </div>
 <input type="hidden" id="ht_sf" value="1.2">
@@ -941,42 +491,21 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 <input type="hidden" id="ht_method" value="detailed">
 <div id="ht_ashrae_block">
-<div class="row3">
-<div class="field"><label>سطح m²</label><input type="number" id="ht_area" value="500"></div>
-<div class="field"><label>ارتفاع m</label><input type="number" id="ht_h" value="3"></div>
-<div class="field"><label>نوع کاربری</label><div class="cs-wrap"><select id="ht_bldg" data-cs onchange="onHtBldg()"><option value="office">اداری</option><option value="residential">مسکونی</option><option value="hospital">بیمارستان</option><option value="school">مدرسه</option><option value="hotel">هتل</option><option value="industrial">کارخانه</option><option value="warehouse">انبار</option></select></div></div>
-</div>
-<div class="row4">
-<div class="field"><label>دمای داخل °C</label><input type="number" id="ht_tin" value="22" readonly style="background:#EEF2F7;"></div>
-<div class="field"><label>دمای طرح °C</label><input type="number" id="ht_tout" value="-5"></div>
-<div class="field"><label>ACH</label><input type="number" id="ht_ach" value="0.5" step="0.1"></div>
-<div class="field"><label>ضریب U</label><div class="cs-wrap"><select id="ht_u" data-cs><option value="1.2">1.2</option><option value="0.8" selected>0.8</option><option value="0.5">0.5</option></select></div></div>
-</div>
+<div class="row3"><div class="field"><label>سطح m²</label><input type="number" id="ht_area" value="500"></div><div class="field"><label>ارتفاع m</label><input type="number" id="ht_h" value="3"></div><div class="field"><label>نوع کاربری</label><div class="cs-wrap"><select id="ht_bldg" data-cs onchange="onHtBldg()"><option value="office">اداری</option><option value="residential">مسکونی</option><option value="hospital">بیمارستان</option><option value="school">مدرسه</option><option value="hotel">هتل</option><option value="industrial">کارخانه</option><option value="warehouse">انبار</option></select></div></div></div>
+<div class="row4"><div class="field"><label>دمای داخل °C</label><input type="number" id="ht_tin" value="22" readonly style="background:#EEF2F7;"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="ht_tout" value="-5"></div><div class="field"><label>ACH</label><input type="number" id="ht_ach" value="0.5" step="0.1"></div><div class="field"><label>ضریب U</label><div class="cs-wrap"><select id="ht_u" data-cs><option value="1.2">1.2</option><option value="0.8" selected>0.8</option><option value="0.5">0.5</option></select></div></div></div>
 </div>
 <div id="ht_experimental_block" style="display:none;">
 <div class="method-info"><strong>📐 روش تجربی:</strong> Q = N × A × ضریب × منطقه</div>
-<div class="row3">
-<div class="field"><label>تعداد واحد</label><input type="number" id="ht_exp_units" value="3" min="1"></div>
-<div class="field"><label>متراژ واحد</label><input type="number" id="ht_exp_area" value="175"></div>
-<div class="field"><label>ضریب پایه</label><select id="ht_coeff"><option value="90">90</option><option value="150" selected>150</option><option value="170">170</option><option value="200">200</option><option value="300">300</option></select></div>
+<div class="row3"><div class="field"><label>تعداد واحد</label><input type="number" id="ht_exp_units" value="3" min="1"></div><div class="field"><label>متراژ واحد</label><input type="number" id="ht_exp_area" value="175"></div><div class="field"><label>ضریب پایه</label><select id="ht_coeff"><option value="90">90</option><option value="150" selected>150</option><option value="170">170</option><option value="200">200</option><option value="300">300</option></select></div></div>
+<div class="field"><label>منطقه ایران</label><select id="ht_region"><option value="hot">🔥 گرمسیر</option><option value="moderate" selected>🌤 معتدل</option><option value="cold">❄️ سردسیر</option><option value="verycold">🥶 بسیار سرد</option></select></div>
 </div>
-<div class="field"><label>منطقه ایران</label><select id="ht_region" onchange="onRegionChange('ht')"><option value="hot">🔥 گرمسیر</option><option value="moderate" selected>🌤 معتدل</option><option value="cold">❄️ سردسیر</option><option value="verycold">🥶 بسیار سرد</option></select></div>
-</div>
-<button type="button" class="btn" onclick="calcHeating()">⚡ محاسبه</button>
-<div id="ht_results"></div>
+<button type="button" class="btn" onclick="calcHeating()">⚡ محاسبه</button><div id="ht_results"></div>
 </div></div>
 
-<!-- POOL -->
 <div id="subpanel-app-pool" class="subpanel"><div class="card">
-<span class="badge">Pool</span>
-<h2>🏊 استخر + فیلتر + مبدل</h2>
+<span class="badge">Pool</span><h2>🏊 استخر + فیلتر + مبدل</h2>
 <div class="sf-compact" data-sf-group="pl"><span class="sf-lbl">⚖️ ضریب:</span>
-<div class="sf-chips">
-<button type="button" class="sf-chip" onclick="setSF(this,'pl','1.0')">۱.۰</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'pl','1.1')">۱.۱</button>
-<button type="button" class="sf-chip active" onclick="setSF(this,'pl','1.2')">۱.۲</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'pl','1.3')">۱.۳</button>
-</div>
+<div class="sf-chips"><button type="button" class="sf-chip" onclick="setSF(this,'pl','1.0')">۱.۰</button><button type="button" class="sf-chip" onclick="setSF(this,'pl','1.1')">۱.۱</button><button type="button" class="sf-chip active" onclick="setSF(this,'pl','1.2')">۱.۲</button><button type="button" class="sf-chip" onclick="setSF(this,'pl','1.3')">۱.۳</button></div>
 <div class="sf-manual"><input type="number" id="pl_sf_manual" step="0.01" value="1.2" oninput="onManualSF('pl')"><span class="sf-u">×</span></div>
 </div>
 <input type="hidden" id="pl_sf" value="1.2">
@@ -985,64 +514,30 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <button type="button" data-method="ashrae" onclick="setPLMethod('ashrae')">📊 ASHRAE Ch.6</button>
 </div>
 <input type="hidden" id="pl_method" value="experimental">
-<div class="row3">
-<div class="field"><label>طول m</label><input type="number" id="pl_l" value="25"></div>
-<div class="field"><label>عرض m</label><input type="number" id="pl_w" value="12"></div>
-<div class="field"><label>عمق m</label><input type="number" id="pl_d" value="1.4" step="0.1"></div>
-</div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="pl_l" value="25"></div><div class="field"><label>عرض m</label><input type="number" id="pl_w" value="12"></div><div class="field"><label>عمق m</label><input type="number" id="pl_d" value="1.4" step="0.1"></div></div>
 <div id="pl_experimental_block">
 <div class="method-info"><strong>📐 روش تجربی:</strong> Q = (Q_تبخیر + Q_دوش + Q_پیش‌گرم) × 1.2</div>
-<div class="row3">
-<div class="field"><label>نوع استخر</label><select id="pl_type" onchange="onPoolTypeChange()"><option value="indoor" selected>سرپوشیده</option><option value="outdoor">روباز</option></select></div>
-<div class="field"><label>پیش‌گرمایش</label><select id="pl_preheat"><option value="6">۶ ساعته</option><option value="8" selected>۸ ساعته</option><option value="12">۱۲ ساعته</option><option value="24">۲۴ ساعته</option></select></div>
-<div class="field"><label>ΔT تبخیر °C</label><input type="number" id="pl_dT_evap" value="20" step="1"></div>
-</div>
-<div class="row3">
-<div class="field"><label>Y (تبخیر kg/hr)</label><input type="number" id="pl_evap" value="30" step="1"></div>
-<div class="field"><label>تعداد دوش</label><input type="number" id="pl_showers" value="0" min="0"></div>
-<div class="field"><label>دمای استخر °C</label><input type="number" id="pl_target" value="26"></div>
-</div>
-<div class="row3">
-<div class="field"><label>دمای ورودی °C</label><input type="number" id="pl_tin" value="8"></div>
-<div class="field"><label>دمای محیط °C</label><input type="number" id="pl_ta" value="-5"></div>
-<div class="field"><label>رطوبت ٪</label><input type="number" id="pl_rh" value="60"></div>
-</div>
+<div class="row3"><div class="field"><label>نوع استخر</label><select id="pl_type" onchange="onPoolTypeChange()"><option value="indoor" selected>سرپوشیده</option><option value="outdoor">روباز</option></select></div><div class="field"><label>پیش‌گرمایش</label><select id="pl_preheat"><option value="6">۶ ساعته</option><option value="8" selected>۸ ساعته</option><option value="12">۱۲ ساعته</option><option value="24">۲۴ ساعته</option></select></div><div class="field"><label>ΔT تبخیر °C</label><input type="number" id="pl_dT_evap" value="20" step="1"></div></div>
+<div class="row3"><div class="field"><label>Y (تبخیر kg/hr)</label><input type="number" id="pl_evap" value="30" step="1"></div><div class="field"><label>تعداد دوش</label><input type="number" id="pl_showers" value="0" min="0"></div><div class="field"><label>دمای استخر °C</label><input type="number" id="pl_target" value="26"></div></div>
+<div class="row3"><div class="field"><label>دمای ورودی °C</label><input type="number" id="pl_tin" value="8"></div><div class="field"><label>دمای محیط °C</label><input type="number" id="pl_ta" value="-5"></div><div class="field"><label>رطوبت ٪</label><input type="number" id="pl_rh" value="60"></div></div>
 </div>
 <div id="pl_ashrae_block" style="display:none;">
-<div class="row4">
-<div class="field"><label>دمای محیط °C</label><input type="number" id="pl_ash_ta" value="-5"></div>
-<div class="field"><label>رطوبت ٪</label><input type="number" id="pl_ash_rh" value="60"></div>
-<div class="field"><label>باد m/s</label><input type="number" id="pl_ash_wind" value="0.5" step="0.1"></div>
-<div class="field"><label>نوع</label><select id="pl_ash_use"><option value="0.7" selected>تفریحی</option><option value="0.3">درمانی</option><option value="1.0">روباز</option></select></div>
-</div>
-<div class="row4">
-<div class="field"><label>پوشش</label><select id="pl_ash_cover"><option value="0.3" selected>دارد</option><option value="1">ندارد</option></select></div>
-<div class="field"><label>پیش‌گرمایش</label><select id="pl_ash_preheat"><option value="6">۶ ساعته</option><option value="8" selected>۸ ساعته</option><option value="12">۱۲ ساعته</option><option value="24">۲۴ ساعته</option></select></div>
-<div class="field"><label>ضریب U</label><select id="pl_ash_ufactor"><option value="1.0">استاندارد</option><option value="1.3">روباز</option><option value="0.8">سرپوشیده</option></select></div>
-<div class="field"><label>استاندارد</label><select id="pl_ash_std"><option value="ashrae" selected>ASHRAE</option><option value="vdi">VDI</option></select></div>
-</div>
+<div class="row4"><div class="field"><label>دمای محیط °C</label><input type="number" id="pl_ash_ta" value="-5"></div><div class="field"><label>رطوبت ٪</label><input type="number" id="pl_ash_rh" value="60"></div><div class="field"><label>باد m/s</label><input type="number" id="pl_ash_wind" value="0.5" step="0.1"></div><div class="field"><label>نوع</label><select id="pl_ash_use"><option value="0.7" selected>تفریحی</option><option value="0.3">درمانی</option><option value="1.0">روباز</option></select></div></div>
+<div class="row4"><div class="field"><label>پوشش</label><select id="pl_ash_cover"><option value="0.3" selected>دارد</option><option value="1">ندارد</option></select></div><div class="field"><label>پیش‌گرمایش</label><select id="pl_ash_preheat"><option value="6">۶ ساعته</option><option value="8" selected>۸ ساعته</option><option value="12">۱۲ ساعته</option><option value="24">۲۴ ساعته</option></select></div><div class="field"><label>ضریب U</label><select id="pl_ash_ufactor"><option value="1.0">استاندارد</option><option value="1.3">روباز</option><option value="0.8">سرپوشیده</option></select></div><div class="field"><label>استاندارد</label><select id="pl_ash_std"><option value="ashrae" selected>ASHRAE</option><option value="vdi">VDI</option></select></div></div>
 </div>
 <div class="field" style="display:flex;align-items:center;gap:8px;margin-top:10px; padding:10px;background:linear-gradient(135deg,rgba(0,229,255,.10),rgba(57,255,20,.06)); border-radius:9px; border:2px solid rgba(0,229,255,.4);">
 <input type="checkbox" id="pl_show_filter" checked style="width:18px;height:18px;">
 <label for="pl_show_filter" style="margin:0;font-weight:800;color:var(--navy);font-size:.82rem;cursor:pointer;">🧪 محاسبه فیلتر استخر</label>
 </div>
 <div id="pl_filter_params" style="margin-top:6px; padding:10px;background:linear-gradient(135deg,#E0F2FE,#BAE6FD); border-radius:9px;">
-<div class="row3">
-<div class="field" style="margin-bottom:0;"><label>نوع فیلتر</label><select id="pf_type"><option value="sand" selected>شنی (15)</option><option value="cartridge">کارتریج (0.375)</option><option value="de">دیاتومه (2)</option></select></div>
-<div class="field" style="margin-bottom:0;"><label>Turn-over (h)</label><select id="pf_turnover"><option value="6" selected>۶ ساعته</option><option value="8">۸ ساعته</option><option value="10">۱۰ ساعته</option></select></div>
-<div class="field" style="margin-bottom:0;"><label>بارگذاری (GPM/ft²)</label><input type="number" id="pf_loading" value="15" step="0.5"></div>
-</div>
+<div class="row3"><div class="field" style="margin-bottom:0;"><label>نوع فیلتر</label><select id="pf_type"><option value="sand" selected>شنی (15)</option><option value="cartridge">کارتریج (0.375)</option><option value="de">دیاتومه (2)</option></select></div><div class="field" style="margin-bottom:0;"><label>Turn-over (h)</label><select id="pf_turnover"><option value="6" selected>۶ ساعته</option><option value="8">۸ ساعته</option><option value="10">۱۰ ساعته</option></select></div><div class="field" style="margin-bottom:0;"><label>بارگذاری (GPM/ft²)</label><input type="number" id="pf_loading" value="15" step="0.5"></div></div>
 </div>
 <div class="field" style="display:flex;align-items:center;gap:8px;margin-top:8px; padding:10px;background:linear-gradient(135deg,rgba(255,107,53,.10),rgba(245,200,66,.06)); border-radius:9px; border:2px solid rgba(255,107,53,.4);">
 <input type="checkbox" id="pl_show_hx" checked style="width:18px;height:18px;">
 <label for="pl_show_hx" style="margin:0;font-weight:800;color:var(--navy);font-size:.82rem;cursor:pointer;">🔁 محاسبه مبدل پیش‌گرم</label>
 </div>
 <div id="pl_hx_params" style="margin-top:6px; padding:10px;background:linear-gradient(135deg,#F8E5DA,#F0D0BD); border-radius:9px;">
-<div class="row3">
-<div class="field" style="margin-bottom:0;"><label>دمای دیگ رفت °C</label><input type="number" id="hx_boil_in" value="90"></div>
-<div class="field" style="margin-bottom:0;"><label>دمای دیگ برگشت °C</label><input type="number" id="hx_boil_out" value="70"></div>
-<div class="field" style="margin-bottom:0;"><label>ضریب U</label><select id="hx_type_pl"><option value="4000" selected>صفحه‌ای (4000)</option><option value="2000">پوسته-لوله (2000)</option></select></div>
-</div>
+<div class="row3"><div class="field" style="margin-bottom:0;"><label>دمای دیگ رفت °C</label><input type="number" id="hx_boil_in" value="90"></div><div class="field" style="margin-bottom:0;"><label>دمای دیگ برگشت °C</label><input type="number" id="hx_boil_out" value="70"></div><div class="field" style="margin-bottom:0;"><label>ضریب U</label><select id="hx_type_pl"><option value="4000" selected>صفحه‌ای (4000)</option><option value="2000">پوسته-لوله (2000)</option></select></div></div>
 </div>
 <button type="button" class="btn" onclick="calcPool()">⚡ محاسبه</button>
 <div id="pl_results"></div>
@@ -1050,19 +545,12 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 
 <!-- GREENHOUSE -->
 <div id="subpanel-app-greenhouse" class="subpanel"><div class="card">
-<span class="badge">Greenhouse — 4 Methods</span>
-<h2>🌿 بار حرارتی گلخانه</h2>
+<span class="badge">Greenhouse — 4 Methods</span><h2>🌿 بار حرارتی گلخانه</h2>
 <div class="sf-compact" data-sf-group="gh"><span class="sf-lbl">⚖️ ضریب:</span>
-<div class="sf-chips">
-<button type="button" class="sf-chip" onclick="setSF(this,'gh','1.0')">۱.۰</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'gh','1.1')">۱.۱</button>
-<button type="button" class="sf-chip active" onclick="setSF(this,'gh','1.2')">۱.۲</button>
-<button type="button" class="sf-chip" onclick="setSF(this,'gh','1.3')">۱.۳</button>
-</div>
+<div class="sf-chips"><button type="button" class="sf-chip" onclick="setSF(this,'gh','1.0')">۱.۰</button><button type="button" class="sf-chip" onclick="setSF(this,'gh','1.1')">۱.۱</button><button type="button" class="sf-chip active" onclick="setSF(this,'gh','1.2')">۱.۲</button><button type="button" class="sf-chip" onclick="setSF(this,'gh','1.3')">۱.۳</button></div>
 <div class="sf-manual"><input type="number" id="gh_sf_manual" step="0.01" value="1.2" oninput="onManualSF('gh')"><span class="sf-u">×</span></div>
 </div>
 <input type="hidden" id="gh_sf" value="1.2">
-
 <div class="method-tabs" data-method-tabs="gh">
 <button type="button" data-method="asabe" class="active" onclick="setGHMethod('asabe')">📊 ASABE EP406.4</button>
 <button type="button" data-method="uEmpirical" onclick="setGHMethod('uEmpirical')">📐 U تجربی (باد)</button>
@@ -1070,107 +558,45 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <button type="button" data-method="engToolbox" onclick="setGHMethod('engToolbox')">🌐 Engineering Toolbox</button>
 </div>
 <input type="hidden" id="gh_method" value="asabe">
-
-<!-- ASABE -->
 <div id="gh_asabe_block">
 <div class="method-info"><strong>📊 ASABE EP406.4:</strong> Q = U × A_cover × ΔT + تلفات نفوذ (ACH)</div>
-<div class="row3">
-<div class="field"><label>طول m</label><input type="number" id="gh_l" value="300"></div>
-<div class="field"><label>عرض m</label><input type="number" id="gh_w" value="100"></div>
-<div class="field"><label>ارتفاع m</label><input type="number" id="gh_h" value="7.5"></div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l" value="300"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w" value="100"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h" value="7.5"></div></div>
+<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout" value="-20"></div><div class="field"><label>پوشش</label><div class="cs-wrap"><select id="gh_cover" data-cs><option value="6.2">نایلون تک (6.2)</option><option value="4.0">نایلون دو (4.0)</option><option value="3.7">شیشه دو (3.7)</option><option value="2.8">نایلون دو IR (2.8)</option></select></div></div><div class="field"><label>ACH</label><div class="cs-wrap"><select id="gh_infil" data-cs><option value="0.5">کم (0.5)</option><option value="1.0" selected>متوسط (1.0)</option><option value="1.5">زیاد (1.5)</option></select></div></div></div>
 </div>
-<div class="row4">
-<div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin" value="22"></div>
-<div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout" value="-20"></div>
-<div class="field"><label>پوشش</label><div class="cs-wrap"><select id="gh_cover" data-cs><option value="6.2">نایلون تک (6.2)</option><option value="4.0">نایلون دو (4.0)</option><option value="3.7">شیشه دو (3.7)</option><option value="2.8">نایلون دو IR (2.8)</option></select></div></div>
-<div class="field"><label>ACH</label><div class="cs-wrap"><select id="gh_infil" data-cs><option value="0.5">کم (0.5)</option><option value="1.0" selected>متوسط (1.0)</option><option value="1.5">زیاد (1.5)</option></select></div></div>
-</div>
-</div>
-
-<!-- U Empirical -->
 <div id="gh_uEmpirical_block" style="display:none;">
-<div class="method-info"><strong>📐 روش U تجربی:</strong> U = 3.55 + 0.11 × V_wind (بر پایه سرعت باد)</div>
-<div class="row3">
-<div class="field"><label>طول m</label><input type="number" id="gh_l2" value="300"></div>
-<div class="field"><label>عرض m</label><input type="number" id="gh_w2" value="100"></div>
-<div class="field"><label>ارتفاع m</label><input type="number" id="gh_h2" value="7.5"></div>
+<div class="method-info"><strong>📐 روش U تجربی:</strong> U = 3.55 + 0.11 × V_wind</div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l2" value="300"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w2" value="100"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h2" value="7.5"></div></div>
+<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin2" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout2" value="-20"></div><div class="field"><label>سرعت باد m/s</label><input type="number" id="gh_wind" value="2" step="0.5"></div><div class="field"><label>ACH</label><div class="cs-wrap"><select id="gh_infil2" data-cs><option value="0.5" selected>کم (0.5)</option><option value="1.0">متوسط (1.0)</option></select></div></div></div>
 </div>
-<div class="row4">
-<div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin2" value="22"></div>
-<div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout2" value="-20"></div>
-<div class="field"><label>سرعت باد m/s</label><input type="number" id="gh_wind" value="2" step="0.5"></div>
-<div class="field"><label>ACH</label><div class="cs-wrap"><select id="gh_infil2" data-cs><option value="0.5" selected>کم (0.5)</option><option value="1.0">متوسط (1.0)</option></select></div></div>
-</div>
-</div>
-
-<!-- W/m² -->
 <div id="gh_wPerM2_block" style="display:none;">
-<div class="method-info"><strong>⚡ روش بار سطحی:</strong> Q = A_floor × q_specific (تصحیح‌شده برای ΔT)</div>
-<div class="row3">
-<div class="field"><label>طول m</label><input type="number" id="gh_l3" value="300"></div>
-<div class="field"><label>عرض m</label><input type="number" id="gh_w3" value="100"></div>
-<div class="field"><label>ارتفاع m</label><input type="number" id="gh_h3" value="7.5"></div>
+<div class="method-info"><strong>⚡ روش بار سطحی:</strong> Q = A_floor × q_specific × (ΔT/ΔT_ref)</div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l3" value="300"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w3" value="100"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h3" value="7.5"></div></div>
+<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin3" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout3" value="-20"></div><div class="field"><label>بار ویژه W/m²</label><input type="number" id="gh_qspec" value="150" step="10"></div><div class="field"><label>ΔT مرجع °C</label><input type="number" id="gh_dtRef" value="42" step="1"></div></div>
 </div>
-<div class="row4">
-<div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin3" value="22"></div>
-<div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout3" value="-20"></div>
-<div class="field"><label>بار ویژه W/m²</label><input type="number" id="gh_qspec" value="150" step="10"></div>
-<div class="field"><label>ΔT مرجع °C</label><input type="number" id="gh_dtRef" value="42" step="1"></div>
-</div>
-</div>
-
-<!-- Engineering Toolbox -->
 <div id="gh_engToolbox_block" style="display:none;">
-<div class="method-info"><strong>🌐 روش Engineering Toolbox:</strong> Q = (A/100) × 18 kW × (ΔT/25)</div>
-<div class="row3">
-<div class="field"><label>طول m</label><input type="number" id="gh_l4" value="300"></div>
-<div class="field"><label>عرض m</label><input type="number" id="gh_w4" value="100"></div>
-<div class="field"><label>ارتفاع m</label><input type="number" id="gh_h4" value="7.5"></div>
+<div class="method-info"><strong>🌐 Engineering Toolbox:</strong> Q = (A/100) × 18 kW × (ΔT/25)</div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l4" value="300"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w4" value="100"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h4" value="7.5"></div></div>
+<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin4" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout4" value="-20"></div><div class="field"><label>ضریب مرجع kW/100m²</label><input type="number" id="gh_kwRef" value="18" step="1"></div><div class="field"><label>ΔT مرجع °C</label><input type="number" id="gh_dtRef2" value="25" step="1"></div></div>
 </div>
-<div class="row4">
-<div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin4" value="22"></div>
-<div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout4" value="-20"></div>
-<div class="field"><label>ضریب مرجع kW/100m²</label><input type="number" id="gh_kwRef" value="18" step="1"></div>
-<div class="field"><label>ΔT مرجع °C</label><input type="number" id="gh_dtRef2" value="25" step="1"></div>
-</div>
-</div>
-
 <div class="field" style="display:flex;align-items:center;gap:8px;margin-top:10px; padding:10px;background:linear-gradient(135deg,rgba(0,214,143,.10),rgba(57,255,20,.06)); border-radius:9px; border:2px solid rgba(0,214,143,.4);">
 <input type="checkbox" id="gh_show_exp" style="width:18px;height:18px;">
 <label for="gh_show_exp" style="margin:0;font-weight:800;color:var(--navy);font-size:.82rem;cursor:pointer;">🛢 محاسبه منبع انبساط دیگ</label>
 </div>
 <div id="gh_exp_params" style="display:none; margin-top:6px; padding:10px;background:linear-gradient(135deg,#E2EDE4,#C9DDCE); border-radius:9px;">
-<div class="row3">
-<div class="field" style="margin-bottom:0;"><label>دمای max °C</label><input type="number" id="gh_exp_tmax" value="90"></div>
-<div class="field" style="margin-bottom:0;"><label>دمای min °C</label><input type="number" id="gh_exp_tmin" value="10"></div>
-<div class="field" style="margin-bottom:0;"><label>فشار اولیه bar</label><input type="number" id="gh_exp_p1" value="1.5"></div>
-</div>
+<div class="row3"><div class="field" style="margin-bottom:0;"><label>دمای max °C</label><input type="number" id="gh_exp_tmax" value="90"></div><div class="field" style="margin-bottom:0;"><label>دمای min °C</label><input type="number" id="gh_exp_tmin" value="10"></div><div class="field" style="margin-bottom:0;"><label>فشار اولیه bar</label><input type="number" id="gh_exp_p1" value="1.5"></div></div>
 </div>
 <button type="button" class="btn" onclick="calcGH()">⚡ محاسبه</button>
 <div id="gh_results"></div>
 </div></div>
 
-<!-- SAUNA -->
 <div id="subpanel-app-sauna" class="subpanel"><div class="card">
-<span class="badge">Sauna</span>
-<h2>🧖 بار حرارتی سونا</h2>
-<div class="row3">
-<div class="field"><label>طول m</label><input type="number" id="sa_l" value="3" step="0.1"></div>
-<div class="field"><label>عرض m</label><input type="number" id="sa_w" value="2.5" step="0.1"></div>
-<div class="field"><label>ارتفاع m</label><input type="number" id="sa_h" value="2.2" step="0.1"></div>
-</div>
-<div class="row">
-<div class="field"><label>تهویه</label><div class="cs-wrap"><select id="sa_vent" data-cs><option value="0.75" selected>تهویه‌دار</option><option value="0.52">بدون تهویه</option></select></div></div>
-<div class="field"><label>ساخت</label><div class="cs-wrap"><select id="sa_const" data-cs><option value="1">آکریلیک</option><option value="1.25">فوم</option><option value="1.5" selected>بتن</option><option value="2">سنگ</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcSauna()">⚡ محاسبه</button>
-<div id="sa_results"></div>
+<span class="badge">Sauna</span><h2>🧖 بار حرارتی سونا</h2>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="sa_l" value="3" step="0.1"></div><div class="field"><label>عرض m</label><input type="number" id="sa_w" value="2.5" step="0.1"></div><div class="field"><label>ارتفاع m</label><input type="number" id="sa_h" value="2.2" step="0.1"></div></div>
+<div class="row"><div class="field"><label>تهویه</label><div class="cs-wrap"><select id="sa_vent" data-cs><option value="0.75" selected>تهویه‌دار</option><option value="0.52">بدون تهویه</option></select></div></div><div class="field"><label>ساخت</label><div class="cs-wrap"><select id="sa_const" data-cs><option value="1">آکریلیک</option><option value="1.25">فوم</option><option value="1.5" selected>بتن</option><option value="2">سنگ</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcSauna()">⚡ محاسبه</button><div id="sa_results"></div>
 </div></div>
 </section>
 
-<!-- ============================================================
-     TANKS
-     ============================================================ -->
 <section id="panel-tanks" class="panel">
 <nav class="subtabs" data-parent="tanks">
 <button type="button" class="subtab-btn active" data-subpanel="tk-open">انبساط باز</button>
@@ -1180,130 +606,63 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <button type="button" class="subtab-btn" data-subpanel="tk-sp">اسپیرال</button>
 <button type="button" class="subtab-btn" data-subpanel="tk-dw">دوجداره</button>
 </nav>
-
 <div id="subpanel-tk-open" class="subpanel active"><div class="card">
 <h2>🛢 منبع انبساط باز</h2>
-<div class="row3">
-<div class="field"><label>حجم آب L</label><input type="number" id="oe_vs" value="2000"></div>
-<div class="field"><label>حداکثر دما °C</label><input type="number" id="oe_t" value="90"></div>
-<div class="field"><label>حداقل دما °C</label><input type="number" id="oe_tmin" value="10"></div>
-</div>
-<button type="button" class="btn" onclick="calcOpenExp()">⚡ محاسبه</button>
-<div id="oe_results"></div>
+<div class="row3"><div class="field"><label>حجم آب L</label><input type="number" id="oe_vs" value="2000"></div><div class="field"><label>حداکثر دما °C</label><input type="number" id="oe_t" value="90"></div><div class="field"><label>حداقل دما °C</label><input type="number" id="oe_tmin" value="10"></div></div>
+<button type="button" class="btn" onclick="calcOpenExp()">⚡ محاسبه</button><div id="oe_results"></div>
 </div></div>
-
 <div id="subpanel-tk-close" class="subpanel"><div class="card">
 <h2>🛢 منبع انبساط بسته</h2>
-<div class="row3">
-<div class="field"><label>حجم آب L</label><input type="number" id="ce_vs" value="2000"></div>
-<div class="field"><label>حداکثر دما °C</label><input type="number" id="ce_t" value="90"></div>
-<div class="field"><label>حداقل دما °C</label><input type="number" id="ce_tmin" value="10"></div>
-</div>
-<div class="row">
-<div class="field"><label>فشار اولیه bar</label><input type="number" id="ce_p1" value="1.5"></div>
-<div class="field"><label>فشار حداکثر bar</label><input type="number" id="ce_p2" value="3.0"></div>
-</div>
-<button type="button" class="btn" onclick="calcClosedExp()">⚡ محاسبه</button>
-<div id="ce_results"></div>
+<div class="row3"><div class="field"><label>حجم آب L</label><input type="number" id="ce_vs" value="2000"></div><div class="field"><label>حداکثر دما °C</label><input type="number" id="ce_t" value="90"></div><div class="field"><label>حداقل دما °C</label><input type="number" id="ce_tmin" value="10"></div></div>
+<div class="row"><div class="field"><label>فشار اولیه bar</label><input type="number" id="ce_p1" value="1.5"></div><div class="field"><label>فشار حداکثر bar</label><input type="number" id="ce_p2" value="3.0"></div></div>
+<button type="button" class="btn" onclick="calcClosedExp()">⚡ محاسبه</button><div id="ce_results"></div>
 </div></div>
-
 <div id="subpanel-tk-cond" class="subpanel"><div class="card">
 <h2>🛢 مخزن کندانس</h2>
-<div class="row3">
-<div class="field"><label>دبی kg/hr</label><input type="number" id="ct_flow" value="1500"></div>
-<div class="field"><label>هولدآپ min</label><input type="number" id="ct_hold" value="10"></div>
-<div class="field"><label>فشار ورودی/مخزن bar</label><div class="row"><input type="number" id="ct_pin" value="4"><input type="number" id="ct_ptank" value="0.3"></div></div>
-</div>
-<button type="button" class="btn" onclick="calcCondTank()">⚡ محاسبه</button>
-<div id="ct_results"></div>
+<div class="row3"><div class="field"><label>دبی kg/hr</label><input type="number" id="ct_flow" value="1500"></div><div class="field"><label>هولدآپ min</label><input type="number" id="ct_hold" value="10"></div><div class="field"><label>فشار ورودی/مخزن bar</label><div class="row"><input type="number" id="ct_pin" value="4"><input type="number" id="ct_ptank" value="0.3"></div></div></div>
+<button type="button" class="btn" onclick="calcCondTank()">⚡ محاسبه</button><div id="ct_results"></div>
 </div></div>
-
 <div id="subpanel-tk-cu" class="subpanel"><div class="card">
 <h2>🛢 منبع کویلی U</h2>
-<div class="row3">
-<div class="field"><label>حجم L</label><input type="number" id="cu_vol" value="2000"></div>
-<div class="field"><label>دما هدف/ورودی °C</label><div class="row"><input type="number" id="cu_th" value="60"><input type="number" id="cu_tc" value="15"></div></div>
-<div class="field"><label>بار kcal/hr</label><input type="number" id="cu_q" value="150000"></div>
-</div>
-<button type="button" class="btn" onclick="calcCoilU()">⚡ محاسبه</button>
-<div id="cu_results"></div>
+<div class="row3"><div class="field"><label>حجم L</label><input type="number" id="cu_vol" value="2000"></div><div class="field"><label>دما هدف/ورودی °C</label><div class="row"><input type="number" id="cu_th" value="60"><input type="number" id="cu_tc" value="15"></div></div><div class="field"><label>بار kcal/hr</label><input type="number" id="cu_q" value="150000"></div></div>
+<button type="button" class="btn" onclick="calcCoilU()">⚡ محاسبه</button><div id="cu_results"></div>
 </div></div>
-
 <div id="subpanel-tk-sp" class="subpanel"><div class="card">
 <h2>🛢 منبع اسپیرال</h2>
-<div class="row3">
-<div class="field"><label>حجم L</label><input type="number" id="cs_vol" value="1500"></div>
-<div class="field"><label>دما هدف/ورودی °C</label><div class="row"><input type="number" id="cs_th" value="60"><input type="number" id="cs_tc" value="5"></div></div>
-<div class="field"><label>بار kcal/hr</label><input type="number" id="cs_q" value="150000"></div>
-</div>
-<button type="button" class="btn" onclick="calcCoilSpiral()">⚡ محاسبه</button>
-<div id="cs_sp_results"></div>
+<div class="row3"><div class="field"><label>حجم L</label><input type="number" id="cs_vol" value="1500"></div><div class="field"><label>دما هدف/ورودی °C</label><div class="row"><input type="number" id="cs_th" value="60"><input type="number" id="cs_tc" value="5"></div></div><div class="field"><label>بار kcal/hr</label><input type="number" id="cs_q" value="150000"></div></div>
+<button type="button" class="btn" onclick="calcCoilSpiral()">⚡ محاسبه</button><div id="cs_sp_results"></div>
 </div></div>
-
 <div id="subpanel-tk-dw" class="subpanel"><div class="card">
 <h2>🛢 منبع دوجداره</h2>
-<div class="row3">
-<div class="field"><label>حجم L</label><input type="number" id="dw_vol" value="1500"></div>
-<div class="field"><label>دمای هدف °C</label><input type="number" id="dw_th" value="60"></div>
-<div class="field"><label>دمای ورودی °C</label><input type="number" id="dw_tc" value="10"></div>
-</div>
-<div class="row3">
-<div class="field"><label>فشار bar</label><input type="number" id="dw_p" value="6"></div>
-<div class="field"><label>زمان گرمایش h</label><input type="number" id="dw_t" value="2"></div>
-<div class="field"><label>راندمان ٪</label><input type="number" id="dw_eff" value="90"></div>
-</div>
-<button type="button" class="btn" onclick="calcDoubleWall()">⚡ محاسبه</button>
-<div id="dw_results"></div>
+<div class="row3"><div class="field"><label>حجم L</label><input type="number" id="dw_vol" value="1500"></div><div class="field"><label>دمای هدف °C</label><input type="number" id="dw_th" value="60"></div><div class="field"><label>دمای ورودی °C</label><input type="number" id="dw_tc" value="10"></div></div>
+<div class="row3"><div class="field"><label>فشار bar</label><input type="number" id="dw_p" value="6"></div><div class="field"><label>زمان گرمایش h</label><input type="number" id="dw_t" value="2"></div><div class="field"><label>راندمان ٪</label><input type="number" id="dw_eff" value="90"></div></div>
+<button type="button" class="btn" onclick="calcDoubleWall()">⚡ محاسبه</button><div id="dw_results"></div>
 </div></div>
 </section>
 
-<!-- ============================================================
-     TREATMENT
-     ============================================================ -->
 <section id="panel-treatment" class="panel">
 <nav class="subtabs" data-parent="treatment">
 <button type="button" class="subtab-btn active" data-subpanel="tr-sf">سختی‌گیر</button>
 <button type="button" class="subtab-btn" data-subpanel="tr-sand">فیلتر شنی</button>
 <button type="button" class="subtab-btn" data-subpanel="tr-de">دی‌اریتور</button>
 </nav>
-
 <div id="subpanel-tr-sf" class="subpanel active"><div class="card">
 <h2>🧪 سختی‌گیر</h2>
-<div class="row3">
-<div class="field"><label>دبی m³/h</label><input type="number" id="sf_flow" value="5"></div>
-<div class="field"><label>سختی ppm</label><input type="number" id="sf_hard" value="300"></div>
-<div class="field"><label>دوره احیا روز</label><input type="number" id="sf_days" value="1"></div>
-</div>
-<button type="button" class="btn" onclick="calcSoftener()">⚡ محاسبه</button>
-<div id="sf_results"></div>
+<div class="row3"><div class="field"><label>دبی m³/h</label><input type="number" id="sf_flow" value="5"></div><div class="field"><label>سختی ppm</label><input type="number" id="sf_hard" value="300"></div><div class="field"><label>دوره احیا روز</label><input type="number" id="sf_days" value="1"></div></div>
+<button type="button" class="btn" onclick="calcSoftener()">⚡ محاسبه</button><div id="sf_results"></div>
 </div></div>
-
 <div id="subpanel-tr-sand" class="subpanel"><div class="card">
 <h2>🧪 فیلتر شنی</h2>
-<div class="row3">
-<div class="field"><label>دبی m³/h</label><input type="number" id="sf2_flow" value="10"></div>
-<div class="field"><label>بارگذاری</label><div class="cs-wrap"><select id="sf2_rate" data-cs><option value="12">۱۲</option><option value="15" selected>۱۵</option><option value="18">۱۸</option><option value="20">۲۰</option></select></div></div>
-<div class="field"><label>نوع</label><div class="cs-wrap"><select id="sf2_type" data-cs><option value="sand">شنی</option><option value="carbon">کربن</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcSandFilter()">⚡ محاسبه</button>
-<div id="sf2_results"></div>
+<div class="row3"><div class="field"><label>دبی m³/h</label><input type="number" id="sf2_flow" value="10"></div><div class="field"><label>بارگذاری</label><div class="cs-wrap"><select id="sf2_rate" data-cs><option value="12">۱۲</option><option value="15" selected>۱۵</option><option value="18">۱۸</option><option value="20">۲۰</option></select></div></div><div class="field"><label>نوع</label><div class="cs-wrap"><select id="sf2_type" data-cs><option value="sand">شنی</option><option value="carbon">کربن</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcSandFilter()">⚡ محاسبه</button><div id="sf2_results"></div>
 </div></div>
-
 <div id="subpanel-tr-de" class="subpanel"><div class="card">
 <h2>🧪 دی‌اریتور</h2>
-<div class="row3">
-<div class="field"><label>ظرفیت دیگ kg/hr</label><input type="number" id="de_cap" value="3000"></div>
-<div class="field"><label>کندانس ٪</label><input type="number" id="de_cond" value="60"></div>
-<div class="field"><label>بلودان ٪</label><input type="number" id="de_blow" value="5"></div>
-</div>
-<button type="button" class="btn" onclick="calcDeaerator()">⚡ محاسبه</button>
-<div id="de_results"></div>
+<div class="row3"><div class="field"><label>ظرفیت دیگ kg/hr</label><input type="number" id="de_cap" value="3000"></div><div class="field"><label>کندانس ٪</label><input type="number" id="de_cond" value="60"></div><div class="field"><label>بلودان ٪</label><input type="number" id="de_blow" value="5"></div></div>
+<button type="button" class="btn" onclick="calcDeaerator()">⚡ محاسبه</button><div id="de_results"></div>
 </div></div>
 </section>
 
-<!-- ============================================================
-     ACCESSORIES
-     ============================================================ -->
 <section id="panel-accessories" class="panel">
 <nav class="subtabs" data-parent="accessories">
 <button type="button" class="subtab-btn active" data-subpanel="ac-hy">هیدرولیک</button>
@@ -1311,67 +670,31 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <button type="button" class="subtab-btn" data-subpanel="ac-hx">مبدل</button>
 <button type="button" class="subtab-btn" data-subpanel="ac-rad">رادیاتور</button>
 </nav>
-
 <div id="subpanel-ac-hy" class="subpanel active"><div class="card">
 <h2>⚙️ هیدرولیک سپراتور</h2>
-<div class="row4">
-<div class="field"><label>بار kcal/hr</label><input type="number" id="hs_q" value="300000"></div>
-<div class="field"><label>دمای رفت °C</label><input type="number" id="hs_tin" value="90"></div>
-<div class="field"><label>دمای برگشت °C</label><input type="number" id="hs_tout" value="70"></div>
-<div class="field"><label>سرعت m/s</label><input type="number" id="hs_v" value="0.8" step="0.1"></div>
-</div>
-<button type="button" class="btn" onclick="calcHydraulic()">⚡ محاسبه</button>
-<div id="hs_results"></div>
+<div class="row4"><div class="field"><label>بار kcal/hr</label><input type="number" id="hs_q" value="300000"></div><div class="field"><label>دمای رفت °C</label><input type="number" id="hs_tin" value="90"></div><div class="field"><label>دمای برگشت °C</label><input type="number" id="hs_tout" value="70"></div><div class="field"><label>سرعت m/s</label><input type="number" id="hs_v" value="0.8" step="0.1"></div></div>
+<button type="button" class="btn" onclick="calcHydraulic()">⚡ محاسبه</button><div id="hs_results"></div>
 </div></div>
-
 <div id="subpanel-ac-air" class="subpanel"><div class="card">
 <h2>⚙️ ایر سپراتور</h2>
-<div class="row3">
-<div class="field"><label>دبی GPM</label><input type="number" id="as_flow" value="200"></div>
-<div class="field"><label>دبی m³/h</label><input type="number" id="as_flow_m3" value="45"></div>
-<div class="field"><label>دما °C</label><input type="number" id="as_t" value="90"></div>
-</div>
-<button type="button" class="btn" onclick="calcAirSep()">⚡ محاسبه</button>
-<div id="as_results"></div>
+<div class="row3"><div class="field"><label>دبی GPM</label><input type="number" id="as_flow" value="200"></div><div class="field"><label>دبی m³/h</label><input type="number" id="as_flow_m3" value="45"></div><div class="field"><label>دما °C</label><input type="number" id="as_t" value="90"></div></div>
+<button type="button" class="btn" onclick="calcAirSep()">⚡ محاسبه</button><div id="as_results"></div>
 </div></div>
-
 <div id="subpanel-ac-hx" class="subpanel"><div class="card">
 <h2>⚙️ مبدل حرارتی</h2>
-<div class="row">
-<div class="field"><label>بار kcal/hr</label><input type="number" id="hx_q" value="150000"></div>
-<div class="field"><label>نوع</label><div class="cs-wrap"><select id="hx_type" data-cs onchange="onHxType()"><option value="plate">صفحه‌ای</option><option value="shell">پوسته-لوله</option></select></div></div>
-</div>
-<div class="row4">
-<div class="field"><label>گرم ورودی °C</label><input type="number" id="hx_thin" value="90"></div>
-<div class="field"><label>گرم خروجی °C</label><input type="number" id="hx_thout" value="70"></div>
-<div class="field"><label>سرد ورودی °C</label><input type="number" id="hx_tcin" value="15"></div>
-<div class="field"><label>سرد خروجی °C</label><input type="number" id="hx_tcout" value="55"></div>
-</div>
+<div class="row"><div class="field"><label>بار kcal/hr</label><input type="number" id="hx_q" value="150000"></div><div class="field"><label>نوع</label><div class="cs-wrap"><select id="hx_type" data-cs onchange="onHxType()"><option value="plate">صفحه‌ای</option><option value="shell">پوسته-لوله</option></select></div></div></div>
+<div class="row4"><div class="field"><label>گرم ورودی °C</label><input type="number" id="hx_thin" value="90"></div><div class="field"><label>گرم خروجی °C</label><input type="number" id="hx_thout" value="70"></div><div class="field"><label>سرد ورودی °C</label><input type="number" id="hx_tcin" value="15"></div><div class="field"><label>سرد خروجی °C</label><input type="number" id="hx_tcout" value="55"></div></div>
 <div class="field"><label>ضریب U</label><input type="number" id="hx_u" value="4000"></div>
-<button type="button" class="btn" onclick="calcHX()">⚡ محاسبه</button>
-<div id="hx_results"></div>
+<button type="button" class="btn" onclick="calcHX()">⚡ محاسبه</button><div id="hx_results"></div>
 </div></div>
-
 <div id="subpanel-ac-rad" class="subpanel"><div class="card">
 <h2>🔥 رادیاتور</h2>
-<div class="row3">
-<div class="field"><label>بار اتاق kcal/hr</label><input type="number" id="rad_q" value="2000"></div>
-<div class="field"><label>نوع رادیاتور</label><div class="cs-wrap"><select id="rad_type" data-cs><option value="150">آلومینیومی</option><option value="120">فولادی</option><option value="100">چدنی</option></select></div></div>
-<div class="field"><label>ضریب تصحیح</label><input type="number" id="rad_f" value="1.1" step="0.05"></div>
-</div>
-<div class="row3">
-<div class="field"><label>دمای آب رفت °C</label><input type="number" id="rad_tin" value="80"></div>
-<div class="field"><label>دمای محیط °C</label><input type="number" id="rad_tamb" value="20"></div>
-<div class="field"><label>نوع نصب</label><div class="cs-wrap"><select id="rad_install" data-cs><option value="1.0">زیر پنجره</option><option value="1.05">دیوار داخلی</option><option value="0.95">دیوار خارجی</option></select></div></div>
-</div>
-<button type="button" class="btn" onclick="calcRadiator()">⚡ محاسبه</button>
-<div id="rad_results"></div>
+<div class="row3"><div class="field"><label>بار اتاق kcal/hr</label><input type="number" id="rad_q" value="2000"></div><div class="field"><label>نوع رادیاتور</label><div class="cs-wrap"><select id="rad_type" data-cs><option value="150">آلومینیومی</option><option value="120">فولادی</option><option value="100">چدنی</option></select></div></div><div class="field"><label>ضریب تصحیح</label><input type="number" id="rad_f" value="1.1" step="0.05"></div></div>
+<div class="row3"><div class="field"><label>دمای آب رفت °C</label><input type="number" id="rad_tin" value="80"></div><div class="field"><label>دمای محیط °C</label><input type="number" id="rad_tamb" value="20"></div><div class="field"><label>نوع نصب</label><div class="cs-wrap"><select id="rad_install" data-cs><option value="1.0">زیر پنجره</option><option value="1.05">دیوار داخلی</option><option value="0.95">دیوار خارجی</option></select></div></div></div>
+<button type="button" class="btn" onclick="calcRadiator()">⚡ محاسبه</button><div id="rad_results"></div>
 </div></div>
 </section>
 
-<!-- ============================================================
-     CALCULATOR (Unit Converter)
-     ============================================================ -->
 <section id="panel-calculator" class="panel">
 <div id="uc-root">
 <div class="app-body">
@@ -1410,8 +733,8 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 <h2 id="unitTitle">—</h2>
 <p class="hint" id="unitHint">—</p>
 <div class="uc-row">
-<div class="uc-field"><label>مقدار ورودی</label><input type="number" id="uVal" value="2" step="any" oninput="renderUnit()"></div>
-<div class="uc-field"><label>واحد مبدأ</label><select id="uFrom" onchange="renderUnit()"></select></div>
+<div class="uc-field"><label>مقدار ورودی</label><input type="number" id="uVal" value="2" step="any" oninput="ucRenderUnit()"></div>
+<div class="uc-field"><label>واحد مبدأ</label><select id="uFrom" onchange="ucRenderUnit()"></select></div>
 </div>
 <div class="result-main">
 <div class="num" id="uBase">—</div>
@@ -1448,7 +771,7 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </section>
 
 </main>
-<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v20<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
+<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v20.1<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
 </div>
 <div class="toast" id="toast"></div>
 <div class="autosave-badge" id="autosave">✓ ذخیره شد</div>
@@ -1467,11 +790,11 @@ table.std tr:nth-child(even){background:rgba(245,239,227,.5);}
 </div>
 
 <script>
-/* ============================================================
-   CAPACITY ASSISTANT JS
-   ============================================================ */
 'use strict';
 
+/* ============================================================
+   HELPERS
+   ============================================================ */
 const n=v=>{v=parseFloat(v);return isNaN(v)?0:v;};
 const fmt=(v,d=0)=>Number(v).toLocaleString('en-US',{maximumFractionDigits:d});
 const $=id=>document.getElementById(id);
@@ -1484,12 +807,12 @@ const mf=kg=>`${fmt(kg)} kg/hr · ${fmt(kg/1000,2)} ton/hr`;
 const getSF=p=>{const el=$(p+'_sf');return el?(n(el.value)||1.2):1.2;};
 const fb=(t,lines,ref)=>`<div class="formula"><div class="ft">📐 ${t}</div>${lines.filter(Boolean).map(l=>`<div class="fl">${l}</div>`).join('')}<div class="ref">📚 ${ref}</div></div>`;
 const validate=(checks)=>{for(const[k,v]of Object.entries(checks)){if(!v)return`مقدار نامعتبر: ${k}`;}return null;};
-const num=(v,d=0)=>fmt(v,d);
 
-/* Safe wrapper */
-function safe(fn,prefix){try{fn();}catch(e){console.error('['+prefix+']',e);const el=$(prefix+'_results');if(el)el.innerHTML=warn('خطا در محاسبه: '+e.message);toast('❌ خطا در محاسبه');}}
+function safe(fn,prefix){try{fn();}catch(e){console.error('['+prefix+']',e);const el=$(prefix+'_results');if(el)el.innerHTML=warn('خطا: '+e.message);toast('❌ خطا در محاسبه');}}
 
-/* Boiler suggestion */
+/* ============================================================
+   BOILER SUGGESTION + PARALLEL UNITS
+   ============================================================ */
 function suggestBoilerCap(qKcal){
   const stdCaps=[17000,45000,75000,80000,100000,150000,200000,300000,400000,500000,600000,800000,1000000,1250000,1500000,2000000,3000000];
   let chosen=stdCaps.find(c=>c>=qKcal)||stdCaps[stdCaps.length-1];
@@ -1503,12 +826,42 @@ function boilerHighlightHTML(qLoad,type='hw'){
   const s=suggestBoilerCap(qLoad);
   return`<div class="boiler-highlight"><div class="bh-title">🔥 ظرفیت دیگ پیشنهادی</div><div class="bh-main">${s.model}</div><div class="bh-sub">${fmt(s.chosen)} kcal/hr — نزدیک‌ترین ظرفیت استاندارد بالاتر</div><button type="button" class="bh-btn" onclick="transferToBoiler(${qLoad},'${type}')">⚡ انتقال به محاسبه دقیق</button></div>`;
 }
+function parallelUnitsHTML(totalQ){
+  if(!totalQ||totalQ<=0)return '';
+  const stdCaps=[17000,45000,75000,80000,100000,150000,200000,300000,400000,500000,600000,800000,1000000,1250000,1500000,2000000,3000000];
+  const findClosest=q=>{let c=stdCaps.find(x=>x>=q);return c?c:stdCaps[stdCaps.length-1];};
+  const opts=[
+    {n:2,label:'۵۰٪ + ۵۰٪',desc:'افزونگی ۵۰٪ — بهترین تعادل بین هزینه و راندمان، مناسب برای اکثر پروژه‌ها'},
+    {n:3,label:'۳۳٪ × ۳',desc:'افزونگی ۶۶٪ — مناسب برای بارهای متغیر و پیک‌دار'},
+    {n:4,label:'۲۵٪ × ۴',desc:'افزونگی ۷۵٪ — برای پروژه‌های حساس با نیاز به افزونگی کامل'}
+  ];
+  let html=`<div class="parallel-box">
+    <h3>🏭 پیشنهاد دیگ‌های موازی — ۳ گزینه</h3>
+    <div class="parallel-total">
+      <div class="k">🔴 ظرفیت کل مورد نیاز</div>
+      <div class="v">${fmt(totalQ)} <small>kcal/hr</small></div>
+      <div class="k" style="margin-top:6px;">معادل: ${hu(totalQ)}</div>
+    </div>`;
+  opts.forEach((opt,idx)=>{
+    const perUnit=totalQ/opt.n;
+    const chosen=findClosest(perUnit);
+    const totalInstalled=chosen*opt.n;
+    html+=`<div class="parallel-option">
+      <div class="po-badge">گزینه ${idx+1}</div>
+      <div class="po-title">${opt.n} × ${fmt(chosen)} kcal/hr</div>
+      <div class="po-desc">${opt.desc}</div>
+      <div class="po-total">ظرفیت نصب‌شده کل: ${fmt(totalInstalled)} kcal/hr (${fmt(totalInstalled/1000000,2)} م.ک)</div>
+    </div>`;
+  });
+  html+=`</div>`;
+  return html;
+}
+
 function transferToBoiler(qLoad,type){
   if(type==='hw'){const t=document.querySelector('.tab-btn[data-panel="hwboilers"]');if(t)t.click();const s=document.querySelector('.subtab-btn[data-subpanel="hw-tp"]');if(s)s.click();if($('tp_q')){$('tp_q').value=Math.round(qLoad);calcHW('tp','سه‌پاس');}toast('✓ منتقل شد');}
   else if(type==='steam'){const t=document.querySelector('.tab-btn[data-panel="boilers"]');if(t)t.click();const s=document.querySelector('.subtab-btn[data-subpanel="steam-horizontal"]');if(s)s.click();const sk=Math.round(qLoad/539);if($('hwb_cap')){$('hwb_cap').value=sk;calcSteam('hwb','افقی سه‌پاس');}toast('✓ منتقل شد');}
 }
 const REGION_FACTOR={hot:{dhw:0.85,ht:0.80,label:'گرمسیر',cities:'بندرعباس، اهواز'},moderate:{dhw:1.00,ht:1.00,label:'معتدل',cities:'تهران، اصفهان'},cold:{dhw:1.20,ht:1.15,label:'سردسیر',cities:'تبریز، همدان'},verycold:{dhw:1.35,ht:1.30,label:'بسیار سرد',cities:'اردبیل، شهرکرد'}};
-function onRegionChange(prefix){const el=$(prefix+'_region');if(!el)return;const info=REGION_FACTOR[el.value];if(info)toast(`${info.label} — ${info.cities}`);}
 
 /* ============================================================
    DHW
@@ -1520,13 +873,10 @@ function setDHWMethod(m){
   $('dhw_site_block').style.display=(m==='site')?'block':'none';
   $('dhw_experimental_block').style.display=(m==='experimental')?'block':'none';
   $('dhw_fixture_factors').style.display=(m==='fixture')?'grid':'none';
-  
-  /* === FIX: hide top "تعداد واحد" field only in experimental mode === */
   const unitsField=$('dhw_units_field');
   const topRow=$('dhw_top_row');
   if(unitsField)unitsField.style.display=(m==='experimental')?'none':'';
   if(topRow)topRow.style.gridTemplateColumns=(m==='experimental')?'1fr 1fr':'';
-  
   const info=$('dhw_method_info');
   if(m==='fixture')info.innerHTML='<strong>روش جدول مرجع:</strong> تعداد واحد × GPH استاندارد.';
   if(m==='site')info.innerHTML='<strong>روش سایت pyaco.ir:</strong> تعداد دقیق هر فیکسچر — نه نفر.';
@@ -1574,8 +924,6 @@ function onDhwBldg(){
     renderSiteFixtures();
   } else if(m==='percapita'){
     $('dhw_units_label').textContent='تعداد نفرات';
-  } else if(m==='experimental'){
-    /* No label change needed since field is hidden */
   }
 }
 function renderFixtureRows(){
@@ -1655,7 +1003,6 @@ function interp(t,x,xk,yk){
   }
   return t[t.length-1][yk];
 }
-
 const COILU=[{cap:300,surf:8,d:570},{cap:500,surf:15,d:700},{cap:1000,surf:27,d:920},{cap:1500,surf:38,d:1120},{cap:2000,surf:60,d:1120},{cap:3000,surf:83,d:1400},{cap:5000,surf:110,d:1450}];
 const COILSP=[{cap:75,surf:8,d:335},{cap:250,surf:20,d:472},{cap:500,surf:35,d:700},{cap:1000,surf:70,d:920},{cap:1500,surf:100,d:1120},{cap:2500,surf:160,d:1260}];
 const pick=(a,k,v)=>{for(const x of a){if(x[k]>=v)return x;}return a[a.length-1];};
@@ -1725,7 +1072,7 @@ function nPlusOneHTML(totalQ,unit='kcal/hr'){
   <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:6px;">🏭 پیشنهاد سیستم N+1</h3>
   <div class="nplus1-grid">
   ${r(1,findClosest(totalQ),'۱۰۰٪','بدون افزونگی')}
-  ${r(2,findClosest(totalQ/2),'۵۰٪+۵۰٪','افزونگی ۵۰٪ — بهترین تعادل')}
+  ${r(2,findClosest(totalQ/2),'۵۰٪+۵۰٪','افزونگی ۵۰٪')}
   ${r(3,findClosest(totalQ/3),'۳۳٪×۳','افزونگی ۶۶٪')}
   ${r(4,findClosest(totalQ/4),'۲۵٪×۴','افزونگی ۷۵٪')}
   </div></div>`;
@@ -1767,7 +1114,7 @@ function calcDHW(){
         ${g('🔥 بار طراحی',fmt(Q_region,0),'kcal/hr',`(Q_coil+Q_rec)×${SF}×${region.dhw}`)}
         ${combined.html}
         ${showCoil?tankSelectionHTML(V_total,Q_coil,thot,tin):''}
-        ${nPlusOneHTML(combined.qTotal,'kcal/hr')}
+        ${parallelUnitsHTML(combined.qTotal)}
         ${fb('روش تجربی',[`V_total = ${expUnits} × ${primary} = ${fmt(V_total,0)} L`,`Q_coil = ${fmt(Q_coil,0)} kcal/hr`,`Q_recovery = ${fmt(Q_recovery,0)} kcal/hr`,`Q_final = ${fmt(Q_region,0)} kcal/hr`],'دفتر فنی کاسپین')}
         ${showExp?expansionTankHTML(Q_region,'dhw'):''}`;
       addPNG('dhw_results','آبگرم تجربی');saveToHistory('آبگرم تجربی');return;
@@ -1789,7 +1136,7 @@ function calcDHW(){
         ${g('بار پیک',fmt(qD,0),'kcal/hr',`SF=${SF}`)}
         ${g('حجم مخزن',fmt(storage_L,0),'L','۶۰٪')}
         ${combined.html}${showCoil?tankSelectionHTML(storage_L,qD,thot,tin):''}
-        ${nPlusOneHTML(combined.qTotal,'kcal/hr')}
+        ${parallelUnitsHTML(combined.qTotal)}
         ${fb('روش سرانه',[`V_day = ${pc.lpd}×${occupants} = ${fmt(L_per_day,0)} L`,`Q_peak = ${fmt(qD,0)} kcal/hr`],'ASPE')}`;
       addPNG('dhw_results','آبگرم سرانه');saveToHistory('آبگرم سرانه');return;
     }
@@ -1806,7 +1153,7 @@ function calcDHW(){
         ${g('حجم مخزن',fmt(storage_L,0),'L','')}
         ${g('بار',fmt(qKcal,0),'kcal/hr','')}
         ${combined.html}${showCoil?tankSelectionHTML(storage_L,qKcal,thot,tin):''}
-        ${nPlusOneHTML(combined.qTotal,'kcal/hr')}`;
+        ${parallelUnitsHTML(combined.qTotal)}`;
       addPNG('dhw_results','رستوران');saveToHistory('آبگرم رستوران');return;
     }
     const bldg=DHW_FIX[b]||DHW_FIX.apartment;
@@ -1828,12 +1175,11 @@ function calcDHW(){
       ${g('حجم مخزن',fmt(storage_L,0),'L','')}
       ${g('بار نهایی',fmt(qFinal,0),'kcal/hr',hu(qFinal))}
       ${combined.html}${showCoil?tankSelectionHTML(storage_L,qFinal,thot,tin):''}
-      ${nPlusOneHTML(combined.qTotal,'kcal/hr')}
+      ${parallelUnitsHTML(combined.qTotal)}
       ${fb('جدول مرجع',[`GPH_peak = ${fmt(gphBase,1)}×${demandF}×${pf} = ${fmt(gph_peak,1)}`,`Q_final = ${fmt(qFinal,0)} kcal/hr`],'ASPE')}`;
     addPNG('dhw_results','آبگرم');saveToHistory('آبگرم — '+b);
   },'dhw');
 }
-
 function calcDHWSite(){
   return safe(()=>{
     const SF=getSF('dhw');
@@ -1849,7 +1195,7 @@ function calcDHWSite(){
     const showCoil=$('dhw_show_coil')?.checked;
     const combined=buildCombinedHTML(qFinal,SF);
     $('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}
-      <div class="method-info"><strong>روش سایت pyaco.ir:</strong> محاسبه بر اساس تعداد فیکسچر (نه نفر)</div>
+      <div class="method-info"><strong>روش سایت pyaco.ir:</strong> تعداد فیکسچر (نه نفر)</div>
       ${g('حداکثر مصرف',fmt(gphTotal,0),'GPH','مجموع فیکسچرها')}
       ${g('ضریب تقاضا',DF,'×','')}${g('ضریب پیک',PF,'×','')}
       ${g('مصرف واقعی',fmt(gphActual,1),'GPH',`${fmt(gphActual*3.785,1)} L/hr`)}
@@ -1859,9 +1205,9 @@ function calcDHWSite(){
       ${g('بار نهایی',fmt(qFinal,0),'kcal/hr',hu(qFinal))}
       ${g('ظرفیت دیگ',fmt(qBoiler,0),'kcal/hr',`راندمان ${eff}٪`)}
       ${combined.html}${showCoil?tankSelectionHTML(storage_L,qFinal,thot,tin):''}
-      ${nPlusOneHTML(combined.qTotal,'kcal/hr')}
+      ${parallelUnitsHTML(combined.qTotal)}
       ${fb('روش سایت',[`GPH_max = ${fmt(gphTotal,0)}`,`GPH_actual = ${fmt(gphActual,1)}`,`Storage = ${fmt(storage_L,0)} L`,`Q_final = ${fmt(qFinal,0)} kcal/hr`],'ASPE Vol.4 / pyaco.ir')}`;
-    addPNG('dhw_results','آبگرم — سایت');saveToHistory('آبگرم سایت');
+    addPNG('dhw_results','آبگرم سایت');saveToHistory('آبگرم سایت');
   },'dhw');
 }
 
@@ -1891,7 +1237,7 @@ function calcHeating(){
         ${g('منطقه',region.label,'',`×${region.ht}`)}
         ${gCyan('بار پایه',fmt(Q_base,0),'kcal/hr',`${units}×${areaPer}×${coeff}`)}
         ${g('🔥 بار طراحی',fmt(Q_design,0),'kcal/hr',`×${region.ht}×${SF}`)}
-        ${nPlusOneHTML(Q_design,'kcal/hr')}
+        ${parallelUnitsHTML(Q_design)}
         ${fb('روش تجربی',[`Q_base = ${units}×${areaPer}×${coeff} = ${fmt(Q_base,0)}`,`Q_region = ${fmt(Q_region,0)}`,`Q_design = ${fmt(Q_design,0)}`],'دفتر فنی کاسپین')}`;
       addPNG('ht_results','گرمایش تجربی');saveToHistory('گرمایش تجربی');return;
     }
@@ -1914,7 +1260,7 @@ function calcHeating(){
       ${g('بار خالص',fmt(qB_kcal),'kcal/hr',`${fmt(qB_W)} W`)}
       ${g('منطقه',region.label,'',`×${region.ht}`)}
       ${g('بار طراحی',fmt(qD_kcal),'kcal/hr',hu(qD_kcal))}
-      ${nPlusOneHTML(qD_kcal,'kcal/hr')}
+      ${parallelUnitsHTML(qD_kcal)}
       ${fb('بار گرمایش',[`Q_cond = ${U}×${area}×${dT} = ${fmt(qCond_W)} W`,method==='detailed'?`Q_inf = ${fmt(qInf_W)} W`:'',`Q_design = ${fmt(qD_kcal)} kcal/hr`],'ASHRAE Ch.18')}`;
     addPNG('ht_results','گرمایش');saveToHistory('گرمایش');
   },'ht');
@@ -2013,7 +1359,7 @@ function poolHXHTML(Q_preheat,target,tin){
 }
 
 /* ============================================================
-   GREENHOUSE — FIXED v20
+   GREENHOUSE — v20.1 with parallel units
    ============================================================ */
 function setGHMethod(m){
   document.querySelectorAll('[data-method-tabs="gh"] button').forEach(b=>b.classList.toggle('active',b.dataset.method===m));
@@ -2030,7 +1376,7 @@ function calcGH(){
     const SF=getSF('gh');
     const showExp=$('gh_show_exp')?.checked;
     let resultHTML='';
-    let qDesignFinal=0; /* FIX: declare once, use in all branches */
+    let qDesignFinal=0;
 
     if(method==='asabe'){
       const L=n($('gh_l').value),W=n($('gh_w').value),H=n($('gh_h').value);
@@ -2040,7 +1386,7 @@ function calcGH(){
       const A=L*W,wallA=2*(L+W)*H,roofA=A*1.15,totA=wallA+roofA,dT=tin-tout;
       const qC_W=U*totA*dT,vol=A*H,qI_W=0.34*vol*infil*dT,qB_W=qC_W+qI_W;
       const qB_kcal=qB_W*0.86,qT_kcal=qB_kcal*SF,qT_kW=qB_W*SF/1000;
-      qDesignFinal=qT_kcal; /* FIX */
+      qDesignFinal=qT_kcal;
       resultHTML=`${boilerHighlightHTML(qT_kcal,'hw')}
         <div class="method-info"><strong>📊 روش ASABE EP406.4:</strong> Q = U × A_cover × ΔT + تلفات نفوذ</div>
         ${g('سطح پوشش',fmt(totA,1),'m²',`دیوار ${fmt(wallA,1)} + سقف ${fmt(roofA,1)}`)}
@@ -2049,8 +1395,7 @@ function calcGH(){
         ${g('بار هدایتی',fmt(qC_W),'W',`${fmt(qC_W*0.86)} kcal/hr`)}
         ${g('بار نفوذ هوا',fmt(qI_W),'W',`ACH=${infil}`)}
         ${g('بار خالص',fmt(qB_kcal),'kcal/hr',`${fmt(qB_W)} W`)}
-        ${g('🔥 بار طراحی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
-        ${nPlusOneHTML(qT_kcal,'kcal/hr')}
+        ${g('🔥 بار طراحی نهایی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
         ${fb('بار حرارتی گلخانه (ASABE)',[`A_total = ${fmt(totA,1)} m²`,`Q_cond = ${U} × ${fmt(totA,1)} × ${dT} = ${fmt(qC_W)} W`,`Q_inf = 0.34 × ${fmt(vol,1)} × ${infil} × ${dT} = ${fmt(qI_W)} W`,`Q_design = ${fmt(qB_kcal)} × ${SF} = ${fmt(qT_kcal)} kcal/hr`],'ANSI/ASAE EP406.4')}`;
     }
     else if(method==='uEmpirical'){
@@ -2062,7 +1407,7 @@ function calcGH(){
       const A=L*W,wallA=2*(L+W)*H,roofA=A*1.15,totA=wallA+roofA,dT=tin-tout;
       const qC_W=U*totA*dT,vol=A*H,qI_W=0.34*vol*infil*dT,qB_W=qC_W+qI_W;
       const qB_kcal=qB_W*0.86,qT_kcal=qB_kcal*SF,qT_kW=qB_W*SF/1000;
-      qDesignFinal=qT_kcal; /* FIX */
+      qDesignFinal=qT_kcal;
       resultHTML=`${boilerHighlightHTML(qT_kcal,'hw')}
         <div class="method-info"><strong>📐 روش U تجربی:</strong> U = 3.55 + 0.11 × V_wind</div>
         ${g('ضریب U محاسبه‌شده',U.toFixed(2),'W/m²·K',`سرعت باد ${wind} m/s`)}
@@ -2070,8 +1415,7 @@ function calcGH(){
         ${g('ΔT',dT,'°C','')}
         ${g('بار هدایتی',fmt(qC_W),'W',`${fmt(qC_W*0.86)} kcal/hr`)}
         ${g('بار نفوذ',fmt(qI_W),'W',`ACH=${infil}`)}
-        ${g('🔥 بار طراحی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
-        ${nPlusOneHTML(qT_kcal,'kcal/hr')}
+        ${g('🔥 بار طراحی نهایی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
         ${fb('بار حرارتی گلخانه (U تجربی)',[`U = 3.55 + 0.11 × ${wind} = ${U.toFixed(2)} W/m²·K`,`A_total = ${fmt(totA,1)} m²`,`Q_cond = ${U.toFixed(2)} × ${fmt(totA,1)} × ${dT} = ${fmt(qC_W)} W`,`Q_inf = ${fmt(qI_W)} W`,`Q_design = ${fmt(qT_kcal)} kcal/hr`],'Von Zabeltitz / ASHRAE')}`;
     }
     else if(method==='wPerM2'){
@@ -2082,15 +1426,14 @@ function calcGH(){
       const A=L*W,dT=tin-tout;
       const qspecAdj=qspec*(dT/dtRef);
       const q_W=A*qspecAdj,qKcal=q_W*0.86,qDesign=qKcal*SF,qKW=q_W*SF/1000;
-      qDesignFinal=qDesign; /* FIX */
+      qDesignFinal=qDesign;
       resultHTML=`${boilerHighlightHTML(qDesign,'hw')}
-        <div class="method-info"><strong>⚡ روش بار سطحی:</strong> Q = A_floor × q_specific (تصحیح‌شده برای ΔT)</div>
+        <div class="method-info"><strong>⚡ روش بار سطحی:</strong> Q = A_floor × q_specific × (ΔT/ΔT_ref)</div>
         ${g('مساحت کف',fmt(A,0),'m²','')}
         ${g('ΔT',dT,'°C',`ΔT مرجع ${dtRef}°C`)}
         ${g('بار ویژه تصحیح‌شده',fmt(qspecAdj,1),'W/m²',`${qspec} × (${dT}/${dtRef})`)}
         ${g('بار حرارتی',fmt(qKcal),'kcal/hr',`${fmt(q_W)} W`)}
-        ${g('🔥 بار طراحی',fmt(qDesign),'kcal/hr',`${fmt(qKW,2)} kW — SF=${SF}`)}
-        ${nPlusOneHTML(qDesign,'kcal/hr')}
+        ${g('🔥 بار طراحی نهایی',fmt(qDesign),'kcal/hr',`${fmt(qKW,2)} kW — SF=${SF}`)}
         ${fb('بار حرارتی گلخانه (بار سطحی)',[`q_specific = ${qspec} × (${dT}/${dtRef}) = ${fmt(qspecAdj,1)} W/m²`,`Q = ${fmt(A,0)} × ${fmt(qspecAdj,1)} = ${fmt(q_W)} W`,`Q_design = ${fmt(qKcal)} × ${SF} = ${fmt(qDesign)} kcal/hr`],'روش تجربی رایج مهندسی')}`;
     }
     else if(method==='engToolbox'){
@@ -2101,19 +1444,18 @@ function calcGH(){
       const A=L*W,dT=tin-tout;
       const q_kW=(A/100)*kwRef*(dT/dtRef2);
       const q_W=q_kW*1000,qKcal=q_W*0.86,qDesign=qKcal*SF,qDesignKW=q_kW*SF;
-      qDesignFinal=qDesign; /* FIX */
+      qDesignFinal=qDesign;
       resultHTML=`${boilerHighlightHTML(qDesign,'hw')}
         <div class="method-info"><strong>🌐 روش Engineering Toolbox:</strong> Q = (A/100) × ${kwRef} kW × (ΔT/${dtRef2})</div>
         ${g('مساحت کف',fmt(A,0),'m²','')}
         ${g('ΔT',dT,'°C',`ΔT مرجع ${dtRef2}°C`)}
         ${g('بار حرارتی',fmt(qKcal),'kcal/hr',`${fmt(q_kW,1)} kW`)}
-        ${g('🔥 بار طراحی',fmt(qDesign),'kcal/hr',`${fmt(qDesignKW,1)} kW — SF=${SF}`)}
-        ${nPlusOneHTML(qDesign,'kcal/hr')}
+        ${g('🔥 بار طراحی نهایی',fmt(qDesign),'kcal/hr',`${fmt(qDesignKW,1)} kW — SF=${SF}`)}
         ${fb('بار حرارتی گلخانه (Engineering Toolbox)',[`Q = (${fmt(A,0)}/100) × ${kwRef} × (${dT}/${dtRef2}) = ${fmt(q_kW,1)} kW`,`Q_design = ${fmt(qKcal)} × ${SF} = ${fmt(qDesign)} kcal/hr`],'Engineering Toolbox')}`;
     }
 
-    /* FIX: use qDesignFinal (always defined) instead of qDesign (undefined in some branches) */
-    $('gh_results').innerHTML=resultHTML+(showExp?expansionTankHTML(qDesignFinal,'gh'):'');
+    const parallelHTML = parallelUnitsHTML(qDesignFinal);
+    $('gh_results').innerHTML=resultHTML+parallelHTML+(showExp?expansionTankHTML(qDesignFinal,'gh'):'');
     addPNG('gh_results','گلخانه');
     saveToHistory('گلخانه — '+method);
   },'gh');
@@ -2137,7 +1479,6 @@ function calcSauna(){
       ${g('ضریب ساخت',k2,'','')}
       ${g('توان',kw.toFixed(2),'kW','')}
       ${g('بخار معادل',steam.toFixed(2),'kg/hr','')}
-      ${nPlusOneHTML(kw*860,'kcal/hr')}
       ${fb('بار حرارتی سونا',[`V = ${L} × ${W} × ${H} = ${V.toFixed(2)} m³`,`P = V × k_vent × k_const × SF = ${V.toFixed(2)} × ${k1} × ${k2} × ${SF} = ${kw.toFixed(2)} kW`,`Steam = ${kw.toFixed(2)} × 1.5 = ${steam.toFixed(2)} kg/hr`],'ASHRAE / DIN 18041')}`;
     addPNG('sa_results','سونا');saveToHistory('سونا');
   },'sa');
@@ -2219,11 +1560,6 @@ function calcSteam(prefix,label){
     const tdsf=250,coc=Math.max(1,tdsb/tdsf),blowPct=100/coc;
     const sp=satP(p+1.013),hS=sp.hf+sp.hfg*.97,hF=tfeed*4.187;
     const qB=cap*(hS-hF)*0.239,q=qB*SF*div;
-    const makeupKg=cap*(1-cond/100)+cap*(blowPct/100),makeupM3=makeupKg/1000;
-    const dg=makeupM3*1000*24/3.785*(hard/17.1),reqG=dg*1.3*SF;
-    const soft=pick(SOFT,'g',reqG),resin=reqG/30000,salt=resin*15*.4536;
-    const condFlow=cap*(cond/100),recov=condFlow*4.187*65/4.1868;
-    const deaCap=cap*1.15*SF,deM=pick(DEA,'k',deaCap);
     $(prefix+'_results').innerHTML=`
       ${g('ظرفیت',fmt(cap),'kg/hr',mf(cap))}
       ${g('دمای اشباع',fmt(sp.t,1),'°C',`${fmt(p+1.013,2)} bar`)}
@@ -2234,7 +1570,7 @@ function calcSteam(prefix,label){
       ${burnerBlock(q,eff,fuel,alt,20,stack,15,`(${label})`)}
       ${trimSteam(cap,p)}
       ${tiers(q)}
-      ${nPlusOneHTML(q,'kcal/hr')}
+      ${parallelUnitsHTML(q)}
       ${fb('دیگ بخار',[`h_steam = ${fmt(hS,1)} kJ/kg`,`Q_boiler = ${cap}×(${fmt(hS,1)}-${fmt(hF,1)})×0.239 = ${fmt(qB)} kcal/hr`,`Q_design = ${fmt(q)} kcal/hr`],'Fulton / ASME PTC 4')}`;
     addPNG(prefix+'_results','دیگ بخار '+label);
     saveToHistory('دیگ بخار '+label);
@@ -2261,7 +1597,7 @@ function calcCleanSteam(){
     const q=drv*div*per*(1+margin)*1.2;
     $('cs_results').innerHTML=`${g('کاربرد',app,'','')}
       ${g('ظرفیت کل',fmt(q,0),'kg/hr',mf(q))}
-      ${nPlusOneHTML(q*539,'kcal/hr')}`;
+      ${parallelUnitsHTML(q*539)}`;
     addPNG('cs_results','بخار تمیز');
     saveToHistory('بخار تمیز');
   },'cs');
@@ -2279,7 +1615,7 @@ function calcHW(prefix,label){
       ${g('دبی آب گرم',fmt(flow,2),'m³/hr',`ΔT=${tin-tout}°C`)}
       ${burnerBlock(qD,eff,fuel,0,20,200,15,`(${label})`)}
       ${tiers(qD)}
-      ${nPlusOneHTML(qD,'kcal/hr')}
+      ${parallelUnitsHTML(qD)}
       ${fb('دیگ آبگرم',[`Q_design = ${fmt(q)} × ${SF} = ${fmt(qD)} kcal/hr`,`Flow = ${fmt(flow,2)} m³/hr`],'ASHRAE')}`;
     addPNG(prefix+'_results','دیگ آبگرم '+label);
     saveToHistory('دیگ آبگرم '+label);
@@ -2297,7 +1633,7 @@ function calcCondensing(){
       ${g('حرارت بازیافتی',fmt(recovered),'kcal/hr',recov+'٪')}
       ${burnerBlock(qD,eff,fuel,0,20,60,10,'(چگالشی)')}
       ${tiers(qD)}
-      ${nPlusOneHTML(qD,'kcal/hr')}`;
+      ${parallelUnitsHTML(qD)}`;
     addPNG('cond_results','چگالشی');
     saveToHistory('چگالشی');
   },'cond');
@@ -2310,7 +1646,8 @@ function calcDual(){
       ${g('بار DHW',fmt(qd),'kcal/hr','')}
       ${g('بار کل',fmt(qTotal),'kcal/hr','×1.15')}
       ${burnerBlock(qTotal,eff,'gas',0,20,200,15,'(دوگانه)')}
-      ${tiers(qTotal)}`;
+      ${tiers(qTotal)}
+      ${parallelUnitsHTML(qTotal)}`;
     addPNG('dual_results','دوگانه');
     saveToHistory('دوگانه');
   },'dual');
@@ -2329,7 +1666,7 @@ function calcPackage(){
       ${g('بار DHW',fmt(qDHW),'kcal/hr','')}
       ${g('بار طراحی',fmt(qD),'kcal/hr','SF='+SF)}
       ${g('مدل',md?md.m:'خارج','','')}
-      ${nPlusOneHTML(qD,'kcal/hr')}`;
+      ${parallelUnitsHTML(qD)}`;
     addPNG('pk_results','پکیج');
   },'pk');
 }
@@ -2377,7 +1714,7 @@ function calcHX(){const q=n($('hx_q').value),thi=n($('hx_thin').value),tho=n($('
 /* ============================================================
    QUICK CONSULTATION
    ============================================================ */
-const QC_DATA={residential:{ic:'🏠',label:'مسکونی',lo:80,hi:120,U:0.8},office:{ic:'🏢',label:'اداری',lo:100,hi:150,U:0.8},hotel:{ic:'🏨',label:'هتل',lo:120,hi:180,U:1.0},apartment_hotel:{ic:'🏩',label:'هتل آپارتمان',lo:110,hi:160,U:1.0},hospital:{ic:'🏥',label:'بیمارستان',lo:150,hi:220,U:1.0},clinic:{ic:'🩺',label:'درمانگاه',lo:130,hi:180,U:1.0},school:{ic:'🎓',label:'مدرسه',lo:90,hi:130,U:1.2},university:{ic:'🏛️',label:'دانشگاه',lo:100,hi:150,U:1.1},restaurant:{ic:'🍽️',label:'رستوران',lo:150,hi:200,U:1.2},cafe:{ic:'☕',label:'کافه',lo:120,hi:170,U:1.2},industrial:{ic:'🏭',label:'کارخانه',lo:80,hi:150,U:1.2},workshop:{ic:'🔧',label:'کارگاه',lo:70,hi:120,U:1.3},pool:{ic:'🏊',label:'استخر',lo:200,hi:350,U:1.5},sauna:{ic:'🧖',label:'سونا',lo:250,hi:400,U:1.5},greenhouse:{ic:'🌿',label:'گلخانه',lo:150,hi:250,U:4.5},stadium:{ic:'🏟️',label:'ورزشگاه',lo:120,hi:200,U:1.3},gym:{ic:'💪',label:'سالن ورزشی',lo:100,hi:160,U:1.3},cinema:{ic:'🎬',label:'سینما',lo:130,hi:180,U:1.3},theater:{ic:'🎭',label:'تئاتر',lo:130,hi:180,U:1.3},mall:{ic:'🛒',label:'پاساژ',lo:110,hi:160,U:1.2},supermarket:{ic:'🏪',label:'سوپرمارکت',lo:120,hi:170,U:1.2},mosque:{ic:'🕌',label:'مسجد',lo:100,hi:150,U:1.2},kindergarten:{ic:'🧸',label:'مهدکودک',lo:100,hi:140,U:1.2},nursing:{ic:'👴',label:'خانه سالمندان',lo:120,hi:170,U:1.0},dorm:{ic:'🛏️',label:'خوابگاه',lo:90,hi:140,U:1.0},prison:{ic:'🔒',label:'زندان',lo:80,hi:120,U:1.0},laundry:{ic:'🧺',label:'رختشویخانه',lo:200,hi:300,U:1.5},bakery:{ic:'🥖',label:'نانوایی',lo:180,hi:250,U:1.4},cold:{ic:'❄️',label:'سردخانه',lo:60,hi:100,U:0.6},warehouse:{ic:'📦',label:'انبار',lo:50,hi:90,U:0.9},lab:{ic:'🔬',label:'آزمایشگاه',lo:140,hi:200,U:1.1},pharma:{ic:'💊',label:'داروسازی',lo:150,hi:220,U:1.1},food_factory:{ic:'🥫',label:'صنایع غذایی',lo:130,hi:200,U:1.3},data_center:{ic:'💻',label:'دیتاسنتر',lo:200,hi:350,U:1.0}};
+const QC_DATA={residential:{ic:'🏠',label:'مسکونی',lo:80,hi:120,U:0.8},office:{ic:'🏢',label:'اداری',lo:100,hi:150,U:0.8},hotel:{ic:'🏨',label:'هتل',lo:120,hi:180,U:1.0},hospital:{ic:'🏥',label:'بیمارستان',lo:150,hi:220,U:1.0},school:{ic:'🎓',label:'مدرسه',lo:90,hi:130,U:1.2},restaurant:{ic:'🍽️',label:'رستوران',lo:150,hi:200,U:1.2},industrial:{ic:'🏭',label:'کارخانه',lo:80,hi:150,U:1.2},pool:{ic:'🏊',label:'استخر',lo:200,hi:350,U:1.5},sauna:{ic:'🧖',label:'سونا',lo:250,hi:400,U:1.5},greenhouse:{ic:'🌿',label:'گلخانه',lo:150,hi:250,U:4.5},warehouse:{ic:'📦',label:'انبار',lo:50,hi:90,U:0.9},lab:{ic:'🔬',label:'آزمایشگاه',lo:140,hi:200,U:1.1},pharma:{ic:'💊',label:'داروسازی',lo:150,hi:220,U:1.1},food_factory:{ic:'🥫',label:'صنایع غذایی',lo:130,hi:200,U:1.3}};
 let qcType='residential';
 function initQuickConsult(){
   const sel=$('qc_selector');if(!sel)return;
@@ -2425,7 +1762,8 @@ function calcQuickFull(){
       ${g('🔥 ظرفیت',fmt(qKcal),'kcal/hr',hu(qKcal))}
       ${g('توان',fmt(qKw,1),'kW','')}
       ${g('بخار',fmt(qSteam,0),'kg/hr','')}
-      ${g('گاز',fmt(qFuel,1),'m³/hr','')}`;
+      ${g('گاز',fmt(qFuel,1),'m³/hr','')}
+      ${parallelUnitsHTML(qKcal)}`;
     addPNG('qc_results','مشاوره سریع');
     saveToHistory('مشاوره سریع');
   },'qc');
@@ -2581,7 +1919,6 @@ document.querySelectorAll('.tab-btn').forEach(b=>{
   b.addEventListener('click',()=>{
     document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
     document.querySelectorAll('.panel').forEach(x=>{
-      /* Only affect top-level CA panels, not panels inside #uc-root */
       if(!x.closest('#uc-root')) x.classList.remove('active');
     });
     b.classList.add('active');
@@ -2602,12 +1939,8 @@ document.querySelectorAll('.subtabs').forEach(nav=>{
   });
 });
 
-/* Reset functions */
 function resetDHW(){const sel=$('dhw_bldg');if(sel)sel.value='apartment';if($('dhw_combined'))$('dhw_combined').checked=false;toggleCombinedMode();onDhwBldg();toast('✓');}
 function resetHeating(){$('ht_area').value=500;$('ht_h').value=3;$('ht_tout').value=-5;onHtBldg();toast('✓');}
-function resetPool(){['pl_l','pl_w','pl_d','pl_target','pl_tin','pl_ta','pl_rh','pl_evap','pl_showers'].forEach(id=>{const el=$(id);if(el)el.value=el.defaultValue;});toast('✓');}
-function resetGH(){['gh_l','gh_w','gh_h','gh_tin','gh_tout'].forEach(id=>{const el=$(id);if(el)el.value=el.defaultValue;});toast('✓');}
-function resetSauna(){['sa_l','sa_w','sa_h'].forEach(id=>{const el=$(id);if(el)el.value=el.defaultValue;});toast('✓');}
 
 /* ============================================================
    UNIT CONVERTER
@@ -2645,7 +1978,7 @@ const UC_UNITS={
   cv:{title:'ضریب شیر Cv / Kv',icon:'🔧',badge:'Valve Flow',hint:'Cv = 1.156 × Kv.',base:'Cv',units:{Cv:{label:'Cv',factor:1},Kv:{label:'Kv',factor:1.156}}},
 };
 const UC_PIPE_TABLE=[{nps:'½',dn:15,od:21.34},{nps:'¾',dn:20,od:26.67},{nps:'1',dn:25,od:33.40},{nps:'1¼',dn:32,od:42.16},{nps:'1½',dn:40,od:48.26},{nps:'2',dn:50,od:60.33},{nps:'2½',dn:65,od:73.03},{nps:'3',dn:80,od:88.90},{nps:'4',dn:100,od:114.30},{nps:'5',dn:125,od:141.30},{nps:'6',dn:150,od:168.28},{nps:'8',dn:200,od:219.08},{nps:'10',dn:250,od:273.05},{nps:'12',dn:300,od:323.85},{nps:'14',dn:350,od:355.60},{nps:'16',dn:400,od:406.40},{nps:'18',dn:450,od:457.20},{nps:'20',dn:500,od:508.00},{nps:'24',dn:600,od:609.60}];
-const UC_FLANGE_DATA={150:[{nps:'1/2',dn:15,od:89,bc:60.3,rf:34.9,bolts:4,boltDia:15.9},{nps:'1',dn:25,od:108,bc:79.4,rf:50.8,bolts:4,boltDia:15.9},{nps:'2',dn:50,od:152,bc:120.7,rf:92.1,bolts:4,boltDia:19.1},{nps:'4',dn:100,od:229,bc:190.5,rf:157.2,bolts:8,boltDia:19.1},{nps:'6',dn:150,od:279,bc:241.3,rf:215.9,bolts:8,boltDia:22.4},{nps:'8',dn:200,od:343,bc:298.5,rf:269.9,bolts:8,boltDia:22.4},{nps:'10',dn:250,od:406,bc:362,rf:323.9,bolts:12,boltDia:25.4},{nps:'12',dn:300,od:483,bc:431.8,rf:381,bolts:12,boltDia:25.4},{nps:'16',dn:400,od:597,bc:539.8,rf:469.9,bolts:16,boltDia:28.4},{nps:'20',dn:500,od:698,bc:635,rf:584.2,bolts:20,boltDia:31.8},{nps:'24',dn:600,od:813,bc:749.3,rf:692.2,bolts:20,boltDia:35.1}],300:[{nps:'1/2',dn:15,od:95,bc:66.7,rf:34.9,bolts:4,boltDia:15.9},{nps:'1',dn:25,od:124,bc:88.9,rf:50.8,bolts:4,boltDia:19.1},{nps:'2',dn:50,od:165,bc:127,rf:92.1,bolts:8,boltDia:19.1},{nps:'4',dn:100,od:254,bc:200,rf:157.2,bolts:8,boltDia:22.4},{nps:'6',dn:150,od:318,bc:269.9,rf:215.9,bolts:12,boltDia:22.4},{nps:'8',dn:200,od:381,bc:330.2,rf:269.9,bolts:12,boltDia:25.4},{nps:'10',dn:250,od:444,bc:387.4,rf:323.9,bolts:16,boltDia:28.4},{nps:'12',dn:300,od:521,bc:450.9,rf:381,bolts:16,boltDia:31.8},{nps:'16',dn:400,od:648,bc:571.5,rf:469.9,bolts:20,boltDia:35.1},{nps:'20',dn:500,od:775,bc:685.8,rf:584.2,bolts:24,boltDia:35.1},{nps:'24',dn:600,od:914,bc:812.8,rf:692.2,bolts:24,boltDia:41.1}],400:[{nps:'1/2',dn:15,od:95,bc:66.7,rf:34.9,bolts:4,boltDia:15.9},{nps:'1',dn:25,od:124,bc:88.9,rf:50.8,bolts:4,boltDia:19.1},{nps:'2',dn:50,od:165,bc:127,rf:92.1,bolts:8,boltDia:19.1},{nps:'4',dn:100,od:254,bc:200,rf:157.2,bolts:8,boltDia:22.4},{nps:'6',dn:150,od:318,bc:269.9,rf:215.9,bolts:12,boltDia:22.4},{nps:'8',dn:200,od:381,bc:330.2,rf:269.9,bolts:12,boltDia:25.4},{nps:'10',dn:250,od:444,bc:387.4,rf:323.9,bolts:16,boltDia:28.4},{nps:'12',dn:300,od:521,bc:450.9,rf:381,bolts:16,boltDia:31.8},{nps:'16',dn:400,od:648,bc:571.5,rf:469.9,bolts:20,boltDia:35.1},{nps:'20',dn:500,od:775,bc:685.8,rf:584.2,bolts:24,boltDia:35.1}],600:[{nps:'1/2',dn:15,od:95,bc:66.7,rf:34.9,bolts:4,boltDia:15.9},{nps:'1',dn:25,od:124,bc:88.9,rf:50.8,bolts:4,boltDia:19.1},{nps:'2',dn:50,od:165,bc:127,rf:92.1,bolts:8,boltDia:19.1},{nps:'4',dn:100,od:273,bc:215.9,rf:157.2,bolts:8,boltDia:25.4},{nps:'6',dn:150,od:356,bc:292.1,rf:215.9,bolts:12,boltDia:28.4},{nps:'8',dn:200,od:419,bc:349.3,rf:269.9,bolts:12,boltDia:31.8},{nps:'10',dn:250,od:508,bc:431.8,rf:323.9,bolts:16,boltDia:35.1},{nps:'12',dn:300,od:559,bc:489,rf:381,bolts:20,boltDia:35.1},{nps:'16',dn:400,od:686,bc:603.3,rf:469.9,bolts:20,boltDia:41.1}],900:[{nps:'1/2',dn:15,od:121,bc:88.9,rf:34.9,bolts:4,boltDia:22.2},{nps:'2',dn:50,od:216,bc:165.1,rf:92.1,bolts:8,boltDia:25.4},{nps:'4',dn:100,od:292,bc:235,rf:157.2,bolts:8,boltDia:31.8},{nps:'6',dn:150,od:381,bc:317.5,rf:215.9,bolts:12,boltDia:31.8},{nps:'8',dn:200,od:470,bc:393.7,rf:269.9,bolts:12,boltDia:38.1},{nps:'10',dn:250,od:546,bc:469.9,rf:323.9,bolts:16,boltDia:38.1},{nps:'12',dn:300,od:610,bc:533.4,rf:381,bolts:20,boltDia:38.1},{nps:'16',dn:400,od:705,bc:616,rf:469.9,bolts:20,boltDia:44.5},{nps:'20',dn:500,od:857,bc:749.3,rf:584.2,bolts:20,boltDia:53.9},{nps:'24',dn:600,od:1041,bc:901.7,rf:692.2,bolts:20,boltDia:66.7}],1500:[{nps:'1/2',dn:15,od:121,bc:88.9,rf:34.9,bolts:4,boltDia:22.2},{nps:'2',dn:50,od:216,bc:165.1,rf:92.1,bolts:8,boltDia:25.4},{nps:'4',dn:100,od:311,bc:241.3,rf:157.2,bolts:8,boltDia:31.8},{nps:'6',dn:150,od:394,bc:317.5,rf:215.9,bolts:12,boltDia:31.8},{nps:'8',dn:200,od:483,bc:393.7,rf:269.9,bolts:12,boltDia:38.1},{nps:'10',dn:250,od:584,bc:482.6,rf:323.9,bolts:12,boltDia:44.5},{nps:'12',dn:300,od:673,bc:571.5,rf:381,bolts:16,boltDia:44.5},{nps:'16',dn:400,od:825,bc:704.8,rf:469.9,bolts:16,boltDia:53.9},{nps:'20',dn:500,od:984,bc:831.8,rf:584.2,bolts:16,boltDia:63.5}],2500:[{nps:'1/2',dn:15,od:133,bc:98.4,rf:34.9,bolts:4,boltDia:22.2},{nps:'2',dn:50,od:235,bc:190.5,rf:92.1,bolts:8,boltDia:25.4},{nps:'4',dn:100,od:356,bc:292.1,rf:157.2,bolts:8,boltDia:35.1},{nps:'6',dn:150,od:483,bc:406.4,rf:215.9,bolts:8,boltDia:44.5},{nps:'8',dn:200,od:552,bc:469.9,rf:269.9,bolts:12,boltDia:44.5},{nps:'10',dn:250,od:673,bc:584.2,rf:323.9,bolts:12,boltDia:50.8},{nps:'12',dn:300,od:762,bc:673.1,rf:381,bolts:12,boltDia:53.9}]};
+const UC_FLANGE_DATA={150:[{nps:'1/2',dn:15,od:89,bc:60.3,rf:34.9,bolts:4,boltDia:15.9},{nps:'1',dn:25,od:108,bc:79.4,rf:50.8,bolts:4,boltDia:15.9},{nps:'2',dn:50,od:152,bc:120.7,rf:92.1,bolts:4,boltDia:19.1},{nps:'4',dn:100,od:229,bc:190.5,rf:157.2,bolts:8,boltDia:19.1},{nps:'6',dn:150,od:279,bc:241.3,rf:215.9,bolts:8,boltDia:22.4},{nps:'8',dn:200,od:343,bc:298.5,rf:269.9,bolts:8,boltDia:22.4},{nps:'10',dn:250,od:406,bc:362,rf:323.9,bolts:12,boltDia:25.4},{nps:'12',dn:300,od:483,bc:431.8,rf:381,bolts:12,boltDia:25.4},{nps:'16',dn:400,od:597,bc:539.8,rf:469.9,bolts:16,boltDia:28.4},{nps:'20',dn:500,od:698,bc:635,rf:584.2,bolts:20,boltDia:31.8},{nps:'24',dn:600,od:813,bc:749.3,rf:692.2,bolts:20,boltDia:35.1}],300:[{nps:'1/2',dn:15,od:95,bc:66.7,rf:34.9,bolts:4,boltDia:15.9},{nps:'1',dn:25,od:124,bc:88.9,rf:50.8,bolts:4,boltDia:19.1},{nps:'2',dn:50,od:165,bc:127,rf:92.1,bolts:8,boltDia:19.1},{nps:'4',dn:100,od:254,bc:200,rf:157.2,bolts:8,boltDia:22.4},{nps:'6',dn:150,od:318,bc:269.9,rf:215.9,bolts:12,boltDia:22.4},{nps:'8',dn:200,od:381,bc:330.2,rf:269.9,bolts:12,boltDia:25.4},{nps:'10',dn:250,od:444,bc:387.4,rf:323.9,bolts:16,boltDia:28.4},{nps:'12',dn:300,od:521,bc:450.9,rf:381,bolts:16,boltDia:31.8},{nps:'16',dn:400,od:648,bc:571.5,rf:469.9,bolts:20,boltDia:35.1},{nps:'20',dn:500,od:775,bc:685.8,rf:584.2,bolts:24,boltDia:35.1},{nps:'24',dn:600,od:914,bc:812.8,rf:692.2,bolts:24,boltDia:41.1}],400:[{nps:'1/2',dn:15,od:95,bc:66.7,rf:34.9,bolts:4,boltDia:15.9},{nps:'1',dn:25,od:124,bc:88.9,rf:50.8,bolts:4,boltDia:19.1},{nps:'2',dn:50,od:165,bc:127,rf:92.1,bolts:8,boltDia:19.1},{nps:'4',dn:100,od:254,bc:200,rf:157.2,bolts:8,boltDia:22.4},{nps:'6',dn:150,od:318,bc:269.9,rf:215.9,bolts:12,boltDia:22.4},{nps:'8',dn:200,od:381,bc:330.2,rf:269.9,bolts:12,boltDia:25.4},{nps:'10',dn:250,od:444,bc:387.4,rf:323.9,bolts:16,boltDia:28.4},{nps:'12',dn:300,od:521,bc:450.9,rf:381,bolts:16,boltDia:31.8},{nps:'16',dn:400,od:648,bc:571.5,rf:469.9,bolts:20,boltDia:35.1}],600:[{nps:'1/2',dn:15,od:95,bc:66.7,rf:34.9,bolts:4,boltDia:15.9},{nps:'1',dn:25,od:124,bc:88.9,rf:50.8,bolts:4,boltDia:19.1},{nps:'2',dn:50,od:165,bc:127,rf:92.1,bolts:8,boltDia:19.1},{nps:'4',dn:100,od:273,bc:215.9,rf:157.2,bolts:8,boltDia:25.4},{nps:'6',dn:150,od:356,bc:292.1,rf:215.9,bolts:12,boltDia:28.4},{nps:'8',dn:200,od:419,bc:349.3,rf:269.9,bolts:12,boltDia:31.8},{nps:'10',dn:250,od:508,bc:431.8,rf:323.9,bolts:16,boltDia:35.1},{nps:'12',dn:300,od:559,bc:489,rf:381,bolts:20,boltDia:35.1}],900:[{nps:'1/2',dn:15,od:121,bc:88.9,rf:34.9,bolts:4,boltDia:22.2},{nps:'2',dn:50,od:216,bc:165.1,rf:92.1,bolts:8,boltDia:25.4},{nps:'4',dn:100,od:292,bc:235,rf:157.2,bolts:8,boltDia:31.8},{nps:'6',dn:150,od:381,bc:317.5,rf:215.9,bolts:12,boltDia:31.8},{nps:'8',dn:200,od:470,bc:393.7,rf:269.9,bolts:12,boltDia:38.1},{nps:'10',dn:250,od:546,bc:469.9,rf:323.9,bolts:16,boltDia:38.1},{nps:'12',dn:300,od:610,bc:533.4,rf:381,bolts:20,boltDia:38.1},{nps:'16',dn:400,od:705,bc:616,rf:469.9,bolts:20,boltDia:44.5},{nps:'20',dn:500,od:857,bc:749.3,rf:584.2,bolts:20,boltDia:53.9},{nps:'24',dn:600,od:1041,bc:901.7,rf:692.2,bolts:20,boltDia:66.7}],1500:[{nps:'1/2',dn:15,od:121,bc:88.9,rf:34.9,bolts:4,boltDia:22.2},{nps:'2',dn:50,od:216,bc:165.1,rf:92.1,bolts:8,boltDia:25.4},{nps:'4',dn:100,od:311,bc:241.3,rf:157.2,bolts:8,boltDia:31.8},{nps:'6',dn:150,od:394,bc:317.5,rf:215.9,bolts:12,boltDia:31.8},{nps:'8',dn:200,od:483,bc:393.7,rf:269.9,bolts:12,boltDia:38.1},{nps:'10',dn:250,od:584,bc:482.6,rf:323.9,bolts:12,boltDia:44.5},{nps:'12',dn:300,od:673,bc:571.5,rf:381,bolts:16,boltDia:44.5},{nps:'16',dn:400,od:825,bc:704.8,rf:469.9,bolts:16,boltDia:53.9},{nps:'20',dn:500,od:984,bc:831.8,rf:584.2,bolts:16,boltDia:63.5}],2500:[{nps:'1/2',dn:15,od:133,bc:98.4,rf:34.9,bolts:4,boltDia:22.2},{nps:'2',dn:50,od:235,bc:190.5,rf:92.1,bolts:8,boltDia:25.4},{nps:'4',dn:100,od:356,bc:292.1,rf:157.2,bolts:8,boltDia:35.1},{nps:'6',dn:150,od:483,bc:406.4,rf:215.9,bolts:8,boltDia:44.5},{nps:'8',dn:200,od:552,bc:469.9,rf:269.9,bolts:12,boltDia:44.5},{nps:'10',dn:250,od:673,bc:584.2,rf:323.9,bolts:12,boltDia:50.8},{nps:'12',dn:300,od:762,bc:673.1,rf:381,bolts:12,boltDia:53.9}]};
 const UC_PIPE_DATA=[{nps:'1/2',dn:15,od:21.3,sch5s:1.65,sch10s:2.11,sch40:2.77,schStd:2.77,sch80:3.73,schXs:3.73,sch160:4.78,xxs:7.47},{nps:'3/4',dn:20,od:26.7,sch5s:1.65,sch10s:2.11,sch40:2.87,schStd:2.87,sch80:3.91,schXs:3.91,sch160:5.56,xxs:7.82},{nps:'1',dn:25,od:33.4,sch5s:1.65,sch10s:2.77,sch40:3.38,schStd:3.38,sch80:4.55,schXs:4.55,sch160:6.35,xxs:9.09},{nps:'1-1/2',dn:40,od:48.3,sch5s:1.65,sch10s:2.77,sch40:3.68,schStd:3.68,sch80:5.08,schXs:5.08,sch160:7.14,xxs:10.15},{nps:'2',dn:50,od:60.3,sch5s:1.65,sch10s:2.77,sch40:3.91,schStd:3.91,sch80:5.54,schXs:5.54,sch160:8.74,xxs:11.07},{nps:'3',dn:80,od:88.9,sch5s:2.11,sch10s:3.05,sch40:5.49,schStd:5.49,sch80:7.62,schXs:7.62,sch160:11.13,xxs:15.24},{nps:'4',dn:100,od:114.3,sch5s:2.11,sch10s:3.05,sch40:6.02,schStd:6.02,sch80:8.56,schXs:8.56,sch160:13.49,xxs:17.12},{nps:'6',dn:150,od:168.3,sch5s:2.77,sch10s:3.40,sch40:7.11,schStd:7.11,sch80:10.97,schXs:10.97,sch160:18.26,xxs:21.95},{nps:'8',dn:200,od:219.1,sch5s:2.77,sch10s:3.76,sch20:6.35,sch30:7.04,sch40:8.18,schStd:8.18,sch60:10.31,sch80:12.70,schXs:12.70,sch100:15.09,sch120:18.26,sch140:20.62,sch160:23.01},{nps:'10',dn:250,od:273.1,sch5s:3.40,sch10s:4.19,sch20:6.35,sch30:7.80,sch40:9.27,schStd:9.27,sch60:12.70,sch80:15.09,schXs:15.09,sch100:18.26,sch120:21.44,sch140:25.40,sch160:28.58},{nps:'12',dn:300,od:323.9,sch5s:3.96,sch10s:4.57,sch20:6.35,sch30:8.38,sch40:10.31,schStd:9.53,sch60:14.27,sch80:17.48,schXs:17.48,sch100:21.44,sch120:25.40,sch140:28.58,sch160:33.32},{nps:'16',dn:400,od:406.4,sch10:6.35,sch20:7.92,sch30:9.53,sch40:12.70,schStd:9.53,sch60:16.66,sch80:21.44,schXs:21.44,sch100:26.19,sch120:30.96,sch160:40.49},{nps:'20',dn:500,od:508.0,sch10:6.35,sch20:9.53,sch30:12.70,sch40:15.09,schStd:9.53,sch60:20.62,sch80:26.19,schXs:26.19,sch100:32.54,sch120:38.10,sch160:50.01},{nps:'24',dn:600,od:610.0,sch10:6.35,sch20:9.53,sch30:14.27,sch40:17.48,schStd:9.53,sch60:24.61,sch80:30.96,schXs:30.96,sch100:38.89,sch120:46.02,sch160:59.54}];
 const UC_STEAM_SAT=[{p:0.3,t:69.1,hf:289.3,hfg:2336.1,vg:5.229},{p:0.5,t:81.3,hf:340.6,hfg:2305.4,vg:3.24},{p:1.0,t:99.6,hf:417.5,hfg:2258.0,vg:1.694},{p:2.0,t:120.2,hf:504.7,hfg:2201.9,vg:0.8857},{p:3.0,t:133.5,hf:561.4,hfg:2163.8,vg:0.6058},{p:4.0,t:143.6,hf:604.7,hfg:2133.8,vg:0.4625},{p:5.0,t:151.8,hf:640.1,hfg:2108.0,vg:0.3749},{p:6.0,t:158.8,hf:670.4,hfg:2085.0,vg:0.3157},{p:7.0,t:165.0,hf:697.1,hfg:2064.0,vg:0.2729},{p:8.0,t:170.4,hf:720.9,hfg:2046.5,vg:0.2404},{p:10.0,t:179.9,hf:762.6,hfg:2013.6,vg:0.1943},{p:12.0,t:187.9,hf:798.3,hfg:1984.3,vg:0.1632},{p:16.0,t:201.4,hf:858.6,hfg:1933.2,vg:0.1238},{p:20.0,t:212.4,hf:908.6,hfg:1888.6,vg:0.0995}];
 function ucInterpSteam(pAbs){
@@ -2822,6 +2155,10 @@ function ucRenderUnit(){
 function ucSelectFlangeClass(c){ucFlangeClass=c;ucRenderUnit();}
 window.ucSelectFlangeClass=ucSelectFlangeClass;
 
+/* === FIX: aliases for HTML onclick handlers === */
+window.renderUnit=ucRenderUnit;
+window.selectFlangeClass=ucSelectFlangeClass;
+
 ucBuildUnitDrawer();
 ucLoadUnit();
 
@@ -2879,7 +2216,7 @@ function ucRenderPrac(){
   },10);
 }
 function ucRenderFlowVol(){
-  return`<div class="uc-card prac"><span class="uc-badge cyan">Flow ↔ Tank Volume</span><h2>تبدیل دبی به حجم مخزن</h2><p class="hint">مثال: «۵۰۰۰ گالن بر ساعت، مخزن با ۲۰ دقیقه هولدآپ چند لیتره؟»</p>
+  return`<div class="uc-card prac"><span class="uc-badge cyan">Flow ↔ Tank Volume</span><h2>تبدیل دبی به حجم مخزن</h2><p class="hint">مثال: ۵۰۰۰ گالن بر ساعت، ۲۰ دقیقه هولدآپ</p>
   <div class="uc-row3">
   <div class="uc-field"><label>دبی</label><input type="number" id="fv_flow" value="5000" step="any" oninput="ucCalcFlowVol()"></div>
   <div class="uc-field"><label>واحد دبی</label><select id="fv_unit" onchange="ucCalcFlowVol()"><option value="m3_hr">m³/hr</option><option value="L_min">L/min</option><option value="L_s">L/s</option><option value="GPM_US">GPM (US)</option><option value="GPH_US" selected>GPH (US)</option><option value="GPM_UK">GPM (UK)</option></select></div>
@@ -3314,23 +2651,7 @@ function ucRenderFluids(){
   const rows=[['آب (۲۰°C)','998','4.18','—','—'],['آب (۵۰°C)','988','4.18','—','—'],['آب (۹۰°C)','965','4.20','—','—'],['آب اشباع (۱۰ bar)','888','4.40','—','—'],['بخار اشباع (۱ bar)','0.59','2.08','2258','1.694'],['بخار اشباع (۱۰ bar)','5.15','3.10','2014','0.194'],['روغن داغ Therminol 55','822','2.30','—','—'],['روغن داغ Therminol 66','830','2.40','—','—'],['گازوئیل','830','2.10','—','—'],['مازوت','950','1.90','—','—'],['هوا (۲۰°C)','1.205','1.005','—','—'],['اتیلن گلیکول ۵۰٪','1070','3.30','—','—'],['گاز طبیعی (۱۵°C)','0.72','2.20','—','—']];
   return`<div class="uc-card green"><span class="uc-badge lime">Fluid Reference</span><h2>جدول مرجع خواص سیالات</h2><div style="overflow-x:auto;"><table class="std"><tr><th>سیال</th><th>ρ (kg/m³)</th><th>Cp</th><th>h_fg</th><th>v</th></tr>${rows.map(r=>`<tr><td style="text-align:right;">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('')}</table></div></div>`;
 }
-const UC_FONT_GROUPS=[
-  {key:'h1',label:'عنوان اصلی',var:'--fs-h1',def:1.05,min:0.85,max:1.8,step:0.05,sample:'ماشین‌حساب'},
-  {key:'h1Sub',label:'زیرعنوان',var:'--fs-h1-sub',def:0.65,min:0.55,max:1.1,step:0.02,sample:'Caspian'},
-  {key:'maintab',label:'دکمه بخش',var:'--fs-maintab',def:0.86,min:0.7,max:1.3,step:0.02,sample:'🔄 تبدیل'},
-  {key:'subtab',label:'چیپ دسته',var:'--fs-subtab',def:0.83,min:0.65,max:1.3,step:0.02,sample:'💧 دبی'},
-  {key:'cardTitle',label:'عنوان کارت',var:'--fs-card-title',def:1.24,min:0.9,max:1.9,step:0.03,sample:'تبدیل دبی'},
-  {key:'hint',label:'توضیح',var:'--fs-hint',def:0.88,min:0.7,max:1.35,step:0.02,sample:'توضیح'},
-  {key:'label',label:'برچسب',var:'--fs-label',def:0.85,min:0.65,max:1.3,step:0.02,sample:'مقدار'},
-  {key:'input',label:'ورودی',var:'--fs-input',def:1.00,min:0.75,max:1.5,step:0.02,sample:'۳۰۰۰'},
-  {key:'resultNum',label:'عدد نتیجه',var:'--fs-result-num',def:2.30,min:1.4,max:3.8,step:0.05,sample:'۶,۳۰۹'},
-  {key:'resultLbl',label:'برچسب نتیجه',var:'--fs-result-lbl',def:0.90,min:0.65,max:1.35,step:0.02,sample:'حجم'},
-  {key:'convCk',label:'عنوان آیتم',var:'--fs-conv-ck',def:0.73,min:0.55,max:1.2,step:0.02,sample:'کیلووات'},
-  {key:'convCv',label:'مقدار آیتم',var:'--fs-conv-cv',def:1.00,min:0.7,max:1.5,step:0.02,sample:'۸۶۰.۴۲'},
-  {key:'info',label:'جعبه اطلاعات',var:'--fs-info',def:0.88,min:0.65,max:1.35,step:0.02,sample:'محاسبه'},
-  {key:'table',label:'جدول‌ها',var:'--fs-table',def:0.88,min:0.65,max:1.3,step:0.02,sample:'چگالی'},
-  {key:'badge',label:'برچسب کارت',var:'--fs-badge',def:0.70,min:0.55,max:1.2,step:0.02,sample:'FLOW'}
-];
+const UC_FONT_GROUPS=[{key:'h1',label:'عنوان اصلی',var:'--fs-h1',def:1.05,min:0.85,max:1.8,step:0.05,sample:'ماشین‌حساب'},{key:'h1Sub',label:'زیرعنوان',var:'--fs-h1-sub',def:0.65,min:0.55,max:1.1,step:0.02,sample:'Caspian'},{key:'maintab',label:'دکمه بخش',var:'--fs-maintab',def:0.86,min:0.7,max:1.3,step:0.02,sample:'🔄 تبدیل'},{key:'subtab',label:'چیپ دسته',var:'--fs-subtab',def:0.83,min:0.65,max:1.3,step:0.02,sample:'💧 دبی'},{key:'cardTitle',label:'عنوان کارت',var:'--fs-card-title',def:1.24,min:0.9,max:1.9,step:0.03,sample:'تبدیل دبی'},{key:'hint',label:'توضیح',var:'--fs-hint',def:0.88,min:0.7,max:1.35,step:0.02,sample:'توضیح'},{key:'label',label:'برچسب',var:'--fs-label',def:0.85,min:0.65,max:1.3,step:0.02,sample:'مقدار'},{key:'input',label:'ورودی',var:'--fs-input',def:1.00,min:0.75,max:1.5,step:0.02,sample:'۳۰۰۰'},{key:'resultNum',label:'عدد نتیجه',var:'--fs-result-num',def:2.30,min:1.4,max:3.8,step:0.05,sample:'۶,۳۰۹'},{key:'resultLbl',label:'برچسب نتیجه',var:'--fs-result-lbl',def:0.90,min:0.65,max:1.35,step:0.02,sample:'حجم'},{key:'convCk',label:'عنوان آیتم',var:'--fs-conv-ck',def:0.73,min:0.55,max:1.2,step:0.02,sample:'کیلووات'},{key:'convCv',label:'مقدار آیتم',var:'--fs-conv-cv',def:1.00,min:0.7,max:1.5,step:0.02,sample:'۸۶۰.۴۲'},{key:'info',label:'جعبه اطلاعات',var:'--fs-info',def:0.88,min:0.65,max:1.35,step:0.02,sample:'محاسبه'},{key:'table',label:'جدول‌ها',var:'--fs-table',def:0.88,min:0.65,max:1.3,step:0.02,sample:'چگالی'},{key:'badge',label:'برچسب کارت',var:'--fs-badge',def:0.70,min:0.55,max:1.2,step:0.02,sample:'FLOW'}];
 const ucRoot=document.getElementById('uc-root');
 function ucApplyFont(key,value){const g=UC_FONT_GROUPS.find(x=>x.key===key);if(g&&ucRoot)ucRoot.style.setProperty(g.var,value+'rem');}
 function ucApplyAllFonts(){const s=ucLsGet(UC_LS_FONT,{});UC_FONT_GROUPS.forEach(g=>{ucApplyFont(g.key,s[g.key]!==undefined?s[g.key]:g.def);});}
@@ -3373,7 +2694,7 @@ toggleCombinedMode();
 loadFromStorage();
 syncDHWExpConversion();
 
-console.log('✓ Capacity Assistant v20 loaded — all fixes applied');
+console.log('✓ Capacity Assistant v20.1 loaded — all fixes applied');
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
 }
