@@ -1,15 +1,15 @@
 /* ============================================================
    Capacity Assistant — Service Worker
-   Version: v19.0.0
+   Version: v20.0.0
    Project: Caspian Mobaddel Amard
    Updated: 2026-10
    ============================================================ */
 
-const CACHE_VERSION = 'v19.0.0';
+const CACHE_VERSION = 'v20.0.0';
 const CACHE_NAME = `caspian-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `caspian-runtime-${CACHE_VERSION}`;
 
-/* فایل‌های اصلی که در اولین نصب پیش‌کش می‌شوند */
+/* فایل‌هایی که در اولین نصب پیش‌کش می‌شوند */
 const PRECACHE_ASSETS = [
   './',
   './index.html',
@@ -22,7 +22,7 @@ const PRECACHE_ASSETS = [
    INSTALL — نصب اولیه
    ============================================================ */
 self.addEventListener('install', event => {
-  console.log('[SW v19] Installing version', CACHE_VERSION);
+  console.log('[SW v20] Installing version', CACHE_VERSION);
 
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -35,7 +35,7 @@ self.addEventListener('install', event => {
         );
       })
       .then(() => {
-        console.log('[SW v19] Install complete — skipping waiting');
+        console.log('[SW v20] Install complete — skipping waiting');
         return self.skipWaiting();
       })
   );
@@ -45,7 +45,7 @@ self.addEventListener('install', event => {
    ACTIVATE — پاکسازی کش‌های قدیمی
    ============================================================ */
 self.addEventListener('activate', event => {
-  console.log('[SW v19] Activating version', CACHE_VERSION);
+  console.log('[SW v20] Activating version', CACHE_VERSION);
 
   event.waitUntil(
     caches.keys()
@@ -54,19 +54,16 @@ self.addEventListener('activate', event => {
           cacheNames
             .filter(name => name !== CACHE_NAME && name !== RUNTIME_CACHE)
             .map(name => {
-              console.log('[SW v19] Deleting old cache:', name);
+              console.log('[SW v20] Deleting old cache:', name);
               return caches.delete(name);
             })
         );
       })
       .then(() => {
-        console.log('[SW v19] Claiming clients');
+        console.log('[SW v20] Claiming clients');
         return self.clients.claim();
       })
-      .then(() => {
-        // اطلاع‌رسانی به همه تب‌های باز که SW جدید فعال شد
-        return self.clients.matchAll({ type: 'window' });
-      })
+      .then(() => self.clients.matchAll({ type: 'window' }))
       .then(clients => {
         clients.forEach(client => {
           client.postMessage({
@@ -84,7 +81,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const request = event.request;
 
-  // فقط GET را مدیریت کن
+  // فقط GET
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
@@ -95,7 +92,6 @@ self.addEventListener('fetch', event => {
   }
 
   // ====== ۱) HTML / index.html → Network-First ======
-  // همیشه آخرین نسخه را از سرور بگیر، اگر آفلاین بود از کش
   const isHTML = request.headers.get('accept')?.includes('text/html');
   const isIndex = url.pathname.endsWith('/') ||
                   url.pathname.endsWith('index.html') ||
@@ -143,7 +139,6 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(request).then(cachedResponse => {
       if (cachedResponse) {
-        // به‌روزرسانی پس‌زمینه
         fetch(request)
           .then(networkResponse => {
             if (networkResponse && networkResponse.status === 200) {
@@ -152,12 +147,11 @@ self.addEventListener('fetch', event => {
               });
             }
           })
-          .catch(() => { /* آفلاین — اشکالی ندارد */ });
+          .catch(() => { /* آفلاین */ });
 
         return cachedResponse;
       }
 
-      // در کش نیست → از شبکه بگیر
       return fetch(request)
         .then(networkResponse => {
           if (!networkResponse || networkResponse.status !== 200) {
@@ -170,7 +164,6 @@ self.addEventListener('fetch', event => {
           return networkResponse;
         })
         .catch(() => {
-          // آفلاین و در کش نیست
           if (request.destination === 'image') {
             return caches.match('./icon-192.png');
           }
@@ -223,12 +216,10 @@ self.addEventListener('notificationclick', event => {
   event.notification.close();
   event.waitUntil(
     self.clients.matchAll({ type: 'window' }).then(clients => {
-      if (clients.length > 0) {
-        return clients[0].focus();
-      }
+      if (clients.length > 0) return clients[0].focus();
       return self.clients.openWindow('./index.html');
     })
   );
 });
 
-console.log('[SW] Service Worker v19 loaded — cache version:', CACHE_VERSION);
+console.log('[SW] Service Worker v20 loaded — cache version:', CACHE_VERSION);
