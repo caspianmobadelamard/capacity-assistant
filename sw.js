@@ -1,13 +1,15 @@
 /* ============================================================
-   Capacity Assistant — Service Worker v18.1
-   Caspian Mobaddel Amard
+   Capacity Assistant — Service Worker
+   Version: v19.0.0
+   Project: Caspian Mobaddel Amard
+   Updated: 2026-10
    ============================================================ */
 
-const CACHE_VERSION = 'v18.1.0';
+const CACHE_VERSION = 'v19.0.0';
 const CACHE_NAME = `caspian-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `caspian-runtime-${CACHE_VERSION}`;
 
-/* فایل‌هایی که در اولین نصب کش می‌شوند */
+/* فایل‌های اصلی که در اولین نصب پیش‌کش می‌شوند */
 const PRECACHE_ASSETS = [
   './',
   './index.html',
@@ -16,25 +18,35 @@ const PRECACHE_ASSETS = [
   './icon-512.png'
 ];
 
-/* ---------- INSTALL ---------- */
+/* ============================================================
+   INSTALL — نصب اولیه
+   ============================================================ */
 self.addEventListener('install', event => {
-  console.log('[SW] Installing version', CACHE_VERSION);
+  console.log('[SW v19] Installing version', CACHE_VERSION);
+
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        return cache.addAll(PRECACHE_ASSETS.map(url => {
-          return new Request(url, { cache: 'reload' });
-        })).catch(err => {
-          console.warn('[SW] Precache partial failure:', err);
-        });
+        return Promise.all(
+          PRECACHE_ASSETS.map(url =>
+            cache.add(new Request(url, { cache: 'reload' }))
+              .catch(err => console.warn('[SW] Precache failed for:', url, err))
+          )
+        );
       })
-      .then(() => self.skipWaiting()) // فعال‌سازی فوری
+      .then(() => {
+        console.log('[SW v19] Install complete — skipping waiting');
+        return self.skipWaiting();
+      })
   );
 });
 
-/* ---------- ACTIVATE ---------- */
+/* ============================================================
+   ACTIVATE — پاکسازی کش‌های قدیمی
+   ============================================================ */
 self.addEventListener('activate', event => {
-  console.log('[SW] Activating version', CACHE_VERSION);
+  console.log('[SW v19] Activating version', CACHE_VERSION);
+
   event.waitUntil(
     caches.keys()
       .then(cacheNames => {
@@ -42,63 +54,84 @@ self.addEventListener('activate', event => {
           cacheNames
             .filter(name => name !== CACHE_NAME && name !== RUNTIME_CACHE)
             .map(name => {
-              console.log('[SW] Deleting old cache:', name);
+              console.log('[SW v19] Deleting old cache:', name);
               return caches.delete(name);
             })
         );
       })
-      .then(() => self.clients.claim()) // کنترل فوری همه تب‌ها
+      .then(() => {
+        console.log('[SW v19] Claiming clients');
+        return self.clients.claim();
+      })
+      .then(() => {
+        // اطلاع‌رسانی به همه تب‌های باز که SW جدید فعال شد
+        return self.clients.matchAll({ type: 'window' });
+      })
+      .then(clients => {
+        clients.forEach(client => {
+          client.postMessage({
+            type: 'SW_ACTIVATED',
+            version: CACHE_VERSION
+          });
+        });
+      })
   );
 });
 
-/* ---------- FETCH ---------- */
+/* ============================================================
+   FETCH — استراتژی‌های کش
+   ============================================================ */
 self.addEventListener('fetch', event => {
   const request = event.request;
 
-  // فقط درخواست‌های GET را مدیریت کن
+  // فقط GET را مدیریت کن
   if (request.method !== 'GET') return;
 
-  // درخواست‌های cross-origin (CDN و ...) را رد کن
   const url = new URL(request.url);
+
+  // درخواست‌های cross-origin (CDN، fonts، html2canvas) را رد کن
   if (url.origin !== self.location.origin) {
-    return; // مرورگر خودش مدیریت کند
+    return;
   }
 
-  // ===== استراتژی ۱: HTML (network-first) =====
+  // ====== ۱) HTML / index.html → Network-First ======
   // همیشه آخرین نسخه را از سرور بگیر، اگر آفلاین بود از کش
-  if (request.headers.get('accept')?.includes('text/html') ||
-      request.url.endsWith('.html') ||
-      request.url.endsWith('/') ||
-      url.pathname.endsWith('index.html')) {
+  const isHTML = request.headers.get('accept')?.includes('text/html');
+  const isIndex = url.pathname.endsWith('/') ||
+                  url.pathname.endsWith('index.html') ||
+                  url.pathname.endsWith('.html');
+
+  if (isHTML || isIndex) {
     event.respondWith(
       fetch(request)
         .then(response => {
           if (response && response.status === 200) {
-            const responseClone = response.clone();
+            const clone = response.clone();
             caches.open(RUNTIME_CACHE).then(cache => {
-              cache.put(request, responseClone);
+              cache.put(request, clone);
             });
           }
           return response;
         })
         .catch(() => {
-          return caches.match(request).then(cached => {
-            return cached || caches.match('./index.html');
-          });
+          return caches.match(request)
+            .then(cached => cached || caches.match('./index.html'));
         })
     );
     return;
   }
 
-  // ===== استراتژی ۲: manifest.json (network-first) =====
-  if (request.url.endsWith('manifest.json')) {
+  // ====== ۲) manifest.json → Network-First ======
+  if (url.pathname.endsWith('manifest.json')) {
     event.respondWith(
       fetch(request)
         .then(response => {
-          const responseClone = response.clone();
-          caches.open(RUNTIME_CACHE).then(cache => {
-            cache.put(request, responseClone);
-          });
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(RUNTIME_CACHE).then(cache => {
+              cache.put(request, clone);
+            });
+          }
           return response;
         })
         .catch(() => caches.match(request))
@@ -106,11 +139,11 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // ===== استراتژی ۳: بقیه (cache-first با به‌روزرسانی پس‌زمینه) =====
+  // ====== ۳) بقیه فایل‌ها → Cache-First با به‌روزرسانی پس‌زمینه ======
   event.respondWith(
     caches.match(request).then(cachedResponse => {
       if (cachedResponse) {
-        // به‌روزرسانی در پس‌زمینه
+        // به‌روزرسانی پس‌زمینه
         fetch(request)
           .then(networkResponse => {
             if (networkResponse && networkResponse.status === 200) {
@@ -119,19 +152,20 @@ self.addEventListener('fetch', event => {
               });
             }
           })
-          .catch(() => { /* آفلاین */ });
+          .catch(() => { /* آفلاین — اشکالی ندارد */ });
+
         return cachedResponse;
       }
 
-      // اگر در کش نبود، از شبکه بگیر و ذخیره کن
+      // در کش نیست → از شبکه بگیر
       return fetch(request)
         .then(networkResponse => {
           if (!networkResponse || networkResponse.status !== 200) {
             return networkResponse;
           }
-          const responseClone = networkResponse.clone();
+          const clone = networkResponse.clone();
           caches.open(RUNTIME_CACHE).then(cache => {
-            cache.put(request, responseClone);
+            cache.put(request, clone);
           });
           return networkResponse;
         })
@@ -140,7 +174,10 @@ self.addEventListener('fetch', event => {
           if (request.destination === 'image') {
             return caches.match('./icon-192.png');
           }
-          return new Response('آفلاین', {
+          if (request.destination === 'document') {
+            return caches.match('./index.html');
+          }
+          return new Response('آفلاین — اتصال خود را بررسی کنید.', {
             status: 503,
             statusText: 'Offline',
             headers: { 'Content-Type': 'text/plain; charset=utf-8' }
@@ -150,17 +187,48 @@ self.addEventListener('fetch', event => {
   );
 });
 
-/* ---------- MESSAGE ---------- */
-// پشتیبانی از پیام‌های دستی از صفحه (اختیاری)
+/* ============================================================
+   MESSAGE — پیام‌های دستی از صفحه
+   ============================================================ */
 self.addEventListener('message', event => {
-  if (event.data === 'SKIP_WAITING') {
+  const data = event.data;
+
+  if (data === 'SKIP_WAITING' || data?.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
-  if (event.data === 'CLEAR_CACHE') {
-    caches.keys().then(names => {
-      return Promise.all(names.map(name => caches.delete(name)));
-    }).then(() => {
-      event.source?.postMessage({ type: 'CACHE_CLEARED' });
+
+  if (data === 'CLEAR_CACHE' || data?.type === 'CLEAR_CACHE') {
+    caches.keys()
+      .then(names => Promise.all(names.map(name => caches.delete(name))))
+      .then(() => {
+        event.source?.postMessage({
+          type: 'CACHE_CLEARED',
+          version: CACHE_VERSION
+        });
+      });
+  }
+
+  if (data === 'GET_VERSION' || data?.type === 'GET_VERSION') {
+    event.source?.postMessage({
+      type: 'VERSION',
+      version: CACHE_VERSION
     });
   }
 });
+
+/* ============================================================
+   NOTIFICATION CLICK (اختیاری)
+   ============================================================ */
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window' }).then(clients => {
+      if (clients.length > 0) {
+        return clients[0].focus();
+      }
+      return self.clients.openWindow('./index.html');
+    })
+  );
+});
+
+console.log('[SW] Service Worker v19 loaded — cache version:', CACHE_VERSION);
