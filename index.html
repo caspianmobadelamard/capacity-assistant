@@ -6,12 +6,13 @@
 <meta name="theme-color" content="#182139" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Capacity Assistant v18.1 — Caspian Mobaddel Amard</title>
+<title>Capacity Assistant v19 — Caspian Mobaddel Amard</title>
 <link rel="manifest" href="./manifest.json" />
 <link rel="icon" href="./icon-192.png" />
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
+/* ============ CAPACITY ASSISTANT CSS (v17.1) ============ */
 :root{--navy:#182139;--navy-2:#1F2A46;--navy-3:#2A3758;--cream:#FBF8F3;--cream-2:#F5EFE3;--cream-3:#EFE6D3;--gold:#F5C842;--gold-2:#FFD966;--gold-3:#8B6F35;--terra:#FF6B35;--terra-2:#FF8A5C;--forest:#00D68F;--text:#2D2A26;--text-soft:#7A6F5F;--text-mute:#A89B85;--warn:#FF6B35;--danger:#FF3D8E;--neon-gold:#F5C842;--neon-cyan:#00E5FF;--neon-magenta:#FF3D8E;--neon-lime:#39FF14;--neon-orange:#FF6B35;--neon-green:#00D68F;--radius:12px;--radius-sm:8px;--shadow-sm:0 2px 4px rgba(15,23,41,.08);--shadow-md:0 4px 14px rgba(15,23,41,.15);--shadow-lg:0 12px 32px rgba(15,23,41,.25);--neon-glow:0 0 20px rgba(245,200,66,.55),0 0 40px rgba(245,200,66,.28);--neon-cyan-glow:0 0 20px rgba(0,229,255,.55),0 0 40px rgba(0,229,255,.25);}
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--navy);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh;}
@@ -367,6 +368,46 @@ html{overflow-anchor:none;}
   #uc-root .multi-row-table{font-size:.75rem;}
   #uc-root .cat-drawer-inner{grid-template-columns:repeat(2,1fr);}
 }
+
+/* ============ ISOLATION FIX for #uc-root ============ */
+#uc-root input,
+#uc-root select,
+#uc-root button {
+  all: revert;
+}
+#uc-root input[type=number],
+#uc-root input[type=text] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--uc-line-2);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: #FFF;
+  color: var(--uc-text);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+#uc-root select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--uc-line-2);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: #FFF;
+  color: var(--uc-text);
+  font-weight: 700;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%230A9CB8' stroke-width='2' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: left 14px center;
+  padding-left: 34px;
+}
+#uc-root .uc-field { margin-bottom: 14px; }
+#uc-root .uc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+#uc-root .uc-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+#uc-root .uc-card { background: #FFF; border-radius: 14px; padding: 18px 16px; margin-bottom: 14px; position: relative; overflow: hidden; border: 1px solid var(--uc-line); box-shadow: var(--uc-shadow-md); }
 </style>
 </head>
 <body>
@@ -375,7 +416,7 @@ html{overflow-anchor:none;}
 <div class="compact-header">
 <div class="logo-mini">⚙️</div>
 <div class="title-block">
-<div class="t">Capacity Assistant v18.1</div>
+<div class="t">Capacity Assistant v19</div>
 <div class="s">کاسپین مبدل آمارد — ASHRAE / ASPE / Fulton</div>
 </div>
 <div class="tools">
@@ -398,6 +439,7 @@ html{overflow-anchor:none;}
 
 <main>
 
+<!-- ==================== QUICK ==================== -->
 <section id="panel-quick" class="panel active">
 <div class="card">
 <span class="badge">Quick Consultation — Enhanced</span>
@@ -429,6 +471,7 @@ html{overflow-anchor:none;}
 </div>
 </section>
 
+<!-- ==================== BOILERS ==================== -->
 <section id="panel-boilers" class="panel">
 <nav class="subtabs" data-parent="boilers">
 <button class="subtab-btn active" data-subpanel="steam-horizontal">افقی سه‌پاس</button>
@@ -510,6 +553,7 @@ html{overflow-anchor:none;}
 </div></div>
 </section>
 
+<!-- ==================== HW BOILERS ==================== -->
 <section id="panel-hwboilers" class="panel">
 <nav class="subtabs" data-parent="hwboilers">
 <button class="subtab-btn active" data-subpanel="hw-tp">سه‌پاس</button>
@@ -601,6 +645,7 @@ html{overflow-anchor:none;}
 </div></div>
 </section>
 
+<!-- ==================== APPLICATIONS ==================== -->
 <section id="panel-applications" class="panel">
 <nav class="subtabs" data-parent="applications">
 <button class="subtab-btn active" data-subpanel="app-dhw">🚿 آبگرم مصرفی</button>
@@ -780,16 +825,56 @@ html{overflow-anchor:none;}
 <div class="results" id="pl_results"></div>
 </div></div>
 
+<!-- ==================== GREENHOUSE (v19 — 4 Methods) ==================== -->
 <div id="subpanel-app-greenhouse" class="subpanel"><div class="card">
-<span class="badge">Greenhouse</span><h2>🌿 بار حرارتی گلخانه</h2>
-<div class="sf-compact" data-sf-group="gh"><span class="sf-lbl">⚖️ ضریب:</span>
+<span class="badge">Greenhouse — 4 Methods</span><h2>🌿 بار حرارتی گلخانه</h2>
+<div class="sf-compact" data-sf-group="gh"><span class="sf-lbl">⚖️ ضریب اطمینان:</span>
 <div class="sf-chips"><button class="sf-chip" onclick="setSF(this,'gh','1.0')">۱.۰</button><button class="sf-chip" onclick="setSF(this,'gh','1.1')">۱.۱</button><button class="sf-chip active" onclick="setSF(this,'gh','1.2')">۱.۲</button><button class="sf-chip" onclick="setSF(this,'gh','1.3')">۱.۳</button></div>
 <div class="sf-manual"><input type="number" id="gh_sf_manual" step="0.01" value="1.2" oninput="onManualSF('gh')"><span class="sf-u">×</span></div>
 </div>
 <input type="hidden" id="gh_sf" value="1.2">
-<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l" value="30"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w" value="15"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h" value="4"></div></div>
-<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout" value="-3"></div><div class="field"><label>پوشش</label><div class="cs-wrap"><select id="gh_cover" data-cs><option value="6.53">نایلون تک</option><option value="4.54" selected>نایلون دو</option><option value="3.69">شیشه دو</option><option value="3.29">پلی‌کربنات</option></select></div></div><div class="field"><label>ACH</label><div class="cs-wrap"><select id="gh_infil" data-cs><option value="1.0" selected>متوسط</option><option value="0.5">کم</option><option value="1.5">زیاد</option></select></div></div></div>
-<button class="btn" onclick="calcGH()">⚡ محاسبه</button><div class="results" id="gh_results"></div>
+
+<div class="method-tabs" data-method-tabs="gh">
+<button data-method="asabe" class="active" onclick="setGHMethod('asabe')">📊 ASABE EP406.4</button>
+<button data-method="uEmpirical" onclick="setGHMethod('uEmpirical')">📐 U تجربی (باد)</button>
+<button data-method="wPerM2" onclick="setGHMethod('wPerM2')">⚡ بار سطحی (W/m²)</button>
+<button data-method="engToolbox" onclick="setGHMethod('engToolbox')">🌐 Engineering Toolbox</button>
+</div>
+<input type="hidden" id="gh_method" value="asabe">
+
+<div id="gh_asabe_block">
+<div class="method-info"><strong>📊 روش ASABE EP406.4:</strong> Q = U × A_cover × ΔT + تلفات نفوذ (ACH)</div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l" value="300"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w" value="100"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h" value="7.5"></div></div>
+<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout" value="-20"></div><div class="field"><label>پوشش</label><div class="cs-wrap"><select id="gh_cover" data-cs><option value="6.2">نایلون تک (6.2)</option><option value="4.0">نایلون دو (4.0)</option><option value="3.7">شیشه دو (3.7)</option><option value="2.8">نایلون دو IR (2.8)</option></select></div></div><div class="field"><label>ACH</label><div class="cs-wrap"><select id="gh_infil" data-cs><option value="0.5">کم (0.5)</option><option value="1.0" selected>متوسط (1.0)</option><option value="1.5">زیاد (1.5)</option></select></div></div></div>
+</div>
+
+<div id="gh_uEmpirical_block" style="display:none;">
+<div class="method-info"><strong>📐 روش U تجربی:</strong> U = 3.55 + 0.11 × V_wind (بر پایه سرعت باد)</div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l2" value="300"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w2" value="100"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h2" value="7.5"></div></div>
+<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin2" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout2" value="-20"></div><div class="field"><label>سرعت باد m/s</label><input type="number" id="gh_wind" value="2" step="0.5"></div><div class="field"><label>ACH</label><div class="cs-wrap"><select id="gh_infil2" data-cs><option value="0.5" selected>کم (0.5)</option><option value="1.0">متوسط (1.0)</option></select></div></div></div>
+</div>
+
+<div id="gh_wPerM2_block" style="display:none;">
+<div class="method-info"><strong>⚡ روش بار سطحی:</strong> Q = A_floor × q_specific (۱۵۰ W/m² برای ΔT=۴۲°C)</div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l3" value="300"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w3" value="100"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h3" value="7.5"></div></div>
+<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin3" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout3" value="-20"></div><div class="field"><label>بار ویژه W/m²</label><input type="number" id="gh_qspec" value="150" step="10"></div><div class="field"><label>ΔT مرجع °C</label><input type="number" id="gh_dtRef" value="42" step="1"></div></div>
+</div>
+
+<div id="gh_engToolbox_block" style="display:none;">
+<div class="method-info"><strong>🌐 روش Engineering Toolbox:</strong> Q = (A_floor/100) × 18 kW × (ΔT/25)</div>
+<div class="row3"><div class="field"><label>طول m</label><input type="number" id="gh_l4" value="300"></div><div class="field"><label>عرض m</label><input type="number" id="gh_w4" value="100"></div><div class="field"><label>ارتفاع m</label><input type="number" id="gh_h4" value="7.5"></div></div>
+<div class="row4"><div class="field"><label>دمای هدف °C</label><input type="number" id="gh_tin4" value="22"></div><div class="field"><label>دمای طرح °C</label><input type="number" id="gh_tout4" value="-20"></div><div class="field"><label>ضریب مرجع kW/100m²</label><input type="number" id="gh_kwRef" value="18" step="1"></div><div class="field"><label>ΔT مرجع °C</label><input type="number" id="gh_dtRef2" value="25" step="1"></div></div>
+</div>
+
+<div class="field" style="display:flex;align-items:center;gap:8px;margin-top:10px; padding:10px;background:linear-gradient(135deg,rgba(0,214,143,.10),rgba(57,255,20,.06)); border-radius:9px; border:2px solid rgba(0,214,143,.4);">
+<input type="checkbox" id="gh_show_exp" style="width:18px;height:18px;">
+<label for="gh_show_exp" style="margin:0;font-weight:800;color:var(--navy);font-size:.82rem;cursor:pointer;">🛢 محاسبه منبع انبساط دیگ</label>
+</div>
+<div id="gh_exp_params" style="display:none; margin-top:6px; padding:10px;background:linear-gradient(135deg,#E2EDE4,#C9DDCE); border-radius:9px;">
+<div class="row3"><div class="field" style="margin-bottom:0;"><label>دمای max °C</label><input type="number" id="gh_exp_tmax" value="90"></div><div class="field" style="margin-bottom:0;"><label>دمای min °C</label><input type="number" id="gh_exp_tmin" value="10"></div><div class="field" style="margin-bottom:0;"><label>فشار اولیه bar</label><input type="number" id="gh_exp_p1" value="1.5"></div></div>
+</div>
+<button class="btn" onclick="calcGH()">⚡ محاسبه</button>
+<div class="results" id="gh_results"></div>
 </div></div>
 
 <div id="subpanel-app-sauna" class="subpanel"><div class="card">
@@ -805,6 +890,7 @@ html{overflow-anchor:none;}
 </div></div>
 </section>
 
+<!-- ==================== TANKS ==================== -->
 <section id="panel-tanks" class="panel">
 <nav class="subtabs" data-parent="tanks">
 <button class="subtab-btn active" data-subpanel="tk-open">انبساط باز</button>
@@ -848,6 +934,7 @@ html{overflow-anchor:none;}
 </div></div>
 </section>
 
+<!-- ==================== TREATMENT ==================== -->
 <section id="panel-treatment" class="panel">
 <nav class="subtabs" data-parent="treatment">
 <button class="subtab-btn active" data-subpanel="tr-sf">سختی‌گیر</button>
@@ -871,6 +958,7 @@ html{overflow-anchor:none;}
 </div></div>
 </section>
 
+<!-- ==================== ACCESSORIES ==================== -->
 <section id="panel-accessories" class="panel">
 <nav class="subtabs" data-parent="accessories">
 <button class="subtab-btn active" data-subpanel="ac-hy">هیدرولیک</button>
@@ -903,6 +991,7 @@ html{overflow-anchor:none;}
 </div></div>
 </section>
 
+<!-- ==================== CALCULATOR ==================== -->
 <section id="panel-calculator" class="panel">
 <div id="uc-root">
   <div class="app-body">
@@ -979,7 +1068,7 @@ html{overflow-anchor:none;}
 </section>
 
 </main>
-<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v18.1<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
+<p class="disclaimer"><strong>Caspian Mobaddel Amard</strong> — Capacity Assistant v19<br>ASHRAE / ASPE / Spirax / DIN / EN / ASME / مبحث ۱۹</p>
 </div>
 <div class="toast" id="toast"></div>
 <div class="autosave-badge" id="autosave">✓ ذخیره شد</div>
@@ -1002,7 +1091,7 @@ html{overflow-anchor:none;}
 const n=v=>{v=parseFloat(v);return isNaN(v)?0:v;};
 const fmt=(v,d=0)=>Number(v).toLocaleString('en-US',{maximumFractionDigits:d});
 const $=id=>document.getElementById(id);
-const uid=(()=>{let i=0;return ()=>++i;})();
+const uid=(()=>{let i=0;return()=>++i;})();
 const g=(k,v,u,note)=>`<div class="gauge"><div class="k">${k}</div><div class="v">${v}<small>${u}</small></div>${note?`<div class="note">${note}</div>`:''}</div>`;
 const gCyan=(k,v,u,note)=>`<div class="gauge cyan"><div class="k">${k}</div><div class="v">${v}<small>${u}</small></div>${note?`<div class="note">${note}</div>`:''}</div>`;
 const warn=m=>`<div class="gauge err"><div class="k">خطا</div><div class="v" style="font-size:.85rem;">${m}</div></div>`;
@@ -1018,73 +1107,25 @@ function transferToBoiler(qLoad,type){if(type==='hw'){const t=document.querySele
 const REGION_FACTOR={hot:{dhw:0.85,ht:0.80,label:'گرمسیر',cities:'بندرعباس، اهواز'},moderate:{dhw:1.00,ht:1.00,label:'معتدل',cities:'تهران، اصفهان'},cold:{dhw:1.20,ht:1.15,label:'سردسیر',cities:'تبریز، همدان'},verycold:{dhw:1.35,ht:1.30,label:'بسیار سرد',cities:'اردبیل، شهرکرد'}};
 function onRegionChange(prefix){const el=$(prefix+'_region');if(!el)return;const info=REGION_FACTOR[el.value];if(info)toast(`${info.label} — ${info.cities}`);}
 
+/* ==================== DHW METHODS ==================== */
 function setDHWMethod(m){document.querySelectorAll('[data-method-tabs="dhw"] button').forEach(b=>b.classList.toggle('active',b.dataset.method===m));$('dhw_method').value=m;$('dhw_fixture_block').style.display=(m==='fixture')?'block':'none';$('dhw_site_block').style.display=(m==='site')?'block':'none';$('dhw_experimental_block').style.display=(m==='experimental')?'block':'none';$('dhw_fixture_factors').style.display=(m==='fixture')?'grid':'none';const info=$('dhw_method_info');if(m==='fixture')info.innerHTML='<strong>روش جدول مرجع:</strong> تعداد واحد × GPH استاندارد.';if(m==='site')info.innerHTML='<strong>روش سایت pyaco.ir:</strong> تعداد دقیق هر فیکسچر — نه نفر.';if(m==='percapita')info.innerHTML='<strong>روش سرانه:</strong> لیتر بر نفر در روز.';if(m==='experimental')info.innerHTML='<strong>روش تجربی (دفتری):</strong> لیتر بر واحد مسکونی.';onDhwBldg();}
 let dhwExpUnit='liters';
 function setDHWExpUnit(u){dhwExpUnit=u;document.querySelectorAll('[data-exp-unit="dhw"] button').forEach(b=>b.classList.toggle('active',b.dataset.eu===u));const lbl=$('dhw_exp_primary_label');const inp=$('dhw_exp_primary');const eqLbl=$('dhw_equivalent_label');const eqNote=$('dhw_equivalent_note');if(u==='liters'){if(lbl)lbl.textContent='لیتر بر واحد';if(inp)inp.value=175;if(eqLbl)eqLbl.textContent='معادل GPH کل';if(eqNote)eqNote.textContent='محاسبه از روی لیتر/واحد × تعداد واحد ÷ زمان بازیابی';}else{if(lbl)lbl.textContent='GPH کل';if(inp)inp.value=300;if(eqLbl)eqLbl.textContent='معادل لیتر بر واحد';if(eqNote)eqNote.textContent='محاسبه از روی GPH × زمان بازیابی ÷ تعداد واحد';}syncDHWExpConversion();}
 function syncDHWExpConversion(){const p=$('dhw_exp_primary');if(!p)return;const primary=n(p.value)||0;const units=n($('dhw_exp_units').value)||1;const recovery=n($('dhw_recovery').value)||2;const eqV=$('dhw_equivalent_value');if(!eqV)return;if(dhwExpUnit==='liters'){const total_L=primary*units;const GPH=(total_L/recovery)/3.78541;eqV.innerHTML=fmt(GPH,1)+' <small>GPH</small>';}else{const total_L=primary*recovery*3.78541;const L_per_unit=total_L/units;eqV.innerHTML=fmt(L_per_unit,1)+' <small>L/unit</small>';}}
 function setDHWBath(b){document.querySelectorAll('[data-bath-toggle="dhw"] button').forEach(x=>x.classList.toggle('active',x.dataset.bath===b));if(dhwExpUnit==='liters'){const inp=$('dhw_exp_primary');if(inp)inp.value=(b==='with')?200:175;}syncDHWExpConversion();}
 function onDhwMethod(){}
-const DHW_FIX={
-apartment:{lav_priv:3,lav_pub:5,bath:20,shw:100,sink_pan:10,sink_kit:15,dw:20,sink_lau:25,wm:75,pasio:3,df:0.35,sf:1.25},
-residential:{lav_priv:3,lav_pub:0,bath:20,shw:100,sink_pan:10,sink_kit:15,dw:20,sink_lau:25,wm:75,pasio:3,df:0.35,sf:1.25},
-hotel:{lav_priv:3,lav_pub:10,bath:20,shw:100,sink_pan:20,sink_kit:30,dw:150,sink_lau:35,wm:150,pasio:3,df:0.35,sf:0.8},
-stadium:{lav_priv:3,lav_pub:10,bath:30,shw:300,sink_pan:0,sink_kit:0,dw:0,sink_lau:0,wm:0,pasio:12,df:0.4,sf:1.0},
-hospital:{lav_priv:3,lav_pub:8,bath:20,shw:100,sink_pan:20,sink_kit:20,dw:150,sink_lau:35,wm:150,pasio:3,df:0.50,sf:0.6},
-club:{lav_priv:3,lav_pub:8,bath:20,shw:200,sink_pan:20,sink_kit:20,dw:150,sink_lau:35,wm:150,pasio:3,df:0.30,sf:0.9},
-factory:{lav_priv:3,lav_pub:15,bath:0,shw:300,sink_pan:0,sink_kit:20,dw:100,sink_lau:0,wm:0,pasio:12,df:0.6,sf:1.0},
-office:{lav_priv:3,lav_pub:8,bath:0,shw:0,sink_pan:20,sink_kit:20,dw:0,sink_lau:0,wm:0,pasio:0,df:0.30,sf:2.0},
-school:{lav_priv:3,lav_pub:15,bath:0,shw:300,sink_pan:20,sink_kit:20,dw:100,sink_lau:0,wm:0,pasio:0,df:0.60,sf:1.0},
-dormitory:{lav_priv:3,lav_pub:10,bath:30,shw:200,sink_pan:20,sink_kit:20,dw:150,sink_lau:30,wm:100,pasio:12,df:0.40,sf:1.0},
-restaurant:{lav_priv:0,lav_pub:0,bath:0,shw:0,sink_pan:0,sink_kit:0,dw:0,sink_lau:0,wm:0,pasio:0,df:0.3,sf:1.25}};
+const DHW_FIX={apartment:{lav_priv:3,lav_pub:5,bath:20,shw:100,sink_pan:10,sink_kit:15,dw:20,sink_lau:25,wm:75,pasio:3,df:0.35,sf:1.25},residential:{lav_priv:3,lav_pub:0,bath:20,shw:100,sink_pan:10,sink_kit:15,dw:20,sink_lau:25,wm:75,pasio:3,df:0.35,sf:1.25},hotel:{lav_priv:3,lav_pub:10,bath:20,shw:100,sink_pan:20,sink_kit:30,dw:150,sink_lau:35,wm:150,pasio:3,df:0.35,sf:0.8},stadium:{lav_priv:3,lav_pub:10,bath:30,shw:300,sink_pan:0,sink_kit:0,dw:0,sink_lau:0,wm:0,pasio:12,df:0.4,sf:1.0},hospital:{lav_priv:3,lav_pub:8,bath:20,shw:100,sink_pan:20,sink_kit:20,dw:150,sink_lau:35,wm:150,pasio:3,df:0.50,sf:0.6},club:{lav_priv:3,lav_pub:8,bath:20,shw:200,sink_pan:20,sink_kit:20,dw:150,sink_lau:35,wm:150,pasio:3,df:0.30,sf:0.9},factory:{lav_priv:3,lav_pub:15,bath:0,shw:300,sink_pan:0,sink_kit:20,dw:100,sink_lau:0,wm:0,pasio:12,df:0.6,sf:1.0},office:{lav_priv:3,lav_pub:8,bath:0,shw:0,sink_pan:20,sink_kit:20,dw:0,sink_lau:0,wm:0,pasio:0,df:0.30,sf:2.0},school:{lav_priv:3,lav_pub:15,bath:0,shw:300,sink_pan:20,sink_kit:20,dw:100,sink_lau:0,wm:0,pasio:0,df:0.60,sf:1.0},dormitory:{lav_priv:3,lav_pub:10,bath:30,shw:200,sink_pan:20,sink_kit:20,dw:150,sink_lau:30,wm:100,pasio:12,df:0.40,sf:1.0},restaurant:{lav_priv:0,lav_pub:0,bath:0,shw:0,sink_pan:0,sink_kit:0,dw:0,sink_lau:0,wm:0,pasio:0,df:0.3,sf:1.25}};
 const SITE_FIXTURE_GPH={lav_priv:3,lav_pub:5,bath:20,shw:100,sink_pan:10,sink_kit:15,dw:20,sink_lau:25,wm:75,pasio:3};
 const FIX_NAMES={lav_priv:'دستشویی/توالت خصوصی',lav_pub:'دستشویی/توالت عمومی',bath:'وان حمام',shw:'دوش',sink_pan:'سینک آبدارخانه',sink_kit:'سینک ظرفشویی',dw:'ماشین ظرفشویی',sink_lau:'سینک رختشویی',wm:'ماشین رختشویی',pasio:'سایر / پیسوار'};
 const DHW_PERCAPITA={apartment:{lpd:60,label:'آپارتمان'},residential:{lpd:60,label:'منازل مسکونی'},hotel:{lpd:150,label:'هتل'},stadium:{lpd:10,label:'ورزشگاه'},hospital:{lpd:100,label:'بیمارستان'},club:{lpd:40,label:'کلوب'},factory:{lpd:30,label:'کارخانجات'},office:{lpd:15,label:'ادارات'},school:{lpd:15,label:'مدارس'},dormitory:{lpd:80,label:'خوابگاه دانشجویی'},restaurant:{lpd:30,label:'رستوران'}};
 const ESTIMATION_PROFILES={apartment:{shw:1,lav_priv:1,sink_kit:1,wm:0.2},residential:{shw:1,lav_priv:1,sink_kit:1,wm:0.2},hotel:{shw:1,lav_priv:1,sink_kit:0.1,wm:0.05,dw:0.1},hospital:{shw:0.5,lav_priv:1,sink_kit:0.2,wm:0.1,dw:0.2},dormitory:{shw:1,lav_priv:1,sink_kit:0.1,wm:0.1},office:{lav_priv:1,sink_kit:0.2,pasio:0.1},school:{lav_priv:1,sink_kit:0.1,pasio:0.1},factory:{shw:1,lav_priv:1,sink_kit:0.1,pasio:0.2},club:{shw:1,lav_priv:1,sink_kit:0.1,pasio:0.1},stadium:{shw:1,lav_priv:1,pasio:0.2},restaurant:{sink_kit:1,dw:0.5,wm:0.2,sink_pan:0.5}};
 let dhwUnit='gph';
-function onDhwBldg(){
-  const b=$('dhw_bldg').value;const d=DHW_FIX[b]||DHW_FIX.apartment;const m=$('dhw_method').value;
-  if(m==='fixture'){
-    if($('dhw_div'))$('dhw_div').value=d.df;
-    if($('dhw_stor'))$('dhw_stor').value=d.sf;
-    if(b==='restaurant'){$('dhw_units_label').textContent='تعداد پرس غذا در روز';$('dhw_fixture_block').style.display='none';}
-    else{$('dhw_units_label').textContent='تعداد واحد/اتاق';$('dhw_fixture_block').style.display='block';}
-    renderFixtureRows();
-  } else if(m==='site'){
-    if($('site_df'))$('site_df').value=d.df;
-    if($('site_sf'))$('site_sf').value=d.sf;
-    if($('dhw_units_label'))$('dhw_units_label').textContent='تعداد واحد/اتاق (اختیاری)';
-    renderSiteFixtures();
-  } else if(m==='percapita'){
-    $('dhw_units_label').textContent='تعداد نفرات';
-  } else if(m==='experimental'){
-    $('dhw_units_label').textContent='تعداد واحد';
-  }
-}
-function renderFixtureRows(){
-  const d=DHW_FIX[$('dhw_bldg').value]||DHW_FIX.apartment;let html='';
-  Object.keys(FIX_NAMES).forEach(k=>{
-    if(!d[k])return;
-    const gphVal=d[k];
-    const dispVal=(dhwUnit==='gpm')?(gphVal/60).toFixed(2):gphVal;
-    const unitLbl=(dhwUnit==='gpm')?'GPM':'GPH';
-    const bothExtra=(dhwUnit==='both')?` (${(gphVal/60).toFixed(2)} GPM)`:'';
-    html+=`<div style="display:grid;grid-template-columns:1fr 60px 90px 70px;gap:8px;align-items:center;padding:8px 10px;background:linear-gradient(135deg,#FFF,#FAF4E6);border:1px solid var(--cream-3);border-radius:8px;margin-bottom:6px;" data-gph="${gphVal}" data-key="${k}"><div style="font-weight:700;color:var(--navy);font-size:.76rem;">${FIX_NAMES[k]}${bothExtra}</div><div style="font-size:.66rem;color:var(--text-mute);background:var(--cream-3);padding:2px 6px;border-radius:99px;font-weight:600;text-align:center;">${gphVal}</div><input type="number" step="0.1" value="${dispVal}" oninput="updateFxUnit(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid var(--cream-3);border-radius:7px;"><div style="font-size:.66rem;color:var(--text-soft);font-weight:600;text-align:center;">${unitLbl}</div></div>`;
-  });
-  $('dhw_fix').innerHTML=html;
-}
+function onDhwBldg(){const b=$('dhw_bldg').value;const d=DHW_FIX[b]||DHW_FIX.apartment;const m=$('dhw_method').value;if(m==='fixture'){if($('dhw_div'))$('dhw_div').value=d.df;if($('dhw_stor'))$('dhw_stor').value=d.sf;if(b==='restaurant'){$('dhw_units_label').textContent='تعداد پرس غذا در روز';$('dhw_fixture_block').style.display='none';}else{$('dhw_units_label').textContent='تعداد واحد/اتاق';$('dhw_fixture_block').style.display='block';}renderFixtureRows();}else if(m==='site'){if($('site_df'))$('site_df').value=d.df;if($('site_sf'))$('site_sf').value=d.sf;if($('dhw_units_label'))$('dhw_units_label').textContent='تعداد واحد/اتاق (اختیاری)';renderSiteFixtures();}else if(m==='percapita'){$('dhw_units_label').textContent='تعداد نفرات';}else if(m==='experimental'){$('dhw_units_label').textContent='تعداد واحد';}}
+function renderFixtureRows(){const d=DHW_FIX[$('dhw_bldg').value]||DHW_FIX.apartment;let html='';Object.keys(FIX_NAMES).forEach(k=>{if(!d[k])return;const gphVal=d[k];const dispVal=(dhwUnit==='gpm')?(gphVal/60).toFixed(2):gphVal;const unitLbl=(dhwUnit==='gpm')?'GPM':'GPH';const bothExtra=(dhwUnit==='both')?` (${(gphVal/60).toFixed(2)} GPM)`:'';html+=`<div style="display:grid;grid-template-columns:1fr 60px 90px 70px;gap:8px;align-items:center;padding:8px 10px;background:linear-gradient(135deg,#FFF,#FAF4E6);border:1px solid var(--cream-3);border-radius:8px;margin-bottom:6px;" data-gph="${gphVal}" data-key="${k}"><div style="font-weight:700;color:var(--navy);font-size:.76rem;">${FIX_NAMES[k]}${bothExtra}</div><div style="font-size:.66rem;color:var(--text-mute);background:var(--cream-3);padding:2px 6px;border-radius:99px;font-weight:600;text-align:center;">${gphVal}</div><input type="number" step="0.1" value="${dispVal}" oninput="updateFxUnit(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid var(--cream-3);border-radius:7px;"><div style="font-size:.66rem;color:var(--text-soft);font-weight:600;text-align:center;">${unitLbl}</div></div>`;});$('dhw_fix').innerHTML=html;}
 function setDHWUnit(u){dhwUnit=u;document.querySelectorAll('[data-unit-toggle="dhw"] button').forEach(b=>b.classList.toggle('active',b.dataset.unit===u));if($('dhw_method').value==='fixture')renderFixtureRows();}
 function updateFxUnit(input){const row=input.closest('[data-gph]');if(!row)return;const val=parseFloat(input.value)||0;if(dhwUnit==='gpm')row.dataset.gph=(val*60).toFixed(2);else row.dataset.gph=val.toFixed(2);}
-function renderSiteFixtures(){
-  const container=$('dhw_site_fix');if(!container)return;let html='';
-  Object.keys(SITE_FIXTURE_GPH).forEach(k=>{
-    const gph=SITE_FIXTURE_GPH[k];
-    html+=`<div style="display:grid;grid-template-columns:1fr 60px 90px 70px;gap:8px;align-items:center;padding:8px 10px;background:linear-gradient(135deg,#FFF,#FAF4E6);border:1px solid var(--cream-3);border-radius:8px;margin-bottom:6px;" data-key="${k}"><div style="font-weight:700;color:var(--navy);font-size:.76rem;">${FIX_NAMES[k]}</div><input type="number" class="fx-gph-input" value="${gph}" oninput="updateSiteTotal(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid var(--cream-3);border-radius:7px;background:#E0F2FE;"><input type="number" class="fx-count-input" min="0" value="1" oninput="updateSiteTotal(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid var(--cream-3);border-radius:7px;"><div data-total="0" style="font-size:.66rem;color:var(--text-soft);font-weight:600;text-align:center;">0</div></div>`;
-  });
-  container.innerHTML=html;
-  container.querySelectorAll('[data-key]').forEach(row=>updateSiteTotal(row.querySelector('.fx-count-input')));
-}
-function addCustomFixture(){const container=$('dhw_site_fix');if(!container)return;const newRow=document.createElement('div');newRow.style.cssText='display:grid;grid-template-columns:1fr 60px 90px 70px;gap:8px;align-items:center;padding:8px 10px;background:linear-gradient(135deg,#FFF4E0,#F5E5CC);border:1px solid rgba(217,119,6,.35);border-radius:8px;margin-bottom:6px;';newRow.innerHTML=`<input type="text" class="fx-name-input" placeholder="نام فیکسچر" style="padding:6px;font-size:.76rem;font-weight:700;color:var(--navy);border:1px solid var(--cream-3);border-radius:4px;"><input type="number" class="fx-gph-input" value="0" oninput="updateSiteTotal(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid rgba(217,119,6,.35);border-radius:7px;"><input type="number" class="fx-count-input" min="0" value="1" oninput="updateSiteTotal(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid var(--cream-3);border-radius:7px;"><div data-total="0" style="font-size:.66rem;color:var(--text-soft);font-weight:600;text-align:center;">0</div>`;
-  container.appendChild(newRow);updateSiteTotal(newRow.querySelector('.fx-count-input'));toast('✓ فیکسچر دلخواه اضافه شد');}
+function renderSiteFixtures(){const container=$('dhw_site_fix');if(!container)return;let html='';Object.keys(SITE_FIXTURE_GPH).forEach(k=>{const gph=SITE_FIXTURE_GPH[k];html+=`<div style="display:grid;grid-template-columns:1fr 60px 90px 70px;gap:8px;align-items:center;padding:8px 10px;background:linear-gradient(135deg,#FFF,#FAF4E6);border:1px solid var(--cream-3);border-radius:8px;margin-bottom:6px;" data-key="${k}"><div style="font-weight:700;color:var(--navy);font-size:.76rem;">${FIX_NAMES[k]}</div><input type="number" class="fx-gph-input" value="${gph}" oninput="updateSiteTotal(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid var(--cream-3);border-radius:7px;background:#E0F2FE;"><input type="number" class="fx-count-input" min="0" value="1" oninput="updateSiteTotal(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid var(--cream-3);border-radius:7px;"><div data-total="0" style="font-size:.66rem;color:var(--text-soft);font-weight:600;text-align:center;">0</div></div>`;});container.innerHTML=html;container.querySelectorAll('[data-key]').forEach(row=>updateSiteTotal(row.querySelector('.fx-count-input')));}
+function addCustomFixture(){const container=$('dhw_site_fix');if(!container)return;const newRow=document.createElement('div');newRow.style.cssText='display:grid;grid-template-columns:1fr 60px 90px 70px;gap:8px;align-items:center;padding:8px 10px;background:linear-gradient(135deg,#FFF4E0,#F5E5CC);border:1px solid rgba(217,119,6,.35);border-radius:8px;margin-bottom:6px;';newRow.innerHTML=`<input type="text" class="fx-name-input" placeholder="نام فیکسچر" style="padding:6px;font-size:.76rem;font-weight:700;color:var(--navy);border:1px solid var(--cream-3);border-radius:4px;"><input type="number" class="fx-gph-input" value="0" oninput="updateSiteTotal(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid rgba(217,119,6,.35);border-radius:7px;"><input type="number" class="fx-count-input" min="0" value="1" oninput="updateSiteTotal(this)" style="padding:6px;font-size:.76rem;text-align:center;font-weight:700;color:var(--navy);border:1.5px solid var(--cream-3);border-radius:7px;"><div data-total="0" style="font-size:.66rem;color:var(--text-soft);font-weight:600;text-align:center;">0</div>`;container.appendChild(newRow);updateSiteTotal(newRow.querySelector('.fx-count-input'));toast('✓ فیکسچر دلخواه اضافه شد');}
 function estimateSiteFixtures(){const b=$('dhw_bldg').value;const units=n($('dhw_units').value)||1;const profile=ESTIMATION_PROFILES[b]||ESTIMATION_PROFILES.apartment;document.querySelectorAll('#dhw_site_fix [data-key]').forEach(row=>{const key=row.dataset.key;if(key&&profile[key]!==undefined){const countInput=row.querySelector('.fx-count-input');if(countInput){countInput.value=Math.max(0,Math.round(profile[key]*units));updateSiteTotal(countInput);}}});toast('✓ تخمین زده شد');}
 function updateSiteTotal(input){const row=input.closest('[data-key]')||input.parentElement;const gphInput=row.querySelector('.fx-gph-input');const countInput=row.querySelector('.fx-count-input');if(!gphInput||!countInput)return;const unitGph=parseFloat(gphInput.value)||0;const count=parseFloat(countInput.value)||0;const total=count*unitGph;const totalEl=row.querySelector('[data-total]');if(totalEl)totalEl.textContent=fmt(total,0);}
 function updateSiteGrandTotal(){let grand=0;document.querySelectorAll('#dhw_site_fix [data-key]').forEach(row=>{const c=row.querySelector('.fx-count-input');const g=row.querySelector('.fx-gph-input');if(c&&g)grand+=(parseFloat(c.value)||0)*(parseFloat(g.value)||0);});return grand;}
@@ -1093,443 +1134,147 @@ function interp(t,x,xk,yk){if(x<=t[0][xk])return t[0][yk];if(x>=t[t.length-1][xk
 const COILU=[{cap:300,surf:8,d:570},{cap:500,surf:15,d:700},{cap:1000,surf:27,d:920},{cap:1500,surf:38,d:1120},{cap:2000,surf:60,d:1120},{cap:3000,surf:83,d:1400},{cap:5000,surf:110,d:1450}];
 const COILSP=[{cap:75,surf:8,d:335},{cap:250,surf:20,d:472},{cap:500,surf:35,d:700},{cap:1000,surf:70,d:920},{cap:1500,surf:100,d:1120},{cap:2500,surf:160,d:1260}];
 const pick=(a,k,v)=>{for(const x of a){if(x[k]>=v)return x;}return a[a.length-1];};
-function tankSelectionHTML(storageL,qDesign,thot,tin){
-  const T_hot_in=80,T_hot_out=70,U_coil=600;
-  const dT1_coil=T_hot_in-thot,dT2_coil=T_hot_out-tin;
-  let lmtd_coil=(Math.abs(dT1_coil-dT2_coil)<0.01)?dT1_coil:(dT1_coil-dT2_coil)/Math.log(dT1_coil/dT2_coil);
-  const A_coil=qDesign/(U_coil*lmtd_coil);const D_coil=0.016;const L_coil=A_coil/(Math.PI*D_coil);
-  const coilModel=pick(COILU,'cap',storageL);
-  const U_spiral=800,dT1_sp=T_hot_in-thot,dT2_sp=T_hot_out-tin;
-  let lmtd_sp=(Math.abs(dT1_sp-dT2_sp)<0.01)?dT1_sp:(dT1_sp-dT2_sp)/Math.log(dT1_sp/dT2_sp);
-  const A_spiral=qDesign/(U_spiral*lmtd_sp);const D_spiral=0.020;const L_spiral=A_spiral/(Math.PI*D_spiral);
-  const spiralModel=pick(COILSP,'cap',storageL);const storageSpiral=storageL*1.20;
-  return`<div style="margin-top:12px;"><span class="badge">🛢 انتخاب منبع کویلی / اسپیرال</span><div class="tank-grid">
-  <div class="tank-card coil"><h4>🌀 منبع کویلی</h4>
-  <div class="tank-spec"><span class="k">حجم:</span> <span class="v">${fmt(storageL,0)} L</span></div>
-  <div class="tank-spec"><span class="k">ظرفیت کویل:</span> <span class="v">${fmt(qDesign,0)} kcal/hr</span></div>
-  <div class="tank-spec"><span class="k">U:</span> <span class="v">${U_coil}</span></div>
-  <div class="tank-spec"><span class="k">LMTD:</span> <span class="v">${lmtd_coil.toFixed(1)}°C</span></div>
-  <div class="tank-spec"><span class="k">سطح:</span> <span class="v">${A_coil.toFixed(2)} m²</span></div>
-  <div class="tank-spec"><span class="k">مدل:</span> <span class="v">SG-HE-C-${coilModel.cap}</span></div></div>
-  <div class="tank-card spiral"><h4>🌀 منبع اسپیرال</h4>
-  <div class="tank-spec"><span class="k">حجم:</span> <span class="v">${fmt(storageL,0)} L</span></div>
-  <div class="tank-spec"><span class="k">⚠️ ۲۰٪ کمتر — حجم پیشنهادی: ${fmt(storageSpiral,0)} L</span></div>
-  <div class="tank-spec"><span class="k">U:</span> <span class="v">${U_spiral}</span></div>
-  <div class="tank-spec"><span class="k">سطح:</span> <span class="v">${A_spiral.toFixed(2)} m²</span></div>
-  <div class="tank-spec"><span class="k">مدل:</span> <span class="v">SG-HE-SC-${spiralModel.cap}</span></div></div></div>
-  <div class="notice blue" style="margin-top:8px;">💡 منبع اسپیرال U بالاتری دارد اما طبق دفتر فنی کاسپین ظرفیت کلی آن ~۲۰٪ کمتر از دوجداره است.</div>
-  ${fb('محاسبه منبع کویلی و اسپیرال',[`COIL — LMTD = ${lmtd_coil.toFixed(1)}°C`,`COIL — A = ${A_coil.toFixed(2)} m²`,`COIL — L = ${L_coil.toFixed(1)} m`,`SPIRAL — A = ${A_spiral.toFixed(2)} m²`,`ظرفیت اسپیرال معادل = ${fmt(storageSpiral,0)} L`],'ASPE / ASHRAE / DIN 4708')}</div>`;
-}
+function tankSelectionHTML(storageL,qDesign,thot,tin){const T_hot_in=80,T_hot_out=70,U_coil=600;const dT1_coil=T_hot_in-thot,dT2_coil=T_hot_out-tin;let lmtd_coil=(Math.abs(dT1_coil-dT2_coil)<0.01)?dT1_coil:(dT1_coil-dT2_coil)/Math.log(dT1_coil/dT2_coil);const A_coil=qDesign/(U_coil*lmtd_coil);const D_coil=0.016;const L_coil=A_coil/(Math.PI*D_coil);const coilModel=pick(COILU,'cap',storageL);const U_spiral=800,dT1_sp=T_hot_in-thot,dT2_sp=T_hot_out-tin;let lmtd_sp=(Math.abs(dT1_sp-dT2_sp)<0.01)?dT1_sp:(dT1_sp-dT2_sp)/Math.log(dT1_sp/dT2_sp);const A_spiral=qDesign/(U_spiral*lmtd_sp);const D_spiral=0.020;const L_spiral=A_spiral/(Math.PI*D_spiral);const spiralModel=pick(COILSP,'cap',storageL);const storageSpiral=storageL*1.20;return`<div style="margin-top:12px;"><span class="badge">🛢 انتخاب منبع کویلی / اسپیرال</span><div class="tank-grid"><div class="tank-card coil"><h4>🌀 منبع کویلی</h4><div class="tank-spec"><span class="k">حجم:</span> <span class="v">${fmt(storageL,0)} L</span></div><div class="tank-spec"><span class="k">ظرفیت کویل:</span> <span class="v">${fmt(qDesign,0)} kcal/hr</span></div><div class="tank-spec"><span class="k">U:</span> <span class="v">${U_coil}</span></div><div class="tank-spec"><span class="k">LMTD:</span> <span class="v">${lmtd_coil.toFixed(1)}°C</span></div><div class="tank-spec"><span class="k">سطح:</span> <span class="v">${A_coil.toFixed(2)} m²</span></div><div class="tank-spec"><span class="k">مدل:</span> <span class="v">SG-HE-C-${coilModel.cap}</span></div></div><div class="tank-card spiral"><h4>🌀 منبع اسپیرال</h4><div class="tank-spec"><span class="k">حجم:</span> <span class="v">${fmt(storageL,0)} L</span></div><div class="tank-spec"><span class="k">⚠️ ۲۰٪ کمتر — حجم پیشنهادی: ${fmt(storageSpiral,0)} L</span></div><div class="tank-spec"><span class="k">U:</span> <span class="v">${U_spiral}</span></div><div class="tank-spec"><span class="k">سطح:</span> <span class="v">${A_spiral.toFixed(2)} m²</span></div><div class="tank-spec"><span class="k">مدل:</span> <span class="v">SG-HE-SC-${spiralModel.cap}</span></div></div></div><div class="notice blue" style="margin-top:8px;">💡 منبع اسپیرال U بالاتری دارد اما طبق دفتر فنی کاسپین ظرفیت کلی آن ~۲۰٪ کمتر از دوجداره است.</div>${fb('محاسبه منبع کویلی و اسپیرال',[`COIL — LMTD = ${lmtd_coil.toFixed(1)}°C`,`COIL — A = ${A_coil.toFixed(2)} m²`,`COIL — L = ${L_coil.toFixed(1)} m`,`SPIRAL — A = ${A_spiral.toFixed(2)} m²`,`ظرفیت اسپیرال معادل = ${fmt(storageSpiral,0)} L`],'ASPE / ASHRAE / DIN 4708')}</div>`;}
 const CLOSED=[{c:100,d:470,h:1000},{c:200,d:500,h:1000},{c:500,d:640,h:1500},{c:1000,d:820,h:1500},{c:2000,d:960,h:2000},{c:5000,d:1400,h:3000}].map(x=>({m:'SG-CE-'+x.c,...x}));
-function expansionTankHTML(qBoilerKcal,prefix){
-  const kW=qBoilerKcal*1.163/1000,V_system=kW*12;
-  const Tmax=n($(prefix+'_exp_tmax')?.value)||90,Tmin=n($(prefix+'_exp_tmin')?.value)||10;
-  const P1=(n($(prefix+'_exp_p1')?.value)||1.5)+1.013,P2=3.0+1.013;
-  const e=(1+waterK(Tmax))/(1+waterK(Tmin))-1-3*11.7e-6*(Tmax-Tmin);
-  const V_tank=V_system*e*1.2/(1-P1/P2);const md=pick(CLOSED,'c',V_tank);
-  return`<div class="card" style="margin-top:10px;border-right:4px solid var(--forest);background:linear-gradient(135deg,#E2EDE4,#C9DDCE);">
-  <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">🛢 منبع انبساط بسته</h3>
-  ${g('توان دیگ',fmt(kW,1),'kW',`بار ${fmt(qBoilerKcal,0)} kcal/hr`)}
-  ${g('حجم سیستم',fmt(V_system,0),'L','12 L/kW')}
-  ${g('ضریب e',e.toFixed(4),'—',`${Tmin}→${Tmax}°C`)}
-  ${g('حجم منبع',fmt(V_tank,0),'L','۲۰٪ حاشیه')}
-  ${g('مدل',md.m,'',`قطر ${md.d} · ارتفاع ${md.h}`)}</div>`;
-}
+function expansionTankHTML(qBoilerKcal,prefix){const kW=qBoilerKcal*1.163/1000,V_system=kW*12;const Tmax=n($(prefix+'_exp_tmax')?.value)||90,Tmin=n($(prefix+'_exp_tmin')?.value)||10;const P1=(n($(prefix+'_exp_p1')?.value)||1.5)+1.013,P2=3.0+1.013;const e=(1+waterK(Tmax))/(1+waterK(Tmin))-1-3*11.7e-6*(Tmax-Tmin);const V_tank=V_system*e*1.2/(1-P1/P2);const md=pick(CLOSED,'c',V_tank);return`<div class="card" style="margin-top:10px;border-right:4px solid var(--forest);background:linear-gradient(135deg,#E2EDE4,#C9DDCE);"><h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">🛢 منبع انبساط بسته</h3>${g('توان دیگ',fmt(kW,1),'kW',`بار ${fmt(qBoilerKcal,0)} kcal/hr`)}${g('حجم سیستم',fmt(V_system,0),'L','12 L/kW')}${g('ضریب e',e.toFixed(4),'—',`${Tmin}→${Tmax}°C`)}${g('حجم منبع',fmt(V_tank,0),'L','۲۰٪ حاشیه')}${g('مدل',md.m,'',`قطر ${md.d} · ارتفاع ${md.h}`)}</div>`;}
 function toggleCombinedMode(){const c=$('dhw_combined')?.checked;if($('dhw_combined_inputs'))$('dhw_combined_inputs').style.display=c?'block':'none';}
 function buildCombinedHTML(qDHW,SF){const combined=$('dhw_combined')&&$('dhw_combined').checked;if(!combined)return{qTotal:qDHW,html:''};const qHeating=n($('dhw_heating_load').value)||0;const qTotal=Math.max(qDHW,qHeating)*1.15;const html=`<div class="card" style="margin-top:10px;border-right:4px solid var(--terra);background:linear-gradient(135deg,#F8E5DA,#F0D0BD);"><h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">🔗 حالت ترکیبی</h3>${g('بار DHW',fmt(qDHW),'kcal/hr','')}${g('بار گرمایش',fmt(qHeating),'kcal/hr','')}${g('🔥 بار کل',fmt(qTotal),'kcal/hr','max × ۱.۱۵')}</div>`;return{qTotal,html};}
 function nPlusOneHTML(totalQ,unit='kcal/hr'){const stdCaps=[17000,45000,75000,80000,100000,150000,200000,300000,400000,500000,600000,800000,1000000,1250000,1500000,2000000,3000000];const findClosest=q=>{let c=stdCaps.find(x=>x>=q);return c?c:stdCaps[stdCaps.length-1];};const r=(c,cap,l,d)=>`<div class="nplus1-item"><div><div class="n-title">${c} × ${fmt(cap)} ${unit}</div><div class="n-spec">${d}</div></div><div class="n-badge">${l}</div></div>`;return`<div class="card" style="margin-top:10px;border-right:4px solid var(--navy-3);background:linear-gradient(135deg,#E0E4EE,#C9D0E0);"><h3 style="font-size:.85rem;color:var(--navy);margin-bottom:6px;">🏭 N+1</h3><div class="nplus1-grid">${r(1,findClosest(totalQ),'۱۰۰٪','بدون افزونگی')}${r(2,findClosest(totalQ/2),'۵۰٪+۵۰٪','افزونگی ۵۰٪')}${r(3,findClosest(totalQ/3),'۳۳٪×۳','افزونگی ۶۶٪')}${r(4,findClosest(totalQ/4),'۲۵٪×۴','افزونگی ۷۵٪')}</div></div>`;}
 
-function calcDHW(){
-  const m=$('dhw_method').value,SF=getSF('dhw');
-  const pf=($('dhw_pat').value==='peak')?1.5:1.0;
-  const units=n($('dhw_units').value)||1;
-  const thot=n($('dhw_thot').value)||60,tin=n($('dhw_tin').value)||10;
-  const region=REGION_FACTOR[$('dhw_region').value]||REGION_FACTOR.moderate;
-  const dT=thot-tin,b=$('dhw_bldg').value;
-  const showCoil=$('dhw_show_coil')?.checked,showExp=$('dhw_show_exp')?.checked;
-  if(m==='site'){calcDHWSite();return;}
-  if(m==='experimental'){
-    const expUnit=dhwExpUnit||'liters';
-    const primary=n($('dhw_exp_primary').value)||0;
-    const expUnits=n($('dhw_exp_units').value)||1;
-    const recovery=n($('dhw_recovery').value)||2;
-    let V_total,L_per_unit_effective,gph_total_effective;
-    if(expUnit==='liters'){V_total=expUnits*primary;L_per_unit_effective=primary;gph_total_effective=(V_total/recovery)/3.78541;}
-    else{gph_total_effective=primary;V_total=primary*recovery*3.78541;L_per_unit_effective=V_total/expUnits;}
-    const Q_coil=V_total*1*dT,Q_recovery=Q_coil/recovery,Q_comp=12500;
-    const Q_design_raw=(Q_coil+Q_recovery)*SF,Q_region=Q_design_raw*region.dhw;
-    const Q_boiler=Math.max(Q_region,(Q_coil+Q_comp)*region.dhw);
-    const combined=buildCombinedHTML(Q_region,SF);
-    $('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}
-      <div class="method-info"><strong>📐 روش تجربی (دفتری):</strong> لیتر × Cp × ΔT + بازیابی</div>
-      ${g('حالت ورودی',expUnit==='liters'?'لیتر بر واحد':'GPH کل','','')}
-      ${g('لیتر بر واحد',fmt(L_per_unit_effective,0),'L/unit','')}
-      ${g('GPH کل',fmt(gph_total_effective,1),'GPH',`بازیابی ${recovery}h`)}
-      ${g('تعداد واحد',expUnits,'واحد','')}
-      ${g('حجم ذخیره کل',fmt(V_total,0),'L','')}
-      ${g('ΔT',dT.toFixed(1),'°C',`${tin}→${thot}°C`)}
-      ${gCyan('بار کویل',fmt(Q_coil,0),'kcal/hr','V × Cp × ΔT')}
-      ${gCyan('بار بازیابی',fmt(Q_recovery,0),'kcal/hr',`Q/${recovery}h`)}
-      ${g('منطقه',region.label,'',`×${region.dhw}`)}
-      ${g('🔥 بار طراحی',fmt(Q_region,0),'kcal/hr',`(Q_coil+Q_rec)×${SF}×${region.dhw}`)}
-      ${combined.html}
-      ${showCoil?tankSelectionHTML(V_total,Q_coil,thot,tin):''}
-      ${nPlusOneHTML(combined.qTotal,'kcal/hr')}
-      ${fb('روش تجربی',[`V_total = ${expUnits} × ${primary} = ${fmt(V_total,0)} L`,`Q_coil = ${fmt(Q_coil,0)} kcal/hr`,`Q_recovery = ${fmt(Q_recovery,0)} kcal/hr`,`Q_final = ${fmt(Q_region,0)} kcal/hr`],'دفتر فنی کاسپین')}
-      ${showExp?expansionTankHTML(Q_region,'dhw'):''}`;
-    addPNG('dhw_results','آبگرم تجربی');saveToHistory('آبگرم تجربی');return;
-  }
-  if(m==='percapita'){
-    const pc=DHW_PERCAPITA[b]||DHW_PERCAPITA.apartment;const occupants=units;
-    if(pc.lpd===0){$('dhw_results').innerHTML=warn('روش سرانه توصیه نمی‌شود.');return;}
-    const L_per_day=pc.lpd*occupants,q_day=L_per_day*dT;
-    const peakHrs=n($('dhw_peak_hr').value)||2,q_hr=q_day/peakHrs;
-    const L_per_hr=L_per_day/peakHrs,storage_L=L_per_day*0.6;
-    const qD=q_hr*SF*region.dhw;const combined=buildCombinedHTML(qD,SF);
-    $('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}
-      ${g('تعداد نفرات',occupants,'نفر',`${pc.label} — ${pc.lpd} L/day`)}
-      ${g('مصرف روزانه',fmt(L_per_day,0),'L/day',`ΔT=${dT}°C`)}
-      ${g('پیک ساعتی',fmt(L_per_hr,0),'L/hr',`${peakHrs}h`)}
-      ${g('منطقه',region.label,'',`×${region.dhw}`)}
-      ${g('بار پیک',fmt(qD,0),'kcal/hr',`SF=${SF}`)}
-      ${g('حجم مخزن',fmt(storage_L,0),'L','۶۰٪')}
-      ${combined.html}${showCoil?tankSelectionHTML(storage_L,qD,thot,tin):''}
-      ${nPlusOneHTML(combined.qTotal,'kcal/hr')}
-      ${fb('روش سرانه',[`V_day = ${pc.lpd}×${occupants} = ${fmt(L_per_day,0)} L`,`Q_peak = ${fmt(qD,0)} kcal/hr`],'ASPE')}`;
-    addPNG('dhw_results','آبگرم سرانه');saveToHistory('آبگرم سرانه');return;
-  }
-  if(b==='restaurant'&&m==='fixture'){
-    const meals=units;const gph_peak=meals*(1.5+2.5)*pf*SF;
-    const storage_gal=gph_peak*1.25,storage_L=storage_gal*3.78541;
-    const dT_F=dT*9/5,qBTU=gph_peak*8.33*dT_F,qKcal=qBTU*0.252*region.dhw;
-    const combined=buildCombinedHTML(qKcal,SF);
-    $('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}
-      <div class="method-info"><strong>رستوران</strong></div>
-      ${g('تعداد پرس',meals,'پرس','')}${g('GPH',fmt(gph_peak,1),'GPH','')}
-      ${g('منطقه',region.label,'',`×${region.dhw}`)}
-      ${g('حجم مخزن',fmt(storage_L,0),'L','')}
-      ${g('بار',fmt(qKcal,0),'kcal/hr','')}
-      ${combined.html}${showCoil?tankSelectionHTML(storage_L,qKcal,thot,tin):''}${nPlusOneHTML(combined.qTotal,'kcal/hr')}`;
-    addPNG('dhw_results','رستوران');saveToHistory('آبگرم رستوران');return;
-  }
-  const bldg=DHW_FIX[b]||DHW_FIX.apartment;
-  let gphBase=0;document.querySelectorAll('#dhw_fix [data-gph]').forEach(row=>{const gph=parseFloat(row.dataset.gph);if(gph>0)gphBase+=gph;});
-  if(gphBase<=0){$('dhw_results').innerHTML=warn('فیکسچری انتخاب نشده.');return;}
-  gphBase*=units;
-  const demandF=n($('dhw_div').value)||bldg.df,storageF=n($('dhw_stor').value)||bldg.sf;
-  const gph_peak=gphBase*demandF*pf,storage_gal=gph_peak*storageF,storage_L=storage_gal*3.78541;
-  const dT_F=dT*9/5,qBTU=gph_peak*8.33*dT_F,qKcal=qBTU*0.252,qFinal=qKcal*SF*region.dhw;
-  const combined=buildCombinedHTML(qFinal,SF);
-  $('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}
-    <div class="method-info"><strong>جدول مرجع</strong></div>
-    ${g('GPH اولیه',fmt(gphBase,1),'GPH',`${units} واحد`)}
-    ${g('ضریب تقاضا',demandF,'×','')}
-    ${g('GPH اصلاح',fmt(gph_peak,1),'GPH','')}
-    ${g('منطقه',region.label,'',`×${region.dhw}`)}
-    ${g('حجم مخزن',fmt(storage_L,0),'L','')}
-    ${g('بار نهایی',fmt(qFinal,0),'kcal/hr',hu(qFinal))}
-    ${combined.html}${showCoil?tankSelectionHTML(storage_L,qFinal,thot,tin):''}
-    ${nPlusOneHTML(combined.qTotal,'kcal/hr')}
-    ${fb('جدول مرجع',[`GPH_peak = ${fmt(gphBase,1)}×${demandF}×${pf} = ${fmt(gph_peak,1)}`,`Q_final = ${fmt(qFinal,0)} kcal/hr`],'ASPE')}`;
-  addPNG('dhw_results','آبگرم');saveToHistory('آبگرم — '+b);
-}
-function calcDHWSite(){
-  const SF=getSF('dhw');const gphTotal=updateSiteGrandTotal();
-  if(gphTotal<=0){$('dhw_results').innerHTML=warn('فیکسچری وارد نشده.');return;}
-  const DF=n($('site_df').value)||0.35,SF_storage=n($('site_sf').value)||1.25,PF=n($('site_pf').value)||1.0;
-  const thot=n($('site_thot').value)||60,tin=n($('site_tin').value)||10,eff=n($('site_eff').value)||90;
-  const region=REGION_FACTOR[$('dhw_region').value]||REGION_FACTOR.moderate;
-  const dT_C=thot-tin,dT_F=dT_C*9/5;
-  const gphActual=gphTotal*DF*PF,storage_gal=gphTotal*DF*SF_storage,storage_L=storage_gal*3.78541;
-  const qBTU=gphActual*8.33*dT_F,qKcal=qBTU*0.252,qFinal=qKcal*SF*region.dhw;
-  const qBoiler=qFinal/(eff/100);const showCoil=$('dhw_show_coil')?.checked;
-  const combined=buildCombinedHTML(qFinal,SF);
-  $('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}
-    <div class="method-info"><strong>روش سایت pyaco.ir:</strong> محاسبه بر اساس تعداد فیکسچر (نه نفر)</div>
-    ${g('حداکثر مصرف',fmt(gphTotal,0),'GPH','مجموع فیکسچرها')}
-    ${g('ضریب تقاضا',DF,'×','')}${g('ضریب پیک',PF,'×','')}
-    ${g('مصرف واقعی',fmt(gphActual,1),'GPH',`${fmt(gphActual*3.785,1)} L/hr`)}
-    ${g('حجم منبع',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}
-    ${g('ΔT',dT_C.toFixed(1),'°C',`${dT_F.toFixed(1)}°F`)}
-    ${g('منطقه',region.label,'',`×${region.dhw}`)}
-    ${g('بار نهایی',fmt(qFinal,0),'kcal/hr',hu(qFinal))}
-    ${g('ظرفیت دیگ',fmt(qBoiler,0),'kcal/hr',`راندمان ${eff}٪`)}
-    ${combined.html}${showCoil?tankSelectionHTML(storage_L,qFinal,thot,tin):''}
-    ${nPlusOneHTML(combined.qTotal,'kcal/hr')}
-    ${fb('روش سایت',[`GPH_max = ${fmt(gphTotal,0)}`,`GPH_actual = ${fmt(gphActual,1)}`,`Storage = ${fmt(storage_L,0)} L`,`Q_final = ${fmt(qFinal,0)} kcal/hr`],'ASPE Vol.4 / pyaco.ir')}`;
-  addPNG('dhw_results','آبگرم — سایت');
-  saveToHistory('آبگرم سایت — '+fmt(gphTotal,0)+' GPH');
-}
+function calcDHW(){const m=$('dhw_method').value,SF=getSF('dhw');const pf=($('dhw_pat').value==='peak')?1.5:1.0;const units=n($('dhw_units').value)||1;const thot=n($('dhw_thot').value)||60,tin=n($('dhw_tin').value)||10;const region=REGION_FACTOR[$('dhw_region').value]||REGION_FACTOR.moderate;const dT=thot-tin,b=$('dhw_bldg').value;const showCoil=$('dhw_show_coil')?.checked,showExp=$('dhw_show_exp')?.checked;if(m==='site'){calcDHWSite();return;}if(m==='experimental'){const expUnit=dhwExpUnit||'liters';const primary=n($('dhw_exp_primary').value)||0;const expUnits=n($('dhw_exp_units').value)||1;const recovery=n($('dhw_recovery').value)||2;let V_total,L_per_unit_effective,gph_total_effective;if(expUnit==='liters'){V_total=expUnits*primary;L_per_unit_effective=primary;gph_total_effective=(V_total/recovery)/3.78541;}else{gph_total_effective=primary;V_total=primary*recovery*3.78541;L_per_unit_effective=V_total/expUnits;}const Q_coil=V_total*1*dT,Q_recovery=Q_coil/recovery,Q_comp=12500;const Q_design_raw=(Q_coil+Q_recovery)*SF,Q_region=Q_design_raw*region.dhw;const Q_boiler=Math.max(Q_region,(Q_coil+Q_comp)*region.dhw);const combined=buildCombinedHTML(Q_region,SF);$('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}<div class="method-info"><strong>📐 روش تجربی (دفتری):</strong> لیتر × Cp × ΔT + بازیابی</div>${g('حالت ورودی',expUnit==='liters'?'لیتر بر واحد':'GPH کل','','')}${g('لیتر بر واحد',fmt(L_per_unit_effective,0),'L/unit','')}${g('GPH کل',fmt(gph_total_effective,1),'GPH',`بازیابی ${recovery}h`)}${g('تعداد واحد',expUnits,'واحد','')}${g('حجم ذخیره کل',fmt(V_total,0),'L','')}${g('ΔT',dT.toFixed(1),'°C',`${tin}→${thot}°C`)}${gCyan('بار کویل',fmt(Q_coil,0),'kcal/hr','V × Cp × ΔT')}${gCyan('بار بازیابی',fmt(Q_recovery,0),'kcal/hr',`Q/${recovery}h`)}${g('منطقه',region.label,'',`×${region.dhw}`)}${g('🔥 بار طراحی',fmt(Q_region,0),'kcal/hr',`(Q_coil+Q_rec)×${SF}×${region.dhw}`)}${combined.html}${showCoil?tankSelectionHTML(V_total,Q_coil,thot,tin):''}${nPlusOneHTML(combined.qTotal,'kcal/hr')}${fb('روش تجربی',[`V_total = ${expUnits} × ${primary} = ${fmt(V_total,0)} L`,`Q_coil = ${fmt(Q_coil,0)} kcal/hr`,`Q_recovery = ${fmt(Q_recovery,0)} kcal/hr`,`Q_final = ${fmt(Q_region,0)} kcal/hr`],'دفتر فنی کاسپین')}${showExp?expansionTankHTML(Q_region,'dhw'):''}`;addPNG('dhw_results','آبگرم تجربی');saveToHistory('آبگرم تجربی');return;}if(m==='percapita'){const pc=DHW_PERCAPITA[b]||DHW_PERCAPITA.apartment;const occupants=units;if(pc.lpd===0){$('dhw_results').innerHTML=warn('روش سرانه توصیه نمی‌شود.');return;}const L_per_day=pc.lpd*occupants,q_day=L_per_day*dT;const peakHrs=n($('dhw_peak_hr').value)||2,q_hr=q_day/peakHrs;const L_per_hr=L_per_day/peakHrs,storage_L=L_per_day*0.6;const qD=q_hr*SF*region.dhw;const combined=buildCombinedHTML(qD,SF);$('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}${g('تعداد نفرات',occupants,'نفر',`${pc.label} — ${pc.lpd} L/day`)}${g('مصرف روزانه',fmt(L_per_day,0),'L/day',`ΔT=${dT}°C`)}${g('پیک ساعتی',fmt(L_per_hr,0),'L/hr',`${peakHrs}h`)}${g('منطقه',region.label,'',`×${region.dhw}`)}${g('بار پیک',fmt(qD,0),'kcal/hr',`SF=${SF}`)}${g('حجم مخزن',fmt(storage_L,0),'L','۶۰٪')}${combined.html}${showCoil?tankSelectionHTML(storage_L,qD,thot,tin):''}${nPlusOneHTML(combined.qTotal,'kcal/hr')}${fb('روش سرانه',[`V_day = ${pc.lpd}×${occupants} = ${fmt(L_per_day,0)} L`,`Q_peak = ${fmt(qD,0)} kcal/hr`],'ASPE')}`;addPNG('dhw_results','آبگرم سرانه');saveToHistory('آبگرم سرانه');return;}if(b==='restaurant'&&m==='fixture'){const meals=units;const gph_peak=meals*(1.5+2.5)*pf*SF;const storage_gal=gph_peak*1.25,storage_L=storage_gal*3.78541;const dT_F=dT*9/5,qBTU=gph_peak*8.33*dT_F,qKcal=qBTU*0.252*region.dhw;const combined=buildCombinedHTML(qKcal,SF);$('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}<div class="method-info"><strong>رستوران</strong></div>${g('تعداد پرس',meals,'پرس','')}${g('GPH',fmt(gph_peak,1),'GPH','')}${g('منطقه',region.label,'',`×${region.dhw}`)}${g('حجم مخزن',fmt(storage_L,0),'L','')}${g('بار',fmt(qKcal,0),'kcal/hr','')}${combined.html}${showCoil?tankSelectionHTML(storage_L,qKcal,thot,tin):''}${nPlusOneHTML(combined.qTotal,'kcal/hr')}`;addPNG('dhw_results','رستوران');saveToHistory('آبگرم رستوران');return;}const bldg=DHW_FIX[b]||DHW_FIX.apartment;let gphBase=0;document.querySelectorAll('#dhw_fix [data-gph]').forEach(row=>{const gph=parseFloat(row.dataset.gph);if(gph>0)gphBase+=gph;});if(gphBase<=0){$('dhw_results').innerHTML=warn('فیکسچری انتخاب نشده.');return;}gphBase*=units;const demandF=n($('dhw_div').value)||bldg.df,storageF=n($('dhw_stor').value)||bldg.sf;const gph_peak=gphBase*demandF*pf,storage_gal=gph_peak*storageF,storage_L=storage_gal*3.78541;const dT_F=dT*9/5,qBTU=gph_peak*8.33*dT_F,qKcal=qBTU*0.252,qFinal=qKcal*SF*region.dhw;const combined=buildCombinedHTML(qFinal,SF);$('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}<div class="method-info"><strong>جدول مرجع</strong></div>${g('GPH اولیه',fmt(gphBase,1),'GPH',`${units} واحد`)}${g('ضریب تقاضا',demandF,'×','')}${g('GPH اصلاح',fmt(gph_peak,1),'GPH','')}${g('منطقه',region.label,'',`×${region.dhw}`)}${g('حجم مخزن',fmt(storage_L,0),'L','')}${g('بار نهایی',fmt(qFinal,0),'kcal/hr',hu(qFinal))}${combined.html}${showCoil?tankSelectionHTML(storage_L,qFinal,thot,tin):''}${nPlusOneHTML(combined.qTotal,'kcal/hr')}${fb('جدول مرجع',[`GPH_peak = ${fmt(gphBase,1)}×${demandF}×${pf} = ${fmt(gph_peak,1)}`,`Q_final = ${fmt(qFinal,0)} kcal/hr`],'ASPE')}`;addPNG('dhw_results','آبگرم');saveToHistory('آبگرم — '+b);}
+function calcDHWSite(){const SF=getSF('dhw');const gphTotal=updateSiteGrandTotal();if(gphTotal<=0){$('dhw_results').innerHTML=warn('فیکسچری وارد نشده.');return;}const DF=n($('site_df').value)||0.35,SF_storage=n($('site_sf').value)||1.25,PF=n($('site_pf').value)||1.0;const thot=n($('site_thot').value)||60,tin=n($('site_tin').value)||10,eff=n($('site_eff').value)||90;const region=REGION_FACTOR[$('dhw_region').value]||REGION_FACTOR.moderate;const dT_C=thot-tin,dT_F=dT_C*9/5;const gphActual=gphTotal*DF*PF,storage_gal=gphTotal*DF*SF_storage,storage_L=storage_gal*3.78541;const qBTU=gphActual*8.33*dT_F,qKcal=qBTU*0.252,qFinal=qKcal*SF*region.dhw;const qBoiler=qFinal/(eff/100);const showCoil=$('dhw_show_coil')?.checked;const combined=buildCombinedHTML(qFinal,SF);$('dhw_results').innerHTML=`${boilerHighlightHTML(combined.qTotal,'hw')}<div class="method-info"><strong>روش سایت pyaco.ir:</strong> محاسبه بر اساس تعداد فیکسچر (نه نفر)</div>${g('حداکثر مصرف',fmt(gphTotal,0),'GPH','مجموع فیکسچرها')}${g('ضریب تقاضا',DF,'×','')}${g('ضریب پیک',PF,'×','')}${g('مصرف واقعی',fmt(gphActual,1),'GPH',`${fmt(gphActual*3.785,1)} L/hr`)}${g('حجم منبع',fmt(storage_L,0),'L',`${fmt(storage_gal,1)} گالن`)}${g('ΔT',dT_C.toFixed(1),'°C',`${dT_F.toFixed(1)}°F`)}${g('منطقه',region.label,'',`×${region.dhw}`)}${g('بار نهایی',fmt(qFinal,0),'kcal/hr',hu(qFinal))}${g('ظرفیت دیگ',fmt(qBoiler,0),'kcal/hr',`راندمان ${eff}٪`)}${combined.html}${showCoil?tankSelectionHTML(storage_L,qFinal,thot,tin):''}${nPlusOneHTML(combined.qTotal,'kcal/hr')}${fb('روش سایت',[`GPH_max = ${fmt(gphTotal,0)}`,`GPH_actual = ${fmt(gphActual,1)}`,`Storage = ${fmt(storage_L,0)} L`,`Q_final = ${fmt(qFinal,0)} kcal/hr`],'ASPE Vol.4 / pyaco.ir')}`;addPNG('dhw_results','آبگرم — سایت');saveToHistory('آبگرم سایت — '+fmt(gphTotal,0)+' GPH');}
+
+/* ==================== HEATING ==================== */
 function setHTMethod(m){document.querySelectorAll('[data-method-tabs="ht"] button').forEach(b=>b.classList.toggle('active',b.dataset.method===m));$('ht_method').value=m;$('ht_ashrae_block').style.display=(m==='experimental')?'none':'block';$('ht_experimental_block').style.display=(m==='experimental')?'block':'none';}
 const HT_B={office:{t:22,i:1.10,l:'اداری'},residential:{t:21,i:1.05,l:'مسکونی'},hospital:{t:24,i:1.00,l:'بیمارستان'},school:{t:20,i:1.15,l:'مدرسه'},hotel:{t:22,i:1.05,l:'هتل'},industrial:{t:18,i:1.10,l:'کارخانه'},warehouse:{t:15,i:1.00,l:'انبار'}};
 function onHtBldg(){const b=$('ht_bldg').value;$('ht_tin').value=HT_B[b].t;}
-function calcHeating(){
-  const method=$('ht_method').value,SF=getSF('ht');
-  const region=REGION_FACTOR[$('ht_region').value]||REGION_FACTOR.moderate;
-  const showExp=$('ht_show_exp')?.checked;
-  if(method==='experimental'){
-    const units=n($('ht_exp_units').value)||1,areaPer=n($('ht_exp_area').value)||100,coeff=n($('ht_coeff').value)||150;
-    const Q_base=units*areaPer*coeff,Q_region=Q_base*region.ht,Q_design=Q_region*SF;
-    $('ht_results').innerHTML=`${boilerHighlightHTML(Q_design,'hw')}
-      <div class="method-info"><strong>📐 روش تجربی:</strong> Q = N × A × ضریب × منطقه</div>
-      ${g('تعداد واحد',units,'واحد','')}${g('متراژ واحد',areaPer,'m²','')}
-      ${g('ضریب پایه',coeff,'kcal/hr·m²','')}
-      ${g('منطقه',region.label,'',`×${region.ht}`)}
-      ${gCyan('بار پایه',fmt(Q_base,0),'kcal/hr',`${units}×${areaPer}×${coeff}`)}
-      ${g('🔥 بار طراحی',fmt(Q_design,0),'kcal/hr',`×${region.ht}×${SF}`)}
-      ${nPlusOneHTML(Q_design,'kcal/hr')}
-      ${fb('روش تجربی',[`Q_base = ${units}×${areaPer}×${coeff} = ${fmt(Q_base,0)}`,`Q_region = ${fmt(Q_region,0)}`,`Q_design = ${fmt(Q_design,0)}`],'دفتر فنی کاسپین')}
-      ${showExp?expansionTankHTML(Q_design,'ht'):''}`;
-    addPNG('ht_results','گرمایش تجربی');saveToHistory('گرمایش تجربی');return;
-  }
-  const cfg=HT_B[$('ht_bldg').value],area=n($('ht_area').value),H=n($('ht_h').value),U=n($('ht_u').value);
-  const tout=n($('ht_tout').value),ach=n($('ht_ach').value);
-  const err=validate({area:area>0,U:U>0});if(err){$('ht_results').innerHTML=warn(err);return;}
-  const dT=cfg.t-tout,vol=area*H;
-  const qCond_W=U*area*dT,qInf_W=0.34*vol*ach*dT;
-  let qB_W=0;if(method==='detailed')qB_W=qCond_W+qInf_W;else if(method==='simple')qB_W=qCond_W;else qB_W=area*116;
-  const qB_kcal=qB_W*0.86,qD_W=qB_W*cfg.i*SF,qD_kcal=qD_W*0.86*region.ht;
-  $('ht_results').innerHTML=`${boilerHighlightHTML(qD_kcal,'hw')}
-    ${g('نوع',cfg.l,'',`${cfg.t}°C — IF=${cfg.i}`)}
-    ${g('ΔT',dT,'°C','')}
-    ${g('بار هدایتی',fmt(qCond_W),'W',`${fmt(qCond_W*0.86)} kcal/hr`)}
-    ${method==='detailed'?g('بار نفوذ',fmt(qInf_W),'W',`ACH=${ach}`):''}
-    ${g('بار خالص',fmt(qB_kcal),'kcal/hr',`${fmt(qB_W)} W`)}
-    ${g('منطقه',region.label,'',`×${region.ht}`)}
-    ${g('بار طراحی',fmt(qD_kcal),'kcal/hr',hu(qD_kcal))}
-    ${nPlusOneHTML(qD_kcal,'kcal/hr')}
-    ${fb('بار گرمایش',[`Q_cond = ${U}×${area}×${dT} = ${fmt(qCond_W)} W`,method==='detailed'?`Q_inf = ${fmt(qInf_W)} W`:'',`Q_design = ${fmt(qD_kcal)} kcal/hr`],'ASHRAE Ch.18')}
-    ${showExp?expansionTankHTML(qD_kcal,'ht'):''}`;
-  addPNG('ht_results','گرمایش');saveToHistory('گرمایش');
-}
+function calcHeating(){const method=$('ht_method').value,SF=getSF('ht');const region=REGION_FACTOR[$('ht_region').value]||REGION_FACTOR.moderate;const showExp=$('ht_show_exp')?.checked;if(method==='experimental'){const units=n($('ht_exp_units').value)||1,areaPer=n($('ht_exp_area').value)||100,coeff=n($('ht_coeff').value)||150;const Q_base=units*areaPer*coeff,Q_region=Q_base*region.ht,Q_design=Q_region*SF;$('ht_results').innerHTML=`${boilerHighlightHTML(Q_design,'hw')}<div class="method-info"><strong>📐 روش تجربی:</strong> Q = N × A × ضریب × منطقه</div>${g('تعداد واحد',units,'واحد','')}${g('متراژ واحد',areaPer,'m²','')}${g('ضریب پایه',coeff,'kcal/hr·m²','')}${g('منطقه',region.label,'',`×${region.ht}`)}${gCyan('بار پایه',fmt(Q_base,0),'kcal/hr',`${units}×${areaPer}×${coeff}`)}${g('🔥 بار طراحی',fmt(Q_design,0),'kcal/hr',`×${region.ht}×${SF}`)}${nPlusOneHTML(Q_design,'kcal/hr')}${fb('روش تجربی',[`Q_base = ${units}×${areaPer}×${coeff} = ${fmt(Q_base,0)}`,`Q_region = ${fmt(Q_region,0)}`,`Q_design = ${fmt(Q_design,0)}`],'دفتر فنی کاسپین')}${showExp?expansionTankHTML(Q_design,'ht'):''}`;addPNG('ht_results','گرمایش تجربی');saveToHistory('گرمایش تجربی');return;}const cfg=HT_B[$('ht_bldg').value],area=n($('ht_area').value),H=n($('ht_h').value),U=n($('ht_u').value);const tout=n($('ht_tout').value),ach=n($('ht_ach').value);const err=validate({area:area>0,U:U>0});if(err){$('ht_results').innerHTML=warn(err);return;}const dT=cfg.t-tout,vol=area*H;const qCond_W=U*area*dT,qInf_W=0.34*vol*ach*dT;let qB_W=0;if(method==='detailed')qB_W=qCond_W+qInf_W;else if(method==='simple')qB_W=qCond_W;else qB_W=area*116;const qB_kcal=qB_W*0.86,qD_W=qB_W*cfg.i*SF,qD_kcal=qD_W*0.86*region.ht;$('ht_results').innerHTML=`${boilerHighlightHTML(qD_kcal,'hw')}${g('نوع',cfg.l,'',`${cfg.t}°C — IF=${cfg.i}`)}${g('ΔT',dT,'°C','')}${g('بار هدایتی',fmt(qCond_W),'W',`${fmt(qCond_W*0.86)} kcal/hr`)}${method==='detailed'?g('بار نفوذ',fmt(qInf_W),'W',`ACH=${ach}`):''}${g('بار خالص',fmt(qB_kcal),'kcal/hr',`${fmt(qB_W)} W`)}${g('منطقه',region.label,'',`×${region.ht}`)}${g('بار طراحی',fmt(qD_kcal),'kcal/hr',hu(qD_kcal))}${nPlusOneHTML(qD_kcal,'kcal/hr')}${fb('بار گرمایش',[`Q_cond = ${U}×${area}×${dT} = ${fmt(qCond_W)} W`,method==='detailed'?`Q_inf = ${fmt(qInf_W)} W`:'',`Q_design = ${fmt(qD_kcal)} kcal/hr`],'ASHRAE Ch.18')}${showExp?expansionTankHTML(qD_kcal,'ht'):''}`;addPNG('ht_results','گرمایش');saveToHistory('گرمایش');}
 function setPLMethod(m){document.querySelectorAll('[data-method-tabs="pl"] button').forEach(b=>b.classList.toggle('active',b.dataset.method===m));$('pl_method').value=m;$('pl_experimental_block').style.display=(m==='experimental')?'block':'none';$('pl_ashrae_block').style.display=(m==='ashrae')?'block':'none';}
 function onPoolTypeChange(){const t=$('pl_type').value;if(t==='indoor'){$('pl_preheat').innerHTML='<option value="6">۶ ساعته</option><option value="8" selected>۸ ساعته</option>';}else{$('pl_preheat').innerHTML='<option value="12" selected>۱۲ ساعته</option><option value="24">۲۴ ساعته</option>';}}
 function calcPool(){const m=$('pl_method').value;if(m==='experimental')calcPoolExperimental();else calcPoolASHRAE();appendPoolFilterAndHX();}
-function calcPoolExperimental(){
-  const L=n($('pl_l').value),W=n($('pl_w').value),D=n($('pl_d').value),SF=getSF('pl');
-  const err=validate({L:L>0,W:W>0,D:D>0});if(err){$('pl_results').innerHTML=warn(err);return;}
-  const V_L=L*W*D*1000,V_m3=L*W*D,Y=n($('pl_evap').value)||30,dT_evap=n($('pl_dT_evap').value)||20;
-  const showers=n($('pl_showers').value)||0,target=n($('pl_target').value)||26,tin=n($('pl_tin').value)||8,preheat=n($('pl_preheat').value)||8;
-  const Q1=Y*1*dT_evap,Q2=showers*50,Q_preheat=V_L*(target-tin)/preheat;
-  const Q_total_raw=(Q1+Q2+Q_preheat)*1.2,Q_final=Q_total_raw*SF,qKW=Q_final*1.163/1000;
-  window.__poolData={V_L,Q_preheat,target,tin,Q_final};
-  $('pl_results').innerHTML=`${boilerHighlightHTML(Q_final,'hw')}
-    <div class="method-info"><strong>📐 روش تجربی</strong></div>
-    ${g('حجم استخر',fmt(V_L,0),'L',`${fmt(V_m3,1)} m³`)}
-    ${g('Y تبخیر',Y,'kg/hr','')}${g('ΔT تبخیر',dT_evap,'°C','')}
-    ${gCyan('Q₁ تبخیر',fmt(Q1,0),'kcal/hr',`Y×1×${dT_evap}`)}
-    ${gCyan('Q₂ دوش',fmt(Q2,0),'kcal/hr',`${showers}×50`)}
-    ${gCyan('Q₃ پیش‌گرم',fmt(Q_preheat,0),'kcal/hr',`V×${target-tin}/${preheat}h`)}
-    ${g('بار کل ×1.2',fmt(Q_total_raw,0),'kcal/hr','')}
-    ${g('🔥 نهایی ×SF',fmt(Q_final,0),'kcal/hr',`${fmt(qKW,1)} kW`)}
-    ${fb('روش تجربی استخر',[`V = ${L}×${W}×${D}×1000 = ${fmt(V_L,0)} L`,`Q₁ = ${Y}×1×${dT_evap} = ${fmt(Q1,0)}`,`Q₂ = ${showers}×50 = ${fmt(Q2,0)}`,`Q₃ = ${fmt(Q_preheat,0)}`,`Q_total = ${fmt(Q_total_raw,0)}`,`Q_final = ${fmt(Q_final,0)}`],'دفتر فنی کاسپین')}`;
-}
-function calcPoolASHRAE(){
-  const L=n($('pl_l').value),W=n($('pl_w').value),D=n($('pl_d').value),tt=n($('pl_target').value)||26,tin=n($('pl_tin').value)||8;
-  const ta=n($('pl_ash_ta').value),rh=n($('pl_ash_rh').value)/100,wind=n($('pl_ash_wind').value);
-  const useF=n($('pl_ash_use').value),cov=n($('pl_ash_cover').value),preheat=n($('pl_ash_preheat').value),SF=getSF('pl');
-  const err=validate({L:L>0,W:W>0,D:D>0});if(err){$('pl_results').innerHTML=warn(err);return;}
-  const A=L*W,V=L*W*D,dT=tt-tin;
-  const qHU_kJ=V*1000*4.186*dT,qHU_kW=qHU_kJ/(preheat*3600);
-  const pvW=0.6108*Math.exp(17.27*tt/(tt+237.3)),pvA=0.6108*Math.exp(17.27*ta/(ta+237.3))*rh;
-  const evap=A*(0.089+0.0782*wind)*(pvW-pvA)/3.6,qE_kW=evap*2454/3600;
-  const qC_kW=(3*wind+1.5)*A*(tt-ta)/1000;
-  const qR_kW=0.95*5.67e-8*A*(Math.pow(tt+273.15,4)-Math.pow(ta+273.15,4))/1000;
-  const qMu_kW=evap*4.186*dT/3600,qEvapCov=qE_kW*cov;
-  const qM_kW=qEvapCov+qC_kW+qR_kW+qMu_kW,qT_kW=(qHU_kW+qM_kW)*SF*useF,qT_kcal=qT_kW*860;
-  window.__poolData={V_L:V*1000,Q_preheat:qHU_kW*860,target:tt,tin,Q_final:qT_kcal};
-  $('pl_results').innerHTML=`${boilerHighlightHTML(qT_kcal,'hw')}
-    <div class="method-info"><strong>📊 ASHRAE Ch.6</strong></div>
-    ${g('حجم استخر',fmt(V*1000,0),'L',`${fmt(V,1)} m³`)}
-    ${g('پیش‌گرم',fmt(qHU_kW,2),'kW',`${preheat}h`)}
-    ${g('تبخیر',fmt(qEvapCov,2),'kW','')}
-    ${g('جابجایی',fmt(qC_kW,2),'kW','')}
-    ${g('تابش',fmt(qR_kW,2),'kW','')}
-    ${g('بار کل',fmt(qT_kW,2),'kW',hu(qT_kcal))}`;
-}
-function appendPoolFilterAndHX(){
-  const showFilter=$('pl_show_filter')?.checked,showHX=$('pl_show_hx')?.checked;
-  const poolData=window.__poolData;if(!poolData)return;let extra='';
-  if(showFilter)extra+=poolFilterHTML(poolData.V_L);
-  if(showHX)extra+=poolHXHTML(poolData.Q_preheat,poolData.target,poolData.tin);
-  $('pl_results').innerHTML+=extra;
-  addPNG('pl_results','استخر');saveToHistory('استخر');
-}
-function poolFilterHTML(V_L){
-  const turnover=n($('pf_turnover').value)||6,type=$('pf_type').value;
-  const loading=n($('pf_loading').value)||(type==='sand'?15:(type==='cartridge'?0.375:2.0));
-  const Q_circ_L_s=V_L/(turnover*3600),Q_circ_m3h=Q_circ_L_s*3.6,Q_GPM=Q_circ_m3h*4.403;
-  const A_ft2=Q_GPM/loading,A_m2=A_ft2*0.0929,D_mm=Math.sqrt(4*A_m2/Math.PI)*1000,Q_backwash=A_ft2*15;
-  const tn={sand:'شنی',cartridge:'کارتریج',de:'دیاتومه'};
-  return`<div class="card" style="margin-top:10px;border-right:4px solid var(--neon-cyan);background:linear-gradient(135deg,#E0F2FE,#BAE6FD);">
-    <h3 style="font-size:.85rem;color:#0C4A6E;margin-bottom:8px;">🧪 فیلتر ${tn[type]}</h3>
-    ${g('دبی سیرکولاسیون',fmt(Q_circ_m3h,2),'m³/hr',`${fmt(Q_GPM,1)} GPM — ${turnover}h`)}
-    ${g('بارگذاری',loading,'GPM/ft²','')}
-    ${g('سطح',fmt(A_ft2,2),'ft²',`${fmt(A_m2,3)} m²`)}
-    ${gCyan('قطر فیلتر',fmt(D_mm,0),'mm','')}
-    ${g('Backwash',fmt(Q_backwash,1),'GPM','15 GPM/ft²')}
-    ${fb('فیلتر استخر',[`Q_circ = ${fmt(V_L,0)}/(${turnover}×3600) = ${fmt(Q_circ_m3h,2)} m³/hr`,`Q_GPM = ${fmt(Q_GPM,1)}`,`A = ${fmt(Q_GPM,1)}/${loading} = ${fmt(A_ft2,2)} ft²`,`D = ${fmt(D_mm,0)} mm`],'NSF / ASPE')}</div>`;
-}
-function poolHXHTML(Q_preheat,target,tin){
-  const Tb_in=n($('hx_boil_in').value)||90,Tb_out=n($('hx_boil_out').value)||70,U=n($('hx_type_pl').value)||4000;
-  const d1=Tb_in-target,d2=Tb_out-tin;if(d1<=0||d2<=0)return'';
-  const lmtd=Math.abs(d1-d2)<0.01?d1:(d1-d2)/Math.log(d1/d2);const A=Q_preheat/(U*lmtd);
-  return`<div class="card" style="margin-top:10px;border-right:4px solid var(--terra);background:linear-gradient(135deg,#F8E5DA,#F0D0BD);">
-    <h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">🔁 مبدل پیش‌گرم استخر</h3>
-    ${g('بار پیش‌گرم',fmt(Q_preheat,0),'kcal/hr','')}
-    ${gCyan('LMTD',lmtd.toFixed(2),'°C',`ΔT1=${d1.toFixed(1)},ΔT2=${d2.toFixed(1)}`)}
-    ${g('ضریب U',U,'kcal/hr·m²·°C','')}
-    ${g('سطح',A.toFixed(2),'m²','')}
-    ${g('مدل','SG-HX-'+Math.ceil(A),'','')}
-    ${fb('مبدل',[`LMTD = (${d1.toFixed(1)}-${d2.toFixed(1)})/ln(${d1.toFixed(1)}/${d2.toFixed(1)}) = ${lmtd.toFixed(2)}°C`,`A = ${fmt(Q_preheat,0)}/(${U}×${lmtd.toFixed(2)}) = ${A.toFixed(2)} m²`],'ASME / TEMA')}</div>`;
+function calcPoolExperimental(){const L=n($('pl_l').value),W=n($('pl_w').value),D=n($('pl_d').value),SF=getSF('pl');const err=validate({L:L>0,W:W>0,D:D>0});if(err){$('pl_results').innerHTML=warn(err);return;}const V_L=L*W*D*1000,V_m3=L*W*D,Y=n($('pl_evap').value)||30,dT_evap=n($('pl_dT_evap').value)||20;const showers=n($('pl_showers').value)||0,target=n($('pl_target').value)||26,tin=n($('pl_tin').value)||8,preheat=n($('pl_preheat').value)||8;const Q1=Y*1*dT_evap,Q2=showers*50,Q_preheat=V_L*(target-tin)/preheat;const Q_total_raw=(Q1+Q2+Q_preheat)*1.2,Q_final=Q_total_raw*SF,qKW=Q_final*1.163/1000;window.__poolData={V_L,Q_preheat,target,tin,Q_final};$('pl_results').innerHTML=`${boilerHighlightHTML(Q_final,'hw')}<div class="method-info"><strong>📐 روش تجربی</strong></div>${g('حجم استخر',fmt(V_L,0),'L',`${fmt(V_m3,1)} m³`)}${g('Y تبخیر',Y,'kg/hr','')}${g('ΔT تبخیر',dT_evap,'°C','')}${gCyan('Q₁ تبخیر',fmt(Q1,0),'kcal/hr',`Y×1×${dT_evap}`)}${gCyan('Q₂ دوش',fmt(Q2,0),'kcal/hr',`${showers}×50`)}${gCyan('Q₃ پیش‌گرم',fmt(Q_preheat,0),'kcal/hr',`V×${target-tin}/${preheat}h`)}${g('بار کل ×1.2',fmt(Q_total_raw,0),'kcal/hr','')}${g('🔥 نهایی ×SF',fmt(Q_final,0),'kcal/hr',`${fmt(qKW,1)} kW`)}${fb('روش تجربی استخر',[`V = ${L}×${W}×${D}×1000 = ${fmt(V_L,0)} L`,`Q₁ = ${Y}×1×${dT_evap} = ${fmt(Q1,0)}`,`Q₂ = ${showers}×50 = ${fmt(Q2,0)}`,`Q₃ = ${fmt(Q_preheat,0)}`,`Q_total = ${fmt(Q_total_raw,0)}`,`Q_final = ${fmt(Q_final,0)}`],'دفتر فنی کاسپین')}`;}
+function calcPoolASHRAE(){const L=n($('pl_l').value),W=n($('pl_w').value),D=n($('pl_d').value),tt=n($('pl_target').value)||26,tin=n($('pl_tin').value)||8;const ta=n($('pl_ash_ta').value),rh=n($('pl_ash_rh').value)/100,wind=n($('pl_ash_wind').value);const useF=n($('pl_ash_use').value),cov=n($('pl_ash_cover').value),preheat=n($('pl_ash_preheat').value),SF=getSF('pl');const err=validate({L:L>0,W:W>0,D:D>0});if(err){$('pl_results').innerHTML=warn(err);return;}const A=L*W,V=L*W*D,dT=tt-tin;const qHU_kJ=V*1000*4.186*dT,qHU_kW=qHU_kJ/(preheat*3600);const pvW=0.6108*Math.exp(17.27*tt/(tt+237.3)),pvA=0.6108*Math.exp(17.27*ta/(ta+237.3))*rh;const evap=A*(0.089+0.0782*wind)*(pvW-pvA)/3.6,qE_kW=evap*2454/3600;const qC_kW=(3*wind+1.5)*A*(tt-ta)/1000;const qR_kW=0.95*5.67e-8*A*(Math.pow(tt+273.15,4)-Math.pow(ta+273.15,4))/1000;const qMu_kW=evap*4.186*dT/3600,qEvapCov=qE_kW*cov;const qM_kW=qEvapCov+qC_kW+qR_kW+qMu_kW,qT_kW=(qHU_kW+qM_kW)*SF*useF,qT_kcal=qT_kW*860;window.__poolData={V_L:V*1000,Q_preheat:qHU_kW*860,target:tt,tin,Q_final:qT_kcal};$('pl_results').innerHTML=`${boilerHighlightHTML(qT_kcal,'hw')}<div class="method-info"><strong>📊 ASHRAE Ch.6</strong></div>${g('حجم استخر',fmt(V*1000,0),'L',`${fmt(V,1)} m³`)}${g('پیش‌گرم',fmt(qHU_kW,2),'kW',`${preheat}h`)}${g('تبخیر',fmt(qEvapCov,2),'kW','')}${g('جابجایی',fmt(qC_kW,2),'kW','')}${g('تابش',fmt(qR_kW,2),'kW','')}${g('بار کل',fmt(qT_kW,2),'kW',hu(qT_kcal))}`;}
+function appendPoolFilterAndHX(){const showFilter=$('pl_show_filter')?.checked,showHX=$('pl_show_hx')?.checked;const poolData=window.__poolData;if(!poolData)return;let extra='';if(showFilter)extra+=poolFilterHTML(poolData.V_L);if(showHX)extra+=poolHXHTML(poolData.Q_preheat,poolData.target,poolData.tin);$('pl_results').innerHTML+=extra;addPNG('pl_results','استخر');saveToHistory('استخر');}
+function poolFilterHTML(V_L){const turnover=n($('pf_turnover').value)||6,type=$('pf_type').value;const loading=n($('pf_loading').value)||(type==='sand'?15:(type==='cartridge'?0.375:2.0));const Q_circ_L_s=V_L/(turnover*3600),Q_circ_m3h=Q_circ_L_s*3.6,Q_GPM=Q_circ_m3h*4.403;const A_ft2=Q_GPM/loading,A_m2=A_ft2*0.0929,D_mm=Math.sqrt(4*A_m2/Math.PI)*1000,Q_backwash=A_ft2*15;const tn={sand:'شنی',cartridge:'کارتریج',de:'دیاتومه'};return`<div class="card" style="margin-top:10px;border-right:4px solid var(--neon-cyan);background:linear-gradient(135deg,#E0F2FE,#BAE6FD);"><h3 style="font-size:.85rem;color:#0C4A6E;margin-bottom:8px;">🧪 فیلتر ${tn[type]}</h3>${g('دبی سیرکولاسیون',fmt(Q_circ_m3h,2),'m³/hr',`${fmt(Q_GPM,1)} GPM — ${turnover}h`)}${g('بارگذاری',loading,'GPM/ft²','')}${g('سطح',fmt(A_ft2,2),'ft²',`${fmt(A_m2,3)} m²`)}${gCyan('قطر فیلتر',fmt(D_mm,0),'mm','')}${g('Backwash',fmt(Q_backwash,1),'GPM','15 GPM/ft²')}${fb('فیلتر استخر',[`Q_circ = ${fmt(V_L,0)}/(${turnover}×3600) = ${fmt(Q_circ_m3h,2)} m³/hr`,`Q_GPM = ${fmt(Q_GPM,1)}`,`A = ${fmt(Q_GPM,1)}/${loading} = ${fmt(A_ft2,2)} ft²`,`D = ${fmt(D_mm,0)} mm`],'NSF / ASPE')}</div>`;}
+function poolHXHTML(Q_preheat,target,tin){const Tb_in=n($('hx_boil_in').value)||90,Tb_out=n($('hx_boil_out').value)||70,U=n($('hx_type_pl').value)||4000;const d1=Tb_in-target,d2=Tb_out-tin;if(d1<=0||d2<=0)return'';const lmtd=Math.abs(d1-d2)<0.01?d1:(d1-d2)/Math.log(d1/d2);const A=Q_preheat/(U*lmtd);return`<div class="card" style="margin-top:10px;border-right:4px solid var(--terra);background:linear-gradient(135deg,#F8E5DA,#F0D0BD);"><h3 style="font-size:.85rem;color:var(--navy);margin-bottom:8px;">🔁 مبدل پیش‌گرم استخر</h3>${g('بار پیش‌گرم',fmt(Q_preheat,0),'kcal/hr','')}${gCyan('LMTD',lmtd.toFixed(2),'°C',`ΔT1=${d1.toFixed(1)},ΔT2=${d2.toFixed(1)}`)}${g('ضریب U',U,'kcal/hr·m²·°C','')}${g('سطح',A.toFixed(2),'m²','')}${g('مدل','SG-HX-'+Math.ceil(A),'','')}${fb('مبدل',[`LMTD = (${d1.toFixed(1)}-${d2.toFixed(1)})/ln(${d1.toFixed(1)}/${d2.toFixed(1)}) = ${lmtd.toFixed(2)}°C`,`A = ${fmt(Q_preheat,0)}/(${U}×${lmtd.toFixed(2)}) = ${A.toFixed(2)} m²`],'ASME / TEMA')}</div>`;}
+
+/* ==================== GREENHOUSE v19 — 4 METHODS ==================== */
+function setGHMethod(m){
+  document.querySelectorAll('[data-method-tabs="gh"] button').forEach(b=>b.classList.toggle('active',b.dataset.method===m));
+  $('gh_method').value=m;
+  $('gh_asabe_block').style.display=(m==='asabe')?'block':'none';
+  $('gh_uEmpirical_block').style.display=(m==='uEmpirical')?'block':'none';
+  $('gh_wPerM2_block').style.display=(m==='wPerM2')?'block':'none';
+  $('gh_engToolbox_block').style.display=(m==='engToolbox')?'block':'none';
 }
 
-const FUELS={gas:{n:'گاز طبیعی',H:8500,isV:true,air:9.52},diesel:{n:'گازوئیل',H:10200,isV:false,air:11.5},mazut:{n:'مازوت',H:9700,isV:false,air:11.8},lpg:{n:'LPG',H:11000,isV:true,air:12}};
-const SAT=[{p:.3,hf:289.3,hfg:2336.1,t:69.1,vg:5.229},{p:.5,hf:340.6,hfg:2305.4,t:81.3,vg:3.24},{p:1,hf:417.5,hfg:2258,t:99.6,vg:1.694},{p:2,hf:504.7,hfg:2201.9,t:120.2,vg:.8857},{p:3,hf:561.4,hfg:2163.8,t:133.5,vg:.6058},{p:4,hf:604.7,hfg:2133.8,t:143.6,vg:.4625},{p:5,hf:640.1,hfg:2108,t:151.8,vg:.3749},{p:6,hf:670.4,hfg:2085,t:158.8,vg:.3157},{p:7,hf:697.1,hfg:2064,t:165,vg:.2729},{p:8,hf:720.9,hfg:2046.5,t:170.4,vg:.2404},{p:10,hf:762.6,hfg:2013.6,t:179.9,vg:.1943},{p:12,hf:798.3,hfg:1984.3,t:187.9,vg:.1632},{p:16,hf:858.6,hfg:1933.2,t:201.4,vg:.1238},{p:20,hf:908.6,hfg:1888.6,t:212.4,vg:.0995}];
-const satP=p=>({t:interp(SAT,p,'p','t'),hf:interp(SAT,p,'p','hf'),hfg:interp(SAT,p,'p','hfg'),vg:interp(SAT,p,'p','vg')});
-const SOFT=[{m:'SG-S-30',g:30000,d:320,r:25},{m:'SG-S-60',g:60000,d:320,r:50},{m:'SG-S-100',g:100000,d:470,r:75},{m:'SG-S-300',g:300000,d:650,r:250},{m:'SG-S-500',g:500000,d:800,r:425},{m:'SG-S-1000',g:1000000,d:1000,r:825}];
-const DEA=[{m:'SG-DE-1',b:1,k:1360},{m:'SG-DE-2',b:2,k:2268},{m:'SG-DE-3',b:3,k:3629},{m:'SG-DE-5',b:5,k:5443},{m:'SG-DE-8',b:8,k:8391},{m:'SG-DE-10',b:10,k:10205},{m:'SG-DE-15',b:15,k:15422},{m:'SG-DE-20',b:20,k:20865}];
-const OPEN=[100,200,300,500,800,1000,1500,2000,3000,5000].map(c=>({m:'SG-OE-'+c,c}));
-const HYDR=[70,100,150,200,270,340,410,480,550,770,960,1100].map(k=>({m:'SG-L-'+k,k}));
-const AIRS=[56,90,190,300,500,700,1300,2000,2750].map(g=>({m:'SG-AS-'+g,g,d:Math.round(Math.sqrt(g/10)*30),h:Math.round(Math.sqrt(g/10)*70)}));
-
-function derate(alt,tamb){const p=101.325*Math.pow(1-2.25577e-5*alt,5.25588);return 1/((p/101.325)*(293/(273+tamb)));}
-function calcBurner(q,eff,fuel,alt,tamb,stack,excess){
-  const qB=q/(eff/100),dr=derate(alt,tamb),qI=qB*dr,f=FUELS[fuel];
-  let rate,unit;if(f.isV){rate=qI/f.H;unit='m³/hr';}else{rate=qI/f.H;unit='kg/hr';}
-  const air=rate*f.air*(1+excess/100);
-  const p=101.325*Math.pow(1-2.25577e-5*alt,5.25588),tk=stack+273.15,den=1.293*(273.15/tk)*(p/101.325);
-  let flueV;if(f.isV){flueV=(rate+air)*1.0;}else{flueV=(rate+air)*0.85/den;}
-  const area=(flueV/3600)/12,dia=Math.sqrt(4*area/Math.PI)*1000;
-  const std=[150,200,250,300,350,400,450,500,600,700,800,900,1000,1200];
-  let ch=std[std.length-1];for(const d of std){if(d>=dia*1.05){ch=d;break;}}
-  return{qB,dr,qI,rate,unit,fuel:f.n,air,flueV,dia,ch};
-}
-function burnerBlock(q,eff,fuel,alt,tamb,stack,excess,label){
-  const b=calcBurner(q,eff,fuel,alt,tamb,stack,excess);
-  return`<div class="card" style="border-right:4px solid var(--gold);background:linear-gradient(135deg,#FAF4E6,#F5EBD4);">
-  <h3 style="font-size:.85rem;margin-bottom:8px;color:var(--navy);">🔥 مشعل و دودکش ${label||''}</h3>
-  ${g('ظرفیت مشعل',fmt(b.qB),'kcal/hr',hu(b.qB))}
-  ${g('ضریب اصلاح',b.dr.toFixed(3),'×',`ارتفاع ${alt} m`)}
-  ${g('ظرفیت نهایی',fmt(b.qI),'kcal/hr','')}
-  ${g('مصرف سوخت',fmt(b.rate,2),b.unit,b.fuel)}
-  ${g('دبی هوا',fmt(b.air,1),'m³/hr',excess+'٪')}
-  ${g('قطر دودکش',b.ch,'mm',`محاسبه: ${b.dia.toFixed(0)} mm`)}</div>`;
-}
-function trimSteam(cap,p){const rq=cap*.75,pA=p+1.013,A=rq/(51.45*.975*pA);const orf=[{L:'D',a:.71},{L:'E',a:1.27},{L:'F',a:1.98},{L:'G',a:3.24},{L:'H',a:5.06},{L:'J',a:8.3},{L:'K',a:11.9},{L:'L',a:16.4}];let o=orf[orf.length-1];for(const x of orf){if(x.a>=A){o=x;break;}}const items=[{n:'شیر اطمینان',s:`${fmt(rq)} kg/hr — Orifice ${o.L}`},{n:'شیر قطع کن بخار',s:`DN ${cap>5000?150:cap>2000?100:65}`},{n:'شیر تغذیه + چک والو',s:'DN 25-40'},{n:'شیر تخلیه سطحی TDS',s:'DN 20-25'},{n:'شیر تخلیه کف',s:'DN 25-32'},{n:'نمایشگر سطح آب',s:'شیشه + تست شیر'},{n:'فشارسنج + سیفون',s:`۰-${Math.round(p*1.5)} bar`},{n:'دماسنج + ول',s:`۰-${Math.round(p*100+150)}°C`},{n:'کنترلر سطح + لیمیت',s:'قطع مشعل'},{n:'کنترلر فشار + لیمیت',s:`${p} / ${(p*1.1).toFixed(1)} bar`}];return`<div style="margin-top:12px;"><span class="badge">🔧 Trim Kit</span><div class="trim-list">${items.map(t=>`<div class="trim-item"><div class="name">✓ ${t.n}</div><div class="spec">${t.s}</div></div>`).join('')}</div></div>`;}
-function trimHW(cap,p){const items=[{n:'شیر اطمینان',s:`${p} bar`},{n:'شیر قطع کن رفت',s:'قطر نازل'},{n:'شیر تغذیه + چک والو',s:'DN 20-32'},{n:'شیر تخلیه',s:'NPS 3/4'},{n:'شیر هواگیری خودکار',s:'Auto Air Vent'},{n:'فشارسنج + سیفون',s:`۰-${Math.round(p*1.5)} bar`},{n:'دماسنج + ول',s:'۰-۱۲۰°C'},{n:'کنترلر دما + لیمیت',s:'۸۵ / ۹۵°C'}];return`<div style="margin-top:12px;"><span class="badge">🔧 Trim Kit</span><div class="trim-list">${items.map(t=>`<div class="trim-item"><div class="name">✓ ${t.n}</div><div class="spec">${t.s}</div></div>`).join('')}</div></div>`;}
-function tiers(base){return`<div style="margin-top:16px;"><h3 style="color:var(--navy);margin-bottom:8px;font-size:.85rem;">🎯 پیشنهاد ۳ گزینه</h3><div class="tier-grid"><div class="tier-card bronze"><h3>🥉 اقتصادی</h3><div class="price">${fmt(base)} <small>kcal/hr</small></div><ul><li>مشعل استاندارد</li><li>راندمان ۸۵٪</li></ul></div><div class="tier-card silver"><h3>🥈 استاندارد</h3><div class="price">${fmt(base*1.08)} <small>kcal/hr</small></div><ul><li>اکونومایزر</li><li>راندمان ۹۰٪</li></ul></div><div class="tier-card gold"><h3>🥇 لوکس</h3><div class="price">${fmt(base*1.15)} <small>kcal/hr</small></div><ul><li>Modulating</li><li>راندمان ۹۵٪</li></ul></div></div></div>`;}
-
-function calcSteam(prefix,label){
-  const cap=n($(prefix+'_cap').value),p=n($(prefix+'_p').value);
-  const tfeed=n($(prefix+'_tfeed').value),cond=n($(prefix+'_cond').value);
-  const eff=n($(prefix+'_eff').value),fuel=$(prefix+'_fuel').value;
-  const hard=n($(prefix+'_hard')?.value)||300,tdsb=n($(prefix+'_tdsb')?.value)||3500;
-  const stack=n($(prefix+'_stack')?.value)||200,alt=n($(prefix+'_alt')?.value)||0;
-  const SF=getSF(prefix),div=n($(prefix+'_div')?.value)||1;
-  const err=validate({cap:cap>=50,p:p>0,eff:eff>0&&eff<=100});if(err){$(prefix+'_results').innerHTML=warn(err);return;}
-  const tdsf=250,coc=Math.max(1,tdsb/tdsf),blowPct=100/coc;
-  const sp=satP(p+1.013),hS=sp.hf+sp.hfg*.97,hF=tfeed*4.187,qB=cap*(hS-hF)*0.239,q=qB*SF*div;
-  const makeupKg=cap*(1-cond/100)+cap*(blowPct/100),makeupM3=makeupKg/1000;
-  const dg=makeupM3*1000*24/3.785*(hard/17.1),reqG=dg*1.3*SF;
-  const soft=pick(SOFT,'g',reqG),resin=reqG/30000,salt=resin*15*.4536;
-  const condFlow=cap*(cond/100),recov=condFlow*4.187*65/4.1868;
-  const deaCap=cap*1.15*SF,deM=pick(DEA,'k',deaCap),conT=(condFlow/500)*10*1.4;
-  const pumpF=cap*(1+blowPct/100)*1.15,pumpH=(p-.3)*10.2+2+((p-.3)*10.2*.15);
-  $(prefix+'_results').innerHTML=`${g('ظرفیت',fmt(cap),'kg/hr',mf(cap))}${g('دمای اشباع',fmt(sp.t,1),'°C',`${fmt(p+1.013,2)} bar`)}${g('بار خالص',fmt(qB),'kcal/hr',hu(qB))}${g('🔥 بار طراحی',fmt(q),'kcal/hr',hu(q))}${g('CoC',fmt(coc,2),'×','')}${g('بلودان',fmt(blowPct,2),'٪',fmt(cap*blowPct/100,1)+' kg/hr')}${burnerBlock(q,eff,fuel,alt,20,stack,15,`(${label})`)}${trimSteam(cap,p)}${tiers(q)}${nPlusOneHTML(q,'kcal/hr')}${fb('دیگ بخار',[`h_steam = ${fmt(hS,1)} kJ/kg`,`Q_boiler = ${cap}×(${fmt(hS,1)}-${fmt(hF,1)})×0.239 = ${fmt(qB)} kcal/hr`,`Q_design = ${fmt(q)} kcal/hr`],'Fulton / ASME PTC 4')}`;
-  addPNG(prefix+'_results','دیگ بخار '+label);saveToHistory('دیگ بخار '+label);
-}
-function calcHotOil(){const q=n($('ho_q').value),tin=n($('ho_tin').value),tout=n($('ho_tout').value);const margin=n($('ho_margin').value)/100,eff=n($('ho_eff').value),fuel=$('ho_fuel').value,SF=getSF('ho');const qD=q*(1+margin)*SF,flow=qD/((tin-tout)*0.5*1000),qFuel=qD/(eff/100);$('ho_results').innerHTML=`${g('بار طراحی',fmt(qD),'kcal/hr',hu(qD))}${g('دبی روغن',fmt(flow,2),'m³/hr',`ΔT=${tin-tout}°C`)}${burnerBlock(qD,eff,fuel,0,20,300,15,'(روغن داغ)')}${tiers(qD)}`;addPNG('ho_results','روغن داغ');saveToHistory('روغن داغ');}
-function calcCleanSteam(){const app=$('cs_app').value,drv=n($('cs_drv').value),div=n($('cs_div').value)/100,per=n($('cs_per').value),margin=n($('cs_margin').value)/100,SF=getSF('cs');const q=drv*div*per*(1+margin)*SF;$('cs_results').innerHTML=`${g('کاربرد',app,'','')}${g('ظرفیت کل',fmt(q,0),'kg/hr',mf(q))}${nPlusOneHTML(q*539,'kcal/hr')}`;addPNG('cs_results','بخار تمیز');saveToHistory('بخار تمیز');}
-function calcHW(prefix,label){const q=n($(prefix+'_q').value),p=n($(prefix+'_p').value);const tin=n($(prefix+'_tin').value),tout=n($(prefix+'_tout').value);const eff=n($(prefix+'_eff').value),fuel=$(prefix+'_fuel').value,SF=getSF(prefix);const err=validate({q:q>=50000,eff:eff>0});if(err){$(prefix+'_results').innerHTML=warn(err);return;}const qD=q*SF,flow=qD/((tin-tout)*1000);$(prefix+'_results').innerHTML=`${g('بار طراحی',fmt(qD),'kcal/hr',hu(qD))}${g('دبی',fmt(flow,2),'m³/h',`ΔT=${tin-tout}°C`)}${burnerBlock(qD,eff,fuel,0,20,200,15,`(${label})`)}${tiers(qD)}${nPlusOneHTML(qD,'kcal/hr')}`;addPNG(prefix+'_results','دیگ آبگرم '+label);saveToHistory('دیگ آبگرم '+label);}
-function calcCondensing(){const q=n($('cond_q').value),p=n($('cond_p').value),tin=n($('cond_tin').value),tout=n($('cond_tout').value),eff=n($('cond_eff').value),fuel=$('cond_fuel').value,recov=n($('cond_recov').value),SF=getSF('cond');if(eff>120){$('cond_results').innerHTML=warn('راندمان حداکثر ۱۲۰٪');return;}const qD=q*SF,qFuel=qD/(eff/100),recovered=qD*(recov/100);$('cond_results').innerHTML=`${g('بار طراحی',fmt(qD),'kcal/hr',hu(qD))}${g('راندمان',eff,'٪','')}${g('حرارت بازیافتی',fmt(recovered),'kcal/hr',recov+'٪')}${burnerBlock(qD,eff,fuel,0,20,60,10,'(چگالشی)')}${tiers(qD)}${nPlusOneHTML(qD,'kcal/hr')}`;addPNG('cond_results','چگالشی');saveToHistory('چگالشی');}
-function calcDual(){const qh=n($('dual_qh').value),qd=n($('dual_qd').value),eff=n($('dual_eff').value),SF=getSF('dual');const qTotal=Math.max(qh,qd)*1.15*SF;$('dual_results').innerHTML=`${g('بار گرمایش',fmt(qh),'kcal/hr','')}${g('بار DHW',fmt(qd),'kcal/hr','')}${g('بار کل',fmt(qTotal),'kcal/hr','×1.15')}${burnerBlock(qTotal,eff,'gas',0,20,200,15,'(دوگانه)')}${tiers(qTotal)}`;addPNG('dual_results','دوگانه');saveToHistory('دوگانه');}
-function calcPackage(){const units=n($('pk_units').value),area=n($('pk_area').value),tout=n($('pk_tout').value),tin=n($('pk_tin').value);const dhw=$('pk_dhw').value==='1',U=n($('pk_u').value),SF=getSF('pk');const surf=units*area*2.5,qH=U*surf*(tin-tout);const qDHW=dhw?units*4*50*(60-5)/24:0,qMax=Math.max(qH,qDHW),qD=qMax*SF;const pkgs=[{m:'Cb.pH-45',min:17000,max:45000},{m:'Cb.pH-85',min:45000,max:75000},{m:'Cb.pH-100',min:75000,max:100000}];const md=pkgs.find(x=>qD>=x.min&&qD<=x.max);$('pk_results').innerHTML=`${g('بار گرمایش',fmt(qH),'kcal/hr','')}${g('بار DHW',fmt(qDHW),'kcal/hr','')}${g('بار طراحی',fmt(qD),'kcal/hr','SF='+SF)}${g('مدل',md?md.m:'خارج','','')}${nPlusOneHTML(qD,'kcal/hr')}`;addPNG('pk_results','پکیج');}
-function calcTrap(){const flow=n($('st_flow').value),dp=n($('st_dp').value),type=$('st_type').value,margin=n($('st_margin').value);const typeFactor=type==='thermo'?1.2:type==='thermo2'?1.3:1.5;const cap=flow*typeFactor*margin,dn=Math.max(15,Math.min(50,Math.round(Math.sqrt(cap/10)*2)));$('st_results').innerHTML=`${g('دبی کندانس',fmt(flow),'kg/hr','')}${g('ΔP',dp,'bar','')}${g('ظرفیت تله',fmt(cap),'kg/hr','')}${g('قطر',dn,'mm','DN '+dn)}`;addPNG('st_results','تله بخار');}
-function calcRadiator(){const q=n($('rad_q').value),perPore=n($('rad_type').value),f=n($('rad_f').value),install=n($('rad_install').value),tin=n($('rad_tin').value),tamb=n($('rad_tamb').value);const dT=tin-tamb;if(dT<=0){$('rad_results').innerHTML=warn('ΔT نامعتبر');return;}const dTfactor=dT/60;const pores=Math.ceil(q*f*install/(perPore*dTfactor));$('rad_results').innerHTML=`${g('بار اتاق',fmt(q),'kcal/hr','')}${g('ΔT',dT,'°C','')}${g('تعداد پره',pores,'پره','+۵٪')}`;addPNG('rad_results','رادیاتور');}
-function calcOpenExp(){const vs=n($('oe_vs').value),th=n($('oe_t').value),tc=n($('oe_tmin').value);const v2=1+waterK(th),v1=1+waterK(tc),e=(v2/v1)-1-3*11.7e-6*(th-tc);const Vt=2*vs*e*1.2,md=pick(OPEN,'c',Vt);$('oe_results').innerHTML=`${g('حجم',fmt(Vt),'L','')}${g('مدل',md.m,'','')}`;addPNG('oe_results','انبساط باز');}
-function calcClosedExp(){const vs=n($('ce_vs').value),th=n($('ce_t').value),tc=n($('ce_tmin').value);const p1=n($('ce_p1').value)+1.013,p2=n($('ce_p2').value)+1.013;const v2=1+waterK(th),v1=1+waterK(tc),e=(v2/v1)-1-3*11.7e-6*(th-tc);const Vt=vs*e/(1-p1/p2)*1.2,md=pick(CLOSED,'c',Vt);$('ce_results').innerHTML=`${g('حجم',fmt(Vt),'L','')}${g('مدل',md.m,'','')}`;addPNG('ce_results','انبساط بسته');}
-function calcCondTank(){const fl=n($('ct_flow').value),h=n($('ct_hold').value),pi=n($('ct_pin').value),pt=n($('ct_ptank').value);const inP=satP(pi+1.013),tkP=satP(pt+1.013);const fp=Math.max(0,(inP.hf-tkP.hf)/tkP.hfg*100),fla=fl*fp/100,liq=fl-fla,V=(liq/60)*h*1.4;$('ct_results').innerHTML=`${g('فلش',fmt(fp,1),'٪','')}${g('بخار فلش',fmt(fla),'kg/hr','')}${g('حجم',fmt(V),'L','')}`;addPNG('ct_results','مخزن کندانس');}
-function calcCoilU(){const vol=n($('cu_vol').value),th=n($('cu_th').value),tc=n($('cu_tc').value),q=n($('cu_q').value);const md=pick(COILU,'cap',vol);$('cu_results').innerHTML=`${g('مدل','SG-HE-C-'+md.cap,'L',`${md.surf} ft²`)}${g('ظرفیت',fmt(q/(th-tc)),'L/hr','')}`;addPNG('cu_results','کویلی');}
-function calcCoilSpiral(){const vol=n($('cs_vol').value),th=n($('cs_th').value),tc=n($('cs_tc').value),q=n($('cs_q').value);const md=pick(COILSP,'cap',vol);$('cs_sp_results').innerHTML=`${g('مدل','SG-HE-SC-'+md.cap,'L',`${md.surf} ft²`)}${g('ظرفیت',fmt(q/(th-tc)),'L/hr','')}`;addPNG('cs_sp_results','اسپیرال');}
-function calcDoubleWall(){const vol=n($('dw_vol').value),th=n($('dw_th').value),tc=n($('dw_tc').value),p=n($('dw_p').value),t=n($('dw_t').value),eff=n($('dw_eff').value);const q=vol*1.16*(th-tc)/(t*eff/100),surface=q/15000;$('dw_results').innerHTML=`${g('بار حرارتی',fmt(q),'kcal/hr',hu(q))}${g('سطح',fmt(surface,2),'m²','')}`;addPNG('dw_results','دوجداره');}
-function calcSoftener(){const fl=n($('sf_flow').value),h=n($('sf_hard').value),d=n($('sf_days').value);const dg=fl*1000*24/3.785,dgr=dg*(h/17.1),rg=dgr*d*1.3*1.2;const md=pick(SOFT,'g',rg),rf=rg/30000,salt=rf*15*.4536;$('sf_results').innerHTML=`${g('گرین',fmt(rg),'گرین','')}${g('رزین',fmt(rf,2),'ft³','')}${g('مدل',md.m,'','')}${g('نمک',fmt(salt,1),'kg','')}`;addPNG('sf_results','سختی‌گیر');}
-function calcSandFilter(){const fl=n($('sf2_flow').value),rt=n($('sf2_rate').value);const gpm=fl*4.403,area=gpm/rt,aM2=area*.0929,D=Math.sqrt(4*aM2/Math.PI);$('sf2_results').innerHTML=`${g('دبی',fmt(gpm,0),'GPM','')}${g('مساحت',fmt(area,2),'ft²','')}${g('قطر',fmt(D*1000),'mm','')}`;addPNG('sf2_results','فیلتر شنی');}
-function calcDeaerator(){const cap=n($('de_cap').value),blow=n($('de_blow').value)/100;const fw=cap*(1+blow),dc=fw*1.15*1.2,md=pick(DEA,'k',dc),st=(md.k/60)*20;$('de_results').innerHTML=`${g('ظرفیت',fmt(dc),'kg/hr','')}${g('مدل',md.m,'','')}${g('حجم',fmt(st),'L','')}`;addPNG('de_results','دی‌اریتور');}
-function calcHydraulic(){const q=n($('hs_q').value),tin=n($('hs_tin').value),tout=n($('hs_tout').value),v=n($('hs_v').value);const kW=q*1.163/1000,fl=q/((tin-tout)*1000),area=(fl/3600)/v,D=Math.sqrt(4*area/Math.PI);const md=pick(HYDR,'k',kW);$('hs_results').innerHTML=`${g('دبی',fmt(fl,1),'m³/h','')}${g('قطر',fmt(D*1000,0),'mm','')}${g('مدل',md.m,'','')}`;addPNG('hs_results','هیدرولیک');}
-function calcAirSep(){const gpm=Math.max(n($('as_flow').value),n($('as_flow_m3').value)*4.403);const md=pick(AIRS,'g',gpm);$('as_results').innerHTML=`${g('دبی',fmt(gpm,0),'GPM','')}${g('مدل',md.m,'','')}`;addPNG('as_results','ایر سپراتور');}
-function onHxType(){$('hx_u').value=$('hx_type').value==='plate'?'4000':'2000';}
-function calcHX(){const q=n($('hx_q').value),thi=n($('hx_thin').value),tho=n($('hx_thout').value),tci=n($('hx_tcin').value),tco=n($('hx_tcout').value),U=n($('hx_u').value);const d1=thi-tco,d2=tho-tci;if(d1<=0||d2<=0){$('hx_results').innerHTML=warn('دماها را بررسی کنید');return;}const lmtd=Math.abs(d1-d2)<.01?d1:(d1-d2)/Math.log(d1/d2);const A=(q*1.163)/(U*lmtd);$('hx_results').innerHTML=`${g('LMTD',fmt(lmtd,1),'°C','')}${g('سطح',fmt(A,2),'m²','U='+U)}`;addPNG('hx_results','مبدل');}
-
-/* ==================== GREENHOUSE (v18.1 — FIXED) ==================== */
 function calcGH(){
-  const L=n($('gh_l').value),W=n($('gh_w').value),H=n($('gh_h').value);
-  const tin=n($('gh_tin').value),tout=n($('gh_tout').value);
-  const U=n($('gh_cover').value),infil=n($('gh_infil').value);
+  const method=$('gh_method').value;
   const SF=getSF('gh');
-  const err=validate({L:L>0,W:W>0,H:H>0});
-  if(err){$('gh_results').innerHTML=warn(err);return;}
-  const A=L*W;
-  const wallA=2*(L+W)*H;
-  const roofA=A*1.15;
-  const totA=wallA+roofA;
-  const dT=tin-tout;
-  const qC_W=U*totA*dT;
-  const vol=A*H;
-  const qI_W=0.34*vol*infil*dT;
-  const qB_W=qC_W+qI_W;
-  const qB_kcal=qB_W*0.86;
-  const qT_kcal=qB_kcal*SF;
-  const qT_kW=qB_W*SF/1000;
-  $('gh_results').innerHTML=`
-    ${boilerHighlightHTML(qT_kcal,'hw')}
-    ${g('سطح پوشش',fmt(totA,1),'m²',`دیوار ${fmt(wallA,1)} + سقف ${fmt(roofA,1)}`)}
-    ${g('ضریب U',U,'W/m²·K','')}
-    ${g('ΔT',dT,'°C',`${tout}°C → ${tin}°C`)}
-    ${g('بار هدایتی',fmt(qC_W),'W',`${fmt(qC_W*0.86)} kcal/hr`)}
-    ${g('بار نفوذ هوا',fmt(qI_W),'W',`ACH=${infil} — ${fmt(qI_W*0.86)} kcal/hr`)}
-    ${g('بار خالص',fmt(qB_kcal),'kcal/hr',`${fmt(qB_W)} W`)}
-    ${g('🔥 بار طراحی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
-    ${nPlusOneHTML(qT_kcal,'kcal/hr')}
-    ${fb('بار حرارتی گلخانه',[
-      `A_wall = 2 × (${L} + ${W}) × ${H} = ${fmt(wallA,1)} m²`,
-      `A_roof = ${L} × ${W} × 1.15 = ${fmt(roofA,1)} m²`,
-      `A_total = ${fmt(totA,1)} m²`,
-      `Q_cond = U × A × ΔT = ${U} × ${fmt(totA,1)} × ${dT} = ${fmt(qC_W)} W`,
-      `Q_inf = 0.34 × V × ACH × ΔT = 0.34 × ${fmt(vol,1)} × ${infil} × ${dT} = ${fmt(qI_W)} W`,
-      `Q_total = ${fmt(qB_W)} W = ${fmt(qB_kcal)} kcal/hr`,
-      `Q_design = ${fmt(qB_kcal)} × ${SF} = ${fmt(qT_kcal)} kcal/hr`
-    ],'ASHRAE Ch.18 / Nelson Greenhouse Engineering')}`;
+  const showExp=$('gh_show_exp')?.checked;
+  let resultHTML='';
+
+  if(method==='asabe'){
+    const L=n($('gh_l').value),W=n($('gh_w').value),H=n($('gh_h').value);
+    const tin=n($('gh_tin').value),tout=n($('gh_tout').value);
+    const U=n($('gh_cover').value),infil=n($('gh_infil').value);
+    const err=validate({L:L>0,W:W>0,H:H>0});if(err){$('gh_results').innerHTML=warn(err);return;}
+    const A=L*W,wallA=2*(L+W)*H,roofA=A*1.15,totA=wallA+roofA,dT=tin-tout;
+    const qC_W=U*totA*dT,vol=A*H,qI_W=0.34*vol*infil*dT,qB_W=qC_W+qI_W;
+    const qB_kcal=qB_W*0.86,qT_kcal=qB_kcal*SF,qT_kW=qB_W*SF/1000;
+    resultHTML=`${boilerHighlightHTML(qT_kcal,'hw')}
+      <div class="method-info"><strong>📊 روش ASABE EP406.4:</strong> Q = U × A_cover × ΔT + تلفات نفوذ</div>
+      ${g('سطح پوشش',fmt(totA,1),'m²',`دیوار ${fmt(wallA,1)} + سقف ${fmt(roofA,1)}`)}
+      ${g('ضریب U',U,'W/m²·K','')}
+      ${g('ΔT',dT,'°C',`${tout}°C → ${tin}°C`)}
+      ${g('بار هدایتی',fmt(qC_W),'W',`${fmt(qC_W*0.86)} kcal/hr`)}
+      ${g('بار نفوذ هوا',fmt(qI_W),'W',`ACH=${infil}`)}
+      ${g('بار خالص',fmt(qB_kcal),'kcal/hr',`${fmt(qB_W)} W`)}
+      ${g('🔥 بار طراحی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
+      ${nPlusOneHTML(qT_kcal,'kcal/hr')}
+      ${fb('بار حرارتی گلخانه (ASABE)',[
+        `A_total = ${fmt(totA,1)} m²`,
+        `Q_cond = ${U} × ${fmt(totA,1)} × ${dT} = ${fmt(qC_W)} W`,
+        `Q_inf = 0.34 × ${fmt(vol,1)} × ${infil} × ${dT} = ${fmt(qI_W)} W`,
+        `Q_design = ${fmt(qB_kcal)} × ${SF} = ${fmt(qT_kcal)} kcal/hr`
+      ],'ANSI/ASAE EP406.4')}`;
+  }
+  else if(method==='uEmpirical'){
+    const L=n($('gh_l2').value),W=n($('gh_w2').value),H=n($('gh_h2').value);
+    const tin=n($('gh_tin2').value),tout=n($('gh_tout2').value);
+    const wind=n($('gh_wind').value),infil=n($('gh_infil2').value);
+    const err=validate({L:L>0,W:W>0,H:H>0});if(err){$('gh_results').innerHTML=warn(err);return;}
+    const U=3.55+0.11*wind;
+    const A=L*W,wallA=2*(L+W)*H,roofA=A*1.15,totA=wallA+roofA,dT=tin-tout;
+    const qC_W=U*totA*dT,vol=A*H,qI_W=0.34*vol*infil*dT,qB_W=qC_W+qI_W;
+    const qB_kcal=qB_W*0.86,qT_kcal=qB_kcal*SF,qT_kW=qB_W*SF/1000;
+    resultHTML=`${boilerHighlightHTML(qT_kcal,'hw')}
+      <div class="method-info"><strong>📐 روش U تجربی:</strong> U = 3.55 + 0.11 × V_wind</div>
+      ${g('ضریب U محاسبه‌شده',U.toFixed(2),'W/m²·K',`سرعت باد ${wind} m/s`)}
+      ${g('سطح پوشش',fmt(totA,1),'m²','')}
+      ${g('ΔT',dT,'°C','')}
+      ${g('بار هدایتی',fmt(qC_W),'W',`${fmt(qC_W*0.86)} kcal/hr`)}
+      ${g('بار نفوذ',fmt(qI_W),'W',`ACH=${infil}`)}
+      ${g('🔥 بار طراحی',fmt(qT_kcal),'kcal/hr',`${fmt(qT_kW,2)} kW — SF=${SF}`)}
+      ${nPlusOneHTML(qT_kcal,'kcal/hr')}
+      ${fb('بار حرارتی گلخانه (U تجربی)',[
+        `U = 3.55 + 0.11 × ${wind} = ${U.toFixed(2)} W/m²·K`,
+        `A_total = ${fmt(totA,1)} m²`,
+        `Q_cond = ${U.toFixed(2)} × ${fmt(totA,1)} × ${dT} = ${fmt(qC_W)} W`,
+        `Q_inf = ${fmt(qI_W)} W`,
+        `Q_design = ${fmt(qT_kcal)} kcal/hr`
+      ],'Von Zabeltitz / ASHRAE')}`;
+  }
+  else if(method==='wPerM2'){
+    const L=n($('gh_l3').value),W=n($('gh_w3').value),H=n($('gh_h3').value);
+    const tin=n($('gh_tin3').value),tout=n($('gh_tout3').value);
+    const qspec=n($('gh_qspec').value),dtRef=n($('gh_dtRef').value);
+    const err=validate({L:L>0,W:W>0,H:H>0,qspec:qspec>0,dtRef:dtRef>0});if(err){$('gh_results').innerHTML=warn(err);return;}
+    const A=L*W,dT=tin-tout;
+    const qspecAdj=qspec*(dT/dtRef);
+    const q_W=A*qspecAdj,qKcal=q_W*0.86,qDesign=qKcal*SF,qKW=q_W*SF/1000;
+    resultHTML=`${boilerHighlightHTML(qDesign,'hw')}
+      <div class="method-info"><strong>⚡ روش بار سطحی:</strong> Q = A_floor × q_specific (تصحیح‌شده برای ΔT)</div>
+      ${g('مساحت کف',fmt(A,0),'m²','')}
+      ${g('ΔT',dT,'°C',`ΔT مرجع ${dtRef}°C`)}
+      ${g('بار ویژه تصحیح‌شده',fmt(qspecAdj,1),'W/m²',`${qspec} × (${dT}/${dtRef})`)}
+      ${g('بار حرارتی',fmt(qKcal),'kcal/hr',`${fmt(q_W)} W`)}
+      ${g('🔥 بار طراحی',fmt(qDesign),'kcal/hr',`${fmt(qKW,2)} kW — SF=${SF}`)}
+      ${nPlusOneHTML(qDesign,'kcal/hr')}
+      ${fb('بار حرارتی گلخانه (بار سطحی)',[
+        `q_specific = ${qspec} × (${dT}/${dtRef}) = ${fmt(qspecAdj,1)} W/m²`,
+        `Q = ${fmt(A,0)} × ${fmt(qspecAdj,1)} = ${fmt(q_W)} W`,
+        `Q_design = ${fmt(qKcal)} × ${SF} = ${fmt(qDesign)} kcal/hr`
+      ],'روش تجربی رایج مهندسی')}`;
+  }
+  else if(method==='engToolbox'){
+    const L=n($('gh_l4').value),W=n($('gh_w4').value),H=n($('gh_h4').value);
+    const tin=n($('gh_tin4').value),tout=n($('gh_tout4').value);
+    const kwRef=n($('gh_kwRef').value),dtRef2=n($('gh_dtRef2').value);
+    const err=validate({L:L>0,W:W>0,H:H>0,kwRef:kwRef>0,dtRef2:dtRef2>0});if(err){$('gh_results').innerHTML=warn(err);return;}
+    const A=L*W,dT=tin-tout;
+    const q_kW=(A/100)*kwRef*(dT/dtRef2);
+    const q_W=q_kW*1000,qKcal=q_W*0.86,qDesign=qKcal*SF,qDesignKW=q_kW*SF;
+    resultHTML=`${boilerHighlightHTML(qDesign,'hw')}
+      <div class="method-info"><strong>🌐 روش Engineering Toolbox:</strong> Q = (A/100) × ${kwRef} kW × (ΔT/${dtRef2})</div>
+      ${g('مساحت کف',fmt(A,0),'m²','')}
+      ${g('ΔT',dT,'°C',`ΔT مرجع ${dtRef2}°C`)}
+      ${g('بار حرارتی',fmt(qKcal),'kcal/hr',`${fmt(q_kW,1)} kW`)}
+      ${g('🔥 بار طراحی',fmt(qDesign),'kcal/hr',`${fmt(qDesignKW,1)} kW — SF=${SF}`)}
+      ${nPlusOneHTML(qDesign,'kcal/hr')}
+      ${fb('بار حرارتی گلخانه (Engineering Toolbox)',[
+        `Q = (${fmt(A,0)}/100) × ${kwRef} × (${dT}/${dtRef2}) = ${fmt(q_kW,1)} kW`,
+        `Q_design = ${fmt(qKcal)} × ${SF} = ${fmt(qDesign)} kcal/hr`
+      ],'Engineering Toolbox')}`;
+  }
+
+  $('gh_results').innerHTML=resultHTML+(showExp?expansionTankHTML(qDesign||0,'gh'):'');
   addPNG('gh_results','گلخانه');
-  saveToHistory('گلخانه');
+  saveToHistory('گلخانه — '+method);
 }
 
-/* ==================== SAUNA (v18.1 — FIXED) ==================== */
-function calcSauna(){
-  const L=n($('sa_l').value),W=n($('sa_w').value),H=n($('sa_h').value);
-  const k1=n($('sa_vent').value),k2=n($('sa_const').value);
-  const SF=getSF('sa');
-  const err=validate({L:L>0,W:W>0,H:H>0});
-  if(err){$('sa_results').innerHTML=warn(err);return;}
-  const V=L*W*H;
-  const kw=V*k1*k2*SF;
-  const steam=kw*1.5;
-  $('sa_results').innerHTML=`
-    ${boilerHighlightHTML(kw*860,'hw')}
-    ${g('حجم اتاق',V.toFixed(2),'m³',`${L} × ${W} × ${H}`)}
-    ${g('ضریب تهویه',k1,'','')}
-    ${g('ضریب ساخت',k2,'','')}
-    ${g('توان',kw.toFixed(2),'kW','')}
-    ${g('بخار معادل',steam.toFixed(2),'kg/hr','')}
-    ${nPlusOneHTML(kw*860,'kcal/hr')}
-    ${fb('بار حرارتی سونا',[
-      `V = ${L} × ${W} × ${H} = ${V.toFixed(2)} m³`,
-      `P = V × k_vent × k_const × SF = ${V.toFixed(2)} × ${k1} × ${k2} × ${SF} = ${kw.toFixed(2)} kW`,
-      `Steam = ${kw.toFixed(2)} × 1.5 = ${steam.toFixed(2)} kg/hr`
-    ],'ASHRAE / DIN 18041')}`;
-  addPNG('sa_results','سونا');
-  saveToHistory('سونا');
-}
+/* ==================== SAUNA ==================== */
+function calcSauna(){const L=n($('sa_l').value),W=n($('sa_w').value),H=n($('sa_h').value);const k1=n($('sa_vent').value),k2=n($('sa_const').value);const SF=getSF('sa');const err=validate({L:L>0,W:W>0,H:H>0});if(err){$('sa_results').innerHTML=warn(err);return;}const V=L*W*H;const kw=V*k1*k2*SF;const steam=kw*1.5;$('sa_results').innerHTML=`${boilerHighlightHTML(kw*860,'hw')}${g('حجم اتاق',V.toFixed(2),'m³',`${L} × ${W} × ${H}`)}${g('ضریب تهویه',k1,'','')}${g('ضریب ساخت',k2,'','')}${g('توان',kw.toFixed(2),'kW','')}${g('بخار معادل',steam.toFixed(2),'kg/hr','')}${nPlusOneHTML(kw*860,'kcal/hr')}${fb('بار حرارتی سونا',[`V = ${L} × ${W} × ${H} = ${V.toFixed(2)} m³`,`P = V × k_vent × k_const × SF = ${V.toFixed(2)} × ${k1} × ${k2} × ${SF} = ${kw.toFixed(2)} kW`,`Steam = ${kw.toFixed(2)} × 1.5 = ${steam.toFixed(2)} kg/hr`],'ASHRAE / DIN 18041')}`;addPNG('sa_results','سونا');saveToHistory('سونا');}
 
 const QC_DATA={residential:{ic:'🏠',label:'مسکونی',lo:80,hi:120,U:0.8},office:{ic:'🏢',label:'اداری',lo:100,hi:150,U:0.8},hotel:{ic:'🏨',label:'هتل',lo:120,hi:180,U:1.0},apartment_hotel:{ic:'🏩',label:'هتل آپارتمان',lo:110,hi:160,U:1.0},hospital:{ic:'🏥',label:'بیمارستان',lo:150,hi:220,U:1.0},clinic:{ic:'🩺',label:'درمانگاه',lo:130,hi:180,U:1.0},school:{ic:'🎓',label:'مدرسه',lo:90,hi:130,U:1.2},university:{ic:'🏛️',label:'دانشگاه',lo:100,hi:150,U:1.1},restaurant:{ic:'🍽️',label:'رستوران',lo:150,hi:200,U:1.2},cafe:{ic:'☕',label:'کافه',lo:120,hi:170,U:1.2},industrial:{ic:'🏭',label:'کارخانه',lo:80,hi:150,U:1.2},workshop:{ic:'🔧',label:'کارگاه',lo:70,hi:120,U:1.3},pool:{ic:'🏊',label:'استخر',lo:200,hi:350,U:1.5},sauna:{ic:'🧖',label:'سونا',lo:250,hi:400,U:1.5},greenhouse:{ic:'🌿',label:'گلخانه',lo:150,hi:250,U:4.5},stadium:{ic:'🏟️',label:'ورزشگاه',lo:120,hi:200,U:1.3},gym:{ic:'💪',label:'سالن ورزشی',lo:100,hi:160,U:1.3},cinema:{ic:'🎬',label:'سینما',lo:130,hi:180,U:1.3},theater:{ic:'🎭',label:'تئاتر',lo:130,hi:180,U:1.3},mall:{ic:'🛒',label:'پاساژ',lo:110,hi:160,U:1.2},supermarket:{ic:'🏪',label:'سوپرمارکت',lo:120,hi:170,U:1.2},mosque:{ic:'🕌',label:'مسجد',lo:100,hi:150,U:1.2},kindergarten:{ic:'🧸',label:'مهدکودک',lo:100,hi:140,U:1.2},nursing:{ic:'👴',label:'خانه سالمندان',lo:120,hi:170,U:1.0},dorm:{ic:'🛏️',label:'خوابگاه',lo:90,hi:140,U:1.0},prison:{ic:'🔒',label:'زندان',lo:80,hi:120,U:1.0},laundry:{ic:'🧺',label:'رختشویخانه',lo:200,hi:300,U:1.5},bakery:{ic:'🥖',label:'نانوایی',lo:180,hi:250,U:1.4},cold:{ic:'❄️',label:'سردخانه',lo:60,hi:100,U:0.6},warehouse:{ic:'📦',label:'انبار',lo:50,hi:90,U:0.9},lab:{ic:'🔬',label:'آزمایشگاه',lo:140,hi:200,U:1.1},pharma:{ic:'💊',label:'داروسازی',lo:150,hi:220,U:1.1},food_factory:{ic:'🥫',label:'صنایع غذایی',lo:130,hi:200,U:1.3},data_center:{ic:'💻',label:'دیتاسنتر',lo:200,hi:350,U:1.0}};
 let qcType='residential';
@@ -1692,7 +1437,7 @@ toggleCombinedMode();
 loadFromStorage();
 syncDHWExpConversion();
 
-console.log('✓ Capacity Assistant v18.1 loaded — Greenhouse & Sauna fixed');
+console.log('✓ Capacity Assistant v19 loaded — 4 Greenhouse Methods + CSS Fix');
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));}
 </script>
 </body>
